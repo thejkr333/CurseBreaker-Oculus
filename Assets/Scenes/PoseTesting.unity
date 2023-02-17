@@ -859,7 +859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 484}
+  m_AnchoredPosition: {x: 0, y: 235}
   m_SizeDelta: {x: 1039.825, y: 259.957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1540257530
@@ -1322,9 +1322,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 913805214}
     - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: threshold
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
       propertyPath: notRecognize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 505421390}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: notRecognize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndPose
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[2].onRecognized.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[3].onRecognized.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[4].onRecognized.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[2].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[3].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[4].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
       propertyPath: gestures.Array.data[0].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1333,6 +1365,66 @@ PrefabInstance:
       propertyPath: gestures.Array.data[1].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 505421390}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[2].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 505421390}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[3].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 505421390}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[4].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 505421390}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[2].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[3].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[4].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[2].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndPose
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[3].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndPose
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[4].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndPose
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[2].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PoseEvents, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[3].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PoseEvents, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[4].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PoseEvents, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[2].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[3].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026450629081288495, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
+      propertyPath: gestures.Array.data[4].onRecognized.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61817936c7e92a74a9edd90f3875200b, type: 3}
 --- !u!1001 &4854287458440216380

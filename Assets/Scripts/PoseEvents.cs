@@ -107,11 +107,16 @@ public class PoseEvents : MonoBehaviour
     }
     void EndAim()
     {
+        lineRenderer.enabled = false;
+
         if (lastOutline != null && lastOutline.enabled) lastOutline.enabled = false;
         lastOutline = null;
     }
     public void StartGrab()
     {
+        lineRenderer.enabled = false;
+
+        Invoke(nameof(EndAim), 2);
         currentPose = Poses.Grab;
     }
     void Grab()
