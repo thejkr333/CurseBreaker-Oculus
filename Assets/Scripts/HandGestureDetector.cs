@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using UnityEngine.Events;
 using System.Collections;
 using System;
@@ -13,6 +15,8 @@ public struct Gesture
 }
 public class HandGestureDetector : MonoBehaviour
 {
+    [SerializeField] TMP_Text poseText;
+
     // How much accurate the recognize should be
     [Header("Threshold value")]
     public float threshold = 0.1f;
@@ -86,7 +90,7 @@ public class HandGestureDetector : MonoBehaviour
             {
                 // we change another boolean to avoid a loop of event
                 done = true;
-
+                poseText.text = currentGesture.name;
                 // after that i will invoke what put in the Event if is present
                 currentGesture.onRecognized?.Invoke();
             }
@@ -97,6 +101,7 @@ public class HandGestureDetector : MonoBehaviour
                 if (done)
                 {
                     Debug.Log("Not Recognized");
+                    poseText.text = "Not recognized";
                     // we set to false the boolean again, so this will not loop
                     done = false;
 

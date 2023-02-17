@@ -10,14 +10,20 @@ public class PoseEvents : MonoBehaviour
     public Poses currentPose;
 
     [SerializeField] protected OVRSkeleton handSkeleton;
+    LineRenderer lineRenderer;
     protected List<OVRBone> fingerbones = null;
     [SerializeField] LayerMask interactable;
 
     private bool hasStarted = false;
+    bool attracting = false;
     Vector3 indexProximal = Vector3.zero;
-    Vector3 indexDistal = Vector3.zero;
+    Vector3 indexTip = Vector3.zero;
+
+    Outline lastOutline;
     void Start()
     {
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
         // When the Oculus hand had his time to initialize hand, with a simple coroutine i start a delay of
         // a function to initialize the script
         StartCoroutine(DelayRoutine(Initialize));
@@ -66,29 +72,43 @@ public class PoseEvents : MonoBehaviour
     }
     void Aim()
     {
-        /*Vector3*/ indexProximal = Vector3.zero;
-        /*Vector3*/ indexDistal = Vector3.zero;
+        lineRenderer.enabled = true;
+        /*Vector3*/
+        indexProximal = Vector3.zero;
+        /*Vector3*/ indexTip = Vector3.zero;
 
         foreach(OVRBone bone in fingerbones)
         {
             if (bone.Id == OVRSkeleton.BoneId.Hand_Index1) 
             {
-                indexProximal = bone.Transform.localPosition;
+                indexProximal = bone.Transform.position;
+                continue;
             }
-            if (bone.Id == OVRSkeleton.BoneId.Hand_Index3) 
-            { 
-                indexDistal = bone.Transform.localPosition; 
+            if (bone.Id == OVRSkeleton.BoneId.Hand_IndexTip) 
+            {
+                indexTip = bone.Transform.position;
+                continue;
             }
         }
 
-        Ray ray = new Ray(indexProximal, indexDistal);
+        lineRenderer.SetPosition(0, indexTip/* + indexProximal*/);
+        lineRenderer.SetPosition(1, (indexTip - indexProximal) * 100000000);
+
+        Ray ray = new Ray(indexTip, indexTip - indexProximal);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, interactable))
         {
             Outline outline = hitInfo.transform.GetComponent<Outline>();
             if (outline == null) return;
 
             outline.enabled = true;
+            if (lastOutline != null && lastOutline != outline && lastOutline.enabled) { lastOutline.enabled = false; lastOutline = null; }
+            lastOutline = outline;
         }
+    }
+    void EndAim()
+    {
+        if (lastOutline != null && lastOutline.enabled) lastOutline.enabled = false;
+        lastOutline = null;
     }
     public void StartGrab()
     {
@@ -96,18 +116,36 @@ public class PoseEvents : MonoBehaviour
     }
     void Grab()
     {
+        if(!attracting) if (lastOutline == null || lastOutline.enabled == false) return;
 
+        Rigidbody rb = lastOutline.GetComponent<Rigidbody>();
+        if (rb == null) return;
+
+        if (!attracting) StartCoroutine(AttractObject(rb));
+    }
+
+    IEnumerator AttractObject(Rigidbody objectRb)
+    {
+        attracting = true;
+
+        while(Vector3.Distance(objectRb.transform.position, handSkeleton.transform.position) > .3f)
+        {
+            objectRb.AddForce((handSkeleton.transform.position - objectRb.transform.position).normalized * 3);
+
+            yield return 0;
+        }
+
+        objectRb.velocity = Vector3.zero;
+        objectRb.transform.SetParent(handSkeleton.transform);
+
+        attracting = false;
     }
     public void EndPose()
     {
         currentPose = Poses.Unknown;
+        lineRenderer.enabled = false;
+
+        Invoke(nameof(EndAim), 2);
     }
 
-    private void OnDrawGizmos()
-    {
-        if(currentPose == Poses.Aiming)
-        {
-            Debug.DrawLine(indexProximal, indexDistal * 100000000, Color.red);
-        }
-    }
 }
