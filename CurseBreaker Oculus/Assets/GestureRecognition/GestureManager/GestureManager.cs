@@ -534,8 +534,8 @@ public class GestureManager : MonoBehaviour
             Application.Quit();
         }
 #else
-        float escape = Input.GetAxis("escape");
-        if (escape > 0.0f) {
+        bool escape = Input.GetKeyDown(KeyCode.Space);
+        if (escape) {
             Application.Quit();
         }
 #endif
