@@ -9,8 +9,8 @@ public class event_character : ScriptableObject
 
     public string name;
     public GameObject model;
-    public Conversation conversation;
-    public List<Question> questions;
+    public Conversation conversation = new Conversation();
+    public List<Question> questions = new List<Question>();
 
     public Dictionary<state, List<string>> dic = new Dictionary<state, List<string>>();
 
@@ -134,17 +134,18 @@ public class event_character : ScriptableObject
 }
 
 #region classes
+[System.Serializable]
 public class Conversation
 {
     public List<string> start = new List<string>();
     public List<string> sucess = new List<string>();
     public List<string> failed = new List<string>();
 }
-
+[System.Serializable]
 public class Question
 {
     public string question_text;
-    public List<string> answer;
+    public string answer;
 }
 
 public class Answer

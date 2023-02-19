@@ -9,6 +9,7 @@ public class character : MonoBehaviour
     public TMP_Text speech_boble;
     public GameObject character_model;
     public Animator animator;
+    public Transform spwan;
 
     public state s = state.started;
 //--------------------------------------------

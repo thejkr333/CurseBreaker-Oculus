@@ -6,7 +6,9 @@ using UnityEditor;
 public class Character_editor : EditorWindow
 {
     public event_character character;
-    display show;
+    display show = display.dialogue;
+
+    private Vector2 scroll = new Vector2();
    
     [MenuItem("Window/Characters")]
     static void Init()
@@ -22,10 +24,15 @@ public class Character_editor : EditorWindow
         GUILayout.BeginArea(Left_side());
         Scriptable_object_section();
         dialogue();
+        Question();
         GUILayout.EndArea();
 
         GUILayout.BeginArea(Righ_side());
+        
+        scroll = EditorGUILayout.BeginScrollView(scroll);
         display_content();
+        EditorGUILayout.EndScrollView();    
+
         GUILayout.EndArea();
 
     }
@@ -48,11 +55,21 @@ public class Character_editor : EditorWindow
 
         if (GUILayout.Button("dialogue"))
         {
-
+            show = display.dialogue;
         } 
     }
 
-//right part
+    private void Question()
+    {
+        GUILayout.Label("Question");
+
+        if (GUILayout.Button("Questions"))
+        {
+            show = display.question;
+        }
+    }
+
+    //right part
     private void Dialogue_display()
     {
         if (character.conversation == null) 
@@ -90,20 +107,17 @@ public class Character_editor : EditorWindow
 
         for (int i = 0; i < questions; i++)
         {
-            GUILayout.Label(character.questions[i].ToString());
-            answer(i);
+            character.questions[i].question_text = GUILayout.TextArea(character.questions[i].question_text);
+            character.questions[i].answer = GUILayout.TextArea(character.questions[i].answer,GUILayout.Height(40));
+            GUILayout.Space(4f);
         }
 
-        void answer(int q)
+      
+
+        if (GUILayout.Button("+"))
         {
-            int answer = character.questions[q].answer.Count;
-
-            for (int i = 0; i < answer; i++)
-            {
-                character.questions[q].answer[i] = GUILayout.TextArea(character.questions[q].answer[i]);
-            }
+            character.questions.Add(new Question());
         }
-
 
 
     }
@@ -125,7 +139,6 @@ public class Character_editor : EditorWindow
     {
         return new Rect(0, 0, Screen.width / 1.8f, Screen.height);
     }
-
     private Rect Righ_side()
     {
         return new Rect(Screen.width / 1.8f, 0, Screen.width / 1.8f, Screen.height);
@@ -143,3 +156,16 @@ enum display
  * some of the methods have parts that repeat themselves, which is something I should avoid
  * perhaps have it get the list. I think i could get the list of strings and use that instead. 
  */
+
+
+//-----------DISCARDED METHODS
+/* void answer(int q)
+       {
+           int answer = character.questions[q].answer[q].Length;
+
+           for (int i = 0; i < answer; i++)
+           {
+
+           }
+       }
+      */
