@@ -11,7 +11,7 @@ public class Curse : ScriptableObject
 
     public void do_something()
     {
-        s.get_potion()
+        //s.get_potion()
     }
 }
 

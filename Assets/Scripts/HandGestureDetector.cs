@@ -7,7 +7,7 @@ using System.Collections;
 using System;
 // struct = class without functions
 [System.Serializable]
-public struct Gesture
+public struct Pose
 {
     public string name;
     public List<Vector3> fingerDatas;
@@ -25,7 +25,7 @@ public class HandGestureDetector : MonoBehaviour
     public OVRSkeleton skeleton;
     // List that will be populated after we save some gestures
     [Header("List of Gestures")]
-    public List<Gesture> gestures;
+    public List<Pose> poses;
     // List of bones took from the OVRSkeleton
     private List<OVRBone> fingerbones = null;
     // Boolean for the debugMode duh!
@@ -79,11 +79,11 @@ public class HandGestureDetector : MonoBehaviour
         if (hasStarted)
         {
             // start to Recognize every gesture we make
-            Gesture currentGesture = Recognize();
+            Pose currentGesture = Recognize();
 
             // we will associate the recognize to a boolean to see if the Gesture
             // we are going to make is one of the gesture we already saved
-            hasRecognize = !currentGesture.Equals(new Gesture());
+            hasRecognize = !currentGesture.Equals(new Pose());
 
             // and if the gesture is recognized
             if (hasRecognize)
@@ -115,7 +115,7 @@ public class HandGestureDetector : MonoBehaviour
     void Save()
     {
         // We create a new Gesture struct
-        Gesture g = new Gesture();
+        Pose g = new Pose();
 
         // givin to it a default name
         g.name = "New Gesture";
@@ -136,19 +136,19 @@ public class HandGestureDetector : MonoBehaviour
         g.fingerDatas = data;
 
         // and in the end we will going to add this new gesture in our list of gestures
-        gestures.Add(g);
+        poses.Add(g);
     }
 
-    Gesture Recognize()
+    Pose Recognize()
     {
         // in the Update if we initialized correctly, we create a new Gesture
-        Gesture currentGesture = new Gesture();
+        Pose currentGesture = new Pose();
 
         // we set a new float of a positive infinity
         float currentMin = Mathf.Infinity;
 
         // we start a foreach loop inside our list of gesture
-        foreach (var gesture in gestures)
+        foreach (var gesture in poses)
         {
             // initialize a new float about the distance
             float sumDistance = 0;
