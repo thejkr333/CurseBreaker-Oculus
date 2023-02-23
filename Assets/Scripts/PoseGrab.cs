@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class GestureGrab : OVRGrabber
+public class PoseGrab : OVRGrabber
 {
     // Boolean used to check if is Grabbing or not.
     [SerializeField]
@@ -52,8 +52,8 @@ public class GestureGrab : OVRGrabber
         }
     }
 
-    // To call in the gestures for refrech the position and rotation when releasing
-    public void isReleasing()
+    // To call in the gestures to refresh the position and rotation when releasing
+    public void IsReleasing()
     {
         m_lastPos = transform.position;
         m_lastRot = transform.rotation;

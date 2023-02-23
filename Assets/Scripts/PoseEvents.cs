@@ -10,9 +10,10 @@ public class PoseEvents : MonoBehaviour
     public Poses currentPose;
 
     [SerializeField] protected OVRSkeleton handSkeleton;
+    PoseGrab poseGrab;
     LineRenderer lineRenderer;
     protected List<OVRBone> fingerbones = null;
-    [SerializeField] LayerMask interactable;
+    [SerializeField] LayerMask interactable, grabbed;
 
     private bool hasStarted = false;
     bool attracting = false;
@@ -22,6 +23,7 @@ public class PoseEvents : MonoBehaviour
     Outline lastOutline;
     void Start()
     {
+        poseGrab = handSkeleton.GetComponent<PoseGrab>();
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
         // When the Oculus hand had his time to initialize hand, with a simple coroutine i start a delay of
@@ -62,6 +64,8 @@ public class PoseEvents : MonoBehaviour
                 break;
             case Poses.Grab:
                 Grab();
+                break;
+            case Poses.Unknown:
                 break;
         }
     }
@@ -132,20 +136,27 @@ public class PoseEvents : MonoBehaviour
     IEnumerator AttractObject(Rigidbody objectRb)
     {
         attracting = true;
+        GameObject obj = objectRb.gameObject;
 
-        while(Vector3.Distance(objectRb.transform.position, handSkeleton.transform.position) > .3f)
+        LayerMask objectLayer = obj.layer;
+        obj.layer = grabbed;
+
+        while(Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .3f)
         {
-            objectRb.AddForce((handSkeleton.transform.position - objectRb.transform.position).normalized * 3);
+            objectRb.AddForce((handSkeleton.transform.position - obj.transform.position).normalized * 3);
 
             yield return 0;
         }
 
         objectRb.velocity = Vector3.zero;
-        objectRb.transform.SetParent(handSkeleton.transform);
+        obj.layer = objectLayer;
+        //objectRb.transform.SetParent(handSkeleton.transform);
+
+        poseGrab.DetectGrabbing(true);
 
         attracting = false;
     }
-    public void EndPose()
+    public void EndPoses()
     {
         currentPose = Poses.Unknown;
         lineRenderer.enabled = false;

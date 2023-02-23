@@ -231,7 +231,7 @@ public class OVRGrabber : MonoBehaviour
         }
     }
 
-    protected virtual void GrabBegin()
+    public virtual void GrabBegin()
     {
         float closestMagSq = float.MaxValue;
 		OVRGrabbable closestGrabbable = null;
