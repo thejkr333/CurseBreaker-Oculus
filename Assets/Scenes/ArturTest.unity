@@ -558,6 +558,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoundHouse
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 034df51c2ad99ea43b428627e2106d9f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 034df51c2ad99ea43b428627e2106d9f, type: 3}
 --- !u!1 &1772245327
@@ -667,7 +671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5767817821878118073, guid: b222f1cfb416b9247b5651cb8f0c76e8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6575456749946813443, guid: b222f1cfb416b9247b5651cb8f0c76e8, type: 3}
       propertyPath: m_RootOrder
