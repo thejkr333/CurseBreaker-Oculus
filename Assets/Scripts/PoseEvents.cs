@@ -6,7 +6,7 @@ using System;
 
 public class PoseEvents : MonoBehaviour
 {
-    public enum Poses { Aiming, Grab, Unknown}
+    public enum Poses { Aiming, Grab, OpenHand, Unknown}
     public Poses currentPose;
 
     [SerializeField] protected OVRSkeleton handSkeleton;
@@ -62,9 +62,15 @@ public class PoseEvents : MonoBehaviour
             case Poses.Aiming:
                 Aim();
                 break;
+
             case Poses.Grab:
                 Grab();
                 break;
+
+            case Poses.OpenHand:
+                OpenHand();
+                break;
+
             case Poses.Unknown:
                 break;
         }
@@ -72,14 +78,15 @@ public class PoseEvents : MonoBehaviour
 
     public void StartAim()
     {
+        EndGrab();
+
         currentPose = Poses.Aiming;
     }
     void Aim()
     {
         lineRenderer.enabled = true;
-        /*Vector3*/
         indexProximal = Vector3.zero;
-        /*Vector3*/ indexTip = Vector3.zero;
+        indexTip = Vector3.zero;
 
         foreach(OVRBone bone in fingerbones)
         {
@@ -95,7 +102,7 @@ public class PoseEvents : MonoBehaviour
             }
         }
 
-        lineRenderer.SetPosition(0, indexTip/* + indexProximal*/);
+        lineRenderer.SetPosition(0, indexTip);
         lineRenderer.SetPosition(1, (indexTip - indexProximal) * 100000000);
 
         Ray ray = new Ray(indexTip, indexTip - indexProximal);
@@ -118,23 +125,45 @@ public class PoseEvents : MonoBehaviour
     }
     public void StartGrab()
     {
-        lineRenderer.enabled = false;
-
-        Invoke(nameof(EndAim), 2);
         currentPose = Poses.Grab;
     }
     void Grab()
     {
-        if(!attracting) if (lastOutline == null || lastOutline.enabled == false) return;
+        if (attracting) return;
+
+        if (lastOutline == null || lastOutline.enabled == false)
+        {
+            EndAim();
+            poseGrab.DetectGrabbing(true);
+            return;
+        }
 
         Rigidbody rb = lastOutline.GetComponent<Rigidbody>();
         if (rb == null) return;
 
-        if (!attracting) StartCoroutine(AttractObject(rb));
+        StartCoroutine(AttractObject(rb));
+    }
+    void EndGrab()
+    {
+        poseGrab.IsReleasing();
+        poseGrab.DetectGrabbing(false);
+    }
+    public void StartOpenHand()
+    {
+        EndGrab();
+        EndAim();
+
+        currentPose = Poses.OpenHand;
+    }
+    void OpenHand()
+    {
+
     }
 
     IEnumerator AttractObject(Rigidbody objectRb)
     {
+        EndAim();
+
         attracting = true;
         GameObject obj = objectRb.gameObject;
 
@@ -161,6 +190,7 @@ public class PoseEvents : MonoBehaviour
         currentPose = Poses.Unknown;
         lineRenderer.enabled = false;
 
+        EndGrab();
         Invoke(nameof(EndAim), 2);
     }
 
