@@ -10,25 +10,20 @@ public class event_character : ScriptableObject
     public string name;
     public GameObject model;
     public Conversation conversation = new Conversation();
-    public List<Question> questions = new List<Question>();
+    public List<Question> questions = new List <Question>();
 
     public Dictionary<state, List<string>> dic = new Dictionary<state, List<string>>();
 
 
-    public void Awake()
+    private void Awake()
     {
-        if (conversation == null)
-            conversation = new Conversation();
+        dic.Add(state.started, conversation.start);
+        dic.Add(state.failed, conversation.failed);
+        dic.Add(state.sucess, conversation.sucess);
 
-        dic.Add(state.started   , conversation.start);
-        dic.Add(state.failed    , conversation.failed);
-        dic.Add(state.sucess    , conversation.sucess);
-
-        
-        if (model == null)
-        {
-            model = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-        }
+        Debug.Log(display_text(state.started)[0]);
+        Debug.Log(display_text(state.failed)[0]);
+        Debug.Log(display_text(state.sucess)[0]);
     }
 
     #region Functions
@@ -47,27 +42,17 @@ public class event_character : ScriptableObject
         model = g;
     }
 //-------------------------------------------------
-    public void add_conversation()
-    {
-        conversation.start.Add("");
-    }
-    public void add_failed()
-    {
-        conversation.failed.Add("");
-    }
-    public void add_sucess()
-    {
-        conversation.sucess.Add("");
-    }
-    public void add_conversation(List<string> s)
-    {
-        s.Add("");
-    }
+    public void add_conversation() => conversation.start.Add ("");
     
-    public void remove_conversation(List<string> s)
-    {
-        s.RemoveAt(conversation.start.Count - 1);
-    }
+    public void add_failed() => conversation.failed.Add ("");
+    
+    public void add_sucess() => conversation.sucess.Add ("");
+    
+    public void add_conversation (List <string> s) => s.Add ("");
+    
+    
+    public void remove_conversation(List<string> s) => s.RemoveAt(conversation.start.Count - 1);
+    
 
     
 
@@ -124,9 +109,9 @@ public class event_character : ScriptableObject
 
     
 
-    public string display_text(state State)
+    public string display_text (state State)
     {
-        return dic[State][0];
+        return dic [State] [0];     
     }
 
 //------------------------------------------------------
