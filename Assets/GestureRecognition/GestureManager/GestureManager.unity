@@ -3340,7 +3340,8 @@ GameObject:
   - component: {fileID: 137619227078827185}
   - component: {fileID: 4976020420108144521}
   - component: {fileID: 6260475516555308184}
-  - component: {fileID: 6260475516555308185}
+  - component: {fileID: 6260475516555308186}
+  - component: {fileID: 6260475516555308187}
   m_Layer: 0
   m_Name: OVRHandPrefab
   m_TagString: Untagged
@@ -3366,7 +3367,8 @@ GameObject:
   - component: {fileID: 4976020419127686741}
   - component: {fileID: 6260475516732560708}
   - component: {fileID: 1890737150}
-  - component: {fileID: 6260475516732560709}
+  - component: {fileID: 6260475516732560710}
+  - component: {fileID: 6260475516732560711}
   m_Layer: 0
   m_Name: OVRHandPrefab
   m_TagString: Untagged
@@ -3871,18 +3873,36 @@ MonoBehaviour:
   m_parentTransform: {fileID: 403676827}
   m_player: {fileID: 403260269}
   isGrabbing: 0
---- !u!65 &6260475516555308185
-BoxCollider:
+--- !u!114 &6260475516555308186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870937657790961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Device: 1
+  m_PoseSource: 4
+  m_PoseProviderComponent: {fileID: 0}
+  m_TrackingType: 0
+  m_UpdateType: 0
+  m_UseRelativeTransform: 0
+--- !u!135 &6260475516555308187
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870937657790961}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.50000006
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6260475516732560708
 MonoBehaviour:
@@ -3906,18 +3926,36 @@ MonoBehaviour:
   m_parentTransform: {fileID: 403679903}
   m_player: {fileID: 403260269}
   isGrabbing: 0
---- !u!65 &6260475516732560709
-BoxCollider:
+--- !u!114 &6260475516732560710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870937765816365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Device: 1
+  m_PoseSource: 5
+  m_PoseProviderComponent: {fileID: 0}
+  m_TrackingType: 0
+  m_UpdateType: 0
+  m_UseRelativeTransform: 0
+--- !u!135 &6260475516732560711
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870937765816365}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.50000006
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6271758077611610545
 PrefabInstance:
