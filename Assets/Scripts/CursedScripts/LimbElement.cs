@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LimbElement : MonoBehaviour
 {
-    public bool Light, Dark, Fire,Ice,Wind,Water,
+    public bool Light, Dark, Fire, Ice, Wind, Water, Void;
 
 
     // Start is called before the first frame update
