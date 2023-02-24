@@ -6,12 +6,13 @@ using System;
 
 public class PoseEvents : MonoBehaviour
 {
-    public enum Poses { Aiming, Grab, OpenHand, Unknown}
+    public enum Poses { Aiming, Grab, OpenHand, SpellSelect, Unknown}
     public Poses currentPose;
 
     [SerializeField] protected OVRSkeleton handSkeleton;
     PoseGrab poseGrab;
     LineRenderer lineRenderer;
+    TrailRenderer trailRenderer;
     protected List<OVRBone> fingerbones = null;
     [SerializeField] LayerMask interactable, grabbed;
 
@@ -27,6 +28,7 @@ public class PoseEvents : MonoBehaviour
         poseGrab = handSkeleton.GetComponent<PoseGrab>();
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
+
         // When the Oculus hand had his time to initialize hand, with a simple coroutine i start a delay of
         // a function to initialize the script
         StartCoroutine(DelayRoutine(Initialize));
@@ -51,6 +53,16 @@ public class PoseEvents : MonoBehaviour
     {
         // Populate the private list of fingerbones from the current hand we put in the skeleton
         fingerbones = new List<OVRBone>(handSkeleton.Bones);
+        foreach (var bone in fingerbones)
+        {
+            if(bone.Id == OVRSkeleton.BoneId.Hand_MiddleTip)
+            {
+                trailRenderer = bone.Transform.gameObject.AddComponent<TrailRenderer>();
+                trailRenderer.enabled = false;
+                trailRenderer.minVertexDistance = .0001f;
+                trailRenderer.startWidth = .01f;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -72,14 +84,20 @@ public class PoseEvents : MonoBehaviour
                 OpenHand();
                 break;
 
+            case Poses.SpellSelect:
+                SpellSelect();
+                break;
+
             case Poses.Unknown:
                 break;
         }
     }
 
+    #region Aim
     public void StartAim()
     {
         EndGrab();
+        EndSpellSelect();
 
         currentPose = Poses.Aiming;
     }
@@ -125,8 +143,13 @@ public class PoseEvents : MonoBehaviour
         if (lastOutline != null && lastOutline.enabled) lastOutline.enabled = false;
         lastOutline = null;
     }
+    #endregion Aim
+
+    #region Grab
     public void StartGrab()
     {
+        EndSpellSelect();
+
         currentPose = Poses.Grab;
     }
     void Grab()
@@ -162,18 +185,6 @@ public class PoseEvents : MonoBehaviour
         poseGrab.IsReleasing();
         poseGrab.DetectGrabbing(false);
     }
-    public void StartOpenHand()
-    {
-        EndGrab();
-        EndAim();
-
-        currentPose = Poses.OpenHand;
-    }
-    void OpenHand()
-    {
-
-    }
-
     IEnumerator AttractObject()
     {
         EndAim();
@@ -187,7 +198,7 @@ public class PoseEvents : MonoBehaviour
         LayerMask objectLayer = obj.layer;
         obj.layer = grabbed;
 
-        while(Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .3f)
+        while (Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .3f)
         {
             attractedObjRb.AddForce((handSkeleton.transform.position - obj.transform.position).normalized * 3);
 
@@ -204,12 +215,51 @@ public class PoseEvents : MonoBehaviour
         attracting = false;
         attractedObjRb = null;
     }
+    #endregion
+
+    #region OpenHand
+    public void StartOpenHand()
+    {
+        EndGrab();
+        EndAim();
+
+        currentPose = Poses.OpenHand;
+    }
+    void OpenHand()
+    {
+
+    }
+    #endregion
+
+    public void StartSpellSelect()
+    {
+        EndAim();
+        EndGrab();
+
+        currentPose = Poses.SpellSelect;
+
+        if (trailRenderer == null) return;
+
+        trailRenderer.enabled = true;
+    }
+    void SpellSelect()
+    {
+
+    }
+    void EndSpellSelect()
+    {
+        if (trailRenderer == null) return;
+
+        trailRenderer.enabled = false;
+    }
+
     public void EndPoses()
     {
         currentPose = Poses.Unknown;
         lineRenderer.enabled = false;
 
         EndGrab();
+        EndSpellSelect();
         Invoke(nameof(EndAim), 2);
     }
 
