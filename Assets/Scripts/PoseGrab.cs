@@ -29,7 +29,6 @@ public class PoseGrab : OVRGrabber
         //    isGrabbing = false;
         //}
         isGrabbing = _isGrabbing;
-        Debug.LogWarning(_isGrabbing);
     }
 
     public override void Update()
