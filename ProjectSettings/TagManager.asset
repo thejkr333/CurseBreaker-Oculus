@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - RoomLight
+  - SamplesInfoPanel
+  - Spell/Fire
+  - Spell/Air
+  - Spell/Water
+  - Spell/Earth
+  - Spell/Light
+  - Spell/Dark
   layers:
   - Default
   - TransparentFX
