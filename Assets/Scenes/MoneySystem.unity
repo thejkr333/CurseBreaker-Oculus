@@ -282,6 +282,8 @@ MonoBehaviour:
   grabbed:
     serializedVersion: 2
     m_Bits: 64
+  attracting: 0
+  lastOutline: {fileID: 0}
 --- !u!4 &505421391
 Transform:
   m_ObjectHideFlags: 0
@@ -617,6 +619,58 @@ MonoBehaviour:
   m_snapOffset: {fileID: 0}
   m_grabPoints:
   - {fileID: 1651151252}
+--- !u!1 &903192902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 903192904}
+  - component: {fileID: 903192903}
+  m_Layer: 0
+  m_Name: CursedTester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &903192903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903192902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667beffd7c1445e4782af8cdce9ea74b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurseCount: 0
+  CursedLimbCount: 0
+  PrevLimbInt: 0
+  SecondLimbCheck: 0
+  CursedLimbs: 000000000000000000000000000000000000000000000000
+  WhatCurse: 000000000000000000000000000000000000000000000000
+  FinalCurseCheck: 0
+  Allignment: {fileID: 0}
+--- !u!4 &903192904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903192902}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.087931864, y: 1.1524765, z: 0.21878004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &913805213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1146,6 +1200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1792079591}
+  - component: {fileID: 1792079592}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1168,6 +1223,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1792079592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792079590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8840c8186f471a848a2039a129525538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gold: 0
+  Rent: 20
+  RentIncrement: 10
+  PaymentIncrement: 0
 --- !u!1 &1810079121
 GameObject:
   m_ObjectHideFlags: 0

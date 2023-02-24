@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
 
 
-    public int Gold, Rent, RentIncrement;
+    public int Gold, Rent, RentIncrement, PaymentIncrement;
     public static GameManager Instance;
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     }
    public void GoldGain()
     {
-        Gold += 10;
+        Gold += 10 + PaymentIncrement;
     }
 
     public void RentisDue()
