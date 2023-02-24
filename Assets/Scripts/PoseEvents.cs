@@ -16,11 +16,11 @@ public class PoseEvents : MonoBehaviour
     [SerializeField] LayerMask interactable, grabbed;
 
     private bool hasStarted = false;
-    bool attracting = false;
+    [SerializeField] bool attracting = false;
     Vector3 indexProximal = Vector3.zero;
     Vector3 indexTip = Vector3.zero;
 
-    Outline lastOutline;
+    [SerializeField] Outline lastOutline;
     void Start()
     {
         poseGrab = handSkeleton.GetComponent<PoseGrab>();
@@ -113,6 +113,7 @@ public class PoseEvents : MonoBehaviour
 
             outline.enabled = true;
             if (lastOutline != null && lastOutline != outline && lastOutline.enabled) { lastOutline.enabled = false; lastOutline = null; }
+
             lastOutline = outline;
         }
     }
@@ -131,17 +132,19 @@ public class PoseEvents : MonoBehaviour
     {
         if (attracting) return;
 
-        if (lastOutline == null || lastOutline.enabled == false)
+        if (lastOutline != null && lastOutline.enabled == true)
+        {
+            Rigidbody rb = lastOutline.GetComponent<Rigidbody>();
+            if (rb == null) return;
+
+            StartCoroutine(AttractObject(rb));
+        }
+        else
         {
             EndAim();
             poseGrab.DetectGrabbing(true);
             return;
-        }
-
-        Rigidbody rb = lastOutline.GetComponent<Rigidbody>();
-        if (rb == null) return;
-
-        StartCoroutine(AttractObject(rb));
+        }  
     }
     void EndGrab()
     {
@@ -163,6 +166,9 @@ public class PoseEvents : MonoBehaviour
     IEnumerator AttractObject(Rigidbody objectRb)
     {
         EndAim();
+        poseGrab.DetectGrabbing(false);
+
+        objectRb.useGravity = false;
 
         attracting = true;
         GameObject obj = objectRb.gameObject;
@@ -179,6 +185,7 @@ public class PoseEvents : MonoBehaviour
 
         objectRb.velocity = Vector3.zero;
         obj.layer = objectLayer;
+        objectRb.useGravity = true;
         //objectRb.transform.SetParent(handSkeleton.transform);
 
         poseGrab.DetectGrabbing(true);
