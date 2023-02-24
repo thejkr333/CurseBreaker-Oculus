@@ -23,6 +23,7 @@ public class PoseEvents : MonoBehaviour
 
     [SerializeField] Outline lastOutline;
     Rigidbody attractedObjRb;
+    LayerMask objectLayer;
     void Start()
     {
         poseGrab = handSkeleton.GetComponent<PoseGrab>();
@@ -59,6 +60,7 @@ public class PoseEvents : MonoBehaviour
             {
                 trailRenderer = bone.Transform.gameObject.AddComponent<TrailRenderer>();
                 trailRenderer.enabled = false;
+                trailRenderer.time = 2;
                 trailRenderer.minVertexDistance = .0001f;
                 trailRenderer.startWidth = .01f;
             }
@@ -179,6 +181,8 @@ public class PoseEvents : MonoBehaviour
             attracting = false;
 
             attractedObjRb.useGravity = true;
+            attractedObjRb.gameObject.layer = objectLayer;
+            objectLayer = 0;
             attractedObjRb = null;
         }
 
@@ -195,18 +199,21 @@ public class PoseEvents : MonoBehaviour
         attracting = true;
         GameObject obj = attractedObjRb.gameObject;
 
-        LayerMask objectLayer = obj.layer;
-        obj.layer = grabbed;
+        objectLayer = obj.layer;
+        int LayerGrabbed = LayerMask.NameToLayer("Grabbed");
+        obj.layer = LayerGrabbed;
+        Debug.Log("Current layer: " + obj.layer);
 
         while (Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .3f)
         {
-            attractedObjRb.AddForce((handSkeleton.transform.position - obj.transform.position).normalized * 3);
+            if(attractedObjRb != null) attractedObjRb.AddForce((handSkeleton.transform.position - obj.transform.position).normalized * 3);
 
             yield return 0;
         }
 
         attractedObjRb.velocity = Vector3.zero;
         obj.layer = objectLayer;
+        objectLayer = 0;
         attractedObjRb.useGravity = true;
         //objectRb.transform.SetParent(handSkeleton.transform);
 
