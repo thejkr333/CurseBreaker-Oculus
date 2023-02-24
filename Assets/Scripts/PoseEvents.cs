@@ -21,6 +21,7 @@ public class PoseEvents : MonoBehaviour
     Vector3 indexTip = Vector3.zero;
 
     [SerializeField] Outline lastOutline;
+    Rigidbody attractedObjRb;
     void Start()
     {
         poseGrab = handSkeleton.GetComponent<PoseGrab>();
@@ -137,7 +138,8 @@ public class PoseEvents : MonoBehaviour
             Rigidbody rb = lastOutline.GetComponent<Rigidbody>();
             if (rb == null) return;
 
-            StartCoroutine(AttractObject(rb));
+            attractedObjRb = rb;
+            StartCoroutine(AttractObject());
         }
         else
         {
@@ -148,6 +150,15 @@ public class PoseEvents : MonoBehaviour
     }
     void EndGrab()
     {
+        if (attracting)
+        {
+            StopCoroutine(AttractObject());
+            attracting = false;
+
+            attractedObjRb.useGravity = true;
+            attractedObjRb = null;
+        }
+
         poseGrab.IsReleasing();
         poseGrab.DetectGrabbing(false);
     }
@@ -163,34 +174,35 @@ public class PoseEvents : MonoBehaviour
 
     }
 
-    IEnumerator AttractObject(Rigidbody objectRb)
+    IEnumerator AttractObject()
     {
         EndAim();
         poseGrab.DetectGrabbing(false);
 
-        objectRb.useGravity = false;
+        attractedObjRb.useGravity = false;
 
         attracting = true;
-        GameObject obj = objectRb.gameObject;
+        GameObject obj = attractedObjRb.gameObject;
 
         LayerMask objectLayer = obj.layer;
         obj.layer = grabbed;
 
         while(Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .3f)
         {
-            objectRb.AddForce((handSkeleton.transform.position - obj.transform.position).normalized * 3);
+            attractedObjRb.AddForce((handSkeleton.transform.position - obj.transform.position).normalized * 3);
 
             yield return 0;
         }
 
-        objectRb.velocity = Vector3.zero;
+        attractedObjRb.velocity = Vector3.zero;
         obj.layer = objectLayer;
-        objectRb.useGravity = true;
+        attractedObjRb.useGravity = true;
         //objectRb.transform.SetParent(handSkeleton.transform);
 
         poseGrab.DetectGrabbing(true);
 
         attracting = false;
+        attractedObjRb = null;
     }
     public void EndPoses()
     {
