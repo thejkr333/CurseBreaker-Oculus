@@ -5,6 +5,8 @@ using UnityEngine;
 //[RequireComponent(typeof(XRGrabInteractable), typeof(Renderer), typeof(Rigidbody))]
 public class Ingredient : MonoBehaviour
 {
+
+    public bool Burned, Gassed, Drenched, Dusted, Shining, Darkened;
     public enum Ingredients { Red, Green, Blue, Purple, Yellow }
     [HideInInspector] public Ingredients ingredient;
 
@@ -21,6 +23,56 @@ public class Ingredient : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         rb.useGravity = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!Burned && !Gassed && !Drenched && !Dusted && !Shining && !Darkened)
+        {
+            switch (collision.gameObject.tag)
+            {
+                case "Spell/Fire":
+                    Debug.Log(this.name + " was hit by Fire");
+                    Burned= true;
+                    StartParticles(Color.red);
+                    break;
+
+                case "Spell/Air":
+                    Debug.Log(this.name + " was hit by Air");
+                    Gassed = true;
+                    break;
+
+                case "Spell/Water":
+                    Debug.Log(this.name + " was hit by Water");
+                    Drenched = true;
+                    break;
+
+                case "Spell/Earth":
+                    Debug.Log(this.name + " was hit by Earth");
+                    Dusted= true;
+                    break;
+
+                case "Spell/Light":
+                    Debug.Log(this.name + " was hit by Light");
+                    Shining= true;
+                    break;
+
+                case "Spell/Dark":
+                    Debug.Log(this.name + " was hit by Dark");
+                    Darkened= true;
+                    break;
+
+                default:
+                    Debug.Log("Unknown");
+                    break;
+
+            }
+        }
+    }
+
+    void StartParticles(Color color)
+    {
+
     }
 
     //protected void OnEnable()
