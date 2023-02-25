@@ -52,5 +52,4 @@ public class spawn_characters : MonoBehaviour
  * 
  * currently spacing things out a little bit like: () and the . 
  * the => is not as ckear in braille 
- * 
  */
