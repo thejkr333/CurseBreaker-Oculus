@@ -8,11 +8,22 @@ public class CurseController : MonoBehaviour
     public int[] CursedLimbs, WhatCurse;
     public bool FinalCurseCheck, CheckFinished;
     public GameObject[] Limbs;
+
+    public Dictionary<int, Color> element_color = new Dictionary<int, Color>();
    
 
     // Start is called before the first frame update
     void Start()
     {
+        element_color.Add(0, Color.black);
+        element_color.Add(1, Color.white);
+        element_color.Add(2, Color.blue);
+        element_color.Add(3, Color.red);
+        element_color.Add(4, Color.yellow);
+        element_color.Add(5, Color.gray);
+        element_color.Add(6, Color.cyan);
+
+
         CurseCount = Random.Range(1, 5);
         ElementalRando = Random.Range(1, 6);
         ElementalCount = CurseCount;
@@ -92,6 +103,7 @@ public class CurseController : MonoBehaviour
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Wind = false;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Water = false;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Ice = false;
+                color_limb(ElementalRando);
                 ElementalRando--;
                 return;
 
@@ -103,6 +115,7 @@ public class CurseController : MonoBehaviour
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Wind = false;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Water = false;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Ice = false;
+                color_limb(ElementalRando);
                 ElementalRando--;
                 return;
 
@@ -114,6 +127,7 @@ public class CurseController : MonoBehaviour
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Wind = false;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Water = false;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Ice = false;
+                color_limb(ElementalRando);
                 ElementalRando--;
                 return;
 
@@ -125,6 +139,7 @@ public class CurseController : MonoBehaviour
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Wind = false;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Water = false;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Ice = false;
+                color_limb(ElementalRando);
                 ElementalRando--;
                 return;
 
@@ -136,6 +151,7 @@ public class CurseController : MonoBehaviour
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Wind = true;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Water = false;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Ice = false;
+                color_limb(ElementalRando);
                 ElementalRando--;
                 return;
 
@@ -147,6 +163,7 @@ public class CurseController : MonoBehaviour
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Wind = false;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Water = true;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Ice = false;
+                color_limb(ElementalRando);
                 ElementalRando--;
                 return;
 
@@ -158,6 +175,7 @@ public class CurseController : MonoBehaviour
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Wind = false;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Water = false;
                     Limbs[LimbTarget-1].GetComponent<LimbElement>().Ice = true;
+                color_limb(ElementalRando);
                 ElementalRando--;
                 return;
 
@@ -167,4 +185,14 @@ public class CurseController : MonoBehaviour
 
 
     }
+    public void color_limb( int element)
+    {
+        Limbs[LimbTarget - 1].GetComponentInChildren<Renderer>().material.color = element_color[element];
+    }
+    public void reverse_limb_coloring()
+    {
+        //set the limb color back to white once cured
+        Limbs[LimbTarget - 1].GetComponentInChildren<Renderer>().material.color = Color.white;
+    }
+
 }
