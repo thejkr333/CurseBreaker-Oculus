@@ -366,7 +366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &351611166
 Transform:
   m_ObjectHideFlags: 0
@@ -438,7 +438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &403260271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2193,16 +2193,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   license_id: 
   license_key: 
-  unityXrPlugin: 0
-  mivryCoordinateSystem: 0
+  unityXrPlugin: 1
+  mivryCoordinateSystem: 1
   file_load_combinations: Samples/Sample_TwoHanded_Gestures.dat
   file_import_combinations: Samples/Sample_Military_Gestures.dat
   file_load_subgestures: Samples/Sample_OneHanded_Gestures.dat
   file_load_subgestures_i: 0
-  file_load_gestures: Samples/Sample_OneHanded_Gestures.dat
-  file_import_gestures: Samples/Sample_Pixie_Gestures.dat
+  file_load_gestures: GestureData/GesturesCursebreaker.dat
+  file_import_gestures: GestureData/GesturesCursebreaker.dat
   file_save_combinations: Samples/Sample_TwoHanded_MyGestures.dat
-  file_save_gestures: Samples/Sample_OneHanded_MyGestures.dat
+  file_save_gestures: GestureData/GesturesCursebreaker.dat
   create_combination_name: (new gesture combination name)
   create_gesture_name: (new gesture name)
   create_gesture_names: []
@@ -2740,7 +2740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Device: 0
-  m_PoseSource: 3
+  m_PoseSource: 2
   m_PoseProviderComponent: {fileID: 0}
   m_TrackingType: 0
   m_UpdateType: 0

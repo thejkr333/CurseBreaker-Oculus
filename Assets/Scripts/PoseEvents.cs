@@ -62,7 +62,7 @@ public class PoseEvents : MonoBehaviour
             {
                 trailRenderer = bone.Transform.gameObject.AddComponent<TrailRenderer>();
                 trailRenderer.enabled = false;
-                trailRenderer.time = 2;
+                trailRenderer.time = 4;
                 trailRenderer.minVertexDistance = .0001f;
                 trailRenderer.startWidth = .01f;
             }
@@ -254,7 +254,7 @@ public class PoseEvents : MonoBehaviour
         currentPose = Poses.SpellSelect;
 
         if (trailRenderer == null) return;
-
+        
         trailRenderer.enabled = true;
     }
     void SpellSelect()
@@ -267,6 +267,7 @@ public class PoseEvents : MonoBehaviour
 
         if (trailRenderer == null) return;
 
+        trailRenderer.Clear();
         trailRenderer.enabled = false;
     }
 
