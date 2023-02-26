@@ -24,6 +24,8 @@ public class PoseEvents : MonoBehaviour
     [SerializeField] Outline lastOutline;
     Rigidbody attractedObjRb;
     LayerMask objectLayer;
+
+    public bool recordingGesture;
     void Start()
     {
         poseGrab = handSkeleton.GetComponent<PoseGrab>();
@@ -229,10 +231,16 @@ public class PoseEvents : MonoBehaviour
     {
         EndGrab();
         EndAim();
+        EndSpellSelect();
 
         currentPose = Poses.OpenHand;
     }
     void OpenHand()
+    {
+        
+    }
+
+    void EndOpenHand()
     {
 
     }
@@ -251,10 +259,12 @@ public class PoseEvents : MonoBehaviour
     }
     void SpellSelect()
     {
-
+        recordingGesture = true;
     }
     void EndSpellSelect()
     {
+        recordingGesture = false;
+
         if (trailRenderer == null) return;
 
         trailRenderer.enabled = false;
@@ -269,5 +279,4 @@ public class PoseEvents : MonoBehaviour
         EndSpellSelect();
         Invoke(nameof(EndAim), 2);
     }
-
 }

@@ -159,6 +159,8 @@ public class GestureCompletionEvent : UnityEvent<GestureCompletionData>
 /// </summary>
 public class Mivry : MonoBehaviour
 {
+    [SerializeField] PoseEvents leftHandPoseEvents, rightHandPoseEvents;
+
     /// <summary>
     /// Which Unity XR plug-in is used (see Unity Package Manager and Project Settings -> XR Plugin Management).
     /// </summary>
@@ -193,7 +195,8 @@ public class Mivry : MonoBehaviour
         Axis,
         Button,
         Key,
-        Value
+        Value,
+        Hand
     };
 
     /// <summary>
@@ -666,6 +669,10 @@ public class Mivry : MonoBehaviour
                 case InputType.Key:
                     LeftTriggerValue = Input.GetKey(LeftTriggerInput) ? 1 : 0;
                     break;
+                case InputType.Hand:
+                    if (leftHandPoseEvents == null) break;
+                    LeftTriggerValue = leftHandPoseEvents.recordingGesture ? 1 : 0;
+                    break;
             }
         } else
         {
@@ -696,6 +703,10 @@ public class Mivry : MonoBehaviour
                     break;
                 case InputType.Key:
                     RightTriggerValue = Input.GetKey(RightTriggerInput) ? 1 : 0;
+                    break;
+                case InputType.Hand:
+                    if (rightHandPoseEvents == null) break;
+                    RightTriggerValue = rightHandPoseEvents.recordingGesture ? 1 : 0;
                     break;
             }
         }
@@ -737,6 +748,7 @@ public class Mivry : MonoBehaviour
             Quaternion q = hmd.rotation;
             convertHeadInput(this.mivryCoordinateSystem, ref p, ref q);
             gr.startStroke(p, q);
+            Debug.Log("Gesture started");
         }
 
         GameObject activeGameObject = LeftHand;
