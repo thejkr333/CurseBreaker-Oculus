@@ -47,3 +47,14 @@ public class GameManager : MonoBehaviour
         }
     }
 }
+/* ----PSUDODODE--------
+ * 
+ * potion(element, ingredient)
+ *     if (element == limb_element) continue;
+ *     if (ingredient == curse.needed_ingredient) 
+ *         isCured = true;
+ * 
+ * 
+ * 
+ * 
+ */
