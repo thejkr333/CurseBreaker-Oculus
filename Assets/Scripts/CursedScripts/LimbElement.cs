@@ -6,6 +6,9 @@ public class LimbElement : MonoBehaviour
 {
     public bool Light, Dark, Fire, Ice, Wind, Water, Void;
 
+    public element limb_element;
+
+    public bool isCursed;
 
     // Start is called before the first frame update
     void Start()
@@ -18,4 +21,16 @@ public class LimbElement : MonoBehaviour
     {
         
     }
+
+    public void potion_recived(element, )
+    {
+
+    }
+    
+
+}
+
+public enum element
+{
+    Light, Dark, Fire, Ice, Wind, Water, Void
 }
