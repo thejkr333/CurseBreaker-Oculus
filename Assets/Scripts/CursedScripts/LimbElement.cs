@@ -22,10 +22,10 @@ public class LimbElement : MonoBehaviour
         
     }
 
-    public void potion_recived(element, )
-    {
+    //public void potion_recived(element, )
+    //{
 
-    }
+    //}
     
 
 }
