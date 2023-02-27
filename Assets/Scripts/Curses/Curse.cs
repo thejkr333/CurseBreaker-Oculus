@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class Curse : MonoBehaviour
 {
-    public class AffectedPart
+    public class AffectedLimb
     {
-        public GameObject affectedPartGO;
+        public GameObject affectedLimbGO;
         public int strength;
         public bool cured;
 
-        public AffectedPart(GameObject _affectedPartGO)
+        public AffectedLimb(GameObject _affectedLimbGO)
         {
-            affectedPartGO = _affectedPartGO;
+            affectedLimbGO = _affectedLimbGO;
             strength = Random.Range(1, 5);
             cured = false;
         }
@@ -23,17 +23,18 @@ public class Curse : MonoBehaviour
     protected enum Curses { Wolfus, Gassle, Demonitis, Petrification }
     protected Curses curse;
 
-    protected List<GameObject> possibleAffectedParts = new List<GameObject>();
+    protected List<GameObject> possibleAffectedLimbs = new List<GameObject>();
 
-    protected List<AffectedPart> affectedParts = new List<AffectedPart>();
+    protected List<AffectedLimb> affectedLimbs = new List<AffectedLimb>();
     protected int totalStrength;
+    protected bool cured;
 
     protected virtual void Awake()
     {
         for (int i = 0; i < numberOfPartsAffected; i++)
         {
-            int part = Random.Range(0, possibleAffectedParts.Count);
-            affectedParts.Add(new AffectedPart(possibleAffectedParts[part]));
+            int part = Random.Range(0, possibleAffectedLimbs.Count);
+            affectedLimbs.Add(new AffectedLimb(possibleAffectedLimbs[part]));
         }
     }
 
@@ -41,7 +42,7 @@ public class Curse : MonoBehaviour
     void Start()
     {
         totalStrength = 0;
-        foreach (var part in affectedParts)
+        foreach (var part in affectedLimbs)
         {
             totalStrength += part.strength;
         }
@@ -50,6 +51,36 @@ public class Curse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (cured) return;
+        foreach (var limb in affectedLimbs)
+        {
+            if (!limb.cured) return;
+        }
+        Cured();
     }
+
+    //void GetPotion(Potion potion)
+    //{
+    //    foreach (var limb in affectedLimbs)
+    //    {
+    //        if(potion.limb == limb)
+    //        {
+    //            if (potion.strength >= limb.strength) limb.cured = true;
+    //        }
+    //    }
+    //}
+
+    void Cured()
+    {
+        cured = true;
+        GameManager.Instance.GoldGain();
+    }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Potion potion = other.GetComponent<Potion>();
+    //    if (potion == null) return;
+
+    //    GetPotion(potion);
+    //}
 }

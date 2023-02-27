@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wolfus : Curse
+public class Potion : MonoBehaviour
 {
-    protected override void Awake()
-    {
-        curse = Curses.Wolfus;
-        base.Awake();
-    }
+    public enum PotionType { }
+    public PotionType potionType;
     // Start is called before the first frame update
     void Start()
     {

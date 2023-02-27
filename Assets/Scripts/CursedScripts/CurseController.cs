@@ -6,7 +6,7 @@ public class CurseController : MonoBehaviour
 {
     public GameManager GM;
 
-    public int  CurseCount, CursedLimbCount, PrevLimbInt, SecondLimbCheck, ElementalRando, LimbTarget, ElementalCount;
+    public int CurseCount, CursedLimbCount, PrevLimbInt, SecondLimbCheck, ElementalRando, LimbTarget, ElementalCount;
     public int[] CursedLimbs, WhatCurse;
     public bool FinalCurseCheck, CheckFinished;
 
