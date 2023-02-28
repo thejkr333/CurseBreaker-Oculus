@@ -1101,7 +1101,6 @@ GameObject:
   m_Component:
   - component: {fileID: 327855154}
   - component: {fileID: 327855155}
-  - component: {fileID: 327855156}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Untagged
@@ -1136,19 +1135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce64c2f3d7b30754baf2570a0e40e4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &327855156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327855153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dba3427aa89afe14c88cb3c605398f45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numberOfPartsAffected: 0
+  elementLimbMap: 000000000000000000000000000000000000000000000000
 --- !u!1 &347761840
 GameObject:
   m_ObjectHideFlags: 0
