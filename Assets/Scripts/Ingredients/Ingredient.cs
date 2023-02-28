@@ -1,12 +1,12 @@
 using UnityEngine;
 //using UnityEngine.XR.Interaction.Toolkit;
 
-public enum Elements { None, Light, Fire, Water, Earth, Air, Dark}
+public enum Elements { Light, Fire, Water, Earth, Air, Dark, None }
 //[RequireComponent(typeof(XRGrabInteractable), typeof(Renderer), typeof(Rigidbody))]
 public class Ingredient : MonoBehaviour
 {
     public bool Burned, Gassed, Drenched, Dusted, Shining, Darkened;
-    public enum Ingredients { Red, Green, Blue, Purple, Yellow }
+    public enum Ingredients { AngelLeaf, Mandrake, WolfsBane, CorkWood }
     [HideInInspector] public Ingredients ingredient;
 
     //bool hasBeenSelected;

@@ -94,5 +94,5 @@ public class Recipe
     public Ingredient.Ingredients[] ingredientsRequired;
     [HideInInspector] public List<Ingredient.Ingredients> ingredientsChecked = new List<Ingredient.Ingredients>();
     public GameObject potionWhenCompleted;
-    public PotionType potionType;
+    public Curses potionType;
 }

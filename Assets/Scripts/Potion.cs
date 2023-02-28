@@ -5,11 +5,11 @@ using UnityEngine;
 public enum PotionType { }
 public class Potion : MonoBehaviour
 {
-    PotionType potionType;
+    public Curses potionType;
 
-    List<Elements> ingredientsElements = new();
+    public List<Elements> ingredientsElements = new();
 
-    int strength;
+    public int strength;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class Potion : MonoBehaviour
         
     }
 
-    public void CreatePotion(PotionType type, List<Ingredient> ingredients)
+    public void CreatePotion(Curses type, List<Ingredient> ingredients)
     {
         potionType = type;
 
