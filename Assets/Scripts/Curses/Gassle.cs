@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Yellow : Ingredient
+public class Gassle : Curse
 {
     protected override void Awake()
     {
+        curse = Curses.Gassle;
         base.Awake();
-
-        ingredient = Ingredients.Yellow;
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
