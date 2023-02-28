@@ -114,11 +114,6 @@ public class Curse : MonoBehaviour
             //Go through the potion ingredients getting their elements
             foreach (var ingElement in potion.ingredientsElements)
             {
-                //for (int i = 0; i < customer.elementLimbMap.Length; i++)
-                //{
-                //    //elements are equal
-                //    if ((int)ingElement == i)
-                //    {
                 //Go throught the affectedLimbs
                 foreach (var limb in affectedLimbs)
                 {
@@ -141,8 +136,6 @@ public class Curse : MonoBehaviour
                         }
                     }
                 }
-                //    }
-                //}
             }
         }
     }
