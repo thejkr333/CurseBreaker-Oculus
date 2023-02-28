@@ -16,6 +16,7 @@ public class Customer : MonoBehaviour
 
         curse = GetComponent<Curse>();
         curse.numberOfPartsAffected = UnityEngine.Random.Range(1, Enum.GetValues(typeof(LimbsList)).Length);
+        curse.InitiateAffectedLimbParts();
 
         for (int i = 0; i < elementLimbMap.Length; i++)
         {
@@ -41,7 +42,7 @@ public class Customer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(curse.curse);
+        
     }
 
     // Update is called once per frame

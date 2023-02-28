@@ -1,7 +1,7 @@
 using UnityEngine;
 //using UnityEngine.XR.Interaction.Toolkit;
 
-public enum Elements { Light, Fire, Water, Earth, Air, Dark, None }
+public enum Elements { Fire, Dark, Light, Water, Air, Earth, None }
 //[RequireComponent(typeof(XRGrabInteractable), typeof(Renderer), typeof(Rigidbody))]
 public class Ingredient : MonoBehaviour
 {

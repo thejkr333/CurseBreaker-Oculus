@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Wolfus : Curse
 {
-    protected override void Awake()
+    protected void Awake()
     {
         curse = Curses.Wolfus;
-        base.Awake();
     }
     // Start is called before the first frame update
     void Start()
@@ -16,8 +15,8 @@ public class Wolfus : Curse
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
     }
 }

@@ -6,6 +6,7 @@ public enum LimbsList { Torso, Head, LeftArm, RightArm, LeftLeg, RightLeg , Soul
 public enum Curses { Wolfus, Gassle, Demonitis, Petrification }
 public class Curse : MonoBehaviour
 {
+    [System.Serializable]
     public class AffectedLimb
     {
         public GameObject affectedLimbGO;
@@ -27,13 +28,14 @@ public class Curse : MonoBehaviour
 
     public Curses curse;
 
-    protected List<AffectedLimb> affectedLimbs = new();
-    protected int totalStrength;
+    public List<AffectedLimb> affectedLimbs = new();
+    public int totalStrength;
     protected bool cured;
 
     Customer customer;
+    public Potion _potion;
 
-    protected virtual void Awake()
+    public void InitiateAffectedLimbParts()
     {
         List<int> _affectedLimbs = new();
         for (int i = 0; i < numberOfPartsAffected; i++)
@@ -54,6 +56,7 @@ public class Curse : MonoBehaviour
                 }
             }
 
+            //Populate the affectedLimb list with the correspondant affected limbs
             for (int j = 0; j < transform.childCount; j++)
             {
                 //if child == limb get GO of child
@@ -65,22 +68,29 @@ public class Curse : MonoBehaviour
             }
         }
 
-        customer = GetComponent<Customer>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        totalStrength = 0;
+        //Calculate total strength of the curse
         foreach (var part in affectedLimbs)
         {
             totalStrength += part.strength;
         }
+        customer = GetComponent<Customer>();
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
+        //Just for debugging and testing without VR
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GetPotion();
+        }
+
+        //Check if all affected limbs are cured
         if (cured) return;
         foreach (var limb in affectedLimbs)
         {
@@ -89,37 +99,57 @@ public class Curse : MonoBehaviour
         Cured();
     }
 
-    void GetPotion(Potion potion)
+    void GetPotion(Potion potion = null)
     {
+        if (potion == null) potion = _potion;
+
+        //Check if the potion type is the correct one
         if (potion.potionType != curse)
         {
             //Wrong potion
+            Debug.Log("Wrong potion");
         }
         else
         {
+            //Go through the potion ingredients getting their elements
             foreach (var ingElement in potion.ingredientsElements)
             {
-                for (int i = 0; i < customer.elementLimbMap.Length; i++)
+                //for (int i = 0; i < customer.elementLimbMap.Length; i++)
+                //{
+                //    //elements are equal
+                //    if ((int)ingElement == i)
+                //    {
+                //Go throught the affectedLimbs
+                foreach (var limb in affectedLimbs)
                 {
-                    //elements are equal
-                    if ((int)ingElement == i)
+                    if (ingElement == Elements.None)
                     {
-                        foreach (var limb in affectedLimbs)
+                        if(limb.limbName == LimbsList.Torso)
                         {
-                            if (limb.limbName == (LimbsList)customer.elementLimbMap[i])
-                            {
-                                if (limb.strength <= potion.strength) limb.cured = true;
-                                break;
-                            }
+                            if (limb.strength <= potion.strength) limb.cured = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Limb name: " + limb.limbName + " vs mapping: " + (LimbsList)customer.elementLimbMap[(int)ingElement]);
+                        //Check if the limb corresponds with the element in the mapping
+                        if (limb.limbName == (LimbsList)customer.elementLimbMap[(int)ingElement])
+                        {
+                            if (limb.strength <= potion.strength) limb.cured = true;
+                            break;
                         }
                     }
                 }
+                //    }
+                //}
             }
         }
     }
 
     void Cured()
     {
+        Debug.Log("Cured");
         cured = true;
         GameManager.Instance.GoldGain();
     }

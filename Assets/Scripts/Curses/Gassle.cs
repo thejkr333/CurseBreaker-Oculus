@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Gassle : Curse
 {
-    protected override void Awake()
+    protected void Awake()
     {
         curse = Curses.Gassle;
-        base.Awake();
+
     }
     // Start is called before the first frame update
     void Start()
@@ -16,8 +16,8 @@ public class Gassle : Curse
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
     }
 }
