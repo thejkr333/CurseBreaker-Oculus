@@ -15,7 +15,7 @@ public class Customer : MonoBehaviour
         gameObject.AddComponent(Type.GetType(((Curses)curseNumber).ToString()));
 
         curse = GetComponent<Curse>();
-        curse.numberOfPartsAffected = UnityEngine.Random.Range(1, Enum.GetValues(typeof(LimbsList)).Length);
+        curse.numberOfPartsAffected = UnityEngine.Random.Range(1, Enum.GetValues(typeof(LimbsList)).Length + 1);
         curse.InitiateAffectedLimbParts();
 
         for (int i = 0; i < elementLimbMap.Length; i++)

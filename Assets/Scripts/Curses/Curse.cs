@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public enum LimbsList { Torso, Head, LeftArm, RightArm, LeftLeg, RightLeg , Soul}
+public enum LimbsList { Head, LeftArm, RightArm, LeftLeg, RightLeg , Soul, Torso }
 public enum Curses { Wolfus, Gassle, Demonitis, Petrification }
 public class Curse : MonoBehaviour
 {
