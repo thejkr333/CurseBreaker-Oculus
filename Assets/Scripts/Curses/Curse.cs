@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Curse : MonoBehaviour
+    public enum LimbsList { Torso, Head, LeftArm, RightArm, LeftLeg, RightLeg , Soul}
+    public class Curse : MonoBehaviour
 {
     public class AffectedLimb
     {

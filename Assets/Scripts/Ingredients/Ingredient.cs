@@ -1,11 +1,10 @@
 using UnityEngine;
 //using UnityEngine.XR.Interaction.Toolkit;
 
-
+public enum Elements { None, Light, Fire, Water, Earth, Air, Dark}
 //[RequireComponent(typeof(XRGrabInteractable), typeof(Renderer), typeof(Rigidbody))]
 public class Ingredient : MonoBehaviour
 {
-
     public bool Burned, Gassed, Drenched, Dusted, Shining, Darkened;
     public enum Ingredients { Red, Green, Blue, Purple, Yellow }
     [HideInInspector] public Ingredients ingredient;
@@ -18,11 +17,16 @@ public class Ingredient : MonoBehaviour
     //Renderer m_Renderer;
     Rigidbody rb;
 
+    public int strength;
+    public Elements element;
+    
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         rb.useGravity = true;
+
+        element = Elements.None;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -34,32 +38,38 @@ public class Ingredient : MonoBehaviour
                 case "Spell/Fire":
                     Debug.Log(this.name + " was hit by Fire");
                     Burned= true;
+                    element = Elements.Fire;
                     StartParticles(Color.red);
                     break;
 
                 case "Spell/Air":
                     Debug.Log(this.name + " was hit by Air");
                     Gassed = true;
+                    element = Elements.Air;
                     break;
 
                 case "Spell/Water":
                     Debug.Log(this.name + " was hit by Water");
                     Drenched = true;
+                    element = Elements.Water;
                     break;
 
                 case "Spell/Earth":
                     Debug.Log(this.name + " was hit by Earth");
                     Dusted= true;
+                    element = Elements.Earth;
                     break;
 
                 case "Spell/Light":
                     Debug.Log(this.name + " was hit by Light");
                     Shining= true;
+                    element = Elements.Light;
                     break;
 
                 case "Spell/Dark":
                     Debug.Log(this.name + " was hit by Dark");
                     Darkened= true;
+                    element = Elements.Dark;
                     break;
 
                 default:
