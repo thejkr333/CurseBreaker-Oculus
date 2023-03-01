@@ -74,6 +74,14 @@ public class Curse : MonoBehaviour
             totalStrength += part.strength;
         }
         customer = GetComponent<Customer>();
+
+        SetUpCurse();
+    }
+    
+
+    protected virtual void SetUpCurse()
+    {
+
     }
     // Start is called before the first frame update
     void Start()
