@@ -160,6 +160,7 @@ public class GestureCompletionEvent : UnityEvent<GestureCompletionData>
 public class Mivry : MonoBehaviour
 {
     [SerializeField] PoseEvents leftHandPoseEvents, rightHandPoseEvents;
+    GestureEvents gestureEvents;
 
     /// <summary>
     /// Which Unity XR plug-in is used (see Unity Package Manager and Project Settings -> XR Plugin Management).
@@ -523,7 +524,7 @@ public class Mivry : MonoBehaviour
     private bool LeftHandActive = false;
     private bool RightHandActive = false;
 
-    private GestureRecognition gr = null;
+    public GestureRecognition gr = null;
     private GestureCombinations gc = null;
     private GestureCompletionData data = new GestureCompletionData();
 
@@ -532,6 +533,8 @@ public class Mivry : MonoBehaviour
     /// </summary>
     void Start()
     {
+        gestureEvents = GetComponent<GestureEvents>();
+
         int ret;
 #if UNITY_EDITOR
         // When running the scene inside the Unity editor,
@@ -586,6 +589,7 @@ public class Mivry : MonoBehaviour
         ret = gr.loadFromFile(GesturesFilePath);
         if (ret == 0) // file loaded successfully
         {
+            gestureEvents.SetUpGestureNames(gr);
             return;
         }
         byte[] file_contents = File.ReadAllBytes(GesturesFilePath);
@@ -597,6 +601,7 @@ public class Mivry : MonoBehaviour
         ret = gr.loadFromBuffer(file_contents);
         if (ret == 0) // file loaded successfully
         {
+            gestureEvents.SetUpGestureNames(gr);
             return;
         }
         gr = null;

@@ -6,6 +6,10 @@ using TMPro;
 public class GestureEvents : MonoBehaviour
 {
     [SerializeField] TMP_Text gestureText;
+
+    [SerializeField] List<string> gestureNames = new();
+
+    enum Gestures { Fire, Dark, Light, Water, Air, Earth}
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +22,16 @@ public class GestureEvents : MonoBehaviour
 
     }
 
+    public void SetUpGestureNames(GestureRecognition gr)
+    {
+        int num_gestures = gr.numberOfGestures();
+        for (int i = 0; i < num_gestures; i++)
+        {
+            string gesture_name = gr.getGestureName(i);
+            gestureNames.Add(gesture_name);
+        }
+    }
+
     public void OnGestureCompleted(GestureCompletionData data)
     {
         gestureText.gameObject.SetActive(true);
@@ -26,6 +40,31 @@ public class GestureEvents : MonoBehaviour
         Debug.Log("Gesture finished");
         Debug.Log("Gesture recognized: " + data.gestureName);
         Debug.Log("Gesture similarity: " + data.similarity);
+
+        switch(data.gestureName)
+        {
+            case "fire":
+                Debug.Log("Fire");
+                break;
+            case "dark":
+                Debug.Log("Dark");
+                break;
+            case "light":
+                Debug.Log("Light");
+                break;
+            case "water":
+                Debug.Log("Water");
+                break;
+            case "air":
+                Debug.Log("Air");
+                break;
+            case "earth":
+                Debug.Log("Earth");
+                break;
+            default:
+                Debug.Log("Gesture not assigned");
+                break;
+        }
 
         Invoke(nameof(DisableText), 3);
     }
