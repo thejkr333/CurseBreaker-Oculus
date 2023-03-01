@@ -5,7 +5,7 @@ public enum Elements { Fire, Dark, Light, Water, Air, Earth, None }
 //[RequireComponent(typeof(XRGrabInteractable), typeof(Renderer), typeof(Rigidbody))]
 public class Ingredient : MonoBehaviour
 {
-    public bool Burned, Gassed, Drenched, Dusted, Shining, Darkened;
+    //public bool Burned, Gassed, Drenched, Dusted, Shining, Darkened;
     public enum Ingredients { AngelLeaf, Mandrake, WolfsBane, CorkWood }
     [HideInInspector] public Ingredients ingredient;
 
@@ -31,44 +31,44 @@ public class Ingredient : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!Burned && !Gassed && !Drenched && !Dusted && !Shining && !Darkened)
-        {
+        //if (!Burned && !Gassed && !Drenched && !Dusted && !Shining && !Darkened)
+        //{
             switch (collision.gameObject.tag)
             {
                 case "Spell/Fire":
                     Debug.Log(this.name + " was hit by Fire");
-                    Burned= true;
+                    //Burned= true;
                     element = Elements.Fire;
                     StartParticles(Color.red);
                     break;
 
                 case "Spell/Air":
                     Debug.Log(this.name + " was hit by Air");
-                    Gassed = true;
+                    //Gassed = true;
                     element = Elements.Air;
                     break;
 
                 case "Spell/Water":
                     Debug.Log(this.name + " was hit by Water");
-                    Drenched = true;
+                    //Drenched = true;
                     element = Elements.Water;
                     break;
 
                 case "Spell/Earth":
                     Debug.Log(this.name + " was hit by Earth");
-                    Dusted= true;
+                    //Dusted= true;
                     element = Elements.Earth;
                     break;
 
                 case "Spell/Light":
                     Debug.Log(this.name + " was hit by Light");
-                    Shining= true;
+                    //Shining= true;
                     element = Elements.Light;
                     break;
 
                 case "Spell/Dark":
                     Debug.Log(this.name + " was hit by Dark");
-                    Darkened= true;
+                    //Darkened= true;
                     element = Elements.Dark;
                     break;
 
@@ -78,7 +78,7 @@ public class Ingredient : MonoBehaviour
 
             }
         }
-    }
+    //}
 
     void StartParticles(Color color)
     {

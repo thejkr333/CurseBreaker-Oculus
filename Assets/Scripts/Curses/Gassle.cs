@@ -14,6 +14,14 @@ public class Gassle : Curse
     {
         
     }
+    protected override void SetUpCurse()
+    {
+        foreach (var limb in affectedLimbs)
+        {
+            if (limb.limbName == LimbsList.Soul) continue;
+            limb.affectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
+        }
+    }
 
     // Update is called once per frame
     protected override void Update()

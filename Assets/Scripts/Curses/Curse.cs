@@ -74,6 +74,14 @@ public class Curse : MonoBehaviour
             totalStrength += part.strength;
         }
         customer = GetComponent<Customer>();
+
+        SetUpCurse();
+    }
+    
+
+    protected virtual void SetUpCurse()
+    {
+
     }
     // Start is called before the first frame update
     void Start()
@@ -103,8 +111,8 @@ public class Curse : MonoBehaviour
     {
         if (potion == null) potion = _potion;
 
-        //Check if the potion type is the correct one
-        if (potion.potionType != curse)
+        //Check if the potion type has the correct one
+        if (!potion.potionTypes.Contains(curse))
         {
             //Wrong potion
             Debug.Log("Wrong potion");
