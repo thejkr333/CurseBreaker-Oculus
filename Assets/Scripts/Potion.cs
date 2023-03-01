@@ -5,7 +5,7 @@ using UnityEngine;
 public enum PotionType { }
 public class Potion : MonoBehaviour
 {
-    public Curses potionType;
+    public List<Curses> potionTypes = new();
 
     public List<Elements> ingredientsElements = new();
 
@@ -22,12 +22,26 @@ public class Potion : MonoBehaviour
         
     }
 
-    public void CreatePotion(Curses type, List<Ingredient> ingredients)
+    public void CreatePotion(List<Ingredient> ingredients)
     {
-        potionType = type;
-
         foreach (var ing in ingredients)
         {
+            switch (ing.ingredient)
+            {
+                case Ingredient.Ingredients.AngelLeaf:
+                    potionTypes.Add(Curses.Demonitis);
+                    break;
+                case Ingredient.Ingredients.CorkWood:
+                    potionTypes.Add(Curses.Gassle);
+                    break;
+                case Ingredient.Ingredients.Mandrake:
+                    potionTypes.Add(Curses.Petrification);
+                    break;
+                case Ingredient.Ingredients.WolfsBane:
+                    potionTypes.Add(Curses.Wolfus);
+                    break;
+            }
+
             strength += ing.strength;
             ingredientsElements.Add(ing.element);
         }

@@ -103,8 +103,8 @@ public class Curse : MonoBehaviour
     {
         if (potion == null) potion = _potion;
 
-        //Check if the potion type is the correct one
-        if (potion.potionType != curse)
+        //Check if the potion type has the correct one
+        if (!potion.potionTypes.Contains(curse))
         {
             //Wrong potion
             Debug.Log("Wrong potion");
