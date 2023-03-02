@@ -31,7 +31,7 @@ public class Curse : MonoBehaviour
     public List<AffectedLimb> affectedLimbs = new();
     public int totalStrength;
     protected bool cured;
-
+    public int chances = 3;
     Customer customer;
     public Potion _potion;
 
@@ -98,6 +98,12 @@ public class Curse : MonoBehaviour
             GetPotion();
         }
 
+        //Check if player failed to cure the customer - James
+        if(chances == 0)
+        {
+            GameObject.Find("CustomerController").GetComponent<CustomerController>().FailureCure();
+        }
+
         //Check if all affected limbs are cured
         if (cured) return;
         foreach (var limb in affectedLimbs)
@@ -116,6 +122,9 @@ public class Curse : MonoBehaviour
         {
             //Wrong potion
             Debug.Log("Wrong potion");
+
+            //Reducing your chances to cure the customer - James
+            chances--;
         }
         else
         {
@@ -150,7 +159,7 @@ public class Curse : MonoBehaviour
 
     void Cured()
     {
-        Debug.Log("Cured");
+        GameObject.Find("CustomerController").GetComponent<CustomerController>().CustomerCured=true;
         cured = true;
         GameManager.Instance.GoldGain();
     }

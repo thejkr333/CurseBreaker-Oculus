@@ -12,6 +12,7 @@ TagManager:
   - Spell/Earth
   - Spell/Light
   - Spell/Dark
+  - Customer
   layers:
   - Default
   - TransparentFX
