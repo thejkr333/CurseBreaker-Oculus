@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using static OVRPlugin;
 
 public enum LimbsList { Head, LeftArm, RightArm, LeftLeg, RightLeg , Soul, Torso }
 public enum Curses { Wolfus, Gassle, Demonitis, Petrification }
@@ -101,7 +102,9 @@ public class Curse : MonoBehaviour
         //Check if player failed to cure the customer - James
         if(chances == 0)
         {
-            GameObject.Find("CustomerController").GetComponent<CustomerController>().FailureCure();
+           
+            gameObject.GetComponent<basicChat>().chatTime = 3;
+            gameObject.GetComponent<basicChat>().DespawnOnceDone = true;
         }
 
         //Check if all affected limbs are cured
@@ -125,6 +128,8 @@ public class Curse : MonoBehaviour
 
             //Reducing your chances to cure the customer - James
             chances--;
+            gameObject.GetComponent<basicChat>().wrongPotion = true;
+            gameObject.GetComponent<basicChat>().chatTime = 3;
         }
         else
         {
@@ -159,7 +164,10 @@ public class Curse : MonoBehaviour
 
     void Cured()
     {
-        GameObject.Find("CustomerController").GetComponent<CustomerController>().CustomerCured=true;
+       
+        gameObject.GetComponent<basicChat>().chatTime = 3;
+        gameObject.GetComponent<basicChat>().DespawnOnceDone = true;
+        gameObject.GetComponent<basicChat>().Cured = true;
         cured = true;
         GameManager.Instance.GoldGain();
     }

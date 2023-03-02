@@ -52,9 +52,8 @@ public class CustomerController : MonoBehaviour
        
         Customer.SetActive(false);
         var copy = Instantiate<GameObject>(nextCustomer);
-        Customer = copy;
         copy.SetActive(true);
-        
+        Customer = copy;
     }
    public void SuccessfulCure()
     {
