@@ -26,6 +26,7 @@ public class Ingredient : MonoBehaviour
         rb.isKinematic = true;
         rb.useGravity = true;
 
+        strength = Random.Range(0, 3);
         element = Elements.None;
     }
 

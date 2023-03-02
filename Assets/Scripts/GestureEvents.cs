@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class GestureEvents : MonoBehaviour
 {
@@ -45,21 +46,27 @@ public class GestureEvents : MonoBehaviour
         {
             case "fire":
                 Debug.Log("Fire");
+                Fire();
                 break;
             case "dark":
                 Debug.Log("Dark");
+                Dark();
                 break;
             case "light":
                 Debug.Log("Light");
+                Light();
                 break;
             case "water":
                 Debug.Log("Water");
+                Water();
                 break;
             case "air":
                 Debug.Log("Air");
+                Air();
                 break;
             case "earth":
                 Debug.Log("Earth");
+                Earth();
                 break;
             default:
                 Debug.Log("Gesture not assigned");
@@ -69,8 +76,36 @@ public class GestureEvents : MonoBehaviour
         Invoke(nameof(DisableText), 3);
     }
 
+
     void DisableText()
     {
         gestureText.gameObject.SetActive(false);
     }
+
+    #region gesture Methods
+    void Fire()
+    {
+
+    }
+    private void Dark()
+    {
+       
+    }
+    private void Light()
+    {
+        
+    }
+    private void Water()
+    {
+        
+    }
+    private void Air()
+    {
+        
+    }
+    private void Earth()
+    {
+        
+    }
+    #endregion
 }
