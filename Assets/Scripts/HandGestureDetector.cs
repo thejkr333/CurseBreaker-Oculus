@@ -90,7 +90,7 @@ public class HandGestureDetector : MonoBehaviour
             {
                 // we change another boolean to avoid a loop of event
                 done = true;
-                poseText.text = currentGesture.name;
+                //poseText.text = currentGesture.name;
                 // after that i will invoke what put in the Event if is present
                 currentGesture.onRecognized?.Invoke();
             }
@@ -101,7 +101,6 @@ public class HandGestureDetector : MonoBehaviour
                 if (done)
                 {
                     Debug.Log("Not Recognized");
-                    poseText.text = "Not recognized";
                     // we set to false the boolean again, so this will not loop
                     done = false;
 

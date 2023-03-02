@@ -35,8 +35,8 @@ public class GestureEvents : MonoBehaviour
 
     public void OnGestureCompleted(GestureCompletionData data)
     {
-        gestureText.gameObject.SetActive(true);
-        gestureText.text = "Gesture finished \n Gesture recognized: " + data.gestureName + "\nGesture similarity: " + data.similarity;
+        //gestureText.gameObject.SetActive(true);
+        //gestureText.text = "Gesture finished \n Gesture recognized: " + data.gestureName + "\nGesture similarity: " + data.similarity;
 
         Debug.Log("Gesture finished");
         Debug.Log("Gesture recognized: " + data.gestureName);
@@ -45,27 +45,21 @@ public class GestureEvents : MonoBehaviour
         switch(data.gestureName)
         {
             case "fire":
-                Debug.Log("Fire");
                 Fire();
                 break;
             case "dark":
-                Debug.Log("Dark");
                 Dark();
                 break;
             case "light":
-                Debug.Log("Light");
                 Light();
                 break;
             case "water":
-                Debug.Log("Water");
                 Water();
                 break;
             case "air":
-                Debug.Log("Air");
                 Air();
                 break;
             case "earth":
-                Debug.Log("Earth");
                 Earth();
                 break;
             default:
@@ -85,27 +79,31 @@ public class GestureEvents : MonoBehaviour
     #region gesture Methods
     void Fire()
     {
-
+        Debug.Log("Fire");
     }
     private void Dark()
     {
-       
+        Debug.Log("Dark");
     }
     private void Light()
     {
-        
+        Debug.Log("Light");
+
     }
     private void Water()
     {
-        
+        Debug.Log("Water");
+
     }
     private void Air()
     {
-        
+        Debug.Log("Air");
+
     }
     private void Earth()
     {
-        
+        Debug.Log("Earth");
+
     }
     #endregion
 }
