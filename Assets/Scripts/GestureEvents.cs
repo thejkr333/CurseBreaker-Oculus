@@ -67,7 +67,7 @@ public class GestureEvents : MonoBehaviour
                 break;
         }
 
-        Invoke(nameof(DisableText), 3);
+        //Invoke(nameof(DisableText), 3);
     }
 
 
