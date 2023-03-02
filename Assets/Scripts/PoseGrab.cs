@@ -70,6 +70,11 @@ public class PoseGrab : OVRGrabber
             // the same operation is calculated but in this case is calculated on the EulerAngles
             Vector3 angularVelocity = (transform.parent.eulerAngles - m_lastRot.eulerAngles) / Time.fixedDeltaTime;
 
+            if (m_grabbedObj.TryGetComponent<AlwaysLookToCam>(out AlwaysLookToCam lookToCam))
+            {
+                lookToCam.enabled = true;
+            }
+
             // And we call the function that make us able to release the grab with the velocities we calculated          
             GrabbableRelease(linearVelocity, angularVelocity);
         }

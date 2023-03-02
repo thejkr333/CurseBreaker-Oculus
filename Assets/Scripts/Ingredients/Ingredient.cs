@@ -22,10 +22,6 @@ public class Ingredient : MonoBehaviour
     
     protected virtual void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
-        rb.useGravity = true;
-
         strength = Random.Range(0, 3);
         element = Elements.None;
     }

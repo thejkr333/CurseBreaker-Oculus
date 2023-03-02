@@ -14,6 +14,8 @@ public class AlwaysLookToCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Vector3 dir = cam.transform.position - transform.position;
+        //transform.up = dir.normalized;
         transform.LookAt(cam.transform);
     }
 }

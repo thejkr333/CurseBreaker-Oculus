@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.Events;
 using System.Collections;
 using System;
+using UnityEngine.SpatialTracking;
 // struct = class without functions
 [System.Serializable]
 public struct Pose
@@ -16,6 +17,8 @@ public struct Pose
 public class HandGestureDetector : MonoBehaviour
 {
     [SerializeField] TMP_Text poseText;
+
+    TrackedPoseDriver trackedPoseDriver;
 
     // How much accurate the recognize should be
     [Header("Threshold value")]
@@ -40,6 +43,8 @@ public class HandGestureDetector : MonoBehaviour
     public UnityEvent notRecognize;
     void Start()
     {
+        trackedPoseDriver = skeleton.transform.parent.GetComponent<TrackedPoseDriver>();
+        trackedPoseDriver.enabled = false;
         // When the Oculus hand had his time to initialize hand, with a simple coroutine i start a delay of
         // a function to initialize the script
         StartCoroutine(DelayRoutine(Initialize));
@@ -59,6 +64,7 @@ public class HandGestureDetector : MonoBehaviour
         SetSkeleton();
         // After initialize the skeleton set a boolean to true to confirm the initialization
         hasStarted = true;
+        trackedPoseDriver.enabled = true;
     }
     public void SetSkeleton()
     {

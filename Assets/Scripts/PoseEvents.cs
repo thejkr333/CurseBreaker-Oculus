@@ -182,6 +182,10 @@ public class PoseEvents : MonoBehaviour
             StopCoroutine(AttractObject());
             attracting = false;
 
+            if (attractedObjRb.TryGetComponent<AlwaysLookToCam>(out AlwaysLookToCam lookToCam))
+            {
+                lookToCam.enabled = false;
+            }
             attractedObjRb.useGravity = true;
             attractedObjRb.gameObject.layer = objectLayer;
             objectLayer = 0;
@@ -204,9 +208,8 @@ public class PoseEvents : MonoBehaviour
         objectLayer = obj.layer;
         int LayerGrabbed = LayerMask.NameToLayer("Grabbed");
         obj.layer = LayerGrabbed;
-        Debug.Log("Current layer: " + obj.layer);
 
-        while (Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .3f)
+        while (Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .2f)
         {
             if(attractedObjRb != null) attractedObjRb.AddForce((handSkeleton.transform.position - obj.transform.position).normalized * 3);
 
@@ -214,6 +217,7 @@ public class PoseEvents : MonoBehaviour
         }
 
         attractedObjRb.velocity = Vector3.zero;
+        attractedObjRb.transform.position = handSkeleton.transform.position;
         obj.layer = objectLayer;
         objectLayer = 0;
         attractedObjRb.useGravity = true;

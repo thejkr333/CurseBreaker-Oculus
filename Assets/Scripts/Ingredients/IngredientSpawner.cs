@@ -15,16 +15,17 @@ public class IngredientSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject == inside)
+        if(Vector3.Distance(inside.transform.position, transform.position) > 3)
         {
+            Debug.Log("outside");
             GameObject clon = Instantiate(ingredientPrefab);
             clon.transform.position = transform.position;
             inside = clon;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
     }
 }

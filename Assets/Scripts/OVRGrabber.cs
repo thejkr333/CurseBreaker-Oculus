@@ -272,6 +272,10 @@ public class OVRGrabber : MonoBehaviour
             }
 
             m_grabbedObj = closestGrabbable;
+            if (m_grabbedObj.TryGetComponent<AlwaysLookToCam>(out AlwaysLookToCam lookToCam))
+            {
+                lookToCam.enabled = false;
+            }
             m_grabbedObj.GrabBegin(this, closestGrabbableCollider);
 
             m_lastPos = transform.position;
@@ -352,6 +356,7 @@ public class OVRGrabber : MonoBehaviour
     {
         if (m_grabbedObj != null)
         {
+
 			OVRPose localPose = new OVRPose { position = OVRInput.GetLocalControllerPosition(m_controller), orientation = OVRInput.GetLocalControllerRotation(m_controller) };
             OVRPose offsetPose = new OVRPose { position = m_anchorOffsetPosition, orientation = m_anchorOffsetRotation };
             localPose = localPose * offsetPose;
