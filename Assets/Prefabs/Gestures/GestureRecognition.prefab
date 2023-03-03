@@ -94,3 +94,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gestureText: {fileID: 0}
   gestureNames: []
+  leftHand: {fileID: 0}
+  rightHand: {fileID: 0}
+  fire: {fileID: 3155554930152478369, guid: f3c901013342ee64b92b92d82221740c, type: 3}
+  dark: {fileID: 7508160982668201103, guid: b72715e33d877bd48accf3d7a1aa7a49, type: 3}
+  light: {fileID: 6681914650251578468, guid: d895515e389227c4e9adb3e7ff6fec61, type: 3}
+  water: {fileID: 974320991297995359, guid: 2ef42f4941d475142bb91370f6df0035, type: 3}
+  air: {fileID: 3155554930152478369, guid: f3c901013342ee64b92b92d82221740c, type: 3}
+  earth: {fileID: 1866106105139345148, guid: 3a149d4c67404284488b21b672faaf32, type: 3}
+  headPos: {fileID: 0}

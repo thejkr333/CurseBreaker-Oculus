@@ -58,7 +58,7 @@ public class Curse : MonoBehaviour
             }
 
             //Populate the affectedLimb list with the correspondant affected limbs
-            for (int j = 0; j < transform.childCount; j++)
+            for (int j = 0; j < transform.childCount-1; j++)
             {
                 //if child == limb get GO of child
                 if (transform.GetChild(j).name == ((LimbsList)_affectedLimbs[i]).ToString())

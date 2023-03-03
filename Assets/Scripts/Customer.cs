@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using TMPro;
 
 public class Customer : MonoBehaviour
 {
     //length -1 not to take NONE into account
     public int[] elementLimbMap = new int[Enum.GetValues(typeof(Elements)).Length-1];
     Curse curse;
+    [SerializeField] TMP_Text customerInfo;
 
     private void Awake()
     {
@@ -17,6 +19,8 @@ public class Customer : MonoBehaviour
         curse = GetComponent<Curse>();
         curse.numberOfPartsAffected = UnityEngine.Random.Range(1, Enum.GetValues(typeof(LimbsList)).Length + 1);
         curse.InitiateAffectedLimbParts();
+        
+        customerInfo.text = curse.curse.ToString();
 
         for (int i = 0; i < elementLimbMap.Length; i++)
         {

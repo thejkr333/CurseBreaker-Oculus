@@ -12,12 +12,22 @@ public class GestureEvents : MonoBehaviour
 
     [SerializeField] GameObject leftHand, rightHand;
     OVRGrabber leftHandGrabber, rightHandGrabber;
+
+    [SerializeField] GameObject fire, dark, light, water, air, earth;
+    [SerializeField] Transform headPos;
+    Vector3 initialPos;
     enum Gestures { Fire, Dark, Light, Water, Air, Earth}
+
+    private void Awake()
+    {
+        initialPos = headPos.position;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         leftHandGrabber = leftHand.GetComponent<OVRGrabber>();
-        rightHandGrabber = rightHand.GetComponent<OVRGrabber>();
+        rightHandGrabber = leftHand.GetComponent<OVRGrabber>();
     }
 
     // Update is called once per frame
@@ -73,7 +83,6 @@ public class GestureEvents : MonoBehaviour
         //Invoke(nameof(DisableText), 3);
     }
 
-
     void DisableText()
     {
         gestureText.gameObject.SetActive(false);
@@ -82,32 +91,45 @@ public class GestureEvents : MonoBehaviour
     #region gesture Methods
     void Fire()
     {
-
+        GameObject clon = Instantiate(fire);
+        clon.transform.position = (headPos.position - initialPos) / 3 * 2;
+        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
         Debug.Log("Fire");
     }
     private void Dark()
     {
+        GameObject clon = Instantiate(dark);
+        clon.transform.position = (headPos.position - initialPos) / 3 * 2;
+        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
         Debug.Log("Dark");
     }
     private void Light()
     {
+        GameObject clon = Instantiate(light);
+        clon.transform.position = (headPos.position - initialPos) / 3 * 2;
+        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
         Debug.Log("Light");
-
     }
     private void Water()
     {
+        GameObject clon = Instantiate(water);
+        clon.transform.position = (headPos.position - initialPos) / 3 * 2;
+        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
         Debug.Log("Water");
-
     }
     private void Air()
     {
+        GameObject clon = Instantiate(air);
+        clon.transform.position = (headPos.position - initialPos) / 3 * 2;
+        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
         Debug.Log("Air");
-
     }
     private void Earth()
     {
+        GameObject clon = Instantiate(earth);
+        clon.transform.position = (headPos.position - initialPos) / 3 * 2;
+        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
         Debug.Log("Earth");
-
     }
     #endregion
 }

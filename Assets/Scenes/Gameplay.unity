@@ -2596,9 +2596,17 @@ PrefabInstance:
       value: GestureRecognition
       objectReference: {fileID: 0}
     - target: {fileID: 5630743683435129058, guid: 976d4860b4631a8438de8de4ea1aa5c3, type: 3}
-      propertyPath: gestureText
+      propertyPath: headPos
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 763234935}
+    - target: {fileID: 5630743683435129058, guid: 976d4860b4631a8438de8de4ea1aa5c3, type: 3}
+      propertyPath: leftHand
+      value: 
+      objectReference: {fileID: 1329723683}
+    - target: {fileID: 5630743683435129058, guid: 976d4860b4631a8438de8de4ea1aa5c3, type: 3}
+      propertyPath: rightHand
+      value: 
+      objectReference: {fileID: 1329723683}
     - target: {fileID: 5630743683435129059, guid: 976d4860b4631a8438de8de4ea1aa5c3, type: 3}
       propertyPath: LeftHand
       value: 
@@ -3065,6 +3073,11 @@ Transform:
   m_Father: {fileID: 1588060193}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &763234935 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400002, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+  m_PrefabInstance: {fileID: 2105605497}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &767355108
 GameObject:
   m_ObjectHideFlags: 0
