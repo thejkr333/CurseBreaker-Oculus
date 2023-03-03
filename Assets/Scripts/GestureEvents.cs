@@ -10,11 +10,14 @@ public class GestureEvents : MonoBehaviour
 
     [SerializeField] List<string> gestureNames = new();
 
+    [SerializeField] GameObject leftHand, rightHand;
+    OVRGrabber leftHandGrabber, rightHandGrabber;
     enum Gestures { Fire, Dark, Light, Water, Air, Earth}
     // Start is called before the first frame update
     void Start()
     {
-
+        leftHandGrabber = leftHand.GetComponent<OVRGrabber>();
+        rightHandGrabber = rightHand.GetComponent<OVRGrabber>();
     }
 
     // Update is called once per frame
@@ -79,6 +82,7 @@ public class GestureEvents : MonoBehaviour
     #region gesture Methods
     void Fire()
     {
+
         Debug.Log("Fire");
     }
     private void Dark()
