@@ -20,6 +20,6 @@ public class ButtonCauldron : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Cauldron.StirCauldron();
+        if(other.GetComponent<PoseGrab>() != null) Cauldron.StirCauldron();
     }
 }
