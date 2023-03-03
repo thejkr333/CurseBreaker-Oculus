@@ -26,11 +26,13 @@ public class Ingredient : MonoBehaviour
         element = Elements.None;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         //if (!Burned && !Gassed && !Drenched && !Dusted && !Shining && !Darkened)
         //{
-            switch (collision.gameObject.tag)
+        if (element == Elements.None)
+        {
+            switch (other.gameObject.tag)
             {
                 case "Spell/Fire":
                     Debug.Log(this.name + " was hit by Fire");
@@ -75,6 +77,7 @@ public class Ingredient : MonoBehaviour
 
             }
         }
+    }
     //}
 
     void StartParticles(Color color)
