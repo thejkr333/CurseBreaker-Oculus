@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.XR.Interaction.Toolkit;
 
 public enum Elements { Fire, Dark, Light, Water, Air, Earth, None }
 //[RequireComponent(typeof(XRGrabInteractable), typeof(Renderer), typeof(Rigidbody))]
@@ -16,9 +15,6 @@ public class Ingredient : MonoBehaviour
 
     [HideInInspector] public bool selected;
 
-    //XRBaseInteractable m_Interactable;
-    //Renderer m_Renderer;
-    Rigidbody rb;
     //ParticleSystem PS;
     //ParticleSystemRenderer PSR;
     ParticleSystemShapeType IngredientMesh = ParticleSystemShapeType.MeshRenderer;
@@ -108,38 +104,4 @@ public class Ingredient : MonoBehaviour
         //PS.shape.meshRenderer = gameObject.GetComponent<MeshRenderer>();
 
     }
-
-    //protected void OnEnable()
-    //{
-    //    m_Interactable = GetComponent<XRBaseInteractable>();
-    //    m_Renderer = GetComponent<Renderer>();
-
-    //    m_Interactable.firstSelectEntered.AddListener(OnFirstSelectEntered);
-    //    m_Interactable.lastSelectExited.AddListener(OnLastSelectExited);
-    //}
-
-    //protected void OnDisable()
-    //{
-    //    m_Interactable.firstSelectEntered.RemoveListener(OnFirstSelectEntered);
-    //    m_Interactable.lastSelectExited.RemoveListener(OnLastSelectExited);
-    //}
-
-    //protected virtual void OnFirstSelectEntered(SelectEnterEventArgs args) => EnterSelection();
-
-    //protected virtual void OnLastSelectExited(SelectExitEventArgs args) => ExitSelection();
-
-    //protected virtual void EnterSelection()
-    //{
-    //    selected = true;
-    //    rb.isKinematic = false;
-    //    if (hasBeenSelected) return;
-
-    //    Instantiate(gameObject, transform.position, Quaternion.identity);
-    //    hasBeenSelected = true;
-    //}
-    //protected virtual void ExitSelection()
-    //{
-    //    rb.isKinematic = false;
-    //    selected = false;
-    //}
 }
