@@ -63,7 +63,7 @@ public class Cauldron : MonoBehaviour
         //Reset lists
         foreach (var item in ingredientsInCauldron)
         {
-            Destroy(item.gameObject, .5f)
+            Destroy(item.gameObject, .5f);
         }
         ingredientsInCauldron.Clear();
     }
