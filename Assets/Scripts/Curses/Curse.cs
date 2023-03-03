@@ -127,7 +127,6 @@ public class Curse : MonoBehaviour
             Debug.Log("Wrong potion");
 
             //Reducing your chances to cure the customer - James
-            chances--;
             gameObject.GetComponent<basicChat>().wrongPotion = true;
             gameObject.GetComponent<basicChat>().chatTime = 3;
         }
@@ -160,6 +159,7 @@ public class Curse : MonoBehaviour
                 }
             }
         }
+        chances--;
     }
 
     void Cured()
