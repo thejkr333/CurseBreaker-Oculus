@@ -3,7 +3,13 @@ guid: 26db73fe4281e0640b75030d5c158ba3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - FireSpell: {fileID: 2100000, guid: 2c1b5538d42fcf74f8557809426f3442, type: 2}
+  - AirSpell: {fileID: 2100000, guid: e622556d6ff4b6f49b8607f5915220af, type: 2}
+  - WaterSpell: {fileID: 2100000, guid: 5ddaf8a554d073a4a8d042ef10dfad2c, type: 2}
+  - EarthSpell: {fileID: 2100000, guid: 92ba698a71077c6488a0c06803a7537b, type: 2}
+  - LightSpell: {fileID: 2100000, guid: 33441d1be213f4a41acb9a8389b01ac8, type: 2}
+  - DarkSpell: {fileID: 2100000, guid: 9c8ba7dcef0c5754da7c21cd69f98a1b, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
