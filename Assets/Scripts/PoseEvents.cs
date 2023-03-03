@@ -9,6 +9,8 @@ public class PoseEvents : MonoBehaviour
     public enum Poses { Aiming, Grab, OpenHand, SpellSelect, Unknown}
     public Poses currentPose;
 
+    Dictionary<Poses, bool> pose = new();
+
     [SerializeField] protected OVRSkeleton handSkeleton;
     PoseGrab poseGrab;
     LineRenderer lineRenderer;

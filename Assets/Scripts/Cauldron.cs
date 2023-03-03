@@ -53,6 +53,8 @@ public class Cauldron : MonoBehaviour
 
     public void StirCauldron()
     {
+        if (ingredientsInCauldron.Count <= 0) return;
+
         GameObject clon = Instantiate(basePotionPrefab);
         clon.transform.position = transform.GetChild(0).position;
 

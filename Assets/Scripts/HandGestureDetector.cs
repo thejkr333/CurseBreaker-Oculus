@@ -11,6 +11,7 @@ using UnityEngine.SpatialTracking;
 public struct Pose
 {
     public string name;
+    public bool oneHand;
     public List<Vector3> fingerDatas;
     public UnityEvent onRecognized;
 }
