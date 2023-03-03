@@ -61,6 +61,10 @@ public class Cauldron : MonoBehaviour
         potion.CreatePotion(ingredientsInCauldron);
 
         //Reset lists
+        foreach (var item in ingredientsInCauldron)
+        {
+            Destroy(item.gameObject, .5f)
+        }
         ingredientsInCauldron.Clear();
     }
 
