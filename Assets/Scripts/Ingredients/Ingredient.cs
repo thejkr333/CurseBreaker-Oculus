@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Elements { Fire, Dark, Light, Water, Air, Earth, None }
-//[RequireComponent(typeof(XRGrabInteractable), typeof(Renderer), typeof(Rigidbody))]
 //[RequireComponent(typeof(ParticleSystem))]
 public class Ingredient : MonoBehaviour
 {
