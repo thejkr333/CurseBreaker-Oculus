@@ -5255,6 +5255,10 @@ PrefabInstance:
       propertyPath: Cauldron
       value: 
       objectReference: {fileID: 204299380}
+    - target: {fileID: 7097741174910207049, guid: 20aeffaf415d22246a8ae3fbe19b9295, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20aeffaf415d22246a8ae3fbe19b9295, type: 3}
 --- !u!1001 &1329723681
