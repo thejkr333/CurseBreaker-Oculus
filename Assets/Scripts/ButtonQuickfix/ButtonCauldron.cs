@@ -28,9 +28,11 @@ public class ButtonCauldron : MonoBehaviour
         if (other.GetComponent<PoseGrab>() != null)
         {
 
-
+           
+            
             if (!sliderMinigameGO.activeSelf)
             {
+                if (Cauldron.ingredientsInCauldron.Count == 0) return;
                 sliderMinigameGO.SetActive(true);
             }
             else
