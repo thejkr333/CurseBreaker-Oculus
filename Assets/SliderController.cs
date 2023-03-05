@@ -14,19 +14,25 @@ public class SliderController : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] GameObject textGO;
     [SerializeField] GameObject background;
+    [SerializeField] GameObject cauldronGO;
+    Cauldron cauldron;
 
 
     Slider slider;
     SliderState state = SliderState.OFF;
-
+    bool input = false;
     float growing = 1;
 
     Shader shader;
     // Start is called before the first frame update
     void Start()
     {
+        if (!cauldronGO)
+        {
+            Debug.Log("Cauldron not attached in sliderMinigame");
+        }
+        cauldron = cauldronGO.GetComponent<Cauldron>();
         slider = GetComponent<Slider>();
-
         background.GetComponent<Image>().material.SetFloat("_SuccessNumber", successPoint);
         background.GetComponent<Image>().material.SetFloat("_SuccessMargin", successMargin);
     }
@@ -39,25 +45,32 @@ public class SliderController : MonoBehaviour
         background.GetComponent<Image>().material.SetFloat("_SuccessMargin", successMargin);
 
     }
+    public void InputReceived()
+    {
+        input = true;
+    }
 
-
+    private void ResetSlider()
+    {
+        state = SliderState.OFF;
+        textGO.SetActive(false);
+        slider.value = 0;
+        transform.parent.gameObject.SetActive(false);
+    }
     private IEnumerator SwitchStateTimer(SliderState newState, float waitingTime)
     {
         yield return new WaitForSeconds(waitingTime);
         state = newState;
         if (state == SliderState.OFF)
         {
-            state = SliderState.OFF;
-            textGO.SetActive(false);
-            slider.value = 0;
+            ResetSlider();
         }
 
     }
     // Update is called once per frame
     void Update()
     {
-        bool input = Input.GetKeyDown(KeyCode.A);
-
+        //input = Input.GetKeyDown(KeyCode.A);
         switch (state)
         {
             case SliderState.OFF:
@@ -88,7 +101,7 @@ public class SliderController : MonoBehaviour
                     }
 
                     //invoke an extern method to tell the caller the result
-
+                    if (cauldron) cauldron.StirCauldron(successBool);
                     //Create a timer for swithing to FINISHED state automatically
                     StartCoroutine(SwitchStateTimer(SliderState.OFF, 2f));
 
@@ -97,15 +110,13 @@ public class SliderController : MonoBehaviour
             case SliderState.FINISHED:
                 if (input)
                 {
-                    state = SliderState.OFF;
-                    textGO.SetActive(false);
-                    slider.value = 0;
+                    ResetSlider();
                 }
                 break;
         }
 
         //background.GetComponent<CanvasRenderer>().material.SetFloat("_SuccessNumber", successPoint);
         //background.GetComponent<CanvasRenderer>().material.SetFloat("_SuccessMargin", successMargin);
-
+        input = false;
     }
 }

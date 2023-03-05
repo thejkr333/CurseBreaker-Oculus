@@ -51,16 +51,19 @@ public class Cauldron : MonoBehaviour
         Debug.Log(ingredient);
     }
 
-    public void StirCauldron()
+    public void StirCauldron(bool success = true)
     {
         if (ingredientsInCauldron.Count <= 0) return;
 
-        GameObject clon = Instantiate(basePotionPrefab);
-        clon.transform.position = transform.GetChild(0).position;
+        if (success)
+        {
+            GameObject clon = Instantiate(basePotionPrefab);
+            clon.transform.position = transform.GetChild(0).position;
 
-        Potion potion = clon.GetComponent<Potion>();
-        if (potion == null) potion = clon.AddComponent<Potion>();
-        potion.CreatePotion(ingredientsInCauldron);
+            Potion potion = clon.GetComponent<Potion>();
+            if (potion == null) potion = clon.AddComponent<Potion>();
+            potion.CreatePotion(ingredientsInCauldron);
+        }
 
         //Reset lists
         foreach (var item in ingredientsInCauldron)
