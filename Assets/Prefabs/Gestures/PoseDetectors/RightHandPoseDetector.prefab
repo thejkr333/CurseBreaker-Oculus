@@ -49,6 +49,7 @@ MonoBehaviour:
   skeleton: {fileID: 0}
   poses:
   - name: Aim
+    oneHand: 1
     fingerDatas:
     - {x: -0.0018729938, y: -0.0009365019, z: 0.0000000098905515}
     - {x: -0.0018729938, y: -0.0009365019, z: 0.0000000098905515}
@@ -90,6 +91,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - name: Grab
+    oneHand: 1
     fingerDatas:
     - {x: 0, y: 0, z: 0}
     - {x: 0, y: 0, z: 0}
@@ -131,6 +133,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - name: OpenHand
+    oneHand: 1
     fingerDatas:
     - {x: 2.731773e-10, y: 0.0000000021844553, z: 9.731391e-10}
     - {x: 2.731773e-10, y: 0.0000000021844553, z: 9.731391e-10}
@@ -172,6 +175,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - name: SpellSelect
+    oneHand: 1
     fingerDatas:
     - {x: 4.1636844e-10, y: -0.0000000010307526, z: 0.0000000017578542}
     - {x: 4.1636844e-10, y: -0.0000000010307526, z: 0.0000000017578542}
@@ -212,7 +216,49 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  debugMode: 1
+  - name: TV
+    oneHand: 0
+    fingerDatas:
+    - {x: 0.00000004482264, y: -0.000000024463315, z: 0.000000022176472}
+    - {x: 0.00000004482264, y: -0.000000024463315, z: 0.000000022176472}
+    - {x: -0.020068938, y: -0.011554068, z: -0.010497016}
+    - {x: -0.03595845, y: -0.019157689, z: -0.028028509}
+    - {x: -0.057656556, y: -0.030272985, z: -0.049539696}
+    - {x: -0.07943198, y: -0.034809526, z: -0.07498017}
+    - {x: -0.09599623, y: -0.0073164455, z: -0.02355071}
+    - {x: -0.13368642, y: -0.007903961, z: -0.027743068}
+    - {x: -0.15781751, y: -0.0096139, z: -0.030075196}
+    - {x: -0.09564657, y: -0.0025431453, z: -0.0017258708}
+    - {x: -0.12307419, y: -0.035467844, z: 0.0008071092}
+    - {x: -0.10155808, y: -0.052397758, z: -0.00226124}
+    - {x: -0.08869372, y: -0.006529359, z: 0.017465213}
+    - {x: -0.10824371, y: -0.040242802, z: 0.018841214}
+    - {x: -0.085278206, y: -0.05044002, z: 0.010195598}
+    - {x: -0.034073547, y: -0.009419864, z: 0.022998545}
+    - {x: -0.07789578, y: -0.01369118, z: 0.03505409}
+    - {x: -0.095063664, y: -0.03910095, z: 0.033224106}
+    - {x: -0.07905197, y: -0.046597492, z: 0.023225306}
+    - {x: -0.08783408, y: -0.036673553, z: -0.09804831}
+    - {x: -0.18019079, y: -0.009073139, z: -0.030705}
+    - {x: -0.07902747, y: -0.043118317, z: -0.007819688}
+    - {x: -0.06799941, y: -0.034159176, z: 0.004646692}
+    - {x: -0.064739004, y: -0.030922523, z: 0.017607223}
+    onRecognized:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: PoseEvents, Assembly-CSharp
+          m_MethodName: StartTV
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  debugMode: 0
   notRecognize:
     m_PersistentCalls:
       m_Calls:

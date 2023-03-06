@@ -9,7 +9,7 @@ public class PoseEvents : MonoBehaviour
     [SerializeField] PoseEvents otherHandPoseEvent;
     [SerializeField] bool mainHand;
 
-    public enum Poses { Aiming, Grab, OpenHand, SpellSelect, TV, Unknown}
+    public enum Poses { Aiming, Grab, OpenHand, SpellSelect, TV, Unknown }
     public Poses currentPose;
 
     Dictionary<Poses, bool> pose = new();
@@ -28,6 +28,7 @@ public class PoseEvents : MonoBehaviour
     Vector3 indexProximal = Vector3.zero;
     Vector3 indexTip = Vector3.zero;
     public Vector3 thumbMetacarpal = Vector3.zero;
+    [SerializeField] Material paintMaterial;
     [SerializeField] GameObject hiddenGO;
     [SerializeField] Transform head;
 
@@ -68,13 +69,15 @@ public class PoseEvents : MonoBehaviour
         fingerbones = new List<OVRBone>(handSkeleton.Bones);
         foreach (var bone in fingerbones)
         {
-            if(bone.Id == OVRSkeleton.BoneId.Hand_MiddleTip)
+            if (bone.Id == OVRSkeleton.BoneId.Hand_MiddleTip)
             {
                 trailRenderer = bone.Transform.gameObject.AddComponent<TrailRenderer>();
-                trailRenderer.enabled = false;
+                trailRenderer.material = paintMaterial;
+                paintMaterial.color = Color.white;
                 trailRenderer.time = 4;
                 trailRenderer.minVertexDistance = .0001f;
                 trailRenderer.startWidth = .01f;
+                trailRenderer.enabled = false;
             }
         }
     }
@@ -114,7 +117,7 @@ public class PoseEvents : MonoBehaviour
     #region Aim
     public void StartAim()
     {
-        StartNewPose();
+        if (currentPose != Poses.Aiming) StartNewPose(currentPose);
 
         currentPose = Poses.Aiming;
     }
@@ -124,14 +127,14 @@ public class PoseEvents : MonoBehaviour
         indexProximal = Vector3.zero;
         indexTip = Vector3.zero;
 
-        foreach(OVRBone bone in fingerbones)
+        foreach (OVRBone bone in fingerbones)
         {
-            if (bone.Id == OVRSkeleton.BoneId.Hand_Index1) 
+            if (bone.Id == OVRSkeleton.BoneId.Hand_WristRoot)
             {
                 indexProximal = bone.Transform.position;
                 continue;
             }
-            if (bone.Id == OVRSkeleton.BoneId.Hand_IndexTip) 
+            if (bone.Id == OVRSkeleton.BoneId.Hand_IndexTip)
             {
                 indexTip = bone.Transform.position;
                 continue;
@@ -165,7 +168,7 @@ public class PoseEvents : MonoBehaviour
     #region Grab
     public void StartGrab()
     {
-        StartNewPose();
+        if (currentPose != Poses.Grab) StartNewPose(currentPose);
 
         currentPose = Poses.Grab;
     }
@@ -186,7 +189,7 @@ public class PoseEvents : MonoBehaviour
             EndAim();
             poseGrab.DetectGrabbing(true);
             return;
-        }  
+        }
     }
     void EndGrab()
     {
@@ -224,7 +227,7 @@ public class PoseEvents : MonoBehaviour
 
         while (Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .2f)
         {
-            if(attractedObjRb != null) attractedObjRb.AddForce((handSkeleton.transform.position - obj.transform.position).normalized * 3);
+            if (attractedObjRb != null) attractedObjRb.AddForce((handSkeleton.transform.position - obj.transform.position).normalized * 3);
 
             yield return 0;
         }
@@ -246,13 +249,13 @@ public class PoseEvents : MonoBehaviour
     #region OpenHand
     public void StartOpenHand()
     {
-        StartNewPose();
+        if (currentPose != Poses.OpenHand) StartNewPose(currentPose);
 
         currentPose = Poses.OpenHand;
     }
     void OpenHand()
     {
-        
+
     }
 
     void EndOpenHand()
@@ -264,12 +267,12 @@ public class PoseEvents : MonoBehaviour
     #region SpellSelect
     public void StartSpellSelect()
     {
-        StartNewPose();
+        if (currentPose != Poses.SpellSelect) StartNewPose(currentPose);
 
         currentPose = Poses.SpellSelect;
 
         if (trailRenderer == null) return;
-        
+
         trailRenderer.enabled = true;
     }
     void SpellSelect()
@@ -290,7 +293,7 @@ public class PoseEvents : MonoBehaviour
     #region TV
     public void StartTV()
     {
-        StartNewPose();
+        if (currentPose != Poses.TV) StartNewPose(currentPose);
 
         currentPose = Poses.TV;
     }
@@ -321,15 +324,19 @@ public class PoseEvents : MonoBehaviour
             Debug.Log("plane right x: " + (centre.x + rend.bounds.extents.x) + " vs right thumb: " + thumbMetacarpal.x);
             Debug.Log("plane up y: " + (centre.y + rend.bounds.extents.y) + " vs right thumb: " + thumbMetacarpal.y);
 
-            if(centre.x + rend.bounds.extents.x - thumbMetacarpal.x > .05f)
+            Vector3 centreAlignedWithHand = centre;
+            centreAlignedWithHand.y = thumbMetacarpal.y;
+
+            float distanceProjectedVector = Vector3.Distance(centreAlignedWithHand, thumbMetacarpal);
+
+            if (rend.bounds.extents.x - distanceProjectedVector  > .05f)
             {
                 Resize(true, false);
             }
-            else if(centre.x + rend.bounds.extents.x - thumbMetacarpal.x < -.05f)
+            else if (rend.bounds.extents.x - distanceProjectedVector < -.05f )
             {
                 Resize(true, true);
             }
-
             if (centre.y + rend.bounds.extents.y - thumbMetacarpal.y > .05f)
             {
                 Resize(false, false);
@@ -339,49 +346,74 @@ public class PoseEvents : MonoBehaviour
                 Resize(false, true);
             }
 
-            hiddenGO.transform.forward = head.forward;
+            hiddenGO.transform.forward = (centre - head.position).normalized;
             hiddenGO.SetActive(true);
         }
     }
 
     void Resize(bool XAxis, bool increasing)
     {
+        Transform tr = hiddenGO.transform;
+
         if (XAxis)
         {
             if (increasing)
             {
-                hiddenGO.transform.localScale += new Vector3(.01f, 0, 0);
+                tr.localScale += new Vector3(.01f, 0, 0);
             }
             else
             {
-                hiddenGO.transform.localScale -= new Vector3(.01f, 0, 0);
+                tr.localScale -= new Vector3(.01f, 0, 0);
             }
         }
         else
         {
             if (increasing)
             {
-                hiddenGO.transform.localScale += new Vector3(0, .01f, 0);
+                tr.localScale += new Vector3(0, .01f, 0);
             }
             else
             {
-                hiddenGO.transform.localScale -= new Vector3(0, .01f, 0);
+                tr.localScale -= new Vector3(0, .01f, 0);
             }
         }
+
+        if (tr.localScale.x < .1f) tr.localScale = new Vector3(.1f, tr.localScale.y, tr.localScale.z);
+        if (tr.localScale.y < .1f) tr.localScale = new Vector3(tr.localScale.x, .1f, tr.localScale.z);
+        if (tr.localScale.x > .6f) tr.localScale = new Vector3(.6f, tr.localScale.y, tr.localScale.z);
+        if (tr.localScale.y > .6f) tr.localScale = new Vector3(tr.localScale.x, .6f, tr.localScale.z);
     }
     void EndTV()
     {
         hiddenGO.SetActive(false);
     }
     #endregion
-    void StartNewPose()
+    void StartNewPose(Poses lastPose)
     {
-        EndGrab();
-        EndSpellSelect();
-        EndAim();
-        EndOpenHand();
-        EndTV();
+        switch (lastPose)
+        {
+            case Poses.Aiming:
+                EndAim();
+                break;
+
+            case Poses.Grab:
+                EndGrab();
+                break;
+
+            case Poses.OpenHand:
+                EndOpenHand();
+                break;
+
+            case Poses.TV:
+                EndTV();
+                break;
+
+            case Poses.SpellSelect:
+                EndSpellSelect();
+                break;
+        }
     }
+
     public void EndPoses()
     {
         currentPose = Poses.Unknown;
