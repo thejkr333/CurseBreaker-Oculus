@@ -10,7 +10,7 @@ public class basicChat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        chatTime = 3;
+        chatTime = 5;
     }
 
     // Update is called once per frame

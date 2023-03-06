@@ -103,7 +103,7 @@ public class Curse : MonoBehaviour
         if(chances == 0)
         {
            
-            gameObject.GetComponent<basicChat>().chatTime = 3;
+            gameObject.GetComponent<basicChat>().chatTime = 5;
             gameObject.GetComponent<basicChat>().DespawnOnceDone = true;
         }
 
@@ -128,7 +128,7 @@ public class Curse : MonoBehaviour
 
             //Reducing your chances to cure the customer - James
             gameObject.GetComponent<basicChat>().wrongPotion = true;
-            gameObject.GetComponent<basicChat>().chatTime = 3;
+            gameObject.GetComponent<basicChat>().chatTime = 5;
         }
         else
         {
@@ -165,7 +165,7 @@ public class Curse : MonoBehaviour
     void Cured()
     {
        
-        gameObject.GetComponent<basicChat>().chatTime = 3;
+        gameObject.GetComponent<basicChat>().chatTime = 5;
         gameObject.GetComponent<basicChat>().DespawnOnceDone = true;
         gameObject.GetComponent<basicChat>().Cured = true;
         cured = true;
