@@ -41,6 +41,7 @@ public class PoseEvents : MonoBehaviour
     {
         poseGrab = handSkeleton.GetComponent<PoseGrab>();
         lineRenderer = GetComponent<LineRenderer>();
+        hiddenGO.SetActive(false);
         lineRenderer.enabled = false;
 
         // When the Oculus hand had his time to initialize hand, with a simple coroutine i start a delay of
