@@ -159,7 +159,10 @@ public class PoseEvents : MonoBehaviour
     void EndAim()
     {
         lineRenderer.enabled = false;
-
+        Invoke(nameof(DeselectAim), 2);       
+    }
+    void DeselectAim()
+    {
         if (lastOutline != null && lastOutline.enabled) lastOutline.enabled = false;
         lastOutline = null;
     }
@@ -182,6 +185,7 @@ public class PoseEvents : MonoBehaviour
             if (rb == null) return;
 
             attractedObjRb = rb;
+            DeselectAim();
             StartCoroutine(AttractObject());
         }
         else
@@ -302,11 +306,15 @@ public class PoseEvents : MonoBehaviour
     {
         if (otherHandPoseEvent.currentPose != Poses.TV) return;
 
+        Vector3 localThumbCoords = Vector3.zero;
         foreach (OVRBone bone in fingerbones)
         {
             if (bone.Id == OVRSkeleton.BoneId.Hand_Thumb0)
             {
+                //Global
                 thumbMetacarpal = bone.Transform.position;
+
+                localThumbCoords = hiddenGO.transform.worldToLocalMatrix.MultiplyPoint(thumbMetacarpal);
                 break;
             }
         }
@@ -321,30 +329,32 @@ public class PoseEvents : MonoBehaviour
             hiddenGO.transform.position = centre;
             Renderer rend = hiddenGO.GetComponentInChildren<Renderer>();
 
-            Debug.Log("plane right x: " + (centre.x + rend.bounds.extents.x) + " vs right thumb: " + thumbMetacarpal.x);
-            Debug.Log("plane up y: " + (centre.y + rend.bounds.extents.y) + " vs right thumb: " + thumbMetacarpal.y);
+            hiddenGO.transform.localScale = new Vector3(Mathf.Abs(localThumbCoords.x) * 2, Mathf.Abs(localThumbCoords.y) * 2, transform.localScale.z);
 
-            Vector3 centreAlignedWithHand = centre;
-            centreAlignedWithHand.y = thumbMetacarpal.y;
+            //Debug.Log("plane right x: " + (centre.x + rend.bounds.extents.x) + " vs right thumb: " + thumbMetacarpal.x);
+            //Debug.Log("plane up y: " + (centre.y + rend.bounds.extents.y) + " vs right thumb: " + thumbMetacarpal.y);
 
-            float distanceProjectedVector = Vector3.Distance(centreAlignedWithHand, thumbMetacarpal);
+            //Vector3 centreAlignedWithHand = centre;
+            //centreAlignedWithHand.y = thumbMetacarpal.y;
 
-            if (rend.bounds.extents.x - distanceProjectedVector  > .05f)
-            {
-                Resize(true, false);
-            }
-            else if (rend.bounds.extents.x - distanceProjectedVector < -.05f )
-            {
-                Resize(true, true);
-            }
-            if (centre.y + rend.bounds.extents.y - thumbMetacarpal.y > .05f)
-            {
-                Resize(false, false);
-            }
-            else if (centre.y + rend.bounds.extents.y - thumbMetacarpal.y < -.05f)
-            {
-                Resize(false, true);
-            }
+            //float distanceProjectedVector = Vector3.Distance(centreAlignedWithHand, thumbMetacarpal);
+
+            //if (rend.bounds.extents.x - distanceProjectedVector  > .05f)
+            //{
+            //    Resize(true, false);
+            //}
+            //else if (rend.bounds.extents.x - distanceProjectedVector < -.05f )
+            //{
+            //    Resize(true, true);
+            //}
+            //if (centre.y + rend.bounds.extents.y - thumbMetacarpal.y > .05f)
+            //{
+            //    Resize(false, false);
+            //}
+            //else if (centre.y + rend.bounds.extents.y - thumbMetacarpal.y < -.05f)
+            //{
+            //    Resize(false, true);
+            //}
 
             hiddenGO.transform.forward = (centre - head.position).normalized;
             hiddenGO.SetActive(true);
@@ -378,6 +388,7 @@ public class PoseEvents : MonoBehaviour
             }
         }
 
+        //Clamp values so it's never too small or too big
         if (tr.localScale.x < .1f) tr.localScale = new Vector3(.1f, tr.localScale.y, tr.localScale.z);
         if (tr.localScale.y < .1f) tr.localScale = new Vector3(tr.localScale.x, .1f, tr.localScale.z);
         if (tr.localScale.x > .6f) tr.localScale = new Vector3(.6f, tr.localScale.y, tr.localScale.z);
@@ -411,17 +422,21 @@ public class PoseEvents : MonoBehaviour
             case Poses.SpellSelect:
                 EndSpellSelect();
                 break;
+
+            case Poses.Unknown:
+                EndAim();
+                EndGrab();
+                EndTV();
+                EndSpellSelect();
+                EndOpenHand();
+                break;
         }
     }
 
     public void EndPoses()
     {
         currentPose = Poses.Unknown;
-        lineRenderer.enabled = false;
 
-        EndGrab();
-        EndSpellSelect();
-        EndOpenHand();
-        Invoke(nameof(EndAim), 2);
+        StartNewPose(currentPose);
     }
 }
