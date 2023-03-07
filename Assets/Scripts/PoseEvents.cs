@@ -313,8 +313,6 @@ public class PoseEvents : MonoBehaviour
             {
                 //Global
                 thumbMetacarpal = bone.Transform.position;
-
-                localThumbCoords = hiddenGO.transform.worldToLocalMatrix.MultiplyPoint(thumbMetacarpal);
                 break;
             }
         }
@@ -327,8 +325,10 @@ public class PoseEvents : MonoBehaviour
 
             Vector3 centre = new Vector3(thumbMetacarpal.x - x, thumbMetacarpal.y - y, thumbMetacarpal.z - z);
             hiddenGO.transform.position = centre;
-            Renderer rend = hiddenGO.GetComponentInChildren<Renderer>();
+            //Renderer rend = hiddenGO.GetComponentInChildren<Renderer>();
 
+            hiddenGO.transform.forward = (centre - head.position).normalized;
+            localThumbCoords = hiddenGO.transform.worldToLocalMatrix.MultiplyPoint(thumbMetacarpal);
             hiddenGO.transform.localScale = new Vector3(Mathf.Abs(localThumbCoords.x) * 2, Mathf.Abs(localThumbCoords.y) * 2, transform.localScale.z);
 
             //Debug.Log("plane right x: " + (centre.x + rend.bounds.extents.x) + " vs right thumb: " + thumbMetacarpal.x);
@@ -356,7 +356,6 @@ public class PoseEvents : MonoBehaviour
             //    Resize(false, true);
             //}
 
-            hiddenGO.transform.forward = (centre - head.position).normalized;
             hiddenGO.SetActive(true);
         }
     }
