@@ -35,6 +35,8 @@ public class SliderController : MonoBehaviour
         slider = GetComponent<Slider>();
         background.GetComponent<Image>().material.SetFloat("_SuccessNumber", successPoint);
         background.GetComponent<Image>().material.SetFloat("_SuccessMargin", successMargin);
+
+        gameObject.SetActive(false);
     }
 
 
@@ -45,9 +47,18 @@ public class SliderController : MonoBehaviour
         background.GetComponent<Image>().material.SetFloat("_SuccessMargin", successMargin);
 
     }
+
+    public void StartMinigame()
+    {
+        gameObject.SetActive(true);
+        state = SliderState.MOVING;
+    }
     public void InputReceived()
     {
-        input = true;
+        if (state == SliderState.MOVING)
+        {
+            input = true;
+        }
     }
 
     private void ResetSlider()
@@ -101,7 +112,8 @@ public class SliderController : MonoBehaviour
                     }
 
                     //invoke an extern method to tell the caller the result
-                    if (cauldron) cauldron.StirCauldron(successBool);
+                    if (cauldron) 
+                        cauldron.StirCauldron(successBool);
                     //Create a timer for swithing to FINISHED state automatically
                     StartCoroutine(SwitchStateTimer(SliderState.OFF, 2f));
 
@@ -118,5 +130,14 @@ public class SliderController : MonoBehaviour
         //background.GetComponent<CanvasRenderer>().material.SetFloat("_SuccessNumber", successPoint);
         //background.GetComponent<CanvasRenderer>().material.SetFloat("_SuccessMargin", successMargin);
         input = false;
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PoseGrab>() != null)
+        {
+            InputReceived();
+        }
     }
 }
