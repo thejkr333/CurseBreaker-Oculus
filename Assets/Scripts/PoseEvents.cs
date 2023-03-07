@@ -35,7 +35,8 @@ public class PoseEvents : MonoBehaviour
     [SerializeField] Outline lastOutline;
     Rigidbody attractedObjRb;
     LayerMask objectLayer;
-
+    private GradientColorKey[] Blue, White;
+    private GradientAlphaKey[] Alpha;
     public bool recordingGesture;
     void Start()
     {
@@ -43,6 +44,23 @@ public class PoseEvents : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         hiddenGO.SetActive(false);
         lineRenderer.enabled = false;
+
+
+        //Defining colours and alpha for the line here
+        //it is only able to understand it as an array, so to change it, it needs to be lerped individuallly
+        Blue[0].color = Color.blue;
+        Blue[0].time = 0; 
+        Blue[1].color = Color.blue;
+        Blue[1].time = 1;
+        White[0].color = Color.white;
+        White[0].time = 0;
+        White[1].color = Color.white;
+        White[1].time = 1;
+        Alpha[0].alpha = 1;
+        Alpha[0].time = 0;
+        Alpha[1].alpha = 1;
+        Alpha[1].time = 1;
+
 
         // When the Oculus hand had his time to initialize hand, with a simple coroutine i start a delay of
         // a function to initialize the script
@@ -121,12 +139,24 @@ public class PoseEvents : MonoBehaviour
         if (currentPose != Poses.Aiming) StartNewPose(currentPose);
 
         currentPose = Poses.Aiming;
+        
+        //Colour Reset every time you start aiming, just incase it doesnt. at best the line should be blue. might also not change to white as the gradient itself cannot be lerped...
+        Blue[0].color = Color.blue;
+        Blue[1].color = Color.blue;
+        lineRenderer.colorGradient.SetKeys(Blue, Alpha);
     }
     void Aim()
     {
         lineRenderer.enabled = true;
         indexProximal = Vector3.zero;
         indexTip = Vector3.zero;
+
+        //Colour Change goes in these two lines, just changing the start and end values towards white over 5 seconds
+
+        Color.Lerp(Blue[0].color, White[0].color, 5);
+        Color.Lerp(Blue[1].color, White[1].color, 5);
+
+
 
         foreach (OVRBone bone in fingerbones)
         {
