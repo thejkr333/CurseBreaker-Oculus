@@ -36,7 +36,7 @@ public class SliderController : MonoBehaviour
         background.GetComponent<Image>().material.SetFloat("_SuccessNumber", successPoint);
         background.GetComponent<Image>().material.SetFloat("_SuccessMargin", successMargin);
 
-        gameObject.SetActive(false);
+        transform.parent.gameObject.SetActive(false);
     }
 
 
@@ -50,7 +50,7 @@ public class SliderController : MonoBehaviour
 
     public void StartMinigame()
     {
-        gameObject.SetActive(true);
+        transform.parent.gameObject.SetActive(true);
         state = SliderState.MOVING;
     }
     public void InputReceived()

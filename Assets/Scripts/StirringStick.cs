@@ -78,7 +78,7 @@ public class StirringStick : MonoBehaviour
     public void CheckFinishStirring()
     {
         lapCounter++;
-        if(lapCounter >= 1)
+        if(lapCounter >= 2)
         {
             animator.enabled = true;
             stirring = false;
