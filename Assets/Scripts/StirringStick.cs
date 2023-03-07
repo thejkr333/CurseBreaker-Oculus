@@ -27,7 +27,7 @@ public class StirringStick : MonoBehaviour
 
         if (inCauldron || stirring) { timer = 0; return; }
 
-        if (Vector3.Distance(transform.position, initialPos) > 2)
+        if (Vector3.Distance(transform.position, initialPos) > .5f)
         {
             timer += Time.deltaTime;
             if (timer >= offPosTime)
@@ -78,7 +78,7 @@ public class StirringStick : MonoBehaviour
     public void CheckFinishStirring()
     {
         lapCounter++;
-        if(lapCounter >= 2)
+        if(lapCounter >= 1)
         {
             animator.enabled = true;
             stirring = false;

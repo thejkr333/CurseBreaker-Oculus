@@ -112,7 +112,8 @@ public class SliderController : MonoBehaviour
                     }
 
                     //invoke an extern method to tell the caller the result
-                    if (cauldron) cauldron.StirCauldron(successBool);
+                    if (cauldron) 
+                        cauldron.StirCauldron(successBool);
                     //Create a timer for swithing to FINISHED state automatically
                     StartCoroutine(SwitchStateTimer(SliderState.OFF, 2f));
 
