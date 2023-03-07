@@ -328,6 +328,7 @@ public class PoseEvents : MonoBehaviour
             //Renderer rend = hiddenGO.GetComponentInChildren<Renderer>();
 
             hiddenGO.transform.forward = (centre - head.position).normalized;
+            hiddenGO.transform.localScale = Vector3.one;
             localThumbCoords = hiddenGO.transform.worldToLocalMatrix.MultiplyPoint(thumbMetacarpal);
             hiddenGO.transform.localScale = new Vector3(Mathf.Abs(localThumbCoords.x) * 2, Mathf.Abs(localThumbCoords.y) * 2, transform.localScale.z);
 
