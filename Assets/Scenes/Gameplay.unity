@@ -15179,6 +15179,14 @@ PrefabInstance:
       propertyPath: handSkeleton
       value: 
       objectReference: {fileID: 526981169}
+    - target: {fileID: 491963381120680913, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 491963381120680913, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dfb4f1b78e1e758409f6d6e2366312cd, type: 2}
     - target: {fileID: 491963382277425827, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: head
       value: 
@@ -15191,6 +15199,10 @@ PrefabInstance:
       propertyPath: handSkeleton
       value: 
       objectReference: {fileID: 1329723684}
+    - target: {fileID: 491963382277425853, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dfb4f1b78e1e758409f6d6e2366312cd, type: 2}
     - target: {fileID: 863045929836295590, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: skeleton
       value: 
