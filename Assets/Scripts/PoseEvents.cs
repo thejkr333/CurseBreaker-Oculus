@@ -48,14 +48,17 @@ public class PoseEvents : MonoBehaviour
 
         //Defining colours and alpha for the line here
         //it is only able to understand it as an array, so to change it, it needs to be lerped individuallly
+        Blue = new GradientColorKey[2];
         Blue[0].color = Color.blue;
         Blue[0].time = 0; 
         Blue[1].color = Color.blue;
         Blue[1].time = 1;
+        White = new GradientColorKey[2];
         White[0].color = Color.white;
         White[0].time = 0;
         White[1].color = Color.white;
         White[1].time = 1;
+        Alpha = new GradientAlphaKey[2];
         Alpha[0].alpha = 1;
         Alpha[0].time = 0;
         Alpha[1].alpha = 1;
