@@ -186,6 +186,7 @@ public class PoseEvents : MonoBehaviour
             if (rb == null) return;
 
             attractedObjRb = rb;
+            if (rb.GetComponent<StirringStick>() != null) rb.GetComponent<StirringStick>().DisableAnim();
             DeselectAim();
             StartCoroutine(AttractObject());
         }
@@ -232,7 +233,8 @@ public class PoseEvents : MonoBehaviour
 
         while (Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .2f)
         {
-            if (attractedObjRb != null) attractedObjRb.AddForce((handSkeleton.transform.position - obj.transform.position).normalized * 3);
+            Vector3 direction = (handSkeleton.transform.position - obj.transform.position).normalized;
+            if (attractedObjRb != null) attractedObjRb.AddForce(direction * 3);
 
             yield return 0;
         }
@@ -242,7 +244,6 @@ public class PoseEvents : MonoBehaviour
         obj.layer = objectLayer;
         objectLayer = 0;
         attractedObjRb.useGravity = true;
-        //objectRb.transform.SetParent(handSkeleton.transform);
 
         poseGrab.DetectGrabbing(true);
 
