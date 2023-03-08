@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CustomerController : MonoBehaviour
 {
-
     public GameObject Customer;
     public Transform CustomerSpawn;
     public bool CustomerCured, TestFail;
@@ -31,10 +30,10 @@ public class CustomerController : MonoBehaviour
             FailureCure(); 
             TestFail = false;
         }
-        if(Customer.activeSelf== false)
-        {         
-            Customer = GameObject.FindGameObjectWithTag("Customer");           
-        }      
+        //if(Customer.activeSelf== false)
+        //{         
+        //    Customer = GameObject.FindGameObjectWithTag("Customer");           
+        //}      
     }
     void Spawn()
     {      
