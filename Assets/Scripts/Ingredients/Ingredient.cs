@@ -24,7 +24,8 @@ public class Ingredient : MonoBehaviour
     
     protected virtual void Awake()
     {
-        strength = Random.Range(0, 3);
+        //strength = Random.Range(0, 3);
+        strength = 4;
         element = Elements.None;
     }
 

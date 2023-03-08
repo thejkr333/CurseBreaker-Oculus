@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class basicChat : MonoBehaviour
+public class BasicChat : MonoBehaviour
 {
-   public float chatTime;
+    public float chatTime;
     public GameObject Hi, Wrong, Bye;
     public bool DespawnOnceDone, Cured, wrongPotion;
     // Start is called before the first frame update
@@ -45,8 +45,7 @@ public class basicChat : MonoBehaviour
             if(chatTime < 0)
             {
                 GameObject.Find("CustomerController").GetComponent<CustomerController>().FailureCure();
-            }
-            
+            }          
         }
     }
 }

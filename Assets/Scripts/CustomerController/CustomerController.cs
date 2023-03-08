@@ -6,10 +6,12 @@ using UnityEngine;
 public class CustomerController : MonoBehaviour
 {
 
-    public GameObject Customer, nextCustomer;
+    public GameObject Customer;
     public Transform CustomerSpawn;
-    public bool CustomerCured, testFail;
+    public bool CustomerCured, TestFail;
     private float x, z;
+
+    GameObject currentCustomer;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,56 +26,35 @@ public class CustomerController : MonoBehaviour
             SuccessfulCure();
             CustomerCured = false;
         }
-        if (testFail)
+        if (TestFail)
         {
             FailureCure(); 
-            testFail = false;
+            TestFail = false;
         }
         if(Customer.activeSelf== false)
-        {
-            
-            Customer = GameObject.FindGameObjectWithTag("Customer");
-            
-            
-        }
-
-
-        
-        
+        {         
+            Customer = GameObject.FindGameObjectWithTag("Customer");           
+        }      
     }
     void Spawn()
-    {
-        Instantiate(Customer, CustomerSpawn);
-        Customer = GameObject.FindGameObjectWithTag("Customer");
-        Customer.name = "NewCustomer";
-        x = CustomerSpawn.position.x;
-        z = CustomerSpawn.position.z;
-        
+    {      
+        currentCustomer = Instantiate(Customer, CustomerSpawn);
+        currentCustomer.name = "NewCustomer";
+        currentCustomer.transform.eulerAngles = new Vector3(0, 180, 0);
+        currentCustomer.transform.position = new Vector3(CustomerSpawn.position.x, 1.62f, CustomerSpawn.position.z);
     }
-    void despawn()
+    void Despawn()
     {
-        CustomerSpawn.transform.position = new Vector3(x, 1.62f, z);
-        Customer.SetActive(false);
-        var copy = Instantiate<GameObject>(nextCustomer);
-        
-        copy.SetActive(true);
-        copy.transform.position = CustomerSpawn.position;
-        Customer = copy;
-       
+        Destroy(currentCustomer);
     }
    public void SuccessfulCure()
     {
-        
-
-        
-        despawn();
-
-        
+        Despawn();
+        Invoke(nameof(Spawn), 2);
     }
    public void FailureCure()
-    {
-
-        
-        despawn();
+    {   
+        Despawn();
+        Invoke(nameof(Spawn), 2);
     }
 }

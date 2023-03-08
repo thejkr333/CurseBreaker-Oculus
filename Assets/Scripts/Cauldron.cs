@@ -25,7 +25,10 @@ public class Cauldron : MonoBehaviour
         //if (ingredient.selected) return;
 
         AddIngredient(ingredient);
-        //Destroy(other.gameObject);
+
+        //teleport to parla
+        ingredient.transform.position = new Vector3(10000, -10, 10000);
+        //ingredient.gameObject.SetActive(false);
     }
 
     private void OnTriggerExit(Collider other)
@@ -35,7 +38,7 @@ public class Cauldron : MonoBehaviour
         if (ingredient == null) return;
         //if (ingredient.selected) return;
 
-        RemoveIngredient(ingredient);
+        //RemoveIngredient(ingredient);
     }
     void AddIngredient(Ingredient ingredient)
     {

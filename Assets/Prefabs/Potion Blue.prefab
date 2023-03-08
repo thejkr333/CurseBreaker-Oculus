@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4210246269910749403}
   - component: {fileID: 4210246269910749397}
   - component: {fileID: 6061628935768746471}
-  m_Layer: 0
+  - component: {fileID: 3989618668397232152}
+  m_Layer: 3
   m_Name: Potion Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,6 +86,24 @@ MonoBehaviour:
   m_snapOffset: {fileID: 0}
   m_grabPoints:
   - {fileID: 2878723570815298242}
+--- !u!114 &3989618668397232152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3939705730650385798}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.989954, b: 0, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7313339710753438655
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +115,7 @@ GameObject:
   - component: {fileID: 4611139936541810678}
   - component: {fileID: 8733203407288704176}
   - component: {fileID: 1625015545999685945}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6152846711242775513}
   - component: {fileID: 2878723570815298242}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrabCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +243,7 @@ GameObject:
   - component: {fileID: 8491139154974970041}
   - component: {fileID: 6471327191859832778}
   - component: {fileID: 7887260104073893269}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Liquid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +326,7 @@ GameObject:
   - component: {fileID: 1871345344764865507}
   - component: {fileID: 985682881404274140}
   - component: {fileID: 7790500178700296182}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -39,7 +39,7 @@ public class OVRGrabbable : MonoBehaviour
 
     protected bool m_grabbedKinematic = false;
     protected Collider m_grabbedCollider = null;
-    protected OVRGrabber m_grabbedBy = null;
+    public OVRGrabber m_grabbedBy = null;
 
 	/// <summary>
 	/// If true, the object can currently be grabbed.
@@ -162,6 +162,15 @@ public class OVRGrabbable : MonoBehaviour
         if (m_grabbedBy != null)
         {
             // Notify the hand to release destroyed grabbables
+            m_grabbedBy.ForceRelease(this);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (m_grabbedBy != null)
+        {
+            // Notify the hand to release disabled grabbables
             m_grabbedBy.ForceRelease(this);
         }
     }

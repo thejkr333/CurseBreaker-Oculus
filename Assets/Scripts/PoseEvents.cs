@@ -138,6 +138,13 @@ public class PoseEvents : MonoBehaviour
                 break;
         }
     }
+    private void FixedUpdate()
+    {
+        if (attracting)
+        {
+            AttractFixed();
+        }
+    }
 
     #region Aim
     public void StartAim()
@@ -225,7 +232,8 @@ public class PoseEvents : MonoBehaviour
             attractedObjRb = rb;
             if (rb.GetComponent<StirringStick>() != null) rb.GetComponent<StirringStick>().DisableAnim();
             DeselectAim();
-            StartCoroutine(AttractObject());
+            StartAttract();
+            //StartCoroutine(AttractObject());
         }
         else
         {
@@ -271,7 +279,7 @@ public class PoseEvents : MonoBehaviour
         while (Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .2f)
         {
             Vector3 direction = (handSkeleton.transform.position - obj.transform.position).normalized;
-            if (attractedObjRb != null) attractedObjRb.AddForce(direction * 3);
+            if (attractedObjRb != null) attractedObjRb.AddForce(direction * 3, ForceMode.Force);
 
             yield return 0;
         }
@@ -286,6 +294,40 @@ public class PoseEvents : MonoBehaviour
 
         attracting = false;
         attractedObjRb = null;
+    }
+    void StartAttract()
+    {
+        EndAim();
+        poseGrab.DetectGrabbing(false);
+
+        attractedObjRb.useGravity = false;
+
+        objectLayer = attractedObjRb.gameObject.layer;
+        int LayerGrabbed = LayerMask.NameToLayer("Grabbed");
+        attractedObjRb.gameObject.layer = LayerGrabbed;
+
+        attracting = true;
+    }
+    void AttractFixed()
+    {
+        if (Vector3.Distance(attractedObjRb.gameObject.transform.position, handSkeleton.transform.position) > .2f)
+        {
+            Vector3 direction = (handSkeleton.transform.position - attractedObjRb.gameObject.transform.position).normalized;
+            if (attractedObjRb != null) attractedObjRb.AddForce(direction * 3, ForceMode.Force);
+        }
+        else
+        {
+            attractedObjRb.velocity = Vector3.zero;
+            attractedObjRb.transform.position = handSkeleton.transform.position;
+            attractedObjRb.gameObject.layer = objectLayer;
+            objectLayer = 0;
+            attractedObjRb.useGravity = true;
+
+            poseGrab.DetectGrabbing(true);
+
+            attracting = false;
+            attractedObjRb = null;
+        }
     }
     #endregion
 
@@ -477,5 +519,13 @@ public class PoseEvents : MonoBehaviour
         currentPose = Poses.Unknown;
 
         StartNewPose(currentPose);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (attracting)
+        {
+            Gizmos.DrawLine(attractedObjRb.transform.position, handSkeleton.transform.position);
+        }
     }
 }
