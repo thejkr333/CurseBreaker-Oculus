@@ -15,10 +15,12 @@ public class Petrification : Curse
     }
     protected override void SetUpCurse()
     {
+        base.SetUpCurse();
+
         foreach (var limb in affectedLimbs)
         {
             if (limb.limbName == LimbsList.Soul) continue;
-            limb.affectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.gray;
+            limb.affectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.cyan;
         }
     }
 

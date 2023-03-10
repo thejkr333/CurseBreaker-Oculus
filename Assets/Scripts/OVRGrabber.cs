@@ -272,7 +272,7 @@ public class OVRGrabber : MonoBehaviour
             }
 
             m_grabbedObj = closestGrabbable;
-            if (m_grabbedObj.TryGetComponent<AlwaysLookToCam>(out AlwaysLookToCam lookToCam))
+            if (grabbedObject.TryGetComponent(out AlwaysLookToCam lookToCam))
             {
                 lookToCam.enabled = false;
             }

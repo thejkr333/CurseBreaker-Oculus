@@ -70,7 +70,7 @@ public class PoseGrab : OVRGrabber
             // the same operation is calculated but in this case is calculated on the EulerAngles
             Vector3 angularVelocity = (transform.parent.eulerAngles - m_lastRot.eulerAngles) / Time.fixedDeltaTime;
 
-            if (m_grabbedObj.TryGetComponent<AlwaysLookToCam>(out AlwaysLookToCam lookToCam))
+            if (m_grabbedObj.TryGetComponent(out AlwaysLookToCam lookToCam))
             {
                 lookToCam.enabled = true;
             }

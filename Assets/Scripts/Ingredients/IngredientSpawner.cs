@@ -15,7 +15,7 @@ public class IngredientSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(inside.transform.position, transform.position) > 3)
+        if(Vector3.Distance(inside.transform.position, transform.position) > 1)
         {
             Debug.Log("outside");
             GameObject clon = Instantiate(ingredientPrefab);

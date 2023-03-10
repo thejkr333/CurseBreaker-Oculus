@@ -6,7 +6,10 @@ using System;
 
 public class PoseEvents : MonoBehaviour
 {
-    public enum Poses { Aiming, Grab, OpenHand, SpellSelect, Unknown}
+    [SerializeField] PoseEvents otherHandPoseEvent;
+    [SerializeField] bool mainHand;
+
+    public enum Poses { Aiming, Grab, OpenHand, SpellSelect, TV, Unknown }
     public Poses currentPose;
 
     Dictionary<Poses, bool> pose = new();
@@ -20,19 +23,50 @@ public class PoseEvents : MonoBehaviour
 
     private bool hasStarted = false;
     [SerializeField] bool attracting = false;
+
+    //bones for aiming
     Vector3 indexProximal = Vector3.zero;
     Vector3 indexTip = Vector3.zero;
+    public Vector3 thumbMetacarpal = Vector3.zero;
+    [SerializeField] Material paintMaterial;
+    [SerializeField] GameObject hiddenGO;
+    [SerializeField] Transform head;
 
     [SerializeField] Outline lastOutline;
     Rigidbody attractedObjRb;
     LayerMask objectLayer;
-
+    //private GradientColorKey[] Blue, White;
+    //private GradientAlphaKey[] Alpha;
+    private Color Blue, White;
     public bool recordingGesture;
     void Start()
     {
         poseGrab = handSkeleton.GetComponent<PoseGrab>();
         lineRenderer = GetComponent<LineRenderer>();
+        hiddenGO.SetActive(false);
         lineRenderer.enabled = false;
+
+
+        //Defining colours and alpha for the line here
+        //it is only able to understand it as an array, so to change it, it needs to be lerped individuallly
+        /*Blue = new GradientColorKey[2];
+        Blue[0].color = Color.blue;
+        Blue[0].time = 0; 
+        Blue[1].color = Color.blue;
+        Blue[1].time = 1;
+        White = new GradientColorKey[2];
+        White[0].color = Color.white;
+        White[0].time = 0;
+        White[1].color = Color.white;
+        White[1].time = 1;
+        Alpha = new GradientAlphaKey[2];
+        Alpha[0].alpha = 1;
+        Alpha[0].time = 0;
+        Alpha[1].alpha = 1;
+        Alpha[1].time = 1;
+        */
+        Blue = Color.blue;
+        White = Color.white;
 
         // When the Oculus hand had his time to initialize hand, with a simple coroutine i start a delay of
         // a function to initialize the script
@@ -60,13 +94,15 @@ public class PoseEvents : MonoBehaviour
         fingerbones = new List<OVRBone>(handSkeleton.Bones);
         foreach (var bone in fingerbones)
         {
-            if(bone.Id == OVRSkeleton.BoneId.Hand_MiddleTip)
+            if (bone.Id == OVRSkeleton.BoneId.Hand_MiddleTip)
             {
                 trailRenderer = bone.Transform.gameObject.AddComponent<TrailRenderer>();
-                trailRenderer.enabled = false;
+                trailRenderer.material = paintMaterial;
+                paintMaterial.color = Color.white;
                 trailRenderer.time = 4;
                 trailRenderer.minVertexDistance = .0001f;
                 trailRenderer.startWidth = .01f;
+                trailRenderer.enabled = false;
             }
         }
     }
@@ -94,18 +130,34 @@ public class PoseEvents : MonoBehaviour
                 SpellSelect();
                 break;
 
+            case Poses.TV:
+                TV();
+                break;
+
             case Poses.Unknown:
                 break;
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (attracting)
+        {
+            AttractFixed();
         }
     }
 
     #region Aim
     public void StartAim()
     {
-        EndGrab();
-        EndSpellSelect();
+        if (currentPose != Poses.Aiming) StartNewPose(currentPose);
 
         currentPose = Poses.Aiming;
+
+        //Colour Reset every time you start aiming, just incase it doesnt. at best the line should be blue. might also not change to white as the gradient itself cannot be lerped...
+        //Blue[0].color = Color.blue;
+        //Blue[1].color = Color.blue;
+        //lineRenderer.colorGradient.SetKeys(Blue, Alpha);
+        lineRenderer.material.color = Blue;
     }
     void Aim()
     {
@@ -113,14 +165,21 @@ public class PoseEvents : MonoBehaviour
         indexProximal = Vector3.zero;
         indexTip = Vector3.zero;
 
-        foreach(OVRBone bone in fingerbones)
+        //Colour Change goes in these two lines, just changing the start and end values towards white over 5 seconds
+        Color.Lerp(lineRenderer.material.color, White, 5);
+      //  Color.Lerp(Blue[0].color, White[0].color, 5);
+     //   Color.Lerp(Blue[1].color, White[1].color, 5);
+
+
+
+        foreach (OVRBone bone in fingerbones)
         {
-            if (bone.Id == OVRSkeleton.BoneId.Hand_Index1) 
+            if (bone.Id == OVRSkeleton.BoneId.Hand_WristRoot)
             {
                 indexProximal = bone.Transform.position;
                 continue;
             }
-            if (bone.Id == OVRSkeleton.BoneId.Hand_IndexTip) 
+            if (bone.Id == OVRSkeleton.BoneId.Hand_IndexTip)
             {
                 indexTip = bone.Transform.position;
                 continue;
@@ -145,7 +204,10 @@ public class PoseEvents : MonoBehaviour
     void EndAim()
     {
         lineRenderer.enabled = false;
-
+        Invoke(nameof(DeselectAim), 2);       
+    }
+    void DeselectAim()
+    {
         if (lastOutline != null && lastOutline.enabled) lastOutline.enabled = false;
         lastOutline = null;
     }
@@ -154,7 +216,7 @@ public class PoseEvents : MonoBehaviour
     #region Grab
     public void StartGrab()
     {
-        EndSpellSelect();
+        if (currentPose != Poses.Grab) StartNewPose(currentPose);
 
         currentPose = Poses.Grab;
     }
@@ -168,14 +230,17 @@ public class PoseEvents : MonoBehaviour
             if (rb == null) return;
 
             attractedObjRb = rb;
-            StartCoroutine(AttractObject());
+            if (rb.GetComponent<StirringStick>() != null) rb.GetComponent<StirringStick>().DisableAnim();
+            DeselectAim();
+            StartAttract();
+            //StartCoroutine(AttractObject());
         }
         else
         {
             EndAim();
             poseGrab.DetectGrabbing(true);
             return;
-        }  
+        }
     }
     void EndGrab()
     {
@@ -213,7 +278,8 @@ public class PoseEvents : MonoBehaviour
 
         while (Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .2f)
         {
-            if(attractedObjRb != null) attractedObjRb.AddForce((handSkeleton.transform.position - obj.transform.position).normalized * 3);
+            Vector3 direction = (handSkeleton.transform.position - obj.transform.position).normalized;
+            if (attractedObjRb != null) attractedObjRb.AddForce(direction * 3, ForceMode.Force);
 
             yield return 0;
         }
@@ -223,27 +289,58 @@ public class PoseEvents : MonoBehaviour
         obj.layer = objectLayer;
         objectLayer = 0;
         attractedObjRb.useGravity = true;
-        //objectRb.transform.SetParent(handSkeleton.transform);
 
         poseGrab.DetectGrabbing(true);
 
         attracting = false;
         attractedObjRb = null;
     }
+    void StartAttract()
+    {
+        EndAim();
+        poseGrab.DetectGrabbing(false);
+
+        attractedObjRb.useGravity = false;
+
+        objectLayer = attractedObjRb.gameObject.layer;
+        int LayerGrabbed = LayerMask.NameToLayer("Grabbed");
+        attractedObjRb.gameObject.layer = LayerGrabbed;
+
+        attracting = true;
+    }
+    void AttractFixed()
+    {
+        if (Vector3.Distance(attractedObjRb.gameObject.transform.position, handSkeleton.transform.position) > .2f)
+        {
+            Vector3 direction = (handSkeleton.transform.position - attractedObjRb.gameObject.transform.position).normalized;
+            if (attractedObjRb != null) attractedObjRb.AddForce(direction * 3, ForceMode.Force);
+        }
+        else
+        {
+            attractedObjRb.velocity = Vector3.zero;
+            attractedObjRb.transform.position = handSkeleton.transform.position;
+            attractedObjRb.gameObject.layer = objectLayer;
+            objectLayer = 0;
+            attractedObjRb.useGravity = true;
+
+            poseGrab.DetectGrabbing(true);
+
+            attracting = false;
+            attractedObjRb = null;
+        }
+    }
     #endregion
 
     #region OpenHand
     public void StartOpenHand()
     {
-        EndGrab();
-        EndAim();
-        EndSpellSelect();
+        if (currentPose != Poses.OpenHand) StartNewPose(currentPose);
 
         currentPose = Poses.OpenHand;
     }
     void OpenHand()
     {
-        
+
     }
 
     void EndOpenHand()
@@ -252,15 +349,15 @@ public class PoseEvents : MonoBehaviour
     }
     #endregion
 
+    #region SpellSelect
     public void StartSpellSelect()
     {
-        EndAim();
-        EndGrab();
+        if (currentPose != Poses.SpellSelect) StartNewPose(currentPose);
 
         currentPose = Poses.SpellSelect;
 
         if (trailRenderer == null) return;
-        
+
         trailRenderer.enabled = true;
     }
     void SpellSelect()
@@ -276,14 +373,159 @@ public class PoseEvents : MonoBehaviour
         trailRenderer.Clear();
         trailRenderer.enabled = false;
     }
+    #endregion
+
+    #region TV
+    public void StartTV()
+    {
+        if (currentPose != Poses.TV) StartNewPose(currentPose);
+
+        currentPose = Poses.TV;
+    }
+
+    void TV()
+    {
+        if (otherHandPoseEvent.currentPose != Poses.TV) return;
+
+        Vector3 localThumbCoords = Vector3.zero;
+        foreach (OVRBone bone in fingerbones)
+        {
+            if (bone.Id == OVRSkeleton.BoneId.Hand_Thumb0)
+            {
+                //Global
+                thumbMetacarpal = bone.Transform.position;
+                break;
+            }
+        }
+
+        if (mainHand)
+        {
+            float x = (thumbMetacarpal.x - otherHandPoseEvent.thumbMetacarpal.x) * 0.5f;
+            float y = (thumbMetacarpal.y - otherHandPoseEvent.thumbMetacarpal.y) * 0.5f;
+            float z = (thumbMetacarpal.z - otherHandPoseEvent.thumbMetacarpal.z) * 0.5f;
+
+            Vector3 centre = new Vector3(thumbMetacarpal.x - x, thumbMetacarpal.y - y, thumbMetacarpal.z - z);
+            hiddenGO.transform.position = centre;
+            //Renderer rend = hiddenGO.GetComponentInChildren<Renderer>();
+
+            hiddenGO.transform.forward = (centre - head.position).normalized;
+            hiddenGO.transform.localScale = Vector3.one;
+            localThumbCoords = hiddenGO.transform.worldToLocalMatrix.MultiplyPoint(thumbMetacarpal);
+            hiddenGO.transform.localScale = new Vector3(Mathf.Abs(localThumbCoords.x) * 2, Mathf.Abs(localThumbCoords.y) * 2, transform.localScale.z);
+
+            //Debug.Log("plane right x: " + (centre.x + rend.bounds.extents.x) + " vs right thumb: " + thumbMetacarpal.x);
+            //Debug.Log("plane up y: " + (centre.y + rend.bounds.extents.y) + " vs right thumb: " + thumbMetacarpal.y);
+
+            //Vector3 centreAlignedWithHand = centre;
+            //centreAlignedWithHand.y = thumbMetacarpal.y;
+
+            //float distanceProjectedVector = Vector3.Distance(centreAlignedWithHand, thumbMetacarpal);
+
+            //if (rend.bounds.extents.x - distanceProjectedVector  > .05f)
+            //{
+            //    Resize(true, false);
+            //}
+            //else if (rend.bounds.extents.x - distanceProjectedVector < -.05f )
+            //{
+            //    Resize(true, true);
+            //}
+            //if (centre.y + rend.bounds.extents.y - thumbMetacarpal.y > .05f)
+            //{
+            //    Resize(false, false);
+            //}
+            //else if (centre.y + rend.bounds.extents.y - thumbMetacarpal.y < -.05f)
+            //{
+            //    Resize(false, true);
+            //}
+
+            hiddenGO.SetActive(true);
+        }
+    }
+
+    void Resize(bool XAxis, bool increasing)
+    {
+        Transform tr = hiddenGO.transform;
+
+        if (XAxis)
+        {
+            if (increasing)
+            {
+                tr.localScale += new Vector3(.01f, 0, 0);
+            }
+            else
+            {
+                tr.localScale -= new Vector3(.01f, 0, 0);
+            }
+        }
+        else
+        {
+            if (increasing)
+            {
+                tr.localScale += new Vector3(0, .01f, 0);
+            }
+            else
+            {
+                tr.localScale -= new Vector3(0, .01f, 0);
+            }
+        }
+
+        //Clamp values so it's never too small or too big
+        if (tr.localScale.x < .1f) tr.localScale = new Vector3(.1f, tr.localScale.y, tr.localScale.z);
+        if (tr.localScale.y < .1f) tr.localScale = new Vector3(tr.localScale.x, .1f, tr.localScale.z);
+        if (tr.localScale.x > .6f) tr.localScale = new Vector3(.6f, tr.localScale.y, tr.localScale.z);
+        if (tr.localScale.y > .6f) tr.localScale = new Vector3(tr.localScale.x, .6f, tr.localScale.z);
+    }
+    void EndTV()
+    {
+        hiddenGO.SetActive(false);
+    }
+    #endregion
+    void StartNewPose(Poses lastPose)
+    {
+        switch (lastPose)
+        {
+            case Poses.Aiming:
+                EndAim();
+                break;
+
+            case Poses.Grab:
+                EndGrab();
+                break;
+
+            case Poses.OpenHand:
+                EndOpenHand();
+                break;
+
+            case Poses.TV:
+                EndTV();
+                break;
+
+            case Poses.SpellSelect:
+                EndSpellSelect();
+                break;
+
+            case Poses.Unknown:
+                EndAim();
+                EndGrab();
+                EndTV();
+                EndSpellSelect();
+                EndOpenHand();
+                break;
+        }
+    }
 
     public void EndPoses()
     {
         currentPose = Poses.Unknown;
-        lineRenderer.enabled = false;
 
-        EndGrab();
-        EndSpellSelect();
-        Invoke(nameof(EndAim), 2);
+        StartNewPose(currentPose);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (attracting)
+        {
+            Gizmos.DrawLine(attractedObjRb.transform.position, handSkeleton.transform.position);
+        }
     }
 }

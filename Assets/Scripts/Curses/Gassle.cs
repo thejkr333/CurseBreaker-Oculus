@@ -16,6 +16,8 @@ public class Gassle : Curse
     }
     protected override void SetUpCurse()
     {
+        base.SetUpCurse();
+
         foreach (var limb in affectedLimbs)
         {
             if (limb.limbName == LimbsList.Soul) continue;

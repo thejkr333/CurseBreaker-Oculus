@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2299323266251332085}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 45.3, y: -57.6}
+  m_AnchoredPosition: {x: -4, y: 54}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2299323266251332072
@@ -274,7 +274,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2299323267437639998}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 2299323267578436871}
   - component: {fileID: 2299323267578436869}
   - component: {fileID: 2299323267578436868}
+  - component: {fileID: 4730652688543444722}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -361,8 +362,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 21, y: -11}
-  m_SizeDelta: {x: 361.1014, y: 40.4862}
+  m_AnchoredPosition: {x: 0.010651, y: 0.000022888}
+  m_SizeDelta: {x: 361.1, y: 38.291}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2299323267578436869
 MonoBehaviour:
@@ -427,10 +428,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4591a1795ba82e04aa504d2e520559f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  successPoint: 0.25
+  successPoint: 0.5
   successMargin: 0.1
   speed: 0.7
   textGO: {fileID: 2299323266251332085}
+  background: {fileID: 2299323267206079487}
+  cauldronGO: {fileID: 0}
+--- !u!65 &4730652688543444722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299323267578436870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 360, y: 38, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2299323267894309703
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +459,7 @@ GameObject:
   - component: {fileID: 2299323267894309050}
   - component: {fileID: 2299323267894309701}
   - component: {fileID: 2299323267894309700}
+  - component: {fileID: 9163321567356718596}
   m_Layer: 5
   m_Name: SliderMinigame(Canvas)
   m_TagString: Untagged
@@ -459,7 +476,7 @@ RectTransform:
   m_GameObject: {fileID: 2299323267894309703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.009073687, y: 0.017036907, z: 0.009073687}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2299323267578436871}
@@ -470,8 +487,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 361.0801, y: 38.2913}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2299323267894309050
 Canvas:
   m_ObjectHideFlags: 0
@@ -481,7 +498,7 @@ Canvas:
   m_GameObject: {fileID: 2299323267894309703}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -515,7 +532,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &2299323267894309700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,3 +550,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &9163321567356718596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299323267894309703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30a036c787b0fc4aa495009e13c23a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

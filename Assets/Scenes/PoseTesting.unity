@@ -4282,6 +4282,7 @@ MonoBehaviour:
   curse: 0
   affectedLimbs: []
   totalStrength: 0
+  chances: 3
   _potion: {fileID: 0}
 --- !u!4 &7548087828049290348
 Transform:
