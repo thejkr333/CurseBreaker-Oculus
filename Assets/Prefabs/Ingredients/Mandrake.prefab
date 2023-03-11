@@ -157,9 +157,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7149134073583334028}
-  m_LocalRotation: {x: 0, y: 0.33635566, z: 0, w: 0.941735}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.8919072, y: -0.2531718, z: -0.49658358}
-  m_LocalScale: {x: 0.0414715, y: 0.041471485, z: 0.0414715}
+  m_LocalScale: {x: 0.03716537, y: 0.037165355, z: 0.03716537}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7149134072853656216}
@@ -226,6 +226,7 @@ MonoBehaviour:
   m_snapOffset: {fileID: 0}
   m_grabPoints:
   - {fileID: 8623191485796352347}
+  m_grabbedBy: {fileID: 0}
 --- !u!114 &7149134073583334026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +241,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredient: 0
   selected: 0
+  FireSpell: {fileID: 0}
+  AirSpell: {fileID: 0}
+  WaterSpell: {fileID: 0}
+  EarthSpell: {fileID: 0}
+  LightSpell: {fileID: 0}
+  DarkSpell: {fileID: 0}
   strength: 0
   element: 0
 --- !u!114 &7149134073583334071
