@@ -254,7 +254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &130251233
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -421,19 +421,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -154.963, y: 49.132004, z: -81.75}
---- !u!1 &184378885 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5120955140607223712, guid: 07e9faf809303ad4e950788cc19a8c01, type: 3}
-  m_PrefabInstance: {fileID: 5886730795563961008}
-  m_PrefabAsset: {fileID: 0}
---- !u!33 &184378887
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184378885}
-  m_Mesh: {fileID: 0}
 --- !u!1 &219030318
 GameObject:
   m_ObjectHideFlags: 0
@@ -7693,10 +7680,6 @@ PrefabInstance:
       propertyPath: sliderController
       value: 
       objectReference: {fileID: 420309935}
-    - target: {fileID: 3057248337051125872, guid: 07e9faf809303ad4e950788cc19a8c01, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5886730795159614796, guid: 07e9faf809303ad4e950788cc19a8c01, type: 3}
       propertyPath: m_Name
       value: House
@@ -7743,10 +7726,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5886730795159614797, guid: 07e9faf809303ad4e950788cc19a8c01, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5886730796994400254, guid: 07e9faf809303ad4e950788cc19a8c01, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
