@@ -13,6 +13,7 @@ TagManager:
   - Spell/Light
   - Spell/Dark
   - Customer
+  - Slider
   layers:
   - Default
   - TransparentFX
