@@ -26,7 +26,7 @@ public class Potion : MonoBehaviour
     {
         foreach (var ing in ingredients)
         {
-            switch (ing.ingredient)
+            switch (ing.ThisIngredient)
             {
                 case Ingredient.Ingredients.AngelLeaf:
                     potionTypes.Add(Curses.Demonitis);
@@ -42,8 +42,8 @@ public class Potion : MonoBehaviour
                     break;
             }
 
-            strength += ing.strength;
-            ingredientsElements.Add(ing.element);
+            strength += ing.Strength;
+            ingredientsElements.Add(ing.Element);
         }
     }
 }

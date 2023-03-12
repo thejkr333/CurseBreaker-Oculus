@@ -8,7 +8,7 @@ public class Mandrake : Ingredient
     {
         base.Awake();
 
-        ingredient = Ingredients.Mandrake;
+        ThisIngredient = Ingredients.Mandrake;
     }
 
     // Update is called once per frame

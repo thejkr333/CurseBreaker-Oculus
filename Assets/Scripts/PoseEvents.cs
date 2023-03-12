@@ -10,7 +10,7 @@ public class PoseEvents : MonoBehaviour
     [SerializeField] bool mainHand;
 
     public enum Poses { Aiming, Grab, OpenHand, SpellSelect, TV, Unknown }
-    public Poses currentPose;
+    public Poses CurrentPose;
 
     Dictionary<Poses, bool> pose = new();
 
@@ -27,7 +27,7 @@ public class PoseEvents : MonoBehaviour
     //bones for aiming
     Vector3 indexProximal = Vector3.zero;
     Vector3 indexTip = Vector3.zero;
-    public Vector3 thumbMetacarpal = Vector3.zero;
+    Vector3 thumbMetacarpal = Vector3.zero;
     [SerializeField] Material paintMaterial;
     [SerializeField] GameObject hiddenGO;
     [SerializeField] Transform head;
@@ -112,7 +112,7 @@ public class PoseEvents : MonoBehaviour
     {
         if (!hasStarted) return;
 
-        switch (currentPose)
+        switch (CurrentPose)
         {
             case Poses.Aiming:
                 Aim();
@@ -149,9 +149,9 @@ public class PoseEvents : MonoBehaviour
     #region Aim
     public void StartAim()
     {
-        if (currentPose != Poses.Aiming) StartNewPose(currentPose);
+        if (CurrentPose != Poses.Aiming) StartNewPose(CurrentPose);
 
-        currentPose = Poses.Aiming;
+        CurrentPose = Poses.Aiming;
 
         //Colour Reset every time you start aiming, just incase it doesnt. at best the line should be blue. might also not change to white as the gradient itself cannot be lerped...
         //Blue[0].color = Color.blue;
@@ -216,9 +216,9 @@ public class PoseEvents : MonoBehaviour
     #region Grab
     public void StartGrab()
     {
-        if (currentPose != Poses.Grab) StartNewPose(currentPose);
+        if (CurrentPose != Poses.Grab) StartNewPose(CurrentPose);
 
-        currentPose = Poses.Grab;
+        CurrentPose = Poses.Grab;
     }
     void Grab()
     {
@@ -334,9 +334,9 @@ public class PoseEvents : MonoBehaviour
     #region OpenHand
     public void StartOpenHand()
     {
-        if (currentPose != Poses.OpenHand) StartNewPose(currentPose);
+        if (CurrentPose != Poses.OpenHand) StartNewPose(CurrentPose);
 
-        currentPose = Poses.OpenHand;
+        CurrentPose = Poses.OpenHand;
     }
     void OpenHand()
     {
@@ -352,9 +352,9 @@ public class PoseEvents : MonoBehaviour
     #region SpellSelect
     public void StartSpellSelect()
     {
-        if (currentPose != Poses.SpellSelect) StartNewPose(currentPose);
+        if (CurrentPose != Poses.SpellSelect) StartNewPose(CurrentPose);
 
-        currentPose = Poses.SpellSelect;
+        CurrentPose = Poses.SpellSelect;
 
         if (trailRenderer == null) return;
 
@@ -378,14 +378,14 @@ public class PoseEvents : MonoBehaviour
     #region TV
     public void StartTV()
     {
-        if (currentPose != Poses.TV) StartNewPose(currentPose);
+        if (CurrentPose != Poses.TV) StartNewPose(CurrentPose);
 
-        currentPose = Poses.TV;
+        CurrentPose = Poses.TV;
     }
 
     void TV()
     {
-        if (otherHandPoseEvent.currentPose != Poses.TV) return;
+        if (otherHandPoseEvent.CurrentPose != Poses.TV) return;
 
         Vector3 localThumbCoords = Vector3.zero;
         foreach (OVRBone bone in fingerbones)
@@ -516,16 +516,8 @@ public class PoseEvents : MonoBehaviour
 
     public void EndPoses()
     {
-        currentPose = Poses.Unknown;
+        CurrentPose = Poses.Unknown;
 
-        StartNewPose(currentPose);
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (attracting)
-        {
-            Gizmos.DrawLine(attractedObjRb.transform.position, handSkeleton.transform.position);
-        }
+        StartNewPose(CurrentPose);
     }
 }

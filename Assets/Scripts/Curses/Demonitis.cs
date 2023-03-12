@@ -6,7 +6,7 @@ public class Demonitis : Curse
 {
     protected void Awake()
     {
-        curse = Curses.Demonitis;
+        CurrentCurse = Curses.Demonitis;
     }
     // Start is called before the first frame update
     void Start()
@@ -18,10 +18,10 @@ public class Demonitis : Curse
     {
         base.SetUpCurse();
 
-        foreach (var limb in affectedLimbs)
+        foreach (var limb in AffectedLimbs)
         {
-            if (limb.limbName == LimbsList.Soul) continue;
-            limb.affectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.magenta;
+            if (limb.LimbName == LimbsList.Soul) continue;
+            limb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.magenta;
         }
     }
 

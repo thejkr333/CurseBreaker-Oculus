@@ -4,30 +4,22 @@ using UnityEngine;
 
 public class Cauldron : MonoBehaviour
 {
-    public List<Ingredient> ingredientsInCauldron = new List<Ingredient>();
+    public List<Ingredient> IngredientsInCauldron = new List<Ingredient>();
     //[SerializeField] Recipe[] recipes;
 
     [SerializeField] GameObject basePotionPrefab;
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log("CreatePotion");
-            StirCauldron();
-        }
-    }
     private void OnTriggerEnter(Collider other)
     {
-        Ingredient ingredient = other.GetComponent<Ingredient>();
+        Ingredient _ingredient = other.GetComponent<Ingredient>();
 
-        if (ingredient == null) return;
+        if (_ingredient == null) return;
         //if (ingredient.selected) return;
 
-        AddIngredient(ingredient);
+        AddIngredient(_ingredient);
 
-        //teleport to parla
-        ingredient.transform.position = new Vector3(10000, -10, 10000);
+        //teleport to parla as destroying it makes it lose the reference in the list IngredientsInCauldron
+        _ingredient.transform.position = new Vector3(10000, -10, 10000);
         //ingredient.gameObject.SetActive(false);
     }
 
@@ -42,21 +34,21 @@ public class Cauldron : MonoBehaviour
     }
     void AddIngredient(Ingredient ingredient)
     {
-        ingredientsInCauldron.Add(ingredient);
+        IngredientsInCauldron.Add(ingredient);
 
         Debug.Log(ingredient);
     }
 
     void RemoveIngredient(Ingredient ingredient)
     {
-        ingredientsInCauldron.Remove(ingredient);
+        IngredientsInCauldron.Remove(ingredient);
 
         Debug.Log(ingredient);
     }
 
     public void StirCauldron(bool success = true)
     {
-        if (ingredientsInCauldron.Count <= 0) return;
+        if (IngredientsInCauldron.Count <= 0) return;
 
         if (success)
         {
@@ -65,15 +57,15 @@ public class Cauldron : MonoBehaviour
 
             Potion potion = clon.GetComponent<Potion>();
             if (potion == null) potion = clon.AddComponent<Potion>();
-            potion.CreatePotion(ingredientsInCauldron);
+            potion.CreatePotion(IngredientsInCauldron);
         }
 
         //Reset lists
-        foreach (var item in ingredientsInCauldron)
+        foreach (var item in IngredientsInCauldron)
         {
             Destroy(item.gameObject, .5f);
         }
-        ingredientsInCauldron.Clear();
+        IngredientsInCauldron.Clear();
     }
 
     #region Recipe stuff
@@ -123,10 +115,10 @@ public class Cauldron : MonoBehaviour
     #endregion
 }
 
-[System.Serializable]
-public class Recipe
-{
-    public Ingredient.Ingredients[] ingredientsRequired;
-    [HideInInspector] public List<Ingredient.Ingredients> ingredientsChecked = new List<Ingredient.Ingredients>();
-    public GameObject potionWhenCompleted;
-}
+//[System.Serializable]
+//public class Recipe
+//{
+//    public Ingredient.Ingredients[] ingredientsRequired;
+//    [HideInInspector] public List<Ingredient.Ingredients> ingredientsChecked = new List<Ingredient.Ingredients>();
+//    public GameObject potionWhenCompleted;
+//}

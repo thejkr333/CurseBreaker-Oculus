@@ -32,7 +32,7 @@ public class ButtonCauldron : MonoBehaviour
             
             if (!sliderMinigameGO.activeSelf)
             {
-                if (Cauldron.ingredientsInCauldron.Count == 0) return;
+                if (Cauldron.IngredientsInCauldron.Count == 0) return;
                 sliderMinigameGO.SetActive(true);
             }
             else

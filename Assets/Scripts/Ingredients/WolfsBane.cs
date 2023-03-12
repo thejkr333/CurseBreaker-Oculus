@@ -8,7 +8,7 @@ public class WolfsBane : Ingredient
     {
         base.Awake();
 
-        ingredient = Ingredients.WolfsBane;
+        ThisIngredient = Ingredients.WolfsBane;
     }
 
     // Update is called once per frame

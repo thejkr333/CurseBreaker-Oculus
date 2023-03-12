@@ -8,7 +8,7 @@ public class CorkWood : Ingredient
     {
         base.Awake();
 
-        ingredient = Ingredients.CorkWood;
+        ThisIngredient = Ingredients.CorkWood;
     }
 
     // Update is called once per frame

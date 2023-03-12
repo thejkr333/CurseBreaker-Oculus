@@ -17,15 +17,9 @@ public class IngredientSpawner : MonoBehaviour
     {
         if(Vector3.Distance(inside.transform.position, transform.position) > 1)
         {
-            Debug.Log("outside");
             GameObject clon = Instantiate(ingredientPrefab);
             clon.transform.position = transform.position;
             inside = clon;
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-
     }
 }

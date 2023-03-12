@@ -6,7 +6,7 @@ public class Gassle : Curse
 {
     protected void Awake()
     {
-        curse = Curses.Gassle;
+        CurrentCurse = Curses.Gassle;
 
     }
     // Start is called before the first frame update
@@ -18,10 +18,10 @@ public class Gassle : Curse
     {
         base.SetUpCurse();
 
-        foreach (var limb in affectedLimbs)
+        foreach (var limb in AffectedLimbs)
         {
-            if (limb.limbName == LimbsList.Soul) continue;
-            limb.affectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
+            if (limb.LimbName == LimbsList.Soul) continue;
+            limb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
         }
     }
 

@@ -8,7 +8,7 @@ public class AngelLeaf : Ingredient
     {
         base.Awake();
 
-        ingredient = Ingredients.AngelLeaf;
+        ThisIngredient = Ingredients.AngelLeaf;
     }
 
     // Update is called once per frame

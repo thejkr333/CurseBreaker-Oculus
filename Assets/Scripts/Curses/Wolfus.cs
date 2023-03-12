@@ -6,7 +6,7 @@ public class Wolfus : Curse
 {
     protected void Awake()
     {
-        curse = Curses.Wolfus;
+        CurrentCurse = Curses.Wolfus;
     }
     // Start is called before the first frame update
     void Start()
@@ -17,10 +17,10 @@ public class Wolfus : Curse
     {
         base.SetUpCurse();
 
-        foreach (var limb in affectedLimbs)
+        foreach (var limb in AffectedLimbs)
         {
-            if (limb.limbName == LimbsList.Soul) continue;
-            limb.affectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.black;
+            if (limb.LimbName == LimbsList.Soul) continue;
+            limb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.black;
         }
     }
 

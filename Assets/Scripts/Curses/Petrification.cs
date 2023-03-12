@@ -6,7 +6,7 @@ public class Petrification : Curse
 {
     protected void Awake()
     {
-        curse = Curses.Petrification;
+        CurrentCurse = Curses.Petrification;
     }
     // Start is called before the first frame update
     void Start()
@@ -17,10 +17,10 @@ public class Petrification : Curse
     {
         base.SetUpCurse();
 
-        foreach (var limb in affectedLimbs)
+        foreach (var limb in AffectedLimbs)
         {
-            if (limb.limbName == LimbsList.Soul) continue;
-            limb.affectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.cyan;
+            if (limb.LimbName == LimbsList.Soul) continue;
+            limb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.cyan;
         }
     }
 
