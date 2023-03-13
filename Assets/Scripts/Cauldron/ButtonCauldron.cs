@@ -27,8 +27,6 @@ public class ButtonCauldron : MonoBehaviour
         //if(other.GetComponent<PoseGrab>() != null) Cauldron.StirCauldron();
         if (other.GetComponent<PoseGrab>() != null)
         {
-
-           
             
             if (!sliderMinigameGO.activeSelf)
             {
