@@ -20,8 +20,7 @@ public class Customer : MonoBehaviour
     private void Awake()
     {
         //select curse randomly and add it to the customer
-        //int _curseNumber = UnityEngine.Random.Range(0, Enum.GetValues(typeof(Curses)).Length);
-        int _curseNumber = UnityEngine.Random.Range(2, Enum.GetValues(typeof(Curses)).Length);
+        int _curseNumber = UnityEngine.Random.Range(0, Enum.GetValues(typeof(Curses)).Length);
         gameObject.AddComponent(Type.GetType(((Curses)_curseNumber).ToString()));
 
         //Create mapping element->limb and limb->element
@@ -56,8 +55,7 @@ public class Customer : MonoBehaviour
 
         //Select which parts to affect randomly
         curse = GetComponent<Curse>();
-        //curse.numberOfPartsAffected = UnityEngine.Random.Range(1, Enum.GetValues(typeof(LimbsList)).Length + 1);        
-        curse.NumberOfPartsAffected = UnityEngine.Random.Range(1, 3);
+        curse.NumberOfPartsAffected = UnityEngine.Random.Range(1, Enum.GetValues(typeof(LimbsList)).Length + 1);
         curse.InitiateAffectedLimbParts();
         
         customerInfo.text = curse.CurrentCurse.ToString();

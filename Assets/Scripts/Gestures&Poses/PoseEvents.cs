@@ -170,8 +170,6 @@ public class PoseEvents : MonoBehaviour
       //  Color.Lerp(Blue[0].color, White[0].color, 5);
      //   Color.Lerp(Blue[1].color, White[1].color, 5);
 
-
-
         foreach (OVRBone bone in fingerbones)
         {
             if (bone.Id == OVRSkeleton.BoneId.Hand_WristRoot)
@@ -195,7 +193,9 @@ public class PoseEvents : MonoBehaviour
             Outline outline = hitInfo.transform.GetComponent<Outline>();
             if (outline == null) return;
 
+            //you outline the new object
             outline.enabled = true;
+
             if (lastOutline != null && lastOutline != outline && lastOutline.enabled) { lastOutline.enabled = false; lastOutline = null; }
 
             lastOutline = outline;

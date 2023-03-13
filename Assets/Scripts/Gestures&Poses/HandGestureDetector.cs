@@ -10,10 +10,10 @@ using UnityEngine.SpatialTracking;
 [System.Serializable]
 public struct Pose
 {
-    public string name;
-    public bool oneHand;
-    public List<Vector3> fingerDatas;
-    public UnityEvent onRecognized;
+    public string Name;
+    public bool OneHand;
+    public List<Vector3> FingerDatas;
+    public UnityEvent OnRecognized;
 }
 public class HandGestureDetector : MonoBehaviour
 {
@@ -21,25 +21,25 @@ public class HandGestureDetector : MonoBehaviour
 
     // How much accurate the recognize should be
     [Header("Threshold value")]
-    public float threshold = 0.1f;
+    public float Threshold = 0.1f;
     // Add the component that refer to the skeleton hand ("OVRCustomHandPrefab_R" or "OVRCustomHandPrefab_L")
     [Header("Hand Skeleton")]
-    public OVRSkeleton skeleton;
+    public OVRSkeleton Skeleton;
     // List that will be populated after we save some gestures
     [Header("List of Gestures")]
-    public List<Pose> poses;
+    public List<Pose> Poses;
     // List of bones took from the OVRSkeleton
     private List<OVRBone> fingerbones = null;
     // Boolean for the debugMode duh!
     [Header("DebugMode")]
-    public bool debugMode = true;
+    public bool DebugMode = true;
     // Other boolean to check if are working correctly
     private bool hasStarted = false;
     private bool hasRecognize = false;
     private bool done = false;
     // Add an event if you want to make happen when a gesture is not identified
     [Header("Not Recognized Event")]
-    public UnityEvent notRecognize;
+    public UnityEvent NotRecognize;
     void Start()
     {
         // When the Oculus hand had his time to initialize hand, with a simple coroutine i start a delay of
@@ -49,7 +49,7 @@ public class HandGestureDetector : MonoBehaviour
     // Coroutine used for delay some function
     public IEnumerator DelayRoutine(Action actionToDo)
     {
-        while (!skeleton.IsInitialized)
+        while (!Skeleton.IsInitialized)
         {
             yield return null;
         }
@@ -65,13 +65,13 @@ public class HandGestureDetector : MonoBehaviour
     public void SetSkeleton()
     {
         // Populate the private list of fingerbones from the current hand we put in the skeleton
-        fingerbones = new List<OVRBone>(skeleton.Bones);
+        fingerbones = new List<OVRBone>(Skeleton.Bones);
     }
 
     void Update()
     {
         // if in debug mode and we press Space, we will save a gesture
-        if (debugMode && Input.GetKeyDown(KeyCode.Space))
+        if (DebugMode && Input.GetKeyDown(KeyCode.Space))
         {
             // Call the function for save the gesture
             Save();
@@ -81,11 +81,11 @@ public class HandGestureDetector : MonoBehaviour
         if (hasStarted)
         {
             // start to Recognize every gesture we make
-            Pose currentGesture = Recognize();
+            Pose _currentGesture = Recognize();
 
             // we will associate the recognize to a boolean to see if the Gesture
             // we are going to make is one of the gesture we already saved
-            hasRecognize = !currentGesture.Equals(new Pose());
+            hasRecognize = !_currentGesture.Equals(new Pose());
 
             // and if the gesture is recognized
             if (hasRecognize)
@@ -94,7 +94,7 @@ public class HandGestureDetector : MonoBehaviour
                 done = true;
                 //poseText.text = currentGesture.name;
                 // after that i will invoke what put in the Event if is present
-                currentGesture.onRecognized?.Invoke();
+                _currentGesture.OnRecognized?.Invoke();
             }
             // if the gesture we done is no more recognized
             else
@@ -107,7 +107,7 @@ public class HandGestureDetector : MonoBehaviour
                     done = false;
 
                     // and finally we will invoke an event when we end to make the previous gesture
-                    notRecognize?.Invoke();
+                    NotRecognize?.Invoke();
                 }
             }
         }
@@ -116,10 +116,10 @@ public class HandGestureDetector : MonoBehaviour
     void Save()
     {
         // We create a new Gesture struct
-        Pose g = new Pose();
+        Pose _pose = new Pose();
 
         // givin to it a default name
-        g.name = "New Gesture";
+        _pose.Name = "New Gesture";
 
         // we create also a new list of Vector 3
         List<Vector3> data = new List<Vector3>();
@@ -130,67 +130,67 @@ public class HandGestureDetector : MonoBehaviour
         {
             // and we will going to populate the list of Vector3 we done before with all the trasform found in the fingerbones
             // the fingers positions are in base at the hand Root
-            data.Add(skeleton.transform.InverseTransformPoint(bone.Transform.position));
+            data.Add(Skeleton.transform.InverseTransformPoint(bone.Transform.position));
         }
 
         // after the foreach we are going to associate the list of Vector3 to the one we create from the struct "g"
-        g.fingerDatas = data;
+        _pose.FingerDatas = data;
 
         // and in the end we will going to add this new gesture in our list of gestures
-        poses.Add(g);
+        Poses.Add(_pose);
     }
 
     Pose Recognize()
     {
         // in the Update if we initialized correctly, we create a new Gesture
-        Pose currentGesture = new Pose();
+        Pose _currentGesture = new Pose();
 
         // we set a new float of a positive infinity
-        float currentMin = Mathf.Infinity;
+        float _currentMin = Mathf.Infinity;
 
         // we start a foreach loop inside our list of gesture
-        foreach (var gesture in poses)
+        foreach (var gesture in Poses)
         {
             // initialize a new float about the distance
-            float sumDistance = 0;
+            float _sumDistance = 0;
 
             // and a new bool to check if discart a gesture or not
-            bool isDiscarded = false;
+            bool _isDiscarded = false;
 
             // then with a for loop we check inside the list of bones we initalized at the start with "SetSkeleton"
             for (int i = 0; i < fingerbones.Count; i++)
             {
                 // then we create a Vector3 that is exactly the transform from global position to local position of the current hand
                 // we are making the gesture
-                Vector3 currentData = skeleton.transform.InverseTransformPoint(fingerbones[i].Transform.position);
+                Vector3 _currentData = Skeleton.transform.InverseTransformPoint(fingerbones[i].Transform.position);
 
                 // with a new float we calculate the distance between the current gesture we are making with all the gesture we saved
-                float distance = Vector3.Distance(currentData, gesture.fingerDatas[i]);
+                float _distance = Vector3.Distance(_currentData, gesture.FingerDatas[i]);
 
                 // if the distance is bigger respect the threshold
-                if (distance > threshold)
+                if (_distance > Threshold)
                 {
                     // then we discart it because or is another gesture or we made bad the gesture we wanted to do
-                    isDiscarded = true;
+                    _isDiscarded = true;
                     break;
                 }
 
                 // if the distance is correct we will add it to the first float we have created
-                sumDistance += distance;
+                _sumDistance += _distance;
             }
 
             // if the gesture we made is not discarted and the distance of the gesture i minor then then Mathf.inifinty
-            if (!isDiscarded && sumDistance < currentMin)
+            if (!_isDiscarded && _sumDistance < _currentMin)
             {
                 // then we set current min to the distance we have
-                currentMin = sumDistance;
+                _currentMin = _sumDistance;
 
                 // and we associate the correct gesture we have just done to the variable we created
-                currentGesture = gesture;
+                _currentGesture = gesture;
             }
         }
 
         // so in the end we can return from the function the exact gesture we want to do
-        return currentGesture;
+        return _currentGesture;
     }
 }

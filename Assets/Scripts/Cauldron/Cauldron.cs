@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cauldron : MonoBehaviour
 {
-    public List<Ingredient> IngredientsInCauldron = new List<Ingredient>();
+    public List<Ingredient> IngredientsInCauldron = new ();
     //[SerializeField] Recipe[] recipes;
 
     [SerializeField] GameObject basePotionPrefab;
