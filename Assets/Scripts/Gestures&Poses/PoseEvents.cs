@@ -222,6 +222,10 @@ public class PoseEvents : MonoBehaviour
     #region Grab
     public void StartGrab()
     {
+
+        //Comment this out incase things break
+        StartAttract();
+
         if (CurrentPose != Poses.Grab) StartNewPose(CurrentPose);
 
         CurrentPose = Poses.Grab;
