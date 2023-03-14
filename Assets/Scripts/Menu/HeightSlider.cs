@@ -6,16 +6,16 @@ using UnityEngine.UI;
 public class HeightSlider : MonoBehaviour
 {
     public GameObject CameraRig;
-    public Slider Slider;
+    Slider slider;
     // Start is called before the first frame update
     void Start()
     {
-        
+        slider = GetComponent<Slider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CameraRig.transform.position = new Vector3(CameraRig.transform.position.x, Slider.value, CameraRig.transform.position.z);
+        CameraRig.transform.position = new Vector3(CameraRig.transform.position.x, slider.value, CameraRig.transform.position.z);
     }
 }
