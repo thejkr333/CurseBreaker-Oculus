@@ -23,9 +23,9 @@ public class Character : MonoBehaviour
     {
         Debug.Log("the dictionary size is: " + values.dic.Count);
         // animator.Play("walk in");
-        values.dic.Add(state.started, values.conversation.start);
-        values.dic.Add(state.failed, values.conversation.failed);
-        values.dic.Add(state.sucess, values.conversation.sucess);
+        values.dic.Add(state.started, values.Conversation.start);
+        values.dic.Add(state.failed, values.Conversation.failed);
+        values.dic.Add(state.sucess, values.Conversation.sucess);
 
         Debug.Log(values.display_text(state.started));
         Debug.Log(values.display_text(state.failed));

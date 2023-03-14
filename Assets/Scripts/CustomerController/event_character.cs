@@ -35,23 +35,23 @@ public class Event_character : ScriptableObject
 //-------------------------------------------------
     public GameObject   get_model()
     {
-        return model;
+        return Model;
     }
     public void set_model(GameObject g)
     {
-        model = g;
+        Model = g;
     }
 //-------------------------------------------------
-    public void add_conversation() => conversation.start.Add ("");
+    public void add_conversation() => Conversation.start.Add ("");
     
-    public void add_failed() => conversation.failed.Add ("");
+    public void add_failed() => Conversation.failed.Add ("");
     
-    public void add_sucess() => conversation.sucess.Add ("");
+    public void add_sucess() => Conversation.sucess.Add ("");
     
     public void add_conversation (List <string> s) => s.Add ("");
     
     
-    public void remove_conversation(List<string> s) => s.RemoveAt(conversation.start.Count - 1);
+    public void remove_conversation(List<string> s) => s.RemoveAt(Conversation.start.Count - 1);
     
 
     
@@ -59,30 +59,30 @@ public class Event_character : ScriptableObject
 //-------------------------------------------------
     public List<string> get_start_conversation()
     {
-        return conversation.start;
+        return Conversation.start;
     }
     public List<string> get_sucess_conversation()
     {
-        return conversation.sucess;
+        return Conversation.sucess;
     }
     public List<string> get_failed_conversation()
     {
-        return conversation.failed;
+        return Conversation.failed;
     }
 
     
 //--------------------------------------------------
     public void         set_start_conversation(string response, int i)
     {
-        conversation.start[i] = response;
+        Conversation.start[i] = response;
     }
     public void         set_sucess_conversation(string response, int i)
     {
-        conversation.sucess[i] = response;
+        Conversation.sucess[i] = response;
     }
     public void         set_failed_conversation(string response, int i)
     {
-        conversation.failed[i] = response;
+        Conversation.failed[i] = response;
     }
 
     public void set_conversation(List<string> s, int i, string response)
