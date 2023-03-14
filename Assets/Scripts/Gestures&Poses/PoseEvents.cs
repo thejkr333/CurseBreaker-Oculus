@@ -149,6 +149,11 @@ public class PoseEvents : MonoBehaviour
     #region Aim
     public void StartAim()
     {
+        //Testing the grab end on another pose
+
+        EndGrab();
+
+
         if (CurrentPose != Poses.Aiming) StartNewPose(CurrentPose);
 
         CurrentPose = Poses.Aiming;
@@ -158,6 +163,7 @@ public class PoseEvents : MonoBehaviour
         //Blue[1].color = Color.blue;
         //lineRenderer.colorGradient.SetKeys(Blue, Alpha);
         lineRenderer.material.color = Blue;
+       
     }
     void Aim()
     {
@@ -378,6 +384,11 @@ public class PoseEvents : MonoBehaviour
     #region TV
     public void StartTV()
     {
+        //Testing the grab end on another pose
+
+        EndGrab();
+
+
         if (CurrentPose != Poses.TV) StartNewPose(CurrentPose);
 
         CurrentPose = Poses.TV;
@@ -489,7 +500,9 @@ public class PoseEvents : MonoBehaviour
                 break;
 
             case Poses.Grab:
-                EndGrab();
+
+                //Uncomment the line to reenable old behaviour
+                //EndGrab();
                 break;
 
             case Poses.OpenHand:
