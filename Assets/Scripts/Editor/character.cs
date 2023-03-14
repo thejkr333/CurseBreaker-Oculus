@@ -5,7 +5,7 @@ using TMPro;
 
 public class character : MonoBehaviour
 {
-    public event_character values;
+    public Event_character values;
     public TMP_Text speech_boble;
     public GameObject character_model;
     public Animator animator;
@@ -21,7 +21,7 @@ public class character : MonoBehaviour
     void Start()
     {
         animator.Play("walk in");
-        character_model = values.model;
+        character_model = values.Model;
     }
 
     void Update()
