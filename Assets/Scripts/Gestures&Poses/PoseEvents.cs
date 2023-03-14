@@ -153,7 +153,6 @@ public class PoseEvents : MonoBehaviour
 
         EndGrab();
 
-
         if (CurrentPose != Poses.Aiming) StartNewPose(CurrentPose);
 
         CurrentPose = Poses.Aiming;
@@ -223,8 +222,7 @@ public class PoseEvents : MonoBehaviour
     public void StartGrab()
     {
 
-        //Comment this out incase things break
-        StartAttract();
+       
 
         if (CurrentPose != Poses.Grab) StartNewPose(CurrentPose);
 
@@ -362,6 +360,8 @@ public class PoseEvents : MonoBehaviour
     #region SpellSelect
     public void StartSpellSelect()
     {
+        EndGrab();
+
         if (CurrentPose != Poses.SpellSelect) StartNewPose(CurrentPose);
 
         CurrentPose = Poses.SpellSelect;
@@ -388,10 +388,7 @@ public class PoseEvents : MonoBehaviour
     #region TV
     public void StartTV()
     {
-        //Testing the grab end on another pose
-
-        EndGrab();
-
+        
 
         if (CurrentPose != Poses.TV) StartNewPose(CurrentPose);
 
@@ -505,8 +502,9 @@ public class PoseEvents : MonoBehaviour
 
             case Poses.Grab:
 
-                //Uncomment the line to reenable old behaviour
-                //EndGrab();
+               
+               // EndGrab();
+               
                 break;
 
             case Poses.OpenHand:
@@ -523,7 +521,7 @@ public class PoseEvents : MonoBehaviour
 
             case Poses.Unknown:
                 EndAim();
-                EndGrab();
+                //EndGrab();
                 EndTV();
                 EndSpellSelect();
                 EndOpenHand();
