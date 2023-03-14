@@ -336,6 +336,11 @@ public class MivryQuestHands : MonoBehaviour
 
     #endregion
 
+    static private bool hasLeftStarted = false;
+    static private bool hasRightStarted = false;
+
+    static List<OVRBone> leftFingerBones;
+    static List<OVRBone> rightFingerBones;
     // Start is called before the first frame update
     void Start()
     {
@@ -386,6 +391,8 @@ public class MivryQuestHands : MonoBehaviour
                 Debug.LogError($"[MivryQuestHands] Failed to activate license: {GestureRecognition.getErrorMessage(ret)}");
             }
         }
+
+        StartCoroutine(DelayRoutine(InitializeLeft, InitializeRight));
 
         // Load gesture database file:
 #if UNITY_EDITOR
@@ -484,9 +491,50 @@ public class MivryQuestHands : MonoBehaviour
         }
     }
 
+    public IEnumerator DelayRoutine(Action actionToDoLeft, Action actionToDoRight)
+    {
+        while (!leftHandSkeleton.IsInitialized)
+        {
+            yield return null;
+        }
+        actionToDoLeft.Invoke();
+
+        while (!rightHandSkeleton.IsInitialized)
+        {
+            yield return null;
+        }
+        actionToDoRight.Invoke();
+    }
+    public void InitializeLeft()
+    {
+        // Check the function for know what it does
+        SetLeftSkeleton();
+        // After initialize the skeleton set a boolean to true to confirm the initialization
+        hasLeftStarted = true;
+    }
+    public void InitializeRight()
+    {
+        // Check the function for know what it does
+        SetRightSkeleton();
+        // After initialize the skeleton set a boolean to true to confirm the initialization
+        hasRightStarted = true;
+    }
+    public void SetLeftSkeleton()
+    {
+        // Populate the private list of fingerbones from the current hand we put in the skeleton
+        leftFingerBones = new List<OVRBone>(leftHandSkeleton.Bones);
+    }
+    public void SetRightSkeleton()
+    {
+        // Populate the private list of fingerbones from the current hand we put in the skeleton
+        rightFingerBones = new List<OVRBone>(rightHandSkeleton.Bones);
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if(!hasLeftStarted || !hasRightStarted) return;
+
         Transform t;
         Vector3 p;
         Quaternion q;
@@ -674,33 +722,68 @@ public class MivryQuestHands : MonoBehaviour
 
     public static float getGrabStrength(OVRSkeleton handSkeleton)
     {
-        float minStrength = 1.0f;
-        Quaternion wristRotation = handSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_WristRoot].Transform.rotation;
-        float indexBend = Quaternion.Angle(
-            wristRotation,
-            handSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_Index2].Transform.rotation
-        );
-        float indexStrength = Mathf.Clamp((indexBend - 80.0f) / 100.0f,  0, 1);
-        minStrength = Mathf.Min(minStrength, indexStrength);
-        float middleBend = Quaternion.Angle(
-            wristRotation,
-            handSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_Middle2].Transform.rotation
-        );
-        float middleStrength = Mathf.Clamp((middleBend - 80.0f) / 100.0f, 0, 1);
-        minStrength = Mathf.Min(minStrength, middleStrength);
-        float ringBend = Quaternion.Angle(
-            wristRotation,
-            handSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_Ring2].Transform.rotation
-        );
-        float ringStrength = Mathf.Clamp((ringBend - 80.0f) / 100.0f, 0, 1);
-        minStrength = Mathf.Min(minStrength, ringStrength);
-        float pinkyBend = Quaternion.Angle(
-            wristRotation,
-            handSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_Pinky2].Transform.rotation
-        );
-        float pinkyStrength = Mathf.Clamp((pinkyBend - 80.0f) / 100.0f, 0, 1);
-        minStrength = Mathf.Min(minStrength, pinkyStrength);
-        return minStrength;
+        if (!hasLeftStarted || !hasRightStarted) return 0;
+
+        if(handSkeleton.GetSkeletonType() == OVRSkeleton.SkeletonType.HandLeft) 
+        {
+            float minStrength = 1.0f;
+            Quaternion wristRotation = leftFingerBones[(int)OVRSkeleton.BoneId.Hand_WristRoot].Transform.rotation;
+            float indexBend = Quaternion.Angle(
+                wristRotation,
+                leftFingerBones[(int)OVRSkeleton.BoneId.Hand_Index2].Transform.rotation
+            );
+            float indexStrength = Mathf.Clamp((indexBend - 80.0f) / 100.0f, 0, 1);
+            minStrength = Mathf.Min(minStrength, indexStrength);
+            float middleBend = Quaternion.Angle(
+                wristRotation,
+                leftFingerBones[(int)OVRSkeleton.BoneId.Hand_Middle2].Transform.rotation
+            );
+            float middleStrength = Mathf.Clamp((middleBend - 80.0f) / 100.0f, 0, 1);
+            minStrength = Mathf.Min(minStrength, middleStrength);
+            float ringBend = Quaternion.Angle(
+                wristRotation,
+                leftFingerBones[(int)OVRSkeleton.BoneId.Hand_Ring2].Transform.rotation
+            );
+            float ringStrength = Mathf.Clamp((ringBend - 80.0f) / 100.0f, 0, 1);
+            minStrength = Mathf.Min(minStrength, ringStrength);
+            float pinkyBend = Quaternion.Angle(
+                wristRotation,
+                leftFingerBones[(int)OVRSkeleton.BoneId.Hand_Pinky2].Transform.rotation
+            );
+            float pinkyStrength = Mathf.Clamp((pinkyBend - 80.0f) / 100.0f, 0, 1);
+            minStrength = Mathf.Min(minStrength, pinkyStrength);
+            return minStrength;
+        }
+        else
+        {
+            float minStrength = 1.0f;
+            Quaternion wristRotation = rightFingerBones[(int)OVRSkeleton.BoneId.Hand_WristRoot].Transform.rotation;
+            float indexBend = Quaternion.Angle(
+                wristRotation,
+                rightFingerBones[(int)OVRSkeleton.BoneId.Hand_Index2].Transform.rotation
+            );
+            float indexStrength = Mathf.Clamp((indexBend - 80.0f) / 100.0f, 0, 1);
+            minStrength = Mathf.Min(minStrength, indexStrength);
+            float middleBend = Quaternion.Angle(
+                wristRotation,
+                rightFingerBones[(int)OVRSkeleton.BoneId.Hand_Middle2].Transform.rotation
+            );
+            float middleStrength = Mathf.Clamp((middleBend - 80.0f) / 100.0f, 0, 1);
+            minStrength = Mathf.Min(minStrength, middleStrength);
+            float ringBend = Quaternion.Angle(
+                wristRotation,
+                rightFingerBones[(int)OVRSkeleton.BoneId.Hand_Ring2].Transform.rotation
+            );
+            float ringStrength = Mathf.Clamp((ringBend - 80.0f) / 100.0f, 0, 1);
+            minStrength = Mathf.Min(minStrength, ringStrength);
+            float pinkyBend = Quaternion.Angle(
+                wristRotation,
+                rightFingerBones[(int)OVRSkeleton.BoneId.Hand_Pinky2].Transform.rotation
+            );
+            float pinkyStrength = Mathf.Clamp((pinkyBend - 80.0f) / 100.0f, 0, 1);
+            minStrength = Mathf.Min(minStrength, pinkyStrength);
+            return minStrength;
+        }     
     }
 
     public static float getTriggerValue(GestureTrigger trigger, OVRHand leftHand, OVRHand rightHand)

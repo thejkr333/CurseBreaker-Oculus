@@ -445,6 +445,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772707381}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &946934163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114428879332287356, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+  m_PrefabInstance: {fileID: 1728125163}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7623a8f0b49cf4dbaa40aea4d4be64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1374343707
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,9 +705,12 @@ MonoBehaviour:
   unityXrPlugin: 1
   mivryCoordinateSystem: 1
   frameOfReference: 0
-  file_load_gestures: Samples/Sample_MivryQuestHands_Gestures.dat
-  file_import_gestures: Samples/Sample_MivryQuestHands_Gestures.dat
-  file_save_gestures: Samples/MyQuestHandsGestures.dat
+  file_load_gestures: C:\Users\ruben\AppData\LocalLow\DefaultCompany\CurseBreaker
+    Oculus\HandGestures.dat
+  file_import_gestures: C:\Users\ruben\AppData\LocalLow\DefaultCompany\CurseBreaker
+    Oculus\HandGestures.dat
+  file_save_gestures: C:\Users\ruben\AppData\LocalLow\DefaultCompany\CurseBreaker
+    Oculus\HandGestures.dat
   create_gesture_name: (new gesture name)
   create_gesture_names: []
   record_combination_id: -1
@@ -807,6 +821,17 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6260475517999668615, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+--- !u!114 &1837182224 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114428879332287356, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+  m_PrefabInstance: {fileID: 343661285}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7623a8f0b49cf4dbaa40aea4d4be64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1931104853
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,6 +844,7 @@ GameObject:
   - component: {fileID: 1931104856}
   - component: {fileID: 1931104855}
   - component: {fileID: 1931104854}
+  - component: {fileID: 1931104858}
   m_Layer: 0
   m_Name: GroundFloor
   m_TagString: Untagged
@@ -905,6 +931,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1931104858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931104853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf6697bb6cf9944699521a2fa7daa3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LicenseName: 
+  LicenseKey: 
+  LicenseFilePath: 
+  GestureDatabaseFile: 
+  trackedHand: 2
+  leftHand: {fileID: 1837182224}
+  leftHandTrackingPoints: 0
+  leftGestureTrigger: 3
+  leftGestureTriggerThreshold: 0.5
+  leftGestureTriggerValue: 0
+  rightHand: {fileID: 946934163}
+  rightHandTrackingPoints: 0
+  rightGestureTrigger: 1
+  rightGestureTriggerThreshold: 0.5
+  rightGestureTriggerValue: 0
+  OnGestureCompletion:
+    m_PersistentCalls:
+      m_Calls: []
+  unityXrPlugin: 1
+  mivryCoordinateSystem: 1
 --- !u!1 &2138677391
 GameObject:
   m_ObjectHideFlags: 0
