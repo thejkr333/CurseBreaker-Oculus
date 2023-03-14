@@ -124,7 +124,7 @@ public class Curse : MonoBehaviour
         //Check if player failed to cure the customer - James
         if(Chances == 0)
         {          
-            gameObject.GetComponent<BasicChat>().chatTime = 5;
+            gameObject.GetComponent<BasicChat>().ChatTime = 5;
             gameObject.GetComponent<BasicChat>().DespawnOnceDone = true;
         }
 
@@ -145,8 +145,8 @@ public class Curse : MonoBehaviour
             //Wrong potion
 
             //Reducing your chances to cure the customer - James
-            gameObject.GetComponent<BasicChat>().wrongPotion = true;
-            gameObject.GetComponent<BasicChat>().chatTime = 5;
+            gameObject.GetComponent<BasicChat>().WrongPotion = true;
+            gameObject.GetComponent<BasicChat>().ChatTime = 5;
         }
         else
         {
@@ -188,7 +188,7 @@ public class Curse : MonoBehaviour
 
     void Cured()
     {    
-        gameObject.GetComponent<BasicChat>().chatTime = 5;
+        gameObject.GetComponent<BasicChat>().ChatTime = 5;
         gameObject.GetComponent<BasicChat>().DespawnOnceDone = true;
         gameObject.GetComponent<BasicChat>().Cured = true;
         cured = true;

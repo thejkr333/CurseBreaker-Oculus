@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class BasicChat : MonoBehaviour
 {
-    public float chatTime;
+    public float ChatTime;
     public GameObject Hi, Wrong, Bye;
-    public bool DespawnOnceDone, Cured, wrongPotion;
+    public bool DespawnOnceDone, Cured, WrongPotion;
     // Start is called before the first frame update
     void Start()
     {
-        chatTime = 5;
+        ChatTime = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        chatTime -= Time.deltaTime;
-        if (chatTime < 0)
+        ChatTime -= Time.deltaTime;
+        if (ChatTime < 0)
         {
             Hi.SetActive(false);
         }
-        if (wrongPotion)
+        if (WrongPotion)
         {
             Wrong.SetActive(true);
-            if(chatTime < 0)
+            if(ChatTime < 0)
             {
                 Wrong.SetActive(false);
-                wrongPotion = false;
+                WrongPotion = false;
             }
         }
         if(DespawnOnceDone && Cured == true)
         {
             Bye.SetActive(true);
-            if (chatTime < 0)
+            if (ChatTime < 0)
             {
                 GameObject.Find("CustomerController").GetComponent<CustomerController>().CustomerCured = true;
             }
@@ -42,7 +42,7 @@ public class BasicChat : MonoBehaviour
         if(DespawnOnceDone && Cured == false)
         {
             Bye.SetActive(true);
-            if(chatTime < 0)
+            if(ChatTime < 0)
             {
                 GameObject.Find("CustomerController").GetComponent<CustomerController>().FailureCure();
             }          
