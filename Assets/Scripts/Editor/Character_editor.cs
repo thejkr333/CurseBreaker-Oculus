@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class Character_editor : EditorWindow
 {
-    public event_character character;
+    public Event_character character;
     display show = display.dialogue;
 
     private Vector2 scroll = new Vector2();
@@ -41,7 +41,7 @@ public class Character_editor : EditorWindow
 //left part
     private void Scriptable_object_section()
     {
-       character  = (event_character) EditorGUILayout.ObjectField(character, typeof(event_character),false);
+       character  = (Event_character) EditorGUILayout.ObjectField(character, typeof(Event_character),false);
     }
     
     private void draw_box()
@@ -72,17 +72,17 @@ public class Character_editor : EditorWindow
     //right part
     private void Dialogue_display()
     {
-        if (character.conversation == null) 
-            character.conversation = new Conversation();
+        if (character.Conversation == null) 
+            character.Conversation = new Conversation();
         
         GUILayout.Label("start");
-        conversation(character.conversation.start);
+        conversation(character.Conversation.start);
 
         GUILayout.Label("Failed");
-        conversation(character.conversation.failed);
+        conversation(character.Conversation.failed);
 
         GUILayout.Label("Sucess");
-        conversation(character.conversation.sucess);
+        conversation(character.Conversation.sucess);
 
 
         void conversation(List<string> s)
@@ -102,13 +102,13 @@ public class Character_editor : EditorWindow
 
     private void Question_dispaly()
     {
-        int questions = character.questions.Count;
+        int questions = character.Questions.Count;
 
 
         for (int i = 0; i < questions; i++)
         {
-            character.questions[i].question_text = GUILayout.TextArea(character.questions[i].question_text);
-            character.questions[i].answer = GUILayout.TextArea(character.questions[i].answer,GUILayout.Height(40));
+            character.Questions[i].question_text = GUILayout.TextArea(character.Questions[i].question_text);
+            character.Questions[i].answer = GUILayout.TextArea(character.Questions[i].answer,GUILayout.Height(40));
             GUILayout.Space(4f);
         }
 
@@ -116,7 +116,7 @@ public class Character_editor : EditorWindow
 
         if (GUILayout.Button("+"))
         {
-            character.questions.Add(new Question());
+            character.Questions.Add(new Question());
         }
 
 
