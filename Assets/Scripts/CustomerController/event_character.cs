@@ -4,22 +4,22 @@ using UnityEngine;
 using TMPro;
 
 [CreateAssetMenu(fileName = "person", menuName = "Cursebreaker/Character")]
-public class event_character : ScriptableObject
+public class Event_character : ScriptableObject
 {
 
-    public string name;
-    public GameObject model;
-    public Conversation conversation = new Conversation();
-    public List<Question> questions = new List <Question>();
+    public string Name;
+    public GameObject Model;
+    public Conversation Conversation = new Conversation();
+    public List<Question> Questions = new List <Question>();
 
     public Dictionary<state, List<string>> dic = new Dictionary<state, List<string>>();
 
 
     private void Awake()
     {
-        dic.Add(state.started, conversation.start);
-        dic.Add(state.failed, conversation.failed);
-        dic.Add(state.sucess, conversation.sucess);
+        dic.Add(state.started, Conversation.start);
+        dic.Add(state.failed, Conversation.failed);
+        dic.Add(state.sucess, Conversation.sucess);
 
         Debug.Log(display_text(state.started)[0]);
         Debug.Log(display_text(state.failed)[0]);

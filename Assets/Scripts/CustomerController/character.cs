@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class character : MonoBehaviour
+public class Character : MonoBehaviour
 {
-    public event_character values;
+    public Event_character values;
     public TMP_Text speech_boble;
     //public GameObject character_model;
     //public Animator animator;
