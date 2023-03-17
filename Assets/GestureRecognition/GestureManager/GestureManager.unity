@@ -2191,8 +2191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead00d81e07c86d4a84ac72a78fa472a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  license_id: 
-  license_key: 
+  license_id: 3Ml7IgA3zQ9VQUlW0EAOhTbK
+  license_key: uAdYrIMG
   unityXrPlugin: 1
   mivryCoordinateSystem: 1
   file_load_combinations: Samples/Sample_TwoHanded_Gestures.dat
@@ -3872,6 +3872,7 @@ MonoBehaviour:
   m_controller: 96
   m_parentTransform: {fileID: 403676827}
   m_player: {fileID: 403260269}
+  m_grabbedObj: {fileID: 0}
   isGrabbing: 0
 --- !u!114 &6260475516555308186
 MonoBehaviour:
@@ -3925,6 +3926,7 @@ MonoBehaviour:
   m_controller: 64
   m_parentTransform: {fileID: 403679903}
   m_player: {fileID: 403260269}
+  m_grabbedObj: {fileID: 0}
   isGrabbing: 0
 --- !u!114 &6260475516732560710
 MonoBehaviour:
