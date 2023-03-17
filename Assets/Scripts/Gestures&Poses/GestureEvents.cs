@@ -30,6 +30,8 @@ public class GestureEvents : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        poseEventLeft = GameObject.Find("LeftHandPoseEvents").GetComponent<PoseEvents>();
+        poseEventRight = GameObject.Find("RightHandPoseEvents").GetComponent<PoseEvents>();
         leftHandGrabber = leftHand.GetComponent<OVRGrabber>();
         rightHandGrabber = leftHand.GetComponent<OVRGrabber>();
     }

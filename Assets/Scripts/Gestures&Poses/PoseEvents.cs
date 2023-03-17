@@ -348,7 +348,7 @@ public class PoseEvents : MonoBehaviour
     }
     void OpenHand()
     {
-
+        EndGrab();
     }
 
     void EndOpenHand()
