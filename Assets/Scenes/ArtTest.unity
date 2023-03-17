@@ -512,7 +512,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.31384832, g: 0.47062218, b: 0.7169812, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -7680,6 +7680,18 @@ PrefabInstance:
       propertyPath: sliderController
       value: 
       objectReference: {fileID: 420309935}
+    - target: {fileID: 2578061473258272095, guid: 07e9faf809303ad4e950788cc19a8c01, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be294004c6e00764fbad3aac90c945da, type: 2}
+    - target: {fileID: 2784861604430427057, guid: 07e9faf809303ad4e950788cc19a8c01, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156775076778878922, guid: 07e9faf809303ad4e950788cc19a8c01, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5886730795159614796, guid: 07e9faf809303ad4e950788cc19a8c01, type: 3}
       propertyPath: m_Name
       value: House
