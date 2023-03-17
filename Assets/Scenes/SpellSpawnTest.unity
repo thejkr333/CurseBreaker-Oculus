@@ -1528,24 +1528,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 431100, guid: 64d5e6c084826a44586cccb8f9e13b34, type: 3}
   m_PrefabInstance: {fileID: 349619572}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &357295253 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6207085597124297461, guid: 7668f35603a16b14da9ba2cb92aa4c1b, type: 3}
-  m_PrefabInstance: {fileID: 2311432774225742605}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &357295261
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 357295253}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.100000046, y: 0.027710928, z: 0.08660255}
-  m_Center: {x: 0, y: -0.013144547, z: -0.0000000035327206}
 --- !u!1001 &377445101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2728,7 +2710,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2311432774225742606}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &654643891
 Light:
@@ -4685,7 +4667,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2311432774225742606}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1165389107 stripped
 MonoBehaviour:
@@ -4698,24 +4680,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e87ec714765adf49948f4bb1d05ed72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1188463635 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8102632063441649116, guid: c8823dd4d020e8144a7256cdbccd6cb7, type: 3}
-  m_PrefabInstance: {fileID: 886033067}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1188463639
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188463635}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.09999999, y: 0.0062026004, z: 0.08660255}
-  m_Center: {x: 0, y: -0.0031013002, z: -0.000000002865608}
 --- !u!1001 &1230995715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5402,7 +5366,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2311432774225742606}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1353064080
 Light:
@@ -12964,7 +12928,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2311432774225742606}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1837767276
 Light:
@@ -15219,6 +15183,14 @@ PrefabInstance:
       propertyPath: poseEventRight
       value: 
       objectReference: {fileID: 1542371748}
+    - target: {fileID: 5048378172261356595, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: LicenseKey
+      value: uAdYrIMG
+      objectReference: {fileID: 0}
+    - target: {fileID: 5048378172261356595, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: LicenseName
+      value: 3Ml7IgA3zQ9VQUlW0EAOhTbK
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
 --- !u!4 &915774866843014483

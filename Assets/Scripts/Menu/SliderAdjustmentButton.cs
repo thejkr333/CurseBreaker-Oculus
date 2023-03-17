@@ -25,10 +25,10 @@ public class SliderAdjustmentButton : MonoBehaviour
     }
     public void IncreaseSlider()
     {
-        Slider.value += 0.0001f;
+        Slider.value += Time.deltaTime*2;
     }
     public void DecreaseSlider()
     {
-        Slider.value -= 0.0001f;
+        Slider.value -= Time.deltaTime*2;
     }
 }
