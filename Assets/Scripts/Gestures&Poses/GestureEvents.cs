@@ -11,7 +11,11 @@ public class GestureEvents : MonoBehaviour
     [SerializeField] List<string> gestureNames = new();
 
     [SerializeField] GameObject leftHand, rightHand;
+    [SerializeField] PoseEvents poseEventLeft, poseEventRight;
     OVRGrabber leftHandGrabber, rightHandGrabber;
+
+    [SerializeField] GameObject currentDrawingHand;
+
 
     [SerializeField] GameObject fire, dark, light, water, air, earth;
     [SerializeField] Transform headPos;
@@ -33,7 +37,14 @@ public class GestureEvents : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+       if(poseEventLeft.DrawingWithThisHand == true)
+        {
+            currentDrawingHand = leftHand;
+        }
+        if (poseEventRight.DrawingWithThisHand == true)
+        {
+            currentDrawingHand = rightHand;
+        }
     }
 
     public void SetUpGestureNames(GestureRecognition gr)
@@ -94,49 +105,59 @@ public class GestureEvents : MonoBehaviour
     void Fire()
     {
         GameObject clon = Instantiate(fire);
-        clon.transform.forward = headPos.forward;
-        clon.transform.position = new Vector3(headPos.position.x, (headPos.position.y - initialPos.y) / 3 * 2, headPos.position.z);
-        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
+        clon.transform.position = currentDrawingHand.transform.position;
+        //clon.transform.forward = headPos.forward;
+        //clon.transform.position = new Vector3(headPos.position.x, (headPos.position.y - initialPos.y) / 3 * 2, headPos.position.z);
+        //clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
         Debug.Log("Fire");
     }
     private void Dark()
     {
         GameObject clon = Instantiate(dark);
-        clon.transform.forward = headPos.forward;
+        clon.transform.position = currentDrawingHand.transform.position;
+        /*clon.transform.forward = headPos.forward;
         clon.transform.position = new Vector3(headPos.position.x, (headPos.position.y - initialPos.y) / 3 * 2, headPos.position.z);
-        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
+        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5; */
         Debug.Log("Dark");
     }
     private void Light()
     {
         GameObject clon = Instantiate(light);
+        clon.transform.position = currentDrawingHand.transform.position;/*
         clon.transform.forward = headPos.forward;
         clon.transform.position = new Vector3(headPos.position.x, (headPos.position.y - initialPos.y) / 3 * 2, headPos.position.z);
-        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
+        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;*/
         Debug.Log("Light");
     }
     private void Water()
     {
         GameObject clon = Instantiate(water);
+        clon.transform.position = currentDrawingHand.transform.position;
+
+        /*
         clon.transform.forward = headPos.forward;
         clon.transform.position = new Vector3(headPos.position.x, (headPos.position.y - initialPos.y) / 3 * 2, headPos.position.z);
-        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
+        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;*/
         Debug.Log("Water");
     }
     private void Air()
     {
         GameObject clon = Instantiate(air);
+        clon.transform.position = currentDrawingHand.transform.position;
+        /*
         clon.transform.forward = headPos.forward;
         clon.transform.position = new Vector3(headPos.position.x, (headPos.position.y - initialPos.y) / 3 * 2, headPos.position.z);
-        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
+        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;*/
         Debug.Log("Air");
     }
     private void Earth()
     {
         GameObject clon = Instantiate(earth);
+        clon.transform.position = currentDrawingHand.transform.position;
+        /*
         clon.transform.forward = headPos.forward;
         clon.transform.position = new Vector3(headPos.position.x, (headPos.position.y - initialPos.y) / 3 * 2, headPos.position.z);
-        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;
+        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;*/
         Debug.Log("Earth");
     }
     #endregion

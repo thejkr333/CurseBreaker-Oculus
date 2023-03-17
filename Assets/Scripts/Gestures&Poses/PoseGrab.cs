@@ -6,7 +6,7 @@ public class PoseGrab : OVRGrabber
     // Boolean used to check if is Grabbing or not.
     [SerializeField]
     bool isGrabbing = false;
-
+    public bool SpellRelease;
     protected override void Start()
     {
         // We begin by initialize the base.Start function where are set few variable from OVRGrabber like:
@@ -49,6 +49,13 @@ public class PoseGrab : OVRGrabber
             // we call the override GrabEnd
             GrabEnd();
         }
+        if(SpellRelease == true)
+        {
+            GrabEnd();
+            SpellRelease = false;
+        }
+
+
     }
 
     // To call in the gestures to refresh the position and rotation when releasing

@@ -8,7 +8,7 @@ public class PoseEvents : MonoBehaviour
 {
     [SerializeField] PoseEvents otherHandPoseEvent;
     [SerializeField] bool mainHand;
-
+    public bool DrawingWithThisHand;
     public enum Poses { Aiming, Grab, OpenHand, SpellSelect, TV, Unknown }
     public Poses CurrentPose;
 
@@ -150,7 +150,7 @@ public class PoseEvents : MonoBehaviour
     public void StartAim()
     {
         //Testing the grab end on another pose
-
+        DrawingWithThisHand = false;
         EndGrab();
 
         if (CurrentPose != Poses.Aiming) StartNewPose(CurrentPose);
@@ -221,8 +221,8 @@ public class PoseEvents : MonoBehaviour
     #region Grab
     public void StartGrab()
     {
+        DrawingWithThisHand = false;
 
-       
 
         if (CurrentPose != Poses.Grab) StartNewPose(CurrentPose);
 
@@ -361,7 +361,7 @@ public class PoseEvents : MonoBehaviour
     public void StartSpellSelect()
     {
         EndGrab();
-
+        DrawingWithThisHand = true;
         if (CurrentPose != Poses.SpellSelect) StartNewPose(CurrentPose);
 
         CurrentPose = Poses.SpellSelect;
@@ -376,6 +376,7 @@ public class PoseEvents : MonoBehaviour
     }
     void EndSpellSelect()
     {
+        
         recordingGesture = false;
 
         if (trailRenderer == null) return;
