@@ -33,7 +33,7 @@ public class Curse_editor : EditorWindow
     private void step(int i)
     {
         int ii = i + 1;
-        int b = 0;
+        //int b = 0;
         GUILayout.Label("Step" + ii);
         
         GUILayout.BeginHorizontal();
