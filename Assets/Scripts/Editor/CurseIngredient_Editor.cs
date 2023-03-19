@@ -35,8 +35,6 @@ public class CurseIngredient_Editor : EditorWindow
 
         catch { Debug.Log("could not get the matrix data"); }
 
-        
-
         Ingredients();
         //Curses_display();
         //Grid();
@@ -62,16 +60,8 @@ public class CurseIngredient_Editor : EditorWindow
                 Cell((int)c, (int)ingredient);
             GUILayout.EndVertical();
         }
-        
 
-        
-        
         GUILayout.EndHorizontal();
-    }
-
-    private void row_display()
-    {
-
     }
 
     private void Curses_display()
@@ -86,17 +76,6 @@ public class CurseIngredient_Editor : EditorWindow
         GUILayout.EndVertical();
     }
 
-    public void Cell(int X, int Y, Rect size)
-    {
-        GUILayout.BeginArea(size);
-
-        Matrix.matrixData[X, Y].value = int.Parse(GUILayout.TextField(Matrix.matrixData[X, Y].value.ToString()));
-       
-        GUILayout.Label("0");
-        Debug.Log("did it");
-
-        GUILayout.EndArea();
-    }
     public void Cell(int X, int Y)
     {
         //Matrix.matrixData[X, Y].value = int.Parse(GUILayout.TextField(Matrix.matrixData[X, Y].value.ToString()));
@@ -104,17 +83,10 @@ public class CurseIngredient_Editor : EditorWindow
         Debug.Log("did it");
     }
 
-    public void Grid()
-    {
-        for (int x = 0; x < rows; x++)
-            for (int y = 0; y < colloms; y++)
-                Cell(x, y, GridSize(x, y));
-
-    }
 
     private void Save()
     {
-
+        
     }
 
     public Rect GridSize(int rowSize, int collomSize)
