@@ -190,16 +190,10 @@ public class Customer : MonoBehaviour
                     if(limb.AffectedLimbGO.TryGetComponent(out Curse _curse))
                     {
                         //Do de math for each limb depending on the curse that it has (matrix)
-                        switch(_curse.CurrentCurse)
+                        float _potionStrength = 0;
+                        foreach (Ingredients ing in potion.PotionIngredients)
                         {
-                            case Curses.Petrification:
-                                break;
-                            case Curses.Demonitis: 
-                                break;
-                            case Curses.Wolfus:
-                                break;
-                            case Curses.Gassle:
-                                break;
+                            //_potionStrength += matrix[(int)_curse.CurrentCurse, (int)ing];
                         }
                     }
                     else
