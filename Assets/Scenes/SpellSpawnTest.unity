@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d144f0e8470c5a5459734846e290d683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IngredientsInCauldron: []
+  IngredientsInCauldron: 
   basePotionPrefab: {fileID: 3939705730650385798, guid: 206854b03b1a0274c812a047e55d5b2a, type: 3}
 --- !u!65 &204299384
 BoxCollider:
@@ -15185,11 +15185,11 @@ PrefabInstance:
       objectReference: {fileID: 1542371748}
     - target: {fileID: 5048378172261356595, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
       propertyPath: LicenseKey
-      value: uAdYrIMG
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5048378172261356595, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
       propertyPath: LicenseName
-      value: 3Ml7IgA3zQ9VQUlW0EAOhTbK
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}

@@ -29,6 +29,7 @@ public class PoseGrab : OVRGrabber
         //    isGrabbing = false;
         //}
         isGrabbing = _isGrabbing;
+        SpellRelease = !isGrabbing;
     }
 
     public override void Update()
@@ -49,11 +50,7 @@ public class PoseGrab : OVRGrabber
             // we call the override GrabEnd
             GrabEnd();
         }
-        if(SpellRelease == true)
-        {
-            GrabEnd();
-            SpellRelease = false;
-        }
+       
 
 
     }
