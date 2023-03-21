@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Cursebreaker", menuName = "matrix")]
 public class CursexIngredientMatrix : ScriptableObject
 {
-    public Data[,] matrixData = new Data[Enum.GetValues(typeof(Curses)).Length, Enum.GetValues(typeof(Ingredient.Ingredients)).Length];
+    public Data[,] matrixData = new Data[Enum.GetValues(typeof(Curses)).Length, Enum.GetValues(typeof(Ingredients)).Length];
 }
 
 [System.Serializable]
