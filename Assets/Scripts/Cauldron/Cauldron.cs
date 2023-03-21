@@ -4,42 +4,43 @@ using UnityEngine;
 
 public class Cauldron : MonoBehaviour
 {
-    public List<Ingredient> IngredientsInCauldron = new ();
+    public List<Ingredients> IngredientsInCauldron = new ();
     //[SerializeField] Recipe[] recipes;
 
     [SerializeField] GameObject basePotionPrefab;
 
     private void OnTriggerEnter(Collider other)
     {
-        Ingredient _ingredient = other.GetComponent<Ingredient>();
+        if (other.TryGetComponent(out Ingredient _ingredient))
+        {
+            //if (ingredient.selected) return;
 
-        if (_ingredient == null) return;
-        //if (ingredient.selected) return;
+            AddIngredient(_ingredient.ThisIngredient);
 
-        AddIngredient(_ingredient);
-
-        //teleport to parla as destroying it makes it lose the reference in the list IngredientsInCauldron
-        _ingredient.transform.position = new Vector3(10000, -10, 10000);
-        //ingredient.gameObject.SetActive(false);
+            //teleport to parla as destroying it makes it lose the reference in the list IngredientsInCauldron
+            _ingredient.transform.position = new Vector3(10000, -10, 10000);
+            Destroy(_ingredient.gameObject);
+        } 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Ingredient ingredient = other.GetComponent<Ingredient>();
+        if (other.TryGetComponent(out Ingredient _ingredient))
+        {
+            //if (_ingredient.selected) return;
 
-        if (ingredient == null) return;
-        //if (ingredient.selected) return;
+            RemoveIngredient(_ingredient.ThisIngredient);
+        }
 
-        //RemoveIngredient(ingredient);
     }
-    void AddIngredient(Ingredient ingredient)
+    void AddIngredient(Ingredients ingredient)
     {
         IngredientsInCauldron.Add(ingredient);
 
         Debug.Log(ingredient);
     }
 
-    void RemoveIngredient(Ingredient ingredient)
+    void RemoveIngredient(Ingredients ingredient)
     {
         IngredientsInCauldron.Remove(ingredient);
 
@@ -61,10 +62,6 @@ public class Cauldron : MonoBehaviour
         }
 
         //Reset lists
-        foreach (var item in IngredientsInCauldron)
-        {
-            Destroy(item.gameObject, .5f);
-        }
         IngredientsInCauldron.Clear();
     }
 

@@ -2,48 +2,73 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PotionType { }
+public enum Elements { Fire, Dark, Light, Water, Air, Earth, Void }
 public class Potion : MonoBehaviour
 {
-    public List<Curses> potionTypes = new();
+    public List<Ingredients> PotionIngredients = new();
 
-    public List<Elements> ingredientsElements = new();
+    public List<Elements> PotionElements = new();
 
-    public int strength;
-    // Start is called before the first frame update
-    void Start()
+    public int Strength;
+    public void CreatePotion(List<Ingredients> ingredients)
     {
-        
+        PotionIngredients = ingredients;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider collision)
     {
-        
-    }
-
-    public void CreatePotion(List<Ingredient> ingredients)
-    {
-        foreach (var ing in ingredients)
+        switch (collision.gameObject.tag)
         {
-            switch (ing.ThisIngredient)
-            {
-                case Ingredient.Ingredients.AngelLeaf:
-                    potionTypes.Add(Curses.Demonitis);
-                    break;
-                case Ingredient.Ingredients.CorkWood:
-                    potionTypes.Add(Curses.Gassle);
-                    break;
-                case Ingredient.Ingredients.Mandrake:
-                    potionTypes.Add(Curses.Petrification);
-                    break;
-                case Ingredient.Ingredients.WolfsBane:
-                    potionTypes.Add(Curses.Wolfus);
-                    break;
-            }
+            case "Spell/Fire":
+                PotionElements.Add(Elements.Fire);
+                StartParticles(collision.gameObject.GetComponent<MeshRenderer>().material);
+                break;
 
-            strength += ing.Strength;
-            ingredientsElements.Add(ing.Element);
+            case "Spell/Air":
+                PotionElements.Add(Elements.Air);
+                //StartParticles(AirSpell);
+                StartParticles(collision.gameObject.GetComponent<MeshRenderer>().material);
+                break;
+
+            case "Spell/Water":
+                PotionElements.Add(Elements.Water);
+                //StartParticles(WaterSpell);
+                StartParticles(collision.gameObject.GetComponent<MeshRenderer>().material);
+                break;
+
+            case "Spell/Earth":
+                PotionElements.Add(Elements.Earth);
+                //StartParticles(EarthSpell);
+                StartParticles(collision.gameObject.GetComponent<MeshRenderer>().material);
+                break;
+
+            case "Spell/Light":
+                PotionElements.Add(Elements.Light);
+                //StartParticles(LightSpell);
+                StartParticles(collision.gameObject.GetComponent<MeshRenderer>().material);
+                break;
+
+            case "Spell/Dark":
+                //Darkened= true;
+                PotionElements.Add(Elements.Dark);
+                //StartParticles(DarkSpell);
+                StartParticles(collision.gameObject.GetComponent<MeshRenderer>().material);
+                break;
+
+            default:
+                Debug.Log("Unknown");
+                break;
         }
+    }
+
+    void StartParticles(Material ElementHit)
+    {
+        ParticleSystem PS = gameObject.AddComponent<ParticleSystem>();
+        ParticleSystemRenderer PSR = gameObject.GetComponent<ParticleSystemRenderer>();
+        PSR.material = ElementHit;
+        //PS.startColor = color;
+        //PSR.material= ElementHit;
+        //PS.Play();
+        //PS.shape.meshRenderer = gameObject.GetComponent<MeshRenderer>()
     }
 }

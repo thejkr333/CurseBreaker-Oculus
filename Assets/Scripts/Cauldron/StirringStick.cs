@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StirringStick : MonoBehaviour
 {
-    Vector3 initialPos;
+    Vector3 initialPos, initialRot;
     Animator animator;
 
     float timer, offPosTime = 3;
@@ -17,6 +17,7 @@ public class StirringStick : MonoBehaviour
     void Start()
     {
         initialPos = transform.position;
+        initialRot = transform.eulerAngles;
         animator = GetComponent<Animator>();
     }
 
@@ -33,6 +34,7 @@ public class StirringStick : MonoBehaviour
             if (timer >= offPosTime)
             {
                 transform.position = initialPos;
+                transform.eulerAngles = initialRot;
                 timer = 0;
             }
         }
