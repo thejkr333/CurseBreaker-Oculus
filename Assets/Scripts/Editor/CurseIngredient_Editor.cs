@@ -15,7 +15,7 @@ public class CurseIngredient_Editor : EditorWindow
     {
         
         rows = Enum.GetNames(typeof(Curses)).Length;
-        colloms = Enum.GetNames(typeof(Ingredient.Ingredients)).Length;
+        colloms = Enum.GetNames(typeof(Ingredients)).Length;
     }
 
 
@@ -51,7 +51,7 @@ public class CurseIngredient_Editor : EditorWindow
         GUILayout.BeginHorizontal();
         Curses_display();
 
-        foreach (Ingredient.Ingredients ingredient in Enum.GetValues(typeof(Ingredient.Ingredients)))
+        foreach (Ingredients ingredient in Enum.GetValues(typeof(Ingredients)))
         {
 
             GUILayout.BeginVertical();
