@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Spell : MonoBehaviour
 { public GameObject FirstHand;
-    private float deleteTimer;
+    private float deleteTimer = 10;
     private bool removeSpell;
     // Start is called before the first frame update
     void Start()
@@ -24,8 +24,19 @@ public class Spell : MonoBehaviour
         {
             deleteTimer-= Time.deltaTime;
         }
-    }
 
+        if (FirstHand.GetComponent<PoseGrab>().SpellRelease == true)
+        {
+            removeSpell = true;
+            
+        }
+        if (FirstHand.GetComponent<PoseGrab>().SpellRelease == false)
+            removeSpell = false;
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        deleteTimer = 10;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (FirstHand != null && other.gameObject != FirstHand)
@@ -61,7 +72,7 @@ public class Spell : MonoBehaviour
     {
         if(other.gameObject == FirstHand)
         {
-            removeSpell = true;
+           // removeSpell = true;
             deleteTimer = 0.1f;
         }
     }
