@@ -12,8 +12,8 @@ public class Customer : MonoBehaviour
     [SerializeField] Material hiddenMat;
     public Sprite Fire, Water, Dark, Light, Earth, Air;
 
-    public Dictionary<LimbsList, Elements> ElementToLimbMapping = new();
-    public Dictionary<Elements, LimbsList> LimbToElementMapping = new();
+    public Dictionary<LimbsList, Elements> LimbToElementMapping = new();
+    public Dictionary<Elements, LimbsList> ElementToLimbMapping = new();
 
     int numberOfPartsAffected;
     int curseStrength;
@@ -51,8 +51,8 @@ public class Customer : MonoBehaviour
                 }
             }
             //Populate dictionary with the mapping created
-            ElementToLimbMapping.Add((LimbsList)internMapping[i], (Elements)i);
-            LimbToElementMapping.Add((Elements)i, (LimbsList)internMapping[i]);
+            LimbToElementMapping.Add((LimbsList)internMapping[i], (Elements)i);
+            ElementToLimbMapping.Add((Elements)i, (LimbsList)internMapping[i]);
         }
 
         //Select which parts to affect randomly
@@ -112,7 +112,7 @@ public class Customer : MonoBehaviour
                     var curse = Type.GetType(_randomCurse.ToString());
                     
                     //Asssign the limb its correspondant values
-                    AffectedLimb _affectedLimb = new AffectedLimb(transform.GetChild(j).gameObject, _randomCurse, (LimbsList)_affectedLimbs[i], ElementToLimbMapping[(LimbsList)_affectedLimbs[i]]);
+                    AffectedLimb _affectedLimb = new AffectedLimb(transform.GetChild(j).gameObject, _randomCurse, (LimbsList)_affectedLimbs[i], LimbToElementMapping[(LimbsList)_affectedLimbs[i]]);
                     
                     //Add the correspondant curse to the limb gamobject
                     _affectedLimb.AffectedLimbGO.AddComponent(curse);
@@ -180,11 +180,35 @@ public class Customer : MonoBehaviour
 
     void GetPotion(Potion potion)
     {
-        foreach (Elements elements in potion.PotionElements)
+        foreach (Elements element in potion.PotionElements)
         {
             //Check which limb is affected by the elements
-
-            //Do de math for each limb depending on the curse that it has (matrix)
+            foreach(var limb in AffectedLimbs)
+            {
+                if(ElementToLimbMapping[element] == limb.LimbName)
+                {
+                    if(limb.AffectedLimbGO.TryGetComponent(out Curse _curse))
+                    {
+                        //Do de math for each limb depending on the curse that it has (matrix)
+                        switch(_curse.CurrentCurse)
+                        {
+                            case Curses.Petrification:
+                                break;
+                            case Curses.Demonitis: 
+                                break;
+                            case Curses.Wolfus:
+                                break;
+                            case Curses.Gassle:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        //Means the targeted limb doesn't have a curse on it. Affect negatively
+                    }
+                    break;
+                }
+            }
         }
 
         ////Check if the potion type has the correct one
