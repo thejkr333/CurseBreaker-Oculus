@@ -197,17 +197,21 @@ public class Customer : MonoBehaviour
                             int _strengthDiff = _potionStrength - curseStrength;
                             if (_strengthDiff >= 0)
                             { 
-                                limb.Cured = true;
                                 //If potion is too strong do something
                                 if(_strengthDiff >= 2)
                                 {
-
+                                    break;
                                 }
+                                limb.Cured = true;
                             }
                             else
                             {
                                 //potion not strong enough
+
+                                //No punishment
                             }
+
+                            //If an ingredient is not needed give the main curse of that ingredient
                         }
                     }
                     else
