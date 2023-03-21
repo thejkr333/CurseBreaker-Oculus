@@ -190,15 +190,31 @@ public class Customer : MonoBehaviour
                     if(limb.AffectedLimbGO.TryGetComponent(out Curse _curse))
                     {
                         //Do de math for each limb depending on the curse that it has (matrix)
-                        float _potionStrength = 0;
+                        int _potionStrength = 0;
                         foreach (Ingredients ing in potion.PotionIngredients)
                         {
                             //_potionStrength += matrix[(int)_curse.CurrentCurse, (int)ing];
+                            int _strengthDiff = _potionStrength - curseStrength;
+                            if (_strengthDiff >= 0)
+                            { 
+                                limb.Cured = true;
+                                //If potion is too strong do something
+                                if(_strengthDiff >= 2)
+                                {
+
+                                }
+                            }
+                            else
+                            {
+                                //potion not strong enough
+                            }
                         }
                     }
                     else
                     {
                         //Means the targeted limb doesn't have a curse on it. Affect negatively
+
+                        //Give the limb a random curse from the main curses of the ingredients
                     }
                     break;
                 }
