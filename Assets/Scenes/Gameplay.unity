@@ -15435,55 +15435,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: OVRCameraRig
       objectReference: {fileID: 0}
-    - target: {fileID: 5048378172261356594, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: poseEventLeft
-      value: 
-      objectReference: {fileID: 588593585951024527}
-    - target: {fileID: 5048378172261356594, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: poseEventRight
-      value: 
-      objectReference: {fileID: 588593585951024526}
-    - target: {fileID: 5048378172261356594, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: currentDrawingHand
-      value: 
-      objectReference: {fileID: 588593585951024528}
-    - target: {fileID: 5048378172261356595, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: LicenseKey
-      value: uAdYrIMG
-      objectReference: {fileID: 0}
-    - target: {fileID: 5048378172261356595, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: LicenseName
-      value: 3Ml7IgA3zQ9VQUlW0EAOhTbK
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
---- !u!114 &588593585951024526 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3387533569962347719, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-  m_PrefabInstance: {fileID: 588593585951024525}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e87ec714765adf49948f4bb1d05ed72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &588593585951024527 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3387533568434931115, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-  m_PrefabInstance: {fileID: 588593585951024525}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e87ec714765adf49948f4bb1d05ed72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &588593585951024528 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 589337289752190284, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-  m_PrefabInstance: {fileID: 588593585951024525}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &915774866843014483
 Transform:
   m_ObjectHideFlags: 0
