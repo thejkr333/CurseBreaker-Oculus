@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 
 public enum LimbsList { Head, LeftArm, RightArm, LeftLeg, RightLeg, Torso }
 [System.Serializable]
-public enum Curses { Wolfus, Gassle, Demonitis, Petrification }
+public enum Curses { Wolfus, Gassle, Demonitis, Petrification,  Porko, Runeblight}
 
 [System.Serializable]
 public class AffectedLimb
