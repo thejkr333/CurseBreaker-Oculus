@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Cursebreaker", menuName = "matrix")]
 public class CursexIngredientMatrix : ScriptableObject, ISerializationCallbackReceiver
 {
-    public Dictionary<Curses, Dictionary<Ingredients, int>> factors;
+    Dictionary<Curses, Dictionary<Ingredients, int>> factors;
     List<CurseIngredientFact> factorIngredients = new();
 
     public void OnAfterDeserialize()
