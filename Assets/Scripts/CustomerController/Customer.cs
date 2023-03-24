@@ -100,37 +100,48 @@ public class Customer : MonoBehaviour
                 }
             }
 
-            //Populate the affectedLimb list with the correspondant affected limbs
-            for (int j = 0; j < transform.childCount - 1; j++)
-            {
-                //if child == limb get GO of child
-                if (transform.GetChild(j).name == ((LimbsList)_affectedLimbs[i]).ToString())
-                {
-                    //Create random curse
-                    int _curseNumber = UnityEngine.Random.Range(0, Enum.GetValues(typeof(Curses)).Length);
-                    Curses _randomCurse = (Curses)_curseNumber;
-                    var curse = Type.GetType(_randomCurse.ToString());
-                    
-                    //Asssign the limb its correspondant values
-                    AffectedLimb _affectedLimb = new AffectedLimb(transform.GetChild(j).gameObject, _randomCurse, (LimbsList)_affectedLimbs[i], LimbToElementMapping[(LimbsList)_affectedLimbs[i]]);
-                    
-                    //Add the correspondant curse to the limb gamobject
-                    _affectedLimb.AffectedLimbGO.AddComponent(curse);
-                    Curse _curse = _affectedLimb.AffectedLimbGO.GetComponent<Curse>();
-                    AffectedLimbs.Add(_affectedLimb);
-                    _curse.ChangeVisuals(_affectedLimb.AffectedLimbGO);
-                    break;
-                }
-            }
+            GiveCurseToLimb((LimbsList)_affectedLimbs[i]);
         }
 
-        //Calculate total strength of the curse
-        foreach (var part in AffectedLimbs)
-        {
-            curseStrength += part.Strength;
-        }
+        CalculateCurseStrength();
 
         SetUpCurse();
+    }
+
+    void CalculateCurseStrength()
+    {
+        curseStrength = UnityEngine.Random.Range(1, 7) * AffectedLimbs.Count / 2;
+    }
+
+    void GiveCurseToLimb(LimbsList limbName, Curses curse = (Curses)(-1))
+    {
+        //Populate the affectedLimb list with the correspondant affected limbs
+        for (int j = 0; j < transform.childCount - 1; j++)
+        {
+            //if child == limb get GO of child
+            if (transform.GetChild(j).name == limbName.ToString())
+            {
+                //Create random curse
+                if((int)curse == -1) 
+                {
+                    int _curseNumber = UnityEngine.Random.Range(0, Enum.GetValues(typeof(Curses)).Length);
+                    curse = (Curses)_curseNumber;
+                }
+
+                //Asssign the limb its correspondant values
+                AffectedLimb _affectedLimb = new AffectedLimb(transform.GetChild(j).gameObject, curse, limbName, LimbToElementMapping[limbName]);
+                AffectedLimbs.Add(_affectedLimb);
+
+                //Add the correspondant curse to the limb gamobject
+                var check = _affectedLimb.AffectedLimbGO.AddComponent(Type.GetType(curse.ToString()));
+                Debug.LogWarning(check.ToString());
+
+                //Change visuals of the affected limb
+                Curse _curse = _affectedLimb.AffectedLimbGO.GetComponent<Curse>();
+                _curse.ChangeVisuals(_affectedLimb.AffectedLimbGO);
+                break;
+            }
+        }
     }
 
     public virtual void SetUpCurse()
@@ -190,75 +201,37 @@ public class Customer : MonoBehaviour
                     if(limb.AffectedLimbGO.TryGetComponent(out Curse _curse))
                     {
                         //Do de math for each limb depending on the curse that it has (matrix)
-                        int _potionStrength = 0;
-                        foreach (Ingredients ing in potion.PotionIngredients)
+                        int _potionStrength = CursexIngredientMatrix.CalculatePotionStrenght(_curse.CurrentCurse, potion.PotionIngredients);
+                        
+                        int _strengthDiff = _potionStrength - curseStrength;
+
+                        if (_strengthDiff > 0)
                         {
-                            //_potionStrength += matrix[(int)_curse.CurrentCurse, (int)ing];
-                            int _strengthDiff = _potionStrength - curseStrength;
-                            if (_strengthDiff >= 0)
-                            { 
-                                //If potion is too strong do something
-                                if(_strengthDiff >= 2)
-                                {
-                                    break;
-                                }
-                                limb.Cured = true;
-                            }
-                            else
-                            {
-                                //potion not strong enough
-
-                                //No punishment
-                            }
-
-                            //If an ingredient is not needed give the main curse of that ingredient
+                            //potion too strong
+                            curseStrength = _strengthDiff;
+                        }
+                        else if (_strengthDiff < 0)
+                        {
+                            //potion too weak
+                            curseStrength = -_strengthDiff;
+                        }
+                        else
+                        {
+                            //perfect potion
+                            limb.Cured = true;
                         }
                     }
                     else
                     {
                         //Means the targeted limb doesn't have a curse on it. Affect negatively
-
                         //Give the limb a random curse from the main curses of the ingredients
+                        Curses _curseToGive = CursexIngredientMatrix.GetRandomCurse(potion.PotionIngredients);
+                        GiveCurseToLimb(ElementToLimbMapping[element], _curseToGive);    
                     }
                     break;
                 }
             }
         }
-
-        ////Check if the potion type has the correct one
-        //if (!potion.PotionTypes.Contains(CurrentCurse))
-        //{
-        //    //Wrong potion
-
-        //    //Reducing your chances to cure the customer - James
-        //    gameObject.GetComponent<BasicChat>().WrongPotion = true;
-        //    gameObject.GetComponent<BasicChat>().ChatTime = 5;
-        //}
-        //else
-        //{
-        //    //If player forgot to put elements in the potion double curse strength
-        //    if (potion.PotionElements.Count == 0)
-        //    {
-        //        TotalStrength *= 2;
-        //        return;
-        //    }
-
-        //    //Go through the potion ingredients getting their elements
-        //    foreach (var ingElement in potion.PotionElements)
-        //    {
-        //        //Go through the affectedLimbs
-        //        foreach (var limb in AffectedLimbs)
-        //        {
-        //            //Check if the limb corresponds with the element in the mapping
-        //            if (limb.LimbName == customer.LimbToElementMapping[ingElement])
-        //            {
-        //                CheckPotionStrength(limb, potion);
-        //                break;
-        //            }                  
-        //        }
-        //    }
-        //}
-        //Chances--;
     }
 
     private void OnTriggerEnter(Collider other)

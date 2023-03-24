@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Petrification : Curse
+public class Runeblight : Curse
 {
     protected void Awake()
     {
-        CurrentCurse = Curses.Petrification;
+        CurrentCurse = Curses.Runeblight;
     }
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,7 @@ public class Petrification : Curse
     {
         base.ChangeVisuals(affectedLimb);
 
-        affectedLimb.GetComponentInChildren<MeshRenderer>().material.color = Color.cyan;
+        affectedLimb.GetComponentInChildren<MeshRenderer>().material.color = Color.black;
     }
 
     // Update is called once per frame

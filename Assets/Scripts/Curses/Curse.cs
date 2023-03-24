@@ -14,7 +14,6 @@ public class AffectedLimb
     public GameObject AffectedLimbGO;
     public Curses Curse;
     public LimbsList LimbName;
-    public int Strength;
     public bool Cured;
     public Elements Element;
 
@@ -24,16 +23,12 @@ public class AffectedLimb
         AffectedLimbGO = _affectedLimbGO;
         Curse = _curse;
         LimbName = _limbName;
-        Strength = UnityEngine.Random.Range(1, 5);
         Cured = false;
     }
 }
 public class Curse : MonoBehaviour
 {
     public Curses CurrentCurse;
-    public int TotalStrength;
-
-    protected Ingredients primaryIngredient, secondaryIngredient, substractiveIngredient;
     
    public virtual void ChangeVisuals(GameObject affectedLimb)
     {

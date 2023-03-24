@@ -1120,11 +1120,11 @@ PrefabInstance:
       objectReference: {fileID: 589337289752190284}
     - target: {fileID: 8060969377196579643, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: LicenseKey
-      value: uAdYrIMG
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8060969377196579643, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: LicenseName
-      value: 3Ml7IgA3zQ9VQUlW0EAOhTbK
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}

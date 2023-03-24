@@ -8,15 +8,14 @@ using UnityEditor;
 public class CurseIngredient_Editor : EditorWindow
 {
     public CursexIngredientMatrix Matrix = null;
-    public int Rows, Columns;
+    private int rows, columns;
 
     int[,] check_values = new int[Enum.GetNames(typeof(Curses)).Length, 4];
     private void OnEnable()
     {      
-        Rows = Enum.GetNames(typeof(Curses)).Length;
-        Columns = Enum.GetNames(typeof(Ingredients)).Length;
+        rows = Enum.GetNames(typeof(Curses)).Length;
+        columns = Enum.GetNames(typeof(Ingredients)).Length;
     }
-
 
     [MenuItem("Cursebreaker/matrix")]
     static void Init()
@@ -31,13 +30,6 @@ public class CurseIngredient_Editor : EditorWindow
         if (Matrix == null) return;
 
         Ingredients();
-        //Curses_display();
-        //Grid();
-    }
-
-    private void CurseName(int i)
-    {
-        GUILayout.Label(Curses.Gassle.ToString());
     }
 
     private void Ingredients()
@@ -45,8 +37,7 @@ public class CurseIngredient_Editor : EditorWindow
         check_values = new int[Enum.GetNames(typeof(Curses)).Length, 4];
         EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
         CursesDisplay();
-
-        
+      
         foreach (Ingredients ingredient in Enum.GetValues(typeof(Ingredients)))
         {
             EditorGUILayout.BeginVertical();

@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Cursebreaker", menuName = "matrix")]
 public class CursexIngredientMatrix : ScriptableObject, ISerializationCallbackReceiver
 {
-    Dictionary<Curses, Dictionary<Ingredients, int>> factors;
+    static Dictionary<Curses, Dictionary<Ingredients, int>> factors;
     List<CurseIngredientFact> factorIngredients = new();
 
     public void OnAfterDeserialize()
@@ -12,7 +14,7 @@ public class CursexIngredientMatrix : ScriptableObject, ISerializationCallbackRe
         factors = new();
         foreach (var fact in factorIngredients)
         {
-            if(!factors.ContainsKey(fact.curse))
+            if (!factors.ContainsKey(fact.curse))
             {
                 factors.Add(fact.curse, new Dictionary<Ingredients, int>());
             }
@@ -49,6 +51,45 @@ public class CursexIngredientMatrix : ScriptableObject, ISerializationCallbackRe
 
         if (!factors[curse].ContainsKey(ingredient)) factors[curse].Add(ingredient, value);
         else factors[curse][ingredient] = value;
+    }
+
+    public static int CalculatePotionStrenght(Curses curse, List<Ingredients> ingredients)
+    {
+        int _potionStrength = 0;
+        foreach (Ingredients ing in ingredients)
+        {
+            switch (factors[curse][ing])
+            {
+                case 1:
+                    _potionStrength += 5;
+                    break;
+                case 2:
+                    _potionStrength += 2;
+                    break;
+                case 3:
+                    _potionStrength -= 1;
+                    break;
+            }
+            //If an ingredient is not needed give the main curse of that ingredient
+        }
+        return 0;
+    }
+
+    public static Curses GetRandomCurse(List<Ingredients> ingredients)
+    {
+        int _random = Random.Range(0, ingredients.Count);
+        Curses _curse = Curses.Wolfus;
+
+        foreach (var fact in factors)
+        {
+            if (fact.Value[ingredients[_random]] == 1)
+            {
+                _curse = fact.Key;
+                break;
+            }
+        }
+
+        return _curse;
     }
 }
 
