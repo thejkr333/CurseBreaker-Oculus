@@ -8,14 +8,13 @@ using UnityEditor;
 public class CurseIngredient_Editor : EditorWindow
 {
     public CursexIngredientMatrix Matrix = null;
-    public int rows, colloms;
+    public int Rows, Columns;
 
-
+    int[,] check_values = new int[Enum.GetNames(typeof(Curses)).Length, 4];
     private void OnEnable()
-    {
-        
-        rows = Enum.GetNames(typeof(Curses)).Length;
-        colloms = Enum.GetNames(typeof(Ingredients)).Length;
+    {      
+        Rows = Enum.GetNames(typeof(Curses)).Length;
+        Columns = Enum.GetNames(typeof(Ingredients)).Length;
     }
 
 
@@ -31,10 +30,6 @@ public class CurseIngredient_Editor : EditorWindow
         Matrix = (CursexIngredientMatrix)EditorGUILayout.ObjectField(Matrix, typeof(CursexIngredientMatrix), true);
         if (Matrix == null) return;
 
-        try { Debug.Log(Matrix.matrixData[0,0].value); }
-
-        catch { Debug.Log("could not get the matrix data"); }
-
         Ingredients();
         //Curses_display();
         //Grid();
@@ -47,40 +42,62 @@ public class CurseIngredient_Editor : EditorWindow
 
     private void Ingredients()
     {
-        int i = 0;
-        GUILayout.BeginHorizontal();
-        Curses_display();
+        check_values = new int[Enum.GetNames(typeof(Curses)).Length, 4];
+        EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
+        CursesDisplay();
 
+        
         foreach (Ingredients ingredient in Enum.GetValues(typeof(Ingredients)))
         {
-
-            GUILayout.BeginVertical();
+            EditorGUILayout.BeginVertical();
             GUILayout.Label(ingredient.ToString());
-            foreach(Curses c in Enum.GetValues(typeof(Curses)))
-                Cell((int)c, (int)ingredient);
-            GUILayout.EndVertical();
+            foreach(Curses curse in Enum.GetValues(typeof(Curses)))
+                Cell(curse, ingredient);
+            EditorGUILayout.EndVertical();
         }
 
-        GUILayout.EndHorizontal();
+        EditorGUILayout.EndHorizontal();
+
+        Check();
     }
 
-    private void Curses_display()
+    private void Check()
     {
-        GUILayout.BeginVertical();
+        for (int rows = 0; rows < check_values.GetLength(0); rows++)
+        {
+            for (int i = 1; i < check_values.GetLength(1); i++)
+            {
+                if(check_values[rows, i] > 1)
+                {
+                    string _warning = "Multiple values of " + i + " repeated in curse: " + ((Curses)rows).ToString();
+                    EditorGUILayout.HelpBox(_warning, MessageType.Warning);
+                }
+            }
+        }
+    }
+
+    private void CursesDisplay()
+    {
+        EditorGUILayout.BeginVertical();
 
         GUILayout.Space(20f);
 
         foreach (Curses c in Enum.GetValues(typeof(Curses)))
             GUILayout.Label(c.ToString());
 
-        GUILayout.EndVertical();
+        EditorGUILayout.EndVertical();
     }
 
-    public void Cell(int X, int Y)
+    public void Cell(Curses curse, Ingredients ingredient)
     {
-        //Matrix.matrixData[X, Y].value = int.Parse(GUILayout.TextField(Matrix.matrixData[X, Y].value.ToString()));
-        GUILayout.Label("0");
-        Debug.Log("did it");
+        EditorGUI.BeginChangeCheck();
+        int _new_value = EditorGUILayout.IntField(Matrix.GetValue(curse, ingredient));
+        if(EditorGUI.EndChangeCheck())
+        {
+            Matrix.SetValue(curse, ingredient, _new_value);
+        }
+
+        check_values[(int)curse, Matrix.GetValue(curse, ingredient)]++;
     }
 
 
