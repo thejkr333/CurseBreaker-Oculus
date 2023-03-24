@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7397303396164874279, guid: dd618a3cdc56a174aa6c32e132a687eb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7397303396164874279, guid: dd618a3cdc56a174aa6c32e132a687eb, type: 3}
       propertyPath: m_grabPoints.Array.size
       value: 1
       objectReference: {fileID: 0}
