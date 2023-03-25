@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2320740121434764957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2320740121434764958}
+  - component: {fileID: 2320740121434764959}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2320740121434764958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2320740121434764957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2320740121434764959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2320740121434764957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b599374984917e44ca487260b2a46ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: magic_drawing
+    isMusic: 0
+    clip: {fileID: 8300000, guid: 59e77cca3dc61ac488e43d07ded101ad, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 1
+  - name: open_door
+    isMusic: 0
+    clip: {fileID: 8300000, guid: 472bf23e2ee85c84195bcdc55432f848, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: close_door
+    isMusic: 0
+    clip: {fileID: 8300000, guid: 889976cb3afe1b0479d79af1a848bf7c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: boiling_water
+    isMusic: 0
+    clip: {fileID: 8300000, guid: 9955e09e70126494fa10f6393ac3e3de, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+  - name: fire_crackling
+    isMusic: 0
+    clip: {fileID: 8300000, guid: 8e1031395a0e46945a3453d488e81805, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+  - name: splash
+    isMusic: 0
+    clip: {fileID: 8300000, guid: a48a2376ab0fc8947a7e48030be7f1ab, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: thud
+    isMusic: 0
+    clip: {fileID: 8300000, guid: 5852f75a6eeec8845bb7c00e871292d5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  musicVolume: 1
+  sfxVolume: 1
