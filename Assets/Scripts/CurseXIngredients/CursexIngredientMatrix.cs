@@ -1,13 +1,12 @@
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Cursebreaker", menuName = "matrix")]
 public class CursexIngredientMatrix : ScriptableObject, ISerializationCallbackReceiver
 {
     static Dictionary<Curses, Dictionary<Ingredients, int>> factors;
-    List<CurseIngredientFact> factorIngredients = new();
+    [SerializeField] List<CurseIngredientFact> factorIngredients = new();
 
     public void OnAfterDeserialize()
     {

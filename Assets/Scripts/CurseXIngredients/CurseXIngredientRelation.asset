@@ -12,3 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66c74c35f1938e4588e3cb5eaa465ba, type: 3}
   m_Name: CurseXIngredientRelation
   m_EditorClassIdentifier: 
+  factorIngredients:
+  - curse: 0
+    ingredient: 2
+    value: 1
+  - curse: 0
+    ingredient: 5
+    value: 2
+  - curse: 5
+    ingredient: 5
+    value: 2
+  - curse: 3
+    ingredient: 0
+    value: 3
+  - curse: 1
+    ingredient: 5
+    value: 0
