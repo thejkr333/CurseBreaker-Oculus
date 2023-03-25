@@ -134,7 +134,6 @@ public class Customer : MonoBehaviour
 
                 //Add the correspondant curse to the limb gamobject
                 var check = _affectedLimb.AffectedLimbGO.AddComponent(Type.GetType(curse.ToString()));
-                Debug.LogWarning(check.ToString());
 
                 //Change visuals of the affected limb
                 Curse _curse = _affectedLimb.AffectedLimbGO.GetComponent<Curse>();

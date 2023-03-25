@@ -88,6 +88,7 @@ public class CurseIngredient_Editor : EditorWindow
             Matrix.SetValue(curse, ingredient, _new_value);
         }
 
+        EditorUtility.SetDirty(Matrix);
         check_values[(int)curse, Matrix.GetValue(curse, ingredient)]++;
     }
 
