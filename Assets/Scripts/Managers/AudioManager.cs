@@ -5,33 +5,33 @@ using System.Collections;
 [System.Serializable]
 public class Sound
 {
-    public string name;
-    public bool isMusic;
-    public AudioClip clip;
+    public string Name;
+    public bool IsMusic;
+    public AudioClip Clip;
 
     [Range(0f, 1f)]
-    public float volume = 1f;
+    public float Volume = 1f;
 
     [Range(-3f, 3f)]
-    public float pitch = 1f;
+    public float Pitch = 1f;
 
-    public bool loop = false;
+    public bool Loop = false;
 }
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
+    public static AudioManager Instance;
 
-    public List<Sound> sounds = new List<Sound>();
+    public List<Sound> Sounds = new List<Sound>();
 
     private Dictionary<string, AudioSource> soundSources = new Dictionary<string, AudioSource>();
     private AudioSource musicSource;
 
     [Range(0f, 1f)]
-    public float musicVolume = 1f;
+    public float MusicVolume = 1f;
 
     [Range(0f, 1f)]
-    public float sfxVolume = 1f;
+    public float SfxVolume = 1f;
 
     private float fadeDuration = 1f;
 
@@ -39,9 +39,9 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -51,23 +51,23 @@ public class AudioManager : MonoBehaviour
         }
 
         // Load volume levels from PlayerPrefs
-        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        MusicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        SfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
 
         // Create AudioSources for each Sound object
-        foreach (Sound sound in sounds)
+        foreach (Sound sound in Sounds)
         {
-            AudioSource source = gameObject.AddComponent<AudioSource>();
-            source.clip = sound.clip;
-            source.volume = sound.volume;
-            source.pitch = sound.pitch;
-            source.playOnAwake = false;
-            source.loop = sound.loop;
-            soundSources[sound.name] = source;
+            AudioSource _source = gameObject.AddComponent<AudioSource>();
+            _source.clip = sound.Clip;
+            _source.volume = sound.Volume;
+            _source.pitch = sound.Pitch;
+            _source.playOnAwake = false;
+            _source.loop = sound.Loop;
+            soundSources[sound.Name] = _source;
 
-            if (sound.isMusic)
+            if (sound.IsMusic)
             {
-                musicSource = source;
+                musicSource = _source;
                 musicSource.loop = true;
             }
         }
@@ -77,10 +77,10 @@ public class AudioManager : MonoBehaviour
     {
         if (soundSources.ContainsKey(name))
         {
-            AudioSource source = soundSources[name];
-            source.transform.position = position;
-            source.volume = sfxVolume;
-            source.Play();
+            AudioSource _source = soundSources[name];
+            _source.transform.position = position;
+            _source.volume = SfxVolume;
+            _source.Play();
         }
         else
         {
@@ -103,7 +103,7 @@ public class AudioManager : MonoBehaviour
                 musicSource.clip = soundSources[name].clip;
                 musicSource.volume = 0f;
                 musicSource.Play();
-                StartCoroutine(FadeAudio(musicSource, musicVolume, fadeDuration));
+                StartCoroutine(FadeAudio(musicSource, MusicVolume, fadeDuration));
             }
             else if (musicSource.clip != soundSources[name].clip)
             {
@@ -112,7 +112,7 @@ public class AudioManager : MonoBehaviour
                     musicSource.clip = soundSources[name].clip;
                     musicSource.volume = 0f;
                     musicSource.Play();
-                    StartCoroutine(FadeAudio(musicSource, musicVolume, fadeDuration));
+                    StartCoroutine(FadeAudio(musicSource, MusicVolume, fadeDuration));
                 }));
             }
         }
@@ -124,28 +124,28 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator FadeOutMusic(System.Action callback = null)
     {
-        float startVolume = musicSource.volume;
+        float _startVolume = musicSource.volume;
 
         while (musicSource.volume > 0)
         {
-            musicSource.volume -= startVolume * Time.deltaTime / fadeDuration;
+            musicSource.volume -= _startVolume * Time.deltaTime / fadeDuration;
             yield return null;
         }
 
         musicSource.Stop();
-        musicSource.volume = startVolume;
+        musicSource.volume = _startVolume;
 
         if (callback != null) callback();
     }
 
     IEnumerator FadeAudio(AudioSource source, float duration, float targetVolume)
     {
-        float startVolume = source.volume;
+        float _startVolume = source.volume;
 
         // Fade out current music
         while (source.volume > 0)
         {
-            source.volume -= startVolume * Time.deltaTime / duration;
+            source.volume -= _startVolume * Time.deltaTime / duration;
             yield return null;
         }
 
@@ -167,7 +167,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
-        musicVolume = volume;
+        MusicVolume = volume;
 
         if (musicSource != null)
         {
@@ -181,7 +181,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetSFXVolume(float volume)
     {
-        sfxVolume = volume;
+        SfxVolume = volume;
 
         // Update the volume of all existing sound sources
         foreach (AudioSource source in soundSources.Values)

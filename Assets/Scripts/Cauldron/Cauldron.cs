@@ -1,9 +1,16 @@
+using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Cauldron : MonoBehaviour
 {
+
+    private void Awake()
+    {
+        AudioManager.Instance.PlaySound("fire_crackling", transform.position);
+    }
+
     public List<Ingredients> IngredientsInCauldron = new ();
     //[SerializeField] Recipe[] recipes;
 

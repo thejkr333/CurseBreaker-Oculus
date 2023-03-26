@@ -6,10 +6,11 @@ public class IngredientSpawner : MonoBehaviour
 {
     [SerializeField] GameObject ingredientPrefab;
     [SerializeField] GameObject inside;
-    // Start is called before the first frame update
-    void Start()
-    {
 
+    Vector3 scaleObj;
+    private void Awake()
+    {
+        scaleObj = inside.transform.localScale;
     }
 
     // Update is called once per frame
@@ -20,6 +21,7 @@ public class IngredientSpawner : MonoBehaviour
         {
             GameObject clon = Instantiate(ingredientPrefab);
             clon.transform.position = transform.position;
+            clon.transform.localScale = scaleObj;
             inside = clon;
         }
     }

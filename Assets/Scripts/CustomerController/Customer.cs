@@ -16,7 +16,7 @@ public class Customer : MonoBehaviour
     public Dictionary<Elements, LimbsList> ElementToLimbMapping = new();
 
     int numberOfPartsAffected;
-    int curseStrength;
+    [SerializeField] int curseStrength;
 
     protected bool cured;
     public int Chances = 3;

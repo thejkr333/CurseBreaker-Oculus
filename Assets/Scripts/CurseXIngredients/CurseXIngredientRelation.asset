@@ -19,12 +19,51 @@ MonoBehaviour:
   - curse: 0
     ingredient: 5
     value: 2
+  - curse: 0
+    ingredient: 1
+    value: 3
   - curse: 5
     ingredient: 5
+    value: 1
+  - curse: 5
+    ingredient: 1
     value: 2
+  - curse: 5
+    ingredient: 0
+    value: 3
   - curse: 3
     ingredient: 0
+    value: 2
+  - curse: 3
+    ingredient: 1
+    value: 1
+  - curse: 3
+    ingredient: 4
     value: 3
   - curse: 1
     ingredient: 5
-    value: 0
+    value: 3
+  - curse: 1
+    ingredient: 3
+    value: 1
+  - curse: 1
+    ingredient: 2
+    value: 2
+  - curse: 2
+    ingredient: 0
+    value: 1
+  - curse: 2
+    ingredient: 4
+    value: 2
+  - curse: 2
+    ingredient: 3
+    value: 3
+  - curse: 4
+    ingredient: 4
+    value: 1
+  - curse: 4
+    ingredient: 3
+    value: 2
+  - curse: 4
+    ingredient: 2
+    value: 3
