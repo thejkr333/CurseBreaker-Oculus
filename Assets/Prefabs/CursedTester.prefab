@@ -149,6 +149,8 @@ MonoBehaviour:
   Wind: 0
   Water: 0
   Void: 0
+  limb_element: 0
+  isCursed: 0
 --- !u!1 &2716328388862551011
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +203,8 @@ MonoBehaviour:
   Wind: 0
   Water: 0
   Void: 0
+  limb_element: 0
+  isCursed: 0
 --- !u!1 &2716328388919713000
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +257,8 @@ MonoBehaviour:
   Wind: 0
   Water: 0
   Void: 0
+  limb_element: 0
+  isCursed: 0
 --- !u!1 &2716328389188959611
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +311,8 @@ MonoBehaviour:
   Wind: 0
   Water: 0
   Void: 0
+  limb_element: 0
+  isCursed: 0
 --- !u!1 &2716328389239195204
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +559,8 @@ MonoBehaviour:
   Wind: 0
   Water: 0
   Void: 0
+  limb_element: 0
+  isCursed: 0
 --- !u!1 &2716328389385203043
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,6 +710,8 @@ MonoBehaviour:
   Wind: 0
   Water: 0
   Void: 0
+  limb_element: 0
+  isCursed: 0
 --- !u!1 &2716328389931783101
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667beffd7c1445e4782af8cdce9ea74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GM: {fileID: 0}
   CurseCount: 0
   CursedLimbCount: 0
   PrevLimbInt: 0
@@ -858,6 +871,7 @@ MonoBehaviour:
   WhatCurse: 000000000000000000000000000000000000000000000000
   FinalCurseCheck: 0
   CheckFinished: 0
+  isCured: 0
   Limbs:
   - {fileID: 2716328389553126872}
   - {fileID: 2716328389315660179}
