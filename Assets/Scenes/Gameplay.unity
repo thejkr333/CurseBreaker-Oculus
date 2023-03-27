@@ -16471,26 +16471,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
-      propertyPath: Sounds.Array.data[0].Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
-      propertyPath: Sounds.Array.data[0].Name
-      value: fire_crackling
-      objectReference: {fileID: 0}
-    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
-      propertyPath: Sounds.Array.data[1].Name
-      value: boiling_water
-      objectReference: {fileID: 0}
-    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
-      propertyPath: Sounds.Array.data[2].Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
-      propertyPath: Sounds.Array.data[1].RolloffMode
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
 --- !u!23 &2323550959122743721
