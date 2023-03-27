@@ -16,6 +16,12 @@ public class Sound
     public float Pitch = 1f;
 
     public bool Loop = false;
+
+    [Range(0,1)]
+    public float SpatialBlend = .5f;
+
+    public float MaxDistance = 500f;
+    public AudioRolloffMode RolloffMode = AudioRolloffMode.Logarithmic;
 }
 
 public class AudioManager : MonoBehaviour
@@ -73,7 +79,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(string name, Vector3 position)
+    public void PlaySoundStatic(string name, Vector3 position)
     {
         if (soundSources.ContainsKey(name))
         {
@@ -88,6 +94,58 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlaySoundDynamic(string name, GameObject followObject = null)
+    {
+        if (soundSources.ContainsKey(name))
+        {
+            Sound _sound = Sounds.Find(s => s.Name == name);
+
+            if (_sound == null)
+            {
+                Debug.LogWarning("AudioManager: Sound not found - " + name);
+                return;
+            }
+
+            AudioSource source = followObject != null ? followObject.AddComponent<AudioSource>() : gameObject.AddComponent<AudioSource>();
+            source.clip = _sound.Clip;
+            source.volume = SfxVolume;
+            source.pitch = _sound.Pitch;
+            source.loop = _sound.Loop;
+            source.spatialBlend = _sound.SpatialBlend;
+            source.maxDistance = _sound.MaxDistance;
+            source.rolloffMode = _sound.RolloffMode;
+            source.Play();
+
+            if (!_sound.Loop)
+            {
+                Destroy(source, _sound.Clip.length);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager: Sound not found - " + name);
+        }
+    }
+
+    public void StopSound(string name)
+    {
+        if (soundSources.ContainsKey(name))
+        {
+            AudioSource _source = soundSources[name];
+
+            if (_source.isPlaying)
+            {
+                _source.Stop();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager: Sound not found - " + name);
+        }
+    }
+
+
+    #region Music
     public void PlayMusic(string name)
     {
         if (musicSource == null)
@@ -164,6 +222,7 @@ public class AudioManager : MonoBehaviour
 
         source.volume = targetVolume;
     }
+    #endregion
 
     public void SetMusicVolume(float volume)
     {

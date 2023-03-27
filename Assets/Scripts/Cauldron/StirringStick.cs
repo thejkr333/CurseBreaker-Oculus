@@ -56,6 +56,8 @@ public class StirringStick : MonoBehaviour
             {
                 animator.enabled = true;
                 stirring = true;
+
+                AudioManager.Instance.PlaySoundStatic("boiling_water", transform.position);
             }
         }
     }
@@ -82,6 +84,7 @@ public class StirringStick : MonoBehaviour
         lapCounter++;
         if(lapCounter >= 2)
         {
+            AudioManager.Instance.StopSound("boiling_water");
             animator.enabled = true;
             stirring = false;
             lapCounter = 0;

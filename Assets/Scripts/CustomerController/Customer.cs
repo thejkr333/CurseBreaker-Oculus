@@ -218,6 +218,7 @@ public class Customer : MonoBehaviour
                         {
                             //perfect potion
                             limb.Cured = true;
+                            limb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
                         }
                     }
                     else

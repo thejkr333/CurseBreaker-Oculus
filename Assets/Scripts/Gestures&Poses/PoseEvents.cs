@@ -39,13 +39,14 @@ public class PoseEvents : MonoBehaviour
     //private GradientAlphaKey[] Alpha;
     private Color Blue, White;
     public bool recordingGesture;
+
+    GameObject drawingFingerTip;
     void Start()
     {
         poseGrab = handSkeleton.GetComponent<PoseGrab>();
         lineRenderer = GetComponent<LineRenderer>();
         hiddenGO.SetActive(false);
         lineRenderer.enabled = false;
-
 
         //Defining colours and alpha for the line here
         //it is only able to understand it as an array, so to change it, it needs to be lerped individuallly
@@ -96,6 +97,8 @@ public class PoseEvents : MonoBehaviour
         {
             if (bone.Id == OVRSkeleton.BoneId.Hand_MiddleTip)
             {
+                drawingFingerTip = bone.Transform.gameObject;
+
                 trailRenderer = bone.Transform.gameObject.AddComponent<TrailRenderer>();
                 trailRenderer.material = paintMaterial;
                 paintMaterial.color = Color.white;
@@ -368,6 +371,8 @@ public class PoseEvents : MonoBehaviour
         
         if (CurrentPose != Poses.SpellSelect) StartNewPose(CurrentPose);
 
+        AudioManager.Instance.PlaySoundDynamic("magic_drawing", drawingFingerTip.gameObject);
+
         CurrentPose = Poses.SpellSelect;
 
         if (trailRenderer == null) return;
@@ -380,7 +385,8 @@ public class PoseEvents : MonoBehaviour
     }
     void EndSpellSelect()
     {
-        
+        AudioManager.Instance.StopSound("magic_drawing");
+
         recordingGesture = false;
 
         if (trailRenderer == null) return;

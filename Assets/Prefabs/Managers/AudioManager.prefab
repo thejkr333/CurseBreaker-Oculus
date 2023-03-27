@@ -51,5 +51,26 @@ MonoBehaviour:
     Volume: 1
     Pitch: 1
     Loop: 1
+    SpatialBlend: 0.5
+    MaxDistance: 500
+    RolloffMode: 0
+  - Name: boiling_water
+    IsMusic: 0
+    Clip: {fileID: 8300000, guid: 9955e09e70126494fa10f6393ac3e3de, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 1
+    SpatialBlend: 0.5
+    MaxDistance: 500
+    RolloffMode: 0
+  - Name: magic_drawing
+    IsMusic: 0
+    Clip: {fileID: 8300000, guid: 59e77cca3dc61ac488e43d07ded101ad, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 1
+    SpatialBlend: 0.5
+    MaxDistance: 500
+    RolloffMode: 0
   MusicVolume: 1
   SfxVolume: 1

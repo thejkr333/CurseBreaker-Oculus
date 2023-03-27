@@ -69,9 +69,8 @@ public class CursexIngredientMatrix : ScriptableObject, ISerializationCallbackRe
                     _potionStrength -= 1;
                     break;
             }
-            //If an ingredient is not needed give the main curse of that ingredient
         }
-        return 0;
+        return _potionStrength;
     }
 
     public static Curses GetRandomCurse(List<Ingredients> ingredients)

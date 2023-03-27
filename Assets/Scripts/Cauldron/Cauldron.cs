@@ -8,7 +8,7 @@ public class Cauldron : MonoBehaviour
 
     private void Awake()
     {
-        AudioManager.Instance.PlaySound("fire_crackling", transform.position);
+        AudioManager.Instance.PlaySoundStatic("fire_crackling", transform.position);
     }
 
     public List<Ingredients> IngredientsInCauldron = new ();

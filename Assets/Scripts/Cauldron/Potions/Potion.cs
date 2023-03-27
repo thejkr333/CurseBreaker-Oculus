@@ -12,7 +12,7 @@ public class Potion : MonoBehaviour
     public int Strength;
     public void CreatePotion(List<Ingredients> ingredients)
     {
-        PotionIngredients = ingredients;
+        PotionIngredients = new List<Ingredients>(ingredients);
     }
 
     private void OnTriggerEnter(Collider collision)
