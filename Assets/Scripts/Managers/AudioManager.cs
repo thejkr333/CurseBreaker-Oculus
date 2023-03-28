@@ -6,7 +6,6 @@ using System.Collections;
 public class Sound
 {
     public string Name;
-    public bool IsMusic;
     public AudioClip Clip;
 
     [Range(0f, 1f)]
@@ -24,13 +23,22 @@ public class Sound
     public AudioRolloffMode RolloffMode = AudioRolloffMode.Logarithmic;
 }
 
+[System.Serializable]
+public class MusicTrack
+{
+    public string Name;
+    public AudioClip Clip;
+}
+
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
     public List<Sound> Sounds = new List<Sound>();
+    public List<MusicTrack> Music = new List<MusicTrack>();
 
     private Dictionary<string, AudioSource> soundSources = new Dictionary<string, AudioSource>();
+    private Dictionary<string, AudioClip> musicClips = new Dictionary<string, AudioClip>();
     private AudioSource musicSource;
 
     [Range(0f, 1f)]
@@ -39,7 +47,7 @@ public class AudioManager : MonoBehaviour
     [Range(0f, 1f)]
     public float SfxVolume = 1f;
 
-    private float fadeDuration = 1f;
+    [SerializeField] private float fadeDuration = 1f;
 
     private bool isMuted;
 
@@ -70,15 +78,25 @@ public class AudioManager : MonoBehaviour
             _source.playOnAwake = false;
             _source.loop = sound.Loop;
             soundSources[sound.Name] = _source;
-
-            if (sound.IsMusic)
-            {
-                musicSource = _source;
-                musicSource.loop = true;
-            }
         }
+
+        // Create AudioSources for each Sound object
+        foreach (MusicTrack music in Music)
+        {
+            musicClips[music.Name] = music.Clip;
+        }
+
+        // Initialize musicSource
+        musicSource = gameObject.AddComponent<AudioSource>();
+        musicSource.loop = true; 
+        musicSource.volume = 1f; 
+        musicSource.pitch = 1f;
+
+        string _startingMusic = Music[Random.Range(1, Music.Count)].Name;
+        PlayMusic(_startingMusic);
     }
 
+    #region SFX
     public void PlaySoundStatic(string name, Vector3 position)
     {
         if (soundSources.ContainsKey(name))
@@ -143,34 +161,26 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("AudioManager: Sound not found - " + name);
         }
     }
-
+    #endregion
 
     #region Music
     public void PlayMusic(string name)
     {
-        if (musicSource == null)
-        {
-            Debug.LogWarning("AudioManager: Music source not found.");
-            return;
-        }
-
-        if (soundSources.ContainsKey(name))
+        if (musicClips.ContainsKey(name)) 
         {
             if (musicSource.clip == null)
             {
-                musicSource.clip = soundSources[name].clip;
-                musicSource.volume = 0f;
-                musicSource.Play();
-                StartCoroutine(FadeAudio(musicSource, MusicVolume, fadeDuration));
+                musicSource.clip = musicClips[name];
+                StartCoroutine(FadeAudio(musicSource, MusicVolume));
+                StartCoroutine(PlayNextSong(name));
             }
-            else if (musicSource.clip != soundSources[name].clip)
+            else if (musicSource.clip != musicClips[name])
             {
                 StartCoroutine(FadeOutMusic(() =>
                 {
-                    musicSource.clip = soundSources[name].clip;
-                    musicSource.volume = 0f;
-                    musicSource.Play();
-                    StartCoroutine(FadeAudio(musicSource, MusicVolume, fadeDuration));
+                    musicSource.clip = musicClips[name];
+                    StartCoroutine(PlayNextSong(name));
+                    StartCoroutine(FadeAudio(musicSource, MusicVolume));
                 }));
             }
         }
@@ -196,31 +206,34 @@ public class AudioManager : MonoBehaviour
         if (callback != null) callback();
     }
 
-    IEnumerator FadeAudio(AudioSource source, float duration, float targetVolume)
+    IEnumerator FadeAudio(AudioSource source, float targetVolume)
     {
-        float _startVolume = source.volume;
-
-        // Fade out current music
-        while (source.volume > 0)
-        {
-            source.volume -= _startVolume * Time.deltaTime / duration;
-            yield return null;
-        }
-
-        source.Stop();
-
         // Fade in new music
-        source.clip = soundSources[name].clip;
         source.volume = 0f;
         source.Play();
-
-        while (source.volume < targetVolume)
+        while (Mathf.Abs(source.volume - targetVolume) > 0.01f)
         {
-            source.volume += Time.deltaTime / duration;
+            source.volume += Time.deltaTime / fadeDuration;
             yield return null;
         }
 
         source.volume = targetVolume;
+    }
+
+    IEnumerator PlayNextSong(string currentSong)
+    {
+        float timeForNextSong = musicClips[currentSong].length - fadeDuration * 2f;
+
+        yield return new WaitForSeconds(timeForNextSong);
+
+        string _newSong = "";
+        do
+        {
+            _newSong = Music[Random.Range(1, Music.Count)].Name;
+        }
+        while (_newSong == currentSong);
+
+        PlayMusic(_newSong);
     }
     #endregion
 

@@ -103,12 +103,14 @@ public class SliderController : MonoBehaviour
                         textGO.GetComponent<TextMeshProUGUI>().text = "SUCCESS";
                         textGO.GetComponent<TextMeshProUGUI>().color = Color.green;
                         successBool = true;
+                        AudioManager.Instance.PlaySoundStatic("success", transform.position);
                     }
                     else
                     {
                         textGO.GetComponent<TextMeshProUGUI>().text = "FAIL";
                         textGO.GetComponent<TextMeshProUGUI>().color = Color.red;
                         successBool = false;
+                        AudioManager.Instance.PlaySoundStatic("fail", transform.position);
                     }
 
                     //invoke an extern method to tell the caller the result

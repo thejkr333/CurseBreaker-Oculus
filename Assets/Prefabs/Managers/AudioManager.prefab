@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sounds:
   - Name: fire_crackling
-    IsMusic: 0
     Clip: {fileID: 8300000, guid: 8e1031395a0e46945a3453d488e81805, type: 3}
     Volume: 1
     Pitch: 1
@@ -55,7 +54,6 @@ MonoBehaviour:
     MaxDistance: 500
     RolloffMode: 0
   - Name: boiling_water
-    IsMusic: 0
     Clip: {fileID: 8300000, guid: 9955e09e70126494fa10f6393ac3e3de, type: 3}
     Volume: 1
     Pitch: 1
@@ -64,7 +62,6 @@ MonoBehaviour:
     MaxDistance: 500
     RolloffMode: 0
   - Name: magic_drawing
-    IsMusic: 0
     Clip: {fileID: 8300000, guid: 59e77cca3dc61ac488e43d07ded101ad, type: 3}
     Volume: 1
     Pitch: 1
@@ -72,5 +69,35 @@ MonoBehaviour:
     SpatialBlend: 0.5
     MaxDistance: 500
     RolloffMode: 0
+  - Name: success
+    Clip: {fileID: 8300000, guid: a13bb15e8aea08d4a821dbe8ac890f70, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0.5
+    MaxDistance: 500
+    RolloffMode: 0
+  - Name: fail
+    Clip: {fileID: 8300000, guid: 9f401e9773f9dc54fbc88d080c92b4cf, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0.5
+    MaxDistance: 500
+    RolloffMode: 0
+  Music:
+  - Name: menu_music_1
+    Clip: {fileID: 8300000, guid: f490f31184c9f7f42b7e4310eff76ed9, type: 3}
+  - Name: gameplay_music_1
+    Clip: {fileID: 8300000, guid: 0e7cec658aa5f104c9a40cb5ca21a164, type: 3}
+  - Name: gameplay_music_2
+    Clip: {fileID: 8300000, guid: c9ac01d0fa18ec4498913ae749474610, type: 3}
+  - Name: gameplay_music_3
+    Clip: {fileID: 8300000, guid: bf0a0b33831c74148bf489af419b8322, type: 3}
+  - Name: gameplay_music_4
+    Clip: {fileID: 8300000, guid: d7861f6d2f2c6de4bbd4531962618b4a, type: 3}
+  - Name: gameplay_music_5
+    Clip: {fileID: 8300000, guid: 46939e7649601ee45b206b603bf32dd0, type: 3}
   MusicVolume: 1
   SfxVolume: 1
+  fadeDuration: 10
