@@ -4,31 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
+    public static GameManager Instance;
 
     public int Gold, Rent, RentIncrement, PaymentIncrement;
-    public static GameManager Instance;
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] Transform parla;
+
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
             Destroy(this);
         }
-        else 
+        else
         {
             Instance = this;
-                
-                
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
-
 
     public void RentIncrease()
     {
@@ -46,15 +39,10 @@ public class GameManager : MonoBehaviour
             Gold -= Rent;
         }
     }
+
+    public void DestroyGrabbedThings(GameObject obj)
+    {
+        obj.transform.position = parla.position;
+        Destroy(obj, 1f);
+    }
 }
-/* ----PSUDODODE--------
- * 
- * potion(element, ingredient)
- *     if (element == limb_element) continue;
- *     if (ingredient == curse.needed_ingredient) 
- *         isCured = true;
- * 
- * 
- * 
- * 
- */
