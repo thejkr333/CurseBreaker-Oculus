@@ -6,8 +6,6 @@ using System;
 
 public class GestureEvents : MonoBehaviour
 {
-    [SerializeField] TMP_Text gestureText;
-
     [SerializeField] List<string> gestureNames = new();
 
     [SerializeField] GameObject leftHand, rightHand;
@@ -15,7 +13,6 @@ public class GestureEvents : MonoBehaviour
     OVRGrabber leftHandGrabber, rightHandGrabber;
 
     [SerializeField] GameObject currentDrawingHand;
-
 
     [SerializeField] GameObject fire, dark, light, water, air, earth;
     [SerializeField] Transform headPos;
@@ -61,9 +58,6 @@ public class GestureEvents : MonoBehaviour
 
     public void OnGestureCompleted(GestureCompletionData data)
     {
-        //gestureText.gameObject.SetActive(true);
-        //gestureText.text = "Gesture finished \n Gesture recognized: " + data.gestureName + "\nGesture similarity: " + data.similarity;
-
         Debug.Log("Gesture finished");
         Debug.Log("Gesture recognized: " + data.gestureName);
         Debug.Log("Gesture similarity: " + data.similarity);
@@ -90,20 +84,16 @@ public class GestureEvents : MonoBehaviour
             case "earth":
                 Earth();
                 break;
+            case "portal":
+                CreatePortal();
+                break;
             default:
                 Debug.Log("Gesture not assigned");
                 break;
         }
-
-        //Invoke(nameof(DisableText), 3);
     }
 
-    void DisableText()
-    {
-        gestureText.gameObject.SetActive(false);
-    }
-
-    #region gesture Methods
+    #region gesture Elements
     void Fire()
     {
         GameObject clon = Instantiate(fire);
@@ -163,4 +153,8 @@ public class GestureEvents : MonoBehaviour
         Debug.Log("Earth");
     }
     #endregion
+    void CreatePortal()
+    {
+
+    }
 }

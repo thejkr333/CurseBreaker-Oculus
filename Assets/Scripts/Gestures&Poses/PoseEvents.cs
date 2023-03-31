@@ -6,40 +6,48 @@ using System;
 
 public class PoseEvents : MonoBehaviour
 {
+    [Header("GENERAL VARIABLES")]
     [SerializeField] PoseEvents otherHandPoseEvent;
     [SerializeField] bool mainHand;
-    public bool DrawingWithThisHand, notGrabbing;
+    public bool DrawingWithThisHand;
     public enum Poses { Aiming, Grab, OpenHand, SpellSelect, TV, Unknown }
     public Poses CurrentPose;
 
-    Dictionary<Poses, bool> pose = new();
+    //Dictionary<Poses, bool> pose = new();
 
     [SerializeField] protected OVRSkeleton handSkeleton;
     PoseGrab poseGrab;
-    LineRenderer lineRenderer;
-    TrailRenderer trailRenderer;
+
     protected List<OVRBone> fingerbones = null;
-    [SerializeField] LayerMask interactable, grabbed;
 
     private bool hasStarted = false;
-    [SerializeField] bool attracting = false;
 
-    //bones for aiming
+
+    [Header("AIMING")]
     Vector3 indexProximal = Vector3.zero;
     Vector3 indexTip = Vector3.zero;
     Vector3 thumbMetacarpal = Vector3.zero;
-    [SerializeField] Material paintMaterial;
+    private Color blue, white;
+    LineRenderer lineRenderer;
+
+
+    [Header("TV")]
     [SerializeField] GameObject hiddenGO;
     [SerializeField] Transform head;
 
-    [SerializeField] Outline lastOutline;
+
+    [Header("GRABBING")]
+    [SerializeField] bool attracting = false;
+    [SerializeField] LayerMask interactable, grabbed;
+    Outline lastOutline;
     Rigidbody attractedObjRb;
     LayerMask objectLayer;
-    //private GradientColorKey[] Blue, White;
-    //private GradientAlphaKey[] Alpha;
-    private Color Blue, White;
-    public bool recordingGesture;
 
+
+    [Header("DRAWING GESTURES")]
+    [SerializeField] Material paintMaterial;
+    public bool recordingGesture;
+    TrailRenderer trailRenderer;
     GameObject drawingFingerTip;
     void Start()
     {
@@ -66,8 +74,8 @@ public class PoseEvents : MonoBehaviour
         Alpha[1].alpha = 1;
         Alpha[1].time = 1;
         */
-        Blue = Color.blue;
-        White = Color.white;
+        blue = Color.blue;
+        white = Color.white;
 
         // When the Oculus hand had his time to initialize hand, with a simple coroutine i start a delay of
         // a function to initialize the script
@@ -165,7 +173,7 @@ public class PoseEvents : MonoBehaviour
         //Blue[0].color = Color.blue;
         //Blue[1].color = Color.blue;
         //lineRenderer.colorGradient.SetKeys(Blue, Alpha);
-        lineRenderer.material.color = Blue;
+        lineRenderer.material.color = blue;
        
     }
     void Aim()
@@ -175,7 +183,7 @@ public class PoseEvents : MonoBehaviour
         indexTip = Vector3.zero;
 
         //Colour Change goes in these two lines, just changing the start and end values towards white over 5 seconds
-        Color.Lerp(lineRenderer.material.color, White, 5);
+        Color.Lerp(lineRenderer.material.color, white, 5);
       //  Color.Lerp(Blue[0].color, White[0].color, 5);
      //   Color.Lerp(Blue[1].color, White[1].color, 5);
 
