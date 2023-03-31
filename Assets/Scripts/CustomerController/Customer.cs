@@ -16,9 +16,9 @@ public class Customer : MonoBehaviour
     public Dictionary<Elements, LimbsList> ElementToLimbMapping = new();
 
     int numberOfPartsAffected;
-    [SerializeField] int curseStrength;
+    public int CurseStrength;
 
-    protected bool cured;
+    bool cured;
     public int Chances = 3;
 
     public List<AffectedLimb> AffectedLimbs = new();
@@ -110,7 +110,7 @@ public class Customer : MonoBehaviour
 
     void CalculateCurseStrength()
     {
-        curseStrength = UnityEngine.Random.Range(1, 7) * AffectedLimbs.Count / 2;
+        CurseStrength = UnityEngine.Random.Range(1, 7) * AffectedLimbs.Count / 2;
     }
 
     void GiveCurseToLimb(LimbsList limbName, Curses curse = (Curses)(-1))
@@ -181,7 +181,7 @@ public class Customer : MonoBehaviour
 
     void CheckPotionStrength(AffectedLimb affectedLimb, Potion potion)
     {
-        if (curseStrength <= potion.Strength)
+        if (CurseStrength <= potion.Strength)
         {
             affectedLimb.Cured = true;
             affectedLimb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
@@ -202,17 +202,17 @@ public class Customer : MonoBehaviour
                         //Do de math for each limb depending on the curse that it has (matrix)
                         int _potionStrength = CursexIngredientMatrix.CalculatePotionStrenght(_curse.CurrentCurse, potion.PotionIngredients);
                         
-                        int _strengthDiff = _potionStrength - curseStrength;
+                        int _strengthDiff = _potionStrength - CurseStrength;
 
                         if (_strengthDiff > 0)
                         {
                             //potion too strong
-                            curseStrength = _strengthDiff;
+                            CurseStrength = _strengthDiff;
                         }
                         else if (_strengthDiff < 0)
                         {
                             //potion too weak
-                            curseStrength = -_strengthDiff;
+                            CurseStrength = -_strengthDiff;
                         }
                         else
                         {

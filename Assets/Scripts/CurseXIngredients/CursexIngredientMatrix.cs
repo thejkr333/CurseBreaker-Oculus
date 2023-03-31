@@ -89,6 +89,55 @@ public class CursexIngredientMatrix : ScriptableObject, ISerializationCallbackRe
 
         return _curse;
     }
+
+    public static void ReturnIngredientsForCurse(Curses curse, int curseStrength, ref Dictionary<Ingredients, int> ingredients)
+    {
+        while (curseStrength != 0)
+        {
+            if (curseStrength >= 5)
+            {
+                foreach (var item in factors[curse])
+                {
+                    if(item.Value == 1)
+                    {
+                        if(ingredients.ContainsKey(item.Key)) ingredients[item.Key]++;
+                        else ingredients.Add(item.Key, item.Value);
+
+                        curseStrength -= 5;
+                        break;
+                    }
+                }
+            }
+            else if(curseStrength > 0) 
+            {
+                foreach (var item in factors[curse])
+                {
+                    if (item.Value == 2)
+                    {
+                        if (ingredients.ContainsKey(item.Key)) ingredients[item.Key]++;
+                        else ingredients.Add(item.Key, item.Value);
+
+                        curseStrength -= 2;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                foreach (var item in factors[curse])
+                {
+                    if (item.Value == 3)
+                    {
+                        if (ingredients.ContainsKey(item.Key)) ingredients[item.Key]++;
+                        else ingredients.Add(item.Key, item.Value);
+
+                        curseStrength += 1;
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }
 
 [System.Serializable]
@@ -97,6 +146,22 @@ public class CurseIngredientFact
     public Curses curse;
     public Ingredients ingredient;
     public int value;
+}
+
+public static class Extensions
+{
+    public static T MaxValueKey<T>(this IDictionary<T, int> dict)
+    {
+        KeyValuePair<T, int> max = new KeyValuePair<T, int>();
+        foreach (var entry in dict)
+        {
+            if (entry.Value > max.Value)
+            {
+                max = entry;
+            }
+        }
+        return max.Key;
+    }
 }
 
 

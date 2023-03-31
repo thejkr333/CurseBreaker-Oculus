@@ -40,6 +40,9 @@ MonoBehaviour:
   - curse: 3
     ingredient: 4
     value: 3
+  - curse: 3
+    ingredient: 2
+    value: 0
   - curse: 1
     ingredient: 5
     value: 3

@@ -9,6 +9,8 @@ public class Potion : MonoBehaviour
 
     public List<Elements> PotionElements = new();
 
+    [SerializeField] GameObject elementParticlesPrefab;
+
     public int Strength;
     public void CreatePotion(List<Ingredients> ingredients)
     {
@@ -21,38 +23,33 @@ public class Potion : MonoBehaviour
         {
             case "Spell/Fire":
                 PotionElements.Add(Elements.Fire);
-                StartParticles(collision.gameObject.GetComponent<MeshRenderer>().material);
+                AddParticles(Color.red);
                 break;
 
             case "Spell/Air":
                 PotionElements.Add(Elements.Air);
-                //StartParticles(AirSpell);
-                StartParticles(collision.gameObject.GetComponent<MeshRenderer>().material);
+                AddParticles(Color.white);
                 break;
 
             case "Spell/Water":
                 PotionElements.Add(Elements.Water);
-                //StartParticles(WaterSpell);
-                StartParticles(collision.gameObject.GetComponent<MeshRenderer>().material);
+                AddParticles(Color.blue);
                 break;
 
             case "Spell/Earth":
                 PotionElements.Add(Elements.Earth);
-                //StartParticles(EarthSpell);
-                StartParticles(collision.gameObject.GetComponent<MeshRenderer>().material);
+                AddParticles(Color.green);
                 break;
 
             case "Spell/Light":
                 PotionElements.Add(Elements.Light);
-                //StartParticles(LightSpell);
-                StartParticles(collision.gameObject.GetComponent<MeshRenderer>().material);
+                AddParticles(Color.yellow);
                 break;
 
             case "Spell/Dark":
                 //Darkened= true;
                 PotionElements.Add(Elements.Dark);
-                //StartParticles(DarkSpell);
-                StartParticles(collision.gameObject.GetComponent<MeshRenderer>().material);
+                AddParticles(Color.black);
                 break;
 
             default:
@@ -70,5 +67,15 @@ public class Potion : MonoBehaviour
         //PSR.material= ElementHit;
         //PS.Play();
         //PS.shape.meshRenderer = gameObject.GetComponent<MeshRenderer>()
+    }
+
+    void AddParticles(Color color)
+    {
+        GameObject clon = Instantiate(elementParticlesPrefab, this.transform);
+        for (int i = 0; i < clon.transform.childCount; i++)
+        {
+            var main = clon.transform.GetChild(i).GetComponent<ParticleSystem>().main;
+            main.startColor = color;
+        }
     }
 }

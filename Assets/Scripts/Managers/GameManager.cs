@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Transform parla;
 
+    [Header("CUSTOMERS")]
+    [SerializeField] GameObject customerPrefab;
+    const int NUMBEROFCUSTOMERSPERDAY = 3;
+    [SerializeField] GameObject[] customersToday = new GameObject[NUMBEROFCUSTOMERSPERDAY];
+
+    int dayCount;
+
+    public event Action OnNewDay;
+    public event Action<Ingredients[]> CreateShop;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -21,6 +32,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
+        this.OnNewDay += NewDay;
+        OnNewDay?.Invoke();
     }
 
     public void RentIncrease()
@@ -44,5 +57,37 @@ public class GameManager : MonoBehaviour
     {
         obj.transform.position = parla.position;
         Destroy(obj, 1f);
+    }
+
+    void NewDay()
+    {
+        dayCount++;
+        Ingredients[] _ingredients = CreateCustomers();
+        CreateShop?.Invoke(_ingredients);
+    }
+
+    private Ingredients[] CreateCustomers()
+    {
+        Ingredients[] _ingredientsMoreUsed = new Ingredients[Shop.NUMBEROFITEMS];
+        Dictionary<Ingredients, int> _ingredients = new();
+
+        for (int i = 0; i < NUMBEROFCUSTOMERSPERDAY; i++)
+        {
+            customersToday[i] = Instantiate(customerPrefab);
+            customersToday[i].transform.position = parla.position;
+            Customer _customer = customersToday[i].GetComponent<Customer>();
+            foreach (var limb in _customer.AffectedLimbs)
+            {
+                CursexIngredientMatrix.ReturnIngredientsForCurse(limb.Curse, _customer.CurseStrength, ref _ingredients);            
+            }
+        }
+
+        for (int i = 0; i < Shop.NUMBEROFITEMS; i++)
+        {
+            Ingredients _ing = Extensions.MaxValueKey(_ingredients);
+            _ingredientsMoreUsed[i] = _ing;
+            _ingredients.Remove(_ing);
+        }
+        return _ingredientsMoreUsed;
     }
 }

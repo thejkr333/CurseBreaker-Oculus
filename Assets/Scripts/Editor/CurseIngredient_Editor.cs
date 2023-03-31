@@ -4,18 +4,11 @@ using System;
 using UnityEngine;
 using UnityEditor;
 
-
 public class CurseIngredient_Editor : EditorWindow
 {
     public CursexIngredientMatrix Matrix = null;
-    private int rows, columns;
 
     int[,] check_values = new int[Enum.GetNames(typeof(Curses)).Length, 4];
-    private void OnEnable()
-    {      
-        rows = Enum.GetNames(typeof(Curses)).Length;
-        columns = Enum.GetNames(typeof(Ingredients)).Length;
-    }
 
     [MenuItem("Cursebreaker/matrix")]
     static void Init()
@@ -37,12 +30,12 @@ public class CurseIngredient_Editor : EditorWindow
         check_values = new int[Enum.GetNames(typeof(Curses)).Length, 4];
         EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
         CursesDisplay();
-      
+
         foreach (Ingredients ingredient in Enum.GetValues(typeof(Ingredients)))
         {
             EditorGUILayout.BeginVertical();
             GUILayout.Label(ingredient.ToString());
-            foreach(Curses curse in Enum.GetValues(typeof(Curses)))
+            foreach (Curses curse in Enum.GetValues(typeof(Curses)))
                 Cell(curse, ingredient);
             EditorGUILayout.EndVertical();
         }
@@ -56,11 +49,11 @@ public class CurseIngredient_Editor : EditorWindow
     {
         for (int rows = 0; rows < check_values.GetLength(0); rows++)
         {
-            for (int i = 1; i < check_values.GetLength(1); i++)
+            for (int columns = 1; columns < check_values.GetLength(1); columns++)
             {
-                if(check_values[rows, i] > 1)
+                if (check_values[rows, columns] > 1)
                 {
-                    string _warning = "Multiple values of " + i + " repeated in curse: " + ((Curses)rows).ToString();
+                    string _warning = "Multiple values of " + columns + " repeated in curse: " + ((Curses)rows).ToString();
                     EditorGUILayout.HelpBox(_warning, MessageType.Warning);
                 }
             }
@@ -83,7 +76,7 @@ public class CurseIngredient_Editor : EditorWindow
     {
         EditorGUI.BeginChangeCheck();
         int _new_value = EditorGUILayout.IntField(Matrix.GetValue(curse, ingredient));
-        if(EditorGUI.EndChangeCheck())
+        if (EditorGUI.EndChangeCheck())
         {
             Matrix.SetValue(curse, ingredient, _new_value);
         }
@@ -92,39 +85,9 @@ public class CurseIngredient_Editor : EditorWindow
         check_values[(int)curse, Matrix.GetValue(curse, ingredient)]++;
     }
 
-
-    private void Save()
-    {
-        
-    }
-
     public Rect GridSize(int rowSize, int collomSize)
     {
         //return new Rect(Screen.width / rowSize * rows, Screen.height / collomSize, Screen.width/ rowSize * rows +1, Screen.height /collomSize + 1);
         return new Rect(Screen.width / (rowSize * 2 + 1), Screen.height / (collomSize * 2 + 1), 20, 20);
     }
-
-    public Rect blank_space()
-    {
-        return new Rect(Screen.width , Screen.height , 0.1f , 0.05f);
-    }
-
-    public Rect IngredientLabel()
-    {
-        return new Rect();
-    }
-
-    public Rect CurseLabels()
-    {
-        return new Rect();
-    }
-
 }
-
-/* collom 
- * separate everything by making a 
- * 
- * 
- * 
- * 
- */

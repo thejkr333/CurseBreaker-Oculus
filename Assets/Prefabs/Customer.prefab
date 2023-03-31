@@ -580,6 +580,7 @@ MonoBehaviour:
   Light: {fileID: 21300000, guid: 32a3043d49fa6694585d013c34c2fef6, type: 3}
   Earth: {fileID: 21300000, guid: e67be4afb561606498fbceae9d641343, type: 3}
   Air: {fileID: 21300000, guid: 85473c85248e8944194ff34e225de62a, type: 3}
+  curseStrength: 0
   Chances: 3
   AffectedLimbs: []
 --- !u!114 &9109413390008588205
