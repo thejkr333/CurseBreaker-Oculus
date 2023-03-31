@@ -963,7 +963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334028, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334029, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
       propertyPath: m_RootOrder
@@ -1060,6 +1060,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2043090258}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &222903148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 222903150}
+  - component: {fileID: 222903149}
+  m_Layer: 0
+  m_Name: StorageChest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &222903149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222903148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5fe53273b488364a928641e1be8d8c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MandrakeAmount: 10
+  AngelLeafAmount: 25
+  WolfsBaneAmount: 10
+  CorkWoodAmount: 10
+  MandrakeStorage: {fileID: 1903294444}
+  AngelLeafStorage: {fileID: 1635650192}
+  WolfsBaneStorage: {fileID: 1903294444}
+  CorkWoodStorage: {fileID: 1903294444}
+--- !u!4 &222903150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222903148}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.046, y: 0.182, z: -1.419}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &243321872
 GameObject:
@@ -6082,7 +6134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1310780692168336972, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1310780692168336972, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: m_LocalScale.x
@@ -12246,13 +12298,14 @@ GameObject:
   - component: {fileID: 1635650192}
   - component: {fileID: 1635650194}
   - component: {fileID: 1635650193}
+  - component: {fileID: 1635650195}
   m_Layer: 0
   m_Name: AngelLeafSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1635650192
 Transform:
   m_ObjectHideFlags: 0
@@ -12295,6 +12348,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 7149134073583334028, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
   inside: {fileID: 609463598}
+  GotIngredient: 0
+--- !u!114 &1635650195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635650191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ed68b4e46df14c4e8cc5edd5c85f26b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AngelLeaf: 1
+  Mandrake: 0
+  CorkWood: 0
+  WolfsBane: 0
+  StorageController: {fileID: 222903149}
+  CurrentAmount: 0
 --- !u!1 &1663883363
 GameObject:
   m_ObjectHideFlags: 0
@@ -13365,6 +13437,7 @@ GameObject:
   - component: {fileID: 1903294444}
   - component: {fileID: 1903294443}
   - component: {fileID: 1903294442}
+  - component: {fileID: 1903294445}
   m_Layer: 0
   m_Name: MandrakeSpawner
   m_TagString: Untagged
@@ -13399,6 +13472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 7149134073583334028, guid: 6b656de40ae6d9049951444ac8cfcf98, type: 3}
   inside: {fileID: 1591681114}
+  GotIngredient: 0
 --- !u!4 &1903294444
 Transform:
   m_ObjectHideFlags: 0
@@ -13414,6 +13488,24 @@ Transform:
   m_Father: {fileID: 2135527183}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1903294445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903294441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ed68b4e46df14c4e8cc5edd5c85f26b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AngelLeaf: 0
+  Mandrake: 1
+  CorkWood: 0
+  WolfsBane: 0
+  StorageController: {fileID: 222903149}
+  CurrentAmount: 0
 --- !u!1 &1915892982 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2528829422644879784, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
@@ -13526,7 +13618,7 @@ Transform:
   m_Children:
   - {fileID: 1575562393}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1923138667
 MonoBehaviour:
