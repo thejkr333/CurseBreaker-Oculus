@@ -917,6 +917,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 588593584113868368}
     - target: {fileID: 6260475517999668615, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6260475517999668615, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: m_gripTransform
       value: 
       objectReference: {fileID: 586814635166909514}
@@ -1101,11 +1105,11 @@ PrefabInstance:
       objectReference: {fileID: 589337289752190284}
     - target: {fileID: 8060969377196579643, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: LicenseKey
-      value: 
+      value: 4084dee3e1e13ffc98e0c22b67f1d3c5e7693028dd16ef9bb9c18a40896bc400
       objectReference: {fileID: 0}
     - target: {fileID: 8060969377196579643, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: LicenseName
-      value: 
+      value: trond.o.skevik@nord.no_3VP7UlWKzcn3GbkQBAQ90m4v
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
