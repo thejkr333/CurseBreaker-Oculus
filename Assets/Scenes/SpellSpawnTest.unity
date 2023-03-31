@@ -963,7 +963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334028, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334029, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
       propertyPath: m_RootOrder
@@ -1060,6 +1060,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2043090258}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &222903148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 222903150}
+  - component: {fileID: 222903149}
+  m_Layer: 0
+  m_Name: StorageChest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &222903149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222903148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5fe53273b488364a928641e1be8d8c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MandrakeAmount: 10
+  AngelLeafAmount: 25
+  WolfsBaneAmount: 10
+  CorkWoodAmount: 10
+  MandrakeStorage: {fileID: 1903294444}
+  AngelLeafStorage: {fileID: 1635650192}
+  WolfsBaneStorage: {fileID: 1903294444}
+  CorkWoodStorage: {fileID: 1903294444}
+--- !u!4 &222903150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222903148}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.046, y: 0.182, z: -1.419}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &243321872
 GameObject:
@@ -6082,7 +6134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1310780692168336972, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1310780692168336972, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: m_LocalScale.x
@@ -6148,6 +6200,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1560271728443361982, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2528829422644879784, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: m_TagString
       value: Slider
@@ -6155,6 +6211,10 @@ PrefabInstance:
     - target: {fileID: 3469944085076733102, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211870458002088904, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5181615587972325597, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6169,12 +6229,16 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6202313131605553445, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
+      propertyPath: m_Value
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6202313131605553445, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: m_MaxValue
-      value: 1
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 6202313131605553445, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: m_MinValue
-      value: -1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6202313131605553445, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -6218,6 +6282,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
+--- !u!114 &1484974133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6202313131605553445, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
+  m_PrefabInstance: {fileID: 1484974132}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915892982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1506397098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12007,7 +12082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2299323267894309051, guid: 3a7d3ce90b41ea54c915a5da6886cb71, type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 2299323267894309051, guid: 3a7d3ce90b41ea54c915a5da6886cb71, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12223,13 +12298,14 @@ GameObject:
   - component: {fileID: 1635650192}
   - component: {fileID: 1635650194}
   - component: {fileID: 1635650193}
+  - component: {fileID: 1635650195}
   m_Layer: 0
   m_Name: AngelLeafSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1635650192
 Transform:
   m_ObjectHideFlags: 0
@@ -12272,6 +12348,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 7149134073583334028, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
   inside: {fileID: 609463598}
+  GotIngredient: 0
+--- !u!114 &1635650195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635650191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ed68b4e46df14c4e8cc5edd5c85f26b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AngelLeaf: 1
+  Mandrake: 0
+  CorkWood: 0
+  WolfsBane: 0
+  StorageController: {fileID: 222903149}
+  CurrentAmount: 0
 --- !u!1 &1663883363
 GameObject:
   m_ObjectHideFlags: 0
@@ -13342,6 +13437,7 @@ GameObject:
   - component: {fileID: 1903294444}
   - component: {fileID: 1903294443}
   - component: {fileID: 1903294442}
+  - component: {fileID: 1903294445}
   m_Layer: 0
   m_Name: MandrakeSpawner
   m_TagString: Untagged
@@ -13376,6 +13472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 7149134073583334028, guid: 6b656de40ae6d9049951444ac8cfcf98, type: 3}
   inside: {fileID: 1591681114}
+  GotIngredient: 0
 --- !u!4 &1903294444
 Transform:
   m_ObjectHideFlags: 0
@@ -13391,6 +13488,24 @@ Transform:
   m_Father: {fileID: 2135527183}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1903294445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903294441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ed68b4e46df14c4e8cc5edd5c85f26b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AngelLeaf: 0
+  Mandrake: 1
+  CorkWood: 0
+  WolfsBane: 0
+  StorageController: {fileID: 222903149}
+  CurrentAmount: 0
 --- !u!1 &1915892982 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2528829422644879784, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
@@ -15191,6 +15306,14 @@ PrefabInstance:
       propertyPath: LicenseName
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7570299794733912045, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: Slider
+      value: 
+      objectReference: {fileID: 1484974133}
+    - target: {fileID: 8570306114867698235, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: Slider
+      value: 
+      objectReference: {fileID: 1484974133}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
 --- !u!4 &915774866843014483

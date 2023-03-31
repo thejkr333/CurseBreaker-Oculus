@@ -6,7 +6,7 @@ public class IngredientSpawner : MonoBehaviour
 {
     [SerializeField] GameObject ingredientPrefab;
     [SerializeField] GameObject inside;
-
+    public bool GotIngredient;
     Vector3 scaleObj;
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class IngredientSpawner : MonoBehaviour
     void Update()
     {
         //Check if the object iniside is STILL inside, if not create another one
-        if(Vector3.Distance(inside.transform.position, transform.position) > 1)
+        if(Vector3.Distance(inside.transform.position, transform.position) > 1&&GotIngredient== true)
         {
             GameObject clon = Instantiate(ingredientPrefab);
             clon.transform.position = transform.position;
