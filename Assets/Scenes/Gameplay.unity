@@ -3505,6 +3505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 4862671616807682156, guid: 89bb1c1cd177b1246ad4f84a80a32ac5, type: 3}
   inside: {fileID: 991306195}
+  GotIngredient: 0
 --- !u!1001 &872996748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5320,6 +5321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 7109434129586917933, guid: 8868267c7482f794f9cf3d5f3001c32d, type: 3}
   inside: {fileID: 1875645005}
+  GotIngredient: 0
 --- !u!1001 &1230995715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12912,6 +12914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 7149134073583334028, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
   inside: {fileID: 609463598}
+  GotIngredient: 0
 --- !u!1 &1663883363
 GameObject:
   m_ObjectHideFlags: 0
@@ -13857,6 +13860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 917570725}
   inside: {fileID: 917570725}
+  GotIngredient: 0
 --- !u!1 &1881846410
 GameObject:
   m_ObjectHideFlags: 0
@@ -14086,6 +14090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 7149134073583334028, guid: 6b656de40ae6d9049951444ac8cfcf98, type: 3}
   inside: {fileID: 1591681114}
+  GotIngredient: 0
 --- !u!4 &1903294444
 Transform:
   m_ObjectHideFlags: 0
@@ -14764,6 +14769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 872996750}
   inside: {fileID: 872996750}
+  GotIngredient: 0
 --- !u!1001 &2072516253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15804,6 +15810,14 @@ PrefabInstance:
     - target: {fileID: 588593584113868368, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
       propertyPath: m_Name
       value: OVRCameraRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939139632620570439, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3830543600992841961, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}

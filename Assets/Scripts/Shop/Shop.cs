@@ -12,14 +12,14 @@ public class Shop : MonoBehaviour
     Dictionary<GameObject, int> itemsValue = new();
 
     float scrollProbabilty;
-    private void Awake()
+    private void Start()
     {
         foreach (ItemValue item in itemsValueList)
         {
             itemsValue.Add(item.item, item.value);
         }
 
-        scrollProbabilty = .05f;
+        scrollProbabilty = .25f;
 
         GameManager.Instance.OnNewDay += Event_NewDay;
         GameManager.Instance.CreateShop += Event_CreateShop;
@@ -37,10 +37,8 @@ public class Shop : MonoBehaviour
         bool scroll = false;
         if (scrollProbabilty <= _scrollChance)
         {
-            scrollProbabilty = .05f;
             scroll = true;
         }
-        else scrollProbabilty += .05f;
 
         for (int i = 0; i < NUMBEROFITEMS; i++)
         {
@@ -51,12 +49,6 @@ public class Shop : MonoBehaviour
         {
             //replace the last item in the shop with a random scroll
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
 

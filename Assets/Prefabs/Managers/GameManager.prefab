@@ -48,3 +48,9 @@ MonoBehaviour:
   Rent: 20
   RentIncrement: 10
   PaymentIncrement: 0
+  parla: {fileID: 0}
+  customerPrefab: {fileID: 208462484191308216, guid: b901707b04612da4f892541a430e9d49, type: 3}
+  customersToday:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
