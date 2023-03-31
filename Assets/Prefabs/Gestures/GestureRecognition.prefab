@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHandPoseEvents: {fileID: 0}
   rightHandPoseEvents: {fileID: 0}
-  LicenseName: 
-  LicenseKey: 
+  LicenseName: trond.o.skevik@nord.no_3VP7UlWKzcn3GbkQBAQ90m4v
+  LicenseKey: 4084dee3e1e13ffc98e0c22b67f1d3c5e7693028dd16ef9bb9c18a40896bc400
   GestureDatabaseFile: GestureRecognition/GestureData/cursebreaker-oculus.dat
   unityXrPlugin: 1
   mivryCoordinateSystem: 1
@@ -96,6 +96,9 @@ MonoBehaviour:
   gestureNames: []
   leftHand: {fileID: 0}
   rightHand: {fileID: 0}
+  poseEventLeft: {fileID: 0}
+  poseEventRight: {fileID: 0}
+  currentDrawingHand: {fileID: 0}
   fire: {fileID: 3155554930152478369, guid: f3c901013342ee64b92b92d82221740c, type: 3}
   dark: {fileID: 7508160982668201103, guid: b72715e33d877bd48accf3d7a1aa7a49, type: 3}
   light: {fileID: 6681914650251578468, guid: d895515e389227c4e9adb3e7ff6fec61, type: 3}
