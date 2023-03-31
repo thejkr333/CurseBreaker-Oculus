@@ -17,7 +17,7 @@ public class IngredientSpawner : MonoBehaviour
     void Update()
     {
         //Check if the object iniside is STILL inside, if not create another one
-        if(Vector3.Distance(inside.transform.position, transform.position) > 1&&GotIngredient== true)
+        if(Vector3.Distance(inside.transform.position, transform.position) > 1 && GotIngredient == true)
         {
             GameObject clon = Instantiate(ingredientPrefab);
             clon.transform.position = transform.position;

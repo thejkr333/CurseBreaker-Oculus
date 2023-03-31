@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class IngredientStorage : MonoBehaviour
 {
-
     public bool AngelLeaf, Mandrake, CorkWood, WolfsBane;
     public StorageController StorageController;
     public int CurrentAmount;

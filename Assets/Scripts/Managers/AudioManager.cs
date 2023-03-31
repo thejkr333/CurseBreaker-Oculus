@@ -124,19 +124,24 @@ public class AudioManager : MonoBehaviour
                 return;
             }
 
-            AudioSource source = followObject != null ? followObject.AddComponent<AudioSource>() : gameObject.AddComponent<AudioSource>();
-            source.clip = _sound.Clip;
-            source.volume = SfxVolume;
-            source.pitch = _sound.Pitch;
-            source.loop = _sound.Loop;
-            source.spatialBlend = _sound.SpatialBlend;
-            source.maxDistance = _sound.MaxDistance;
-            source.rolloffMode = _sound.RolloffMode;
-            source.Play();
+            AudioSource _source = soundSources[name];
+
+            if(followObject != null)
+            {
+                _source.transform.parent = followObject.transform;
+            }
+            _source.clip = _sound.Clip;
+            _source.volume = SfxVolume;
+            _source.pitch = _sound.Pitch;
+            _source.loop = _sound.Loop;
+            _source.spatialBlend = _sound.SpatialBlend;
+            _source.maxDistance = _sound.MaxDistance;
+            _source.rolloffMode = _sound.RolloffMode;
+            _source.Play();
 
             if (!_sound.Loop)
             {
-                Destroy(source, _sound.Clip.length);
+                Destroy(_source, _sound.Clip.length);
             }
         }
         else

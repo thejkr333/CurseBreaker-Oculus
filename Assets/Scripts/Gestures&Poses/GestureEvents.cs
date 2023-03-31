@@ -8,6 +8,7 @@ public class GestureEvents : MonoBehaviour
 {
     [SerializeField] List<string> gestureNames = new();
 
+    [Header("HAND STUFF")]
     [SerializeField] GameObject leftHand, rightHand;
     [SerializeField] PoseEvents poseEventLeft, poseEventRight;
     OVRGrabber leftHandGrabber, rightHandGrabber;
@@ -18,6 +19,9 @@ public class GestureEvents : MonoBehaviour
     [SerializeField] Transform headPos;
     Vector3 initialPos;
     enum Gestures { Fire, Dark, Light, Water, Air, Earth}
+
+    [Header("PORTAL")]
+    [SerializeField] GameObject portalPrefab;
 
     private void Awake()
     {
@@ -155,6 +159,7 @@ public class GestureEvents : MonoBehaviour
     #endregion
     void CreatePortal()
     {
-
+        GameObject clon = Instantiate(portalPrefab);
+        clon.transform.position = new Vector3(headPos.position.x, headPos.position.y - .5f, headPos.position.z + 2);
     }
 }
