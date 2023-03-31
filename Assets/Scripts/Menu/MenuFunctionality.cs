@@ -8,15 +8,15 @@ using UnityEngine;
 
 public class MenuFunctionality : MonoBehaviour
 {
-    public GameObject menu;
+    public GameObject Menu, HeightUp,HeightDown;
     // Start is called before the first frame update
     void Awake()
     {
-        if (menu == null)
+        if (Menu == null)
         {
             Debug.LogError("Menu isn't set. Please set the canvas child of " + this.name + " as the menu in the inspector.");
         }
-        menu.SetActive(false);
+        Menu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,9 +24,18 @@ public class MenuFunctionality : MonoBehaviour
     {
         if (OVRInput.GetDown(OVRInput.Button.Three) && (OVRInput.GetActiveController() == OVRInput.Controller.Hands))
         {
-            menu.SetActive(!menu.activeInHierarchy);
+            Menu.SetActive(!Menu.activeInHierarchy);
+            HeightUp.SetActive(!Menu.activeInHierarchy);
+            HeightDown.SetActive(!Menu.activeInHierarchy);
         }
+        //Debug Keyboard Testing Uncomment for testing without headset
+       /* if (Input.GetKeyDown(KeyCode.Space))
+        {
 
+            Menu.SetActive(!Menu.activeInHierarchy);
+            HeightUp.SetActive(!Menu.activeInHierarchy);
+            HeightDown.SetActive(!Menu.activeInHierarchy);
+        }*/
         /*
         if (OVRInput.GetDown(OVRInput.Button.Start, OVRInput.Controller.Hands))
         {
