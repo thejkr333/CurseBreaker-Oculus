@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StorageController : MonoBehaviour
 {
-    public int MandrakeAmount, AngelLeafAmount, WolfsBaneAmount, CorkWoodAmount;
-    public Transform MandrakeStorage, AngelLeafStorage, WolfsBaneStorage, CorkWoodStorage;
+    public int MandrakeAmount, AngelLeafAmount, WolfsBaneAmount, CorkWoodAmount, NightShadeAmount, DragonTongueAmount;
+    public Transform MandrakeStorage, AngelLeafStorage, WolfsBaneStorage, CorkWoodStorage, NightShadeStorage, DragonTongueStorage;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +39,16 @@ public class StorageController : MonoBehaviour
         {
             WolfsBaneAmount++;
             other.transform.position = WolfsBaneStorage.position;
+        }
+        if (other.gameObject.GetComponent<Nightshade>())
+        {
+            NightShadeAmount++;
+            other.transform.position = NightShadeStorage.position;
+        }
+        if (other.gameObject.GetComponent<DragonsTongue>())
+        {
+            DragonTongueAmount++;
+            other.transform.position = DragonTongueStorage.position;
         }
     }
 }

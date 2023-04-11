@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IngredientStorage : MonoBehaviour
 {
-    public bool AngelLeaf, Mandrake, CorkWood, WolfsBane;
+    public bool AngelLeaf, Mandrake, CorkWood, WolfsBane, NightShade, DragonTongue;
     public StorageController StorageController;
     public int CurrentAmount;
     // Start is called before the first frame update
@@ -39,7 +39,14 @@ public class IngredientStorage : MonoBehaviour
         {
             CurrentAmount = StorageController.WolfsBaneAmount;
         }
-        
+        if(DragonTongue == true)
+        {
+            CurrentAmount = StorageController.DragonTongueAmount;
+        }
+        if(NightShade == true)
+        {
+            CurrentAmount = StorageController.NightShadeAmount;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -58,6 +65,14 @@ public class IngredientStorage : MonoBehaviour
         if (other.gameObject.GetComponent<AngelLeaf>() && AngelLeaf == true)
         {
             StorageController.AngelLeafAmount--;
+        }
+        if(other.gameObject.GetComponent<DragonsTongue>() && DragonTongue == true)
+        {
+            StorageController.DragonTongueAmount--;
+        }
+        if(other.gameObject.GetComponent<Nightshade>() && NightShade == true)
+        {
+            StorageController.NightShadeAmount--;
         }
     }
 }
