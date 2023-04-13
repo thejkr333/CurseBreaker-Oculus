@@ -17306,6 +17306,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5048378172261356595, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: GestureDatabaseFile
+      value: cursebreaker-oculus.dat
+      objectReference: {fileID: 0}
     - target: {fileID: 6830474022113796133, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
       propertyPath: m_Enabled
       value: 1

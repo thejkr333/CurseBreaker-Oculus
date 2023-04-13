@@ -539,7 +539,8 @@ public class Mivry : MonoBehaviour
 #if UNITY_EDITOR
         // When running the scene inside the Unity editor,
         // we can just load the file from the Assets/ folder:
-        string GesturesFilePath = "Assets";
+        string GesturesFilePath = "Assets/GestureRecognition/GestureData";
+
 #elif UNITY_ANDROID
         // On android, the file is in the .apk,
         // so we need to first "download" it to the apps' cache folder.
