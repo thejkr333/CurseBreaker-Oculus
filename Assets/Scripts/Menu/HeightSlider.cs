@@ -16,6 +16,6 @@ public class HeightSlider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CameraRig.transform.position = new Vector3(CameraRig.transform.position.x, slider.value, CameraRig.transform.position.z);
+        CameraRig.transform.position = new Vector3(CameraRig.transform.position.x, /*slider.value*/ 0, CameraRig.transform.position.z);
     }
 }

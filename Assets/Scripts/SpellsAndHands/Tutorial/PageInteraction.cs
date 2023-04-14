@@ -13,12 +13,6 @@ public class PageInteraction : MonoBehaviour
         tutorialBook=gameObject.GetComponentInParent<BookInteraction>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out PoseGrab posegrab))
@@ -33,6 +27,12 @@ public class PageInteraction : MonoBehaviour
                 tutorialBook.PreviousPage();
             }
 
+        }
+
+        if(other.TryGetComponent (out Scroll scroll))
+        {
+            tutorialBook.Pages.Add(scroll.page);
+            Destroy(scroll, 0.5f);
         }
     }
 }
