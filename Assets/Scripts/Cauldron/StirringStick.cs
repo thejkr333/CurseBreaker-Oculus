@@ -26,19 +26,19 @@ public class StirringStick : MonoBehaviour
     {
         UpdateAnim();
 
-        if (inCauldron || stirring) { timer = 0; return; }
+        //if (inCauldron || stirring) { timer = 0; return; }
 
-        if (Vector3.Distance(transform.position, initialPos) > .5f)
-        {
-            timer += Time.deltaTime;
-            if (timer >= offPosTime)
-            {
-                transform.position = initialPos;
-                transform.eulerAngles = initialRot;
-                timer = 0;
-            }
-        }
-        else timer = 0;
+        //if (Vector3.Distance(transform.position, initialPos) > .5f)
+        //{
+        //    timer += Time.deltaTime;
+        //    if (timer >= offPosTime)
+        //    {
+        //        transform.position = initialPos;
+        //        transform.eulerAngles = initialRot;
+        //        timer = 0;
+        //    }
+        //}
+        //else timer = 0;
     }
 
 

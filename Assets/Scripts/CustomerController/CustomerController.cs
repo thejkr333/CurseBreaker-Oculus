@@ -39,7 +39,7 @@ public class CustomerController : MonoBehaviour
     {      
         currentCustomer = Instantiate(Customer, CustomerSpawn);
         currentCustomer.name = "NewCustomer";
-        currentCustomer.transform.eulerAngles = new Vector3(0, 180, 0);
+        currentCustomer.transform.eulerAngles = new Vector3(0, CustomerSpawn.eulerAngles.y, 0);
         currentCustomer.transform.position = new Vector3(CustomerSpawn.position.x, 1.62f, CustomerSpawn.position.z);
     }
     void Despawn()
