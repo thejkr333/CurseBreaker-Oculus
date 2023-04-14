@@ -251,6 +251,14 @@ public class OVRGrabber : MonoBehaviour
             for (int j = 0; j < grabbable.grabPoints.Length; ++j)
             {
                 Collider grabbableCollider = grabbable.grabPoints[j];
+                if (!grabbableCollider)
+                {
+                    //if the collider is destroyed, for example entering th cauldron, a error will start happening preventing the player from grabbing items
+                    //In that case, the dictionary is updated to delete the collider that has been destroyed and the method is called again
+                    m_grabCandidates.Remove(grabbable);
+                    GrabBegin();
+                    return;
+                }
                 // Store the closest grabbable
                 Vector3 closestPointOnBounds = grabbableCollider.ClosestPointOnBounds(m_gripTransform.position);
                 float grabbableMagSq = (m_gripTransform.position - closestPointOnBounds).sqrMagnitude;
