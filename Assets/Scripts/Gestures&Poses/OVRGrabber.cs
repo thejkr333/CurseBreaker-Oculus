@@ -122,6 +122,8 @@ public class OVRGrabber : MonoBehaviour
     {
         m_lastPos = transform.position;
         m_lastRot = transform.rotation;
+       
+        
         if(m_parentTransform == null)
         {
 			m_parentTransform = gameObject.transform;
@@ -165,11 +167,11 @@ public class OVRGrabber : MonoBehaviour
         {
             MoveGrabbedObject(destPos, destRot);
         }
+        //These two were the ones that prevented the grabbable object from behing thrown
+        //m_lastPos = transform.position;
+        //m_lastRot = transform.rotation;
 
-        m_lastPos = transform.position;
-        m_lastRot = transform.rotation;
-
-		float prevFlex = m_prevFlex;
+        float prevFlex = m_prevFlex;
 		// Update values from inputs
 		m_prevFlex = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, m_controller);
 
@@ -282,7 +284,7 @@ public class OVRGrabber : MonoBehaviour
             m_lastRot = transform.rotation;
 
             // Set up offsets for grabbed object desired position relative to hand.
-            if(m_grabbedObj.snapPosition)
+            if (m_grabbedObj.snapPosition)
             {
                 m_grabbedObjectPosOff = m_gripTransform.localPosition;
                 if(m_grabbedObj.snapOffset)
@@ -374,8 +376,8 @@ public class OVRGrabber : MonoBehaviour
 
     protected void GrabbableRelease(Vector3 linearVelocity, Vector3 angularVelocity)
     {
-        m_grabbedObj.GrabEnd(linearVelocity, angularVelocity);
         if(m_parentHeldObject) m_grabbedObj.transform.parent = null;
+        m_grabbedObj.GrabEnd(linearVelocity, angularVelocity);
         m_grabbedObj = null;
     }
 
