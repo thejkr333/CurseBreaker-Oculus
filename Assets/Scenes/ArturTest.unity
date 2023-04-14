@@ -957,6 +957,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2135527183}
     m_Modifications:
+    - target: {fileID: 5342510914083637627, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7066309
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342510914083637627, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7066309
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342510914083637627, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.025939696
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342510914083637627, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.025939696
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342510914083637627, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -94.205
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342510914083637627, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342510914083637627, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334028, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
       propertyPath: m_Name
       value: AngelLeaf
@@ -12463,6 +12491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 7149134073583334028, guid: de30dae4ada496b49bb44a52aa6ec282, type: 3}
   inside: {fileID: 609463598}
+  GotIngredient: 0
 --- !u!1 &1663883363
 GameObject:
   m_ObjectHideFlags: 0
@@ -13567,6 +13596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 7149134073583334028, guid: 6b656de40ae6d9049951444ac8cfcf98, type: 3}
   inside: {fileID: 1591681114}
+  GotIngredient: 0
 --- !u!4 &1903294444
 Transform:
   m_ObjectHideFlags: 0
