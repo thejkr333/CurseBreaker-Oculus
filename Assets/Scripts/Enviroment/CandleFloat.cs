@@ -17,6 +17,8 @@ public class CandleFloat : MonoBehaviour
         startPos = transform.position;
         //endPos = new Vector3(startPos.x, startPos.y+BaseDistance, startPos.z);
         currentPos = startPos;
+        BaseDistance = Random.Range(0.15f, 0.2f);
+        LerpSpeed = Random.Range(0.1f, 0.3f);
     }
 
     // Update is called once per frame
