@@ -7,4 +7,7 @@ public class scroll_info : ScriptableObject
 {
     public Sprite previewImage;
     public string previewString;
+    public string description;
+    public GameObject page;
+    
 }

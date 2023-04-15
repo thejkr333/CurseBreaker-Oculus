@@ -6,20 +6,20 @@ using TMPro;
 
 public class Scroll : MonoBehaviour
 {
-    scroll_info info;
+    public scroll_info info;
 
-    TMP_Text text;
-    Image image;
+    [SerializeField] TMP_Text title;
+    [SerializeField] Image image;
+    [SerializeField] TMP_Text description;
 
     public GameObject page;
-    //private GameObject background = GameObject.CreatePrimitive(PrimitiveType.Plane);
 
     private void Awake()
     {
-        text.text = info.previewString;
-        image.sprite = info.previewImage;
+        title.text       = info.previewString;
+        image.sprite     = info.previewImage;
+        description.text = info.description;
 
-        //background.transform.localScale = new Vector3(0.01f, 0.01f, 0.015f);
-        //background.transform.parent = this.transform;
+        page = info.page;
     }
 }
