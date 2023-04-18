@@ -121,6 +121,32 @@ public class Customer : MonoBehaviour
             //if child == limb get GO of child
             if (transform.GetChild(j).name == limbName.ToString())
             {
+                switch (limbName)
+                {
+                    case LimbsList.Head:
+                        {
+                            Curses[] _curses = { Curses.Wolfus, Curses.Demonitis };
+                            CreateRandomCurseBetweenRange(_curses);
+                        }
+                        break;
+
+                    case LimbsList.Torso:
+                        {
+                            Curses[] _curses = { Curses.Wolfus, Curses.Demonitis };
+                            CreateRandomCurseBetweenRange(_curses);
+                        }
+                        break;
+
+                    default:
+                        //Create random curse
+                        if ((int)curse == -1)
+                        {
+                            int _curseNumber = UnityEngine.Random.Range(0, Enum.GetValues(typeof(Curses)).Length);
+                            curse = (Curses)_curseNumber;
+                        }
+                        break;
+                }
+
                 //Create random curse
                 if((int)curse == -1) 
                 {
@@ -133,7 +159,7 @@ public class Customer : MonoBehaviour
                 AffectedLimbs.Add(_affectedLimb);
 
                 //Add the correspondant curse to the limb gamobject
-                var check = _affectedLimb.AffectedLimbGO.AddComponent(Type.GetType(curse.ToString()));
+                var _check = _affectedLimb.AffectedLimbGO.AddComponent(Type.GetType(curse.ToString()));
 
                 //Change visuals of the affected limb
                 Curse _curse = _affectedLimb.AffectedLimbGO.GetComponent<Curse>();
@@ -141,6 +167,17 @@ public class Customer : MonoBehaviour
                 break;
             }
         }
+    }
+
+    /// <summary>
+    /// Return a random curse from the array of Curses given
+    /// </summary>
+    /// <param name="curses"></param>
+    /// <returns></returns>
+    Curses CreateRandomCurseBetweenRange(Curses[] curses)
+    {
+        Curses curse = curses[UnityEngine.Random.Range(0, curses.Length)];
+        return curse;
     }
 
     public virtual void SetUpCurse()

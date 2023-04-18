@@ -31,9 +31,9 @@ public class Curse : MonoBehaviour
     public Curses CurrentCurse;
     
    public virtual void ChangeVisuals(GameObject affectedLimb)
-    {
+   {
 
-    }
+   }
 
     // Update is called once per frame
     protected virtual void Update()
