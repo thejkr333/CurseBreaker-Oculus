@@ -10923,11 +10923,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 588593584113566320, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.255
+      value: 0.072
       objectReference: {fileID: 0}
     - target: {fileID: 588593584113566320, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.234
       objectReference: {fileID: 0}
     - target: {fileID: 588593584113566320, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10965,20 +10965,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: OVRCameraRig
       objectReference: {fileID: 0}
-    - target: {fileID: 1939139632620570439, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3830543600992841961, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 588593584119360436, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: _trackingOriginType
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5048378172261356595, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: GestureDatabaseFile
-      value: cursebreaker-oculus.dat
+    - target: {fileID: 588593584119360436, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: usePositionTracking
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6830474022113796133, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 588593584119360436, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: useIPDInPositionTracking
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7570299794733912045, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}

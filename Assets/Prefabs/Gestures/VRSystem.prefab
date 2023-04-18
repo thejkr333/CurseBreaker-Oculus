@@ -1101,7 +1101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5002041089352122460
 Transform:
   m_ObjectHideFlags: 0
@@ -1487,6 +1487,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 761022100185025320, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0953
+      objectReference: {fileID: 0}
+    - target: {fileID: 761022100185025320, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0472
+      objectReference: {fileID: 0}
+    - target: {fileID: 761022100185025320, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0027
+      objectReference: {fileID: 0}
     - target: {fileID: 4976020420274405014, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: m_UseGravity
       value: 0
@@ -1500,6 +1512,10 @@ PrefabInstance:
       value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 6260475517999668615, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: grabbingPoint
+      value: 
+      objectReference: {fileID: 190465299708827524}
+    - target: {fileID: 6260475517999668615, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: m_gripTransform
       value: 
       objectReference: {fileID: 586814635973748036}
@@ -1509,6 +1525,11 @@ PrefabInstance:
       objectReference: {fileID: 588593584113484710}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+--- !u!4 &190465299708827524 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 761022100185025320, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+  m_PrefabInstance: {fileID: 588593584898235564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &586814635973748036 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4453513310108136, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
@@ -1610,6 +1631,18 @@ PrefabInstance:
       propertyPath: _meshType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 761022100185025320, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0953
+      objectReference: {fileID: 0}
+    - target: {fileID: 761022100185025320, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0472
+      objectReference: {fileID: 0}
+    - target: {fileID: 761022100185025320, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0027
+      objectReference: {fileID: 0}
     - target: {fileID: 4976020420274405014, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: m_UseGravity
       value: 0
@@ -1620,8 +1653,12 @@ PrefabInstance:
       objectReference: {fileID: 588593584113868368}
     - target: {fileID: 6260475517999668615, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6260475517999668615, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: grabbingPoint
+      value: 
+      objectReference: {fileID: 190465298363987594}
     - target: {fileID: 6260475517999668615, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: m_gripTransform
       value: 
@@ -1652,6 +1689,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+--- !u!4 &190465298363987594 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 761022100185025320, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+  m_PrefabInstance: {fileID: 588593585700879778}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &586814635166909514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4453513310108136, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
@@ -1812,6 +1854,10 @@ PrefabInstance:
     - target: {fileID: 8060969377196579643, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: LicenseName
       value: trond.o.skevik@nord.no_3VP7UlWKzcn3GbkQBAQ90m4v
+      objectReference: {fileID: 0}
+    - target: {fileID: 8060969377196579643, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: GestureDatabaseFile
+      value: cursebreaker-oculus.dat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}

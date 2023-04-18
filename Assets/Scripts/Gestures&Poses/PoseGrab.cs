@@ -43,7 +43,7 @@ public class PoseGrab : OVRGrabber
         if (!m_grabbedObj && m_grabCandidates.Count > 0 && isGrabbing)
         {
             // we call the GrabBegin the object
-            GrabBegin();
+            GrabBeginToPos();
         }
         // else if there is an object that we are grabbing and the isGrabbing is false
         else if (m_grabbedObj != null && !isGrabbing)

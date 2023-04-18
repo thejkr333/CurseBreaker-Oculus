@@ -40,6 +40,7 @@ public class PoseEvents : MonoBehaviour
     [SerializeField] bool attracting = false;
     [SerializeField] LayerMask interactable, grabbed;
     Outline lastOutline;
+    Transform grabPoint;
     Rigidbody attractedObjRb;
     LayerMask objectLayer;
 
@@ -77,6 +78,7 @@ public class PoseEvents : MonoBehaviour
         blue = Color.blue;
         white = Color.white;
 
+        grabPoint = handSkeleton.transform.GetChild(0);
         // When the Oculus hand had his time to initialize hand, with a simple coroutine i start a delay of
         // a function to initialize the script
         StartCoroutine(DelayRoutine(Initialize));
@@ -298,7 +300,7 @@ public class PoseEvents : MonoBehaviour
 
         while (Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .2f)
         {
-            Vector3 direction = (handSkeleton.transform.position - obj.transform.position).normalized;
+            Vector3 direction = (grabPoint.position - obj.transform.position).normalized;
             if (attractedObjRb != null) attractedObjRb.AddForce(direction * 3, ForceMode.Force);
 
             yield return 0;
