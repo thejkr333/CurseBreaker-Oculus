@@ -8,6 +8,7 @@
 Assets/AssetStoreTools*
 #[Aa]ssets/[Oo]culus
 [Uu]serSettings/
+/[Uu]ser[Ss]ettings/
 [Uu]serSettings\
 /[Uu]ser[Ss]ettings/
 
@@ -69,4 +70,5 @@ UserSettings/EditorUserSettings.asset
 UserSettings/Layouts/default-2021.dwlt
 UserSettings/EditorUserSettings.asset
 UserSettings/Layouts/default-2021.dwlt
+UserSettings/EditorUserSettings.asset
 UserSettings/EditorUserSettings.asset
