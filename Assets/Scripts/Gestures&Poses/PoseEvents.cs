@@ -162,21 +162,21 @@ public class PoseEvents : MonoBehaviour
     #region Aim
     public void StartAim()
     {
-        //Testing the grab end on another pose
-        DrawingWithThisHand = false;
-        
-        EndGrab();
-
         if (CurrentPose != Poses.Aiming) StartNewPose(CurrentPose);
+        else return;
 
         CurrentPose = Poses.Aiming;
+
+        //Testing the grab end on another pose
+        DrawingWithThisHand = false;
+
+        EndGrab();
 
         //Colour Reset every time you start aiming, just incase it doesnt. at best the line should be blue. might also not change to white as the gradient itself cannot be lerped...
         //Blue[0].color = Color.blue;
         //Blue[1].color = Color.blue;
         //lineRenderer.colorGradient.SetKeys(Blue, Alpha);
-        lineRenderer.material.color = blue;
-       
+        lineRenderer.material.color = blue;      
     }
     void Aim()
     {
@@ -235,12 +235,11 @@ public class PoseEvents : MonoBehaviour
     #region Grab
     public void StartGrab()
     {
-        DrawingWithThisHand = false;
-        
-
         if (CurrentPose != Poses.Grab) StartNewPose(CurrentPose);
+        else return;
 
         CurrentPose = Poses.Grab;
+        DrawingWithThisHand = false;
     }
     void Grab()
     {
@@ -357,10 +356,9 @@ public class PoseEvents : MonoBehaviour
     public void StartOpenHand()
     {
         if (CurrentPose != Poses.OpenHand) StartNewPose(CurrentPose);
+        else return;
 
         CurrentPose = Poses.OpenHand;
-       
-
     }
     void OpenHand()
     {
@@ -376,14 +374,15 @@ public class PoseEvents : MonoBehaviour
     #region SpellSelect
     public void StartSpellSelect()
     {
-        EndGrab();
-        DrawingWithThisHand = true;
-        
         if (CurrentPose != Poses.SpellSelect) StartNewPose(CurrentPose);
+        else return;
+
+        CurrentPose = Poses.SpellSelect;
 
         AudioManager.Instance.PlaySoundDynamic("magic_drawing", drawingFingerTip.gameObject);
 
-        CurrentPose = Poses.SpellSelect;
+        EndGrab();
+        DrawingWithThisHand = true;
 
         if (trailRenderer == null) return;
 
@@ -395,7 +394,7 @@ public class PoseEvents : MonoBehaviour
     }
     void EndSpellSelect()
     {
-        AudioManager.Instance.StopSound("magic_drawing");
+        AudioManager.Instance.StopSound("magic_drawing", drawingFingerTip.gameObject);
 
         recordingGesture = false;
 
@@ -521,11 +520,8 @@ public class PoseEvents : MonoBehaviour
                 EndAim();
                 break;
 
-            case Poses.Grab:
-
-               
-               // EndGrab();
-               
+            case Poses.Grab:              
+               // EndGrab();             
                 break;
 
             case Poses.OpenHand:

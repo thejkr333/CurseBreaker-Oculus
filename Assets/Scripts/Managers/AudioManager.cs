@@ -101,6 +101,14 @@ public class AudioManager : MonoBehaviour
     {
         if (soundSources.ContainsKey(name))
         {
+            Sound _sound = Sounds.Find(s => s.Name == name);
+
+            if (_sound == null)
+            {
+                Debug.LogWarning("AudioManager: Sound not found - " + name);
+                return;
+            }
+
             AudioSource _source = soundSources[name];
             _source.transform.position = position;
             _source.volume = SfxVolume;
@@ -112,36 +120,27 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySoundDynamic(string name, GameObject followObject = null)
+    public void PlaySoundDynamic(string name, GameObject followObject)
     {
         if (soundSources.ContainsKey(name))
         {
-            Sound _sound = Sounds.Find(s => s.Name == name);
+            if (followObject == null) return;
 
-            if (_sound == null)
+            if (!followObject.TryGetComponent<AudioSource>(out AudioSource _source))
             {
-                Debug.LogWarning("AudioManager: Sound not found - " + name);
-                return;
+                _source = followObject.AddComponent<AudioSource>();
             }
 
-            AudioSource _source = soundSources[name];
-
-            if(followObject != null)
-            {
-                _source.transform.parent = followObject.transform;
-            }
-            _source.clip = _sound.Clip;
-            _source.volume = SfxVolume;
-            _source.pitch = _sound.Pitch;
-            _source.loop = _sound.Loop;
-            _source.spatialBlend = _sound.SpatialBlend;
-            _source.maxDistance = _sound.MaxDistance;
-            _source.rolloffMode = _sound.RolloffMode;
+            _source.clip = soundSources[name].clip;
+            _source.volume = soundSources[name].volume;
+            _source.pitch = soundSources[name].pitch;
+            _source.playOnAwake = false;
+            _source.loop = soundSources[name].loop;
             _source.Play();
 
-            if (!_sound.Loop)
+            if (!_source.loop)
             {
-                Destroy(_source, _sound.Clip.length);
+                Destroy(_source, _source.clip.length);
             }
         }
         else
@@ -150,12 +149,24 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void StopSound(string name)
+    public void StopSound(string name, GameObject sourceObject = null)
     {
         if (soundSources.ContainsKey(name))
         {
-            AudioSource _source = soundSources[name];
-
+            AudioSource _source;
+            if (sourceObject != null)
+            {
+                if (!sourceObject.TryGetComponent<AudioSource>(out _source))
+                {
+                    Debug.LogWarning("AudioManager: Object " + sourceObject + " does not contain an AudioSoruce");
+                    return;
+                }
+            }
+            else
+            {
+                _source = soundSources[name];
+            }
+            
             if (_source.isPlaying)
             {
                 _source.Stop();
