@@ -11913,18 +11913,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OVRCameraRig
       objectReference: {fileID: 0}
-    - target: {fileID: 588593584119360436, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: _trackingOriginType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 588593584119360436, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: usePositionTracking
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 588593584119360436, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: useIPDInPositionTracking
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7570299794733912045, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
       propertyPath: Slider
       value: 
