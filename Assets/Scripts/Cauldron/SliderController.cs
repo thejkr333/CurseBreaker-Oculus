@@ -6,7 +6,6 @@ using TMPro;
 
 public class SliderController : MonoBehaviour
 {
-
     enum SliderState { OFF, MOVING, FINISHED }
 
     [SerializeField] float successPoint = 0.5f;
