@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public event Action OnNewDay;
     public event Action<Ingredients[]> CreateShop;
 
+    //True == unlocked ---- false == locked
+    Dictionary<Curses, bool> cursesLockInfo = new Dictionary<Curses, bool>();
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,6 +34,18 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        //Populate the dictionary putting all the curses as locked
+        foreach (Curses curse in Enum.GetValues(typeof(Curses)))
+        {
+            cursesLockInfo.Add(curse, false);
+        }
+
+        //Starting unlocked curses
+        cursesLockInfo[Curses.Wolfus] = true;
+        cursesLockInfo[Curses.Gassle] = true;
+
+        LoadGame();
 
         this.OnNewDay += NewDay;
         OnNewDay?.Invoke();
@@ -64,6 +79,7 @@ public class GameManager : MonoBehaviour
         dayCount++;
         Ingredients[] _ingredients = CreateCustomers();
         CreateShop?.Invoke(_ingredients);
+        SaveGame();
     }
 
     private Ingredients[] CreateCustomers()
@@ -89,5 +105,28 @@ public class GameManager : MonoBehaviour
             _ingredients.Remove(_ing);
         }
         return _ingredientsMoreUsed;
+    }
+
+    void SaveGame()
+    {
+        // Save desired stats from PlayerPrefs
+        PlayerPrefs.SetInt("DayCount", dayCount);
+        PlayerPrefs.SetInt("Gold", Gold);
+        foreach (var curse in cursesLockInfo)
+        {
+            PlayerPrefs.SetInt(curse.Key.ToString(), curse.Value ? 1 : 0);
+        }
+        PlayerPrefs.Save();
+    }
+
+    void LoadGame()
+    {
+        // Load desired stats from PlayerPrefs
+        dayCount = PlayerPrefs.GetInt("DayCount", 0);
+        Gold = PlayerPrefs.GetInt("Gold", 0);
+        foreach (var curse in cursesLockInfo)
+        {
+            cursesLockInfo[curse.Key] = PlayerPrefs.GetInt(curse.Key.ToString()) == 1 ? true : false;
+        }
     }
 }

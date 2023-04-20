@@ -77,6 +77,9 @@ public class AudioManager : MonoBehaviour
             _source.pitch = sound.Pitch;
             _source.playOnAwake = false;
             _source.loop = sound.Loop;
+            _source.rolloffMode = sound.RolloffMode;
+            _source.maxDistance = sound.MaxDistance;
+            _source.spatialBlend = sound.SpatialBlend;
             soundSources[sound.Name] = _source;
         }
 
@@ -136,6 +139,9 @@ public class AudioManager : MonoBehaviour
             _source.pitch = soundSources[name].pitch;
             _source.playOnAwake = false;
             _source.loop = soundSources[name].loop;
+            _source.rolloffMode = soundSources[name].rolloffMode;
+            _source.maxDistance = soundSources[name].maxDistance;
+            _source.spatialBlend = soundSources[name].spatialBlend;
             _source.Play();
 
             if (!_source.loop)
