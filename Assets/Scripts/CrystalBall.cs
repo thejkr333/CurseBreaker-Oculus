@@ -12,7 +12,10 @@ public class CrystalBall : MonoBehaviour
         particleSystem = GetComponentInChildren<ParticleSystem>();
 
         sphereCollider.enabled = false;
+    }
 
+    private void Start()
+    {
         DayManager.Instance.CustomersFinished += GetReadyForNextDay;
     }
 

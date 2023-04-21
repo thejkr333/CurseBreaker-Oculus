@@ -16,7 +16,7 @@ public class IngredientStorage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CurrentAmount >= 0)
+        if(CurrentAmount > 0)
         {
             CurrentAmount--;
             GameManager.Instance.SellIngredient(4);

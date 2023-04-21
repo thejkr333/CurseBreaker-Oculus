@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
 
         InitializeLockInfo();
         this.OnNewDay += NewDay;
-        this.Transaction
         //if there is saved data load game
         if (PlayerPrefs.HasKey("DayCount"))
         {
