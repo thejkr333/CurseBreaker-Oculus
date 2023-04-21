@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3988553864119604760}
   - component: {fileID: 3988553864119604767}
-  - component: {fileID: 3019273135514807610}
   - component: {fileID: 3988553864119604766}
+  - component: {fileID: 7084323526349359052}
   m_Layer: 0
   m_Name: MandrakeSpawner
   m_TagString: Untagged
@@ -50,21 +50,6 @@ MonoBehaviour:
   ingredientPrefab: {fileID: 7149134073583334028, guid: 6b656de40ae6d9049951444ac8cfcf98, type: 3}
   inside: {fileID: 0}
   GotIngredient: 0
---- !u!114 &3019273135514807610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3988553864119604765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca854b7d5f34b664cad7f55274f87b75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ingredeint: 1
-  cost: 1
-  MoneyParticle: {fileID: 2286828100554038462, guid: e894135aa83b1cf42ba80a9cee3d26a0, type: 3}
 --- !u!135 &3988553864119604766
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -78,6 +63,21 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7084323526349359052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988553864119604765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca854b7d5f34b664cad7f55274f87b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredeint: 0
+  cost: 0
+  MoneyParticle: {fileID: 0}
 --- !u!1001 &3988553862441820115
 PrefabInstance:
   m_ObjectHideFlags: 0
