@@ -42,9 +42,9 @@ public class StirringStick : MonoBehaviour
     }
 
 
-    private void OnTrigger(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<LiquidScript>())
+        if (other.GetComponent<Cauldron>())
         {
             animator.enabled = true;
             inCauldron = true;
