@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public int Gold, Rent, RentIncrement, PaymentIncrement;
 
+    private CoinStorage coinChest;
+
     [SerializeField] Transform parla;
 
     [Header("CUSTOMERS")]
@@ -26,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        coinChest = GameObject.FindObjectOfType<CoinStorage>();
+
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -35,6 +39,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
+<<<<<<< Updated upstream
         //Populate the dictionary putting all the curses as locked
         foreach (Curses curse in Enum.GetValues(typeof(Curses)))
         {
@@ -48,16 +53,31 @@ public class GameManager : MonoBehaviour
         LoadGame();
 
         this.OnNewDay += NewDay;
+=======
+        //this.OnNewDay += NewDay;
+>>>>>>> Stashed changes
         OnNewDay?.Invoke();
     }
 
     public void RentIncrease()
     {
         Rent += RentIncrement;
+        coinChest.Update_coins();
     }
    public void GoldGain()
     {
         Gold += 10 + PaymentIncrement;
+        coinChest.Update_coins();
+    }
+    public void GoldSubtract(int cost)
+    {
+        Gold -= cost;
+        coinChest.Update_coins();
+    }
+    public void SellIngredient(int cost)
+    {
+        Gold += cost;
+        coinChest.Update_coins();
     }
 
     public void RentisDue()
@@ -74,6 +94,7 @@ public class GameManager : MonoBehaviour
         Destroy(obj, 1f);
     }
 
+    /*
     void NewDay()
     {
         dayCount++;
@@ -82,6 +103,7 @@ public class GameManager : MonoBehaviour
         SaveGame();
     }
 
+    */
     private Ingredients[] CreateCustomers()
     {
         Ingredients[] _ingredientsMoreUsed = new Ingredients[Shop.NUMBEROFITEMS];
