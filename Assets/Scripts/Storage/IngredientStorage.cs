@@ -10,7 +10,7 @@ public class IngredientStorage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<IngredientSpawner>().GotIngredient = true;
+        //gameObject.GetComponent<IngredientSpawner>().GotIngredient = true;
     }
 
     // Update is called once per frame

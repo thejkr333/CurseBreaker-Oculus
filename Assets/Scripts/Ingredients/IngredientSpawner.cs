@@ -6,7 +6,7 @@ public class IngredientSpawner : MonoBehaviour
 {
     [SerializeField] GameObject ingredientPrefab;
     [SerializeField] GameObject inside;
-    public bool GotIngredient;
+    public bool GotMoney;
     Vector3 scaleObj;
     private void Awake()
     {
@@ -22,9 +22,9 @@ public class IngredientSpawner : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {GameObject.Find("Coins").GetComponent<CoinStorage>().NoMoreMoney = !GotMoney;
         //Check if the object iniside is STILL inside, if not create another one
-        if(Vector3.Distance(inside.transform.position, transform.position) > 1)
+        if(Vector3.Distance(inside.transform.position, transform.position) > 1&& GotMoney==true)
         {
             GameObject clon = Instantiate(ingredientPrefab);
             clon.transform.position = transform.position;
