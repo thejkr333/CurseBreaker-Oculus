@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     //True == unlocked ---- false == locked
     Dictionary<Curses, bool> cursesLockInfo = new();
+    Dictionary<Ingredients, bool> ingredientsLockInfo = new();
 
     private void Awake()
     {
@@ -42,28 +43,65 @@ public class GameManager : MonoBehaviour
 
         this.OnNewDay += NewDay;
 
+        //if there is saved data load game
+        if (PlayerPrefs.HasKey("DayCount")) LoadGame();
+        else
+        {
+            InitializeLockInfo();
+            OnNewDay?.Invoke();
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P)) SaveGame();
+    }
+
+    void InitializeLockInfo()
+    {
         //Populate the dictionary putting all the curses as locked
         foreach (Curses curse in Enum.GetValues(typeof(Curses)))
         {
             cursesLockInfo.Add(curse, false);
         }
 
-        foreach(var info in cursesLockInfo)
+        //Populate the dictionary putting all the ingredients as locked
+        foreach (Ingredients ingredients in Enum.GetValues(typeof(Ingredients)))
         {
-            Debug.Log("Key: " + info.Key + " value: " + info.Value);        
+            ingredientsLockInfo.Add(ingredients, false);
         }
 
         //Starting unlocked curses
         cursesLockInfo[Curses.Wolfus] = true;
         cursesLockInfo[Curses.Gassle] = true;
 
-        if(PlayerPrefs.HasKey("DayCount")) LoadGame();
-        else OnNewDay?.Invoke();
+        //Starting unlocked curses
+        ingredientsLockInfo[Ingredients.WolfsBane] = true;
+        ingredientsLockInfo[Ingredients.DragonsTongue] = true;
+        ingredientsLockInfo[Ingredients.Mandrake] = true;
+        ingredientsLockInfo[Ingredients.CorkWood] = true;
     }
 
-    private void Update()
+    public List<Curses> GetUnlockedCurses()
     {
-        if (Input.GetKeyDown(KeyCode.P)) SaveGame();
+        List<Curses> unlockedCurses = new();
+        foreach (var curse in cursesLockInfo.Keys)
+        {
+            if (cursesLockInfo[curse]) unlockedCurses.Add(curse);
+        }
+
+        return unlockedCurses;
+    }
+
+    public List<Ingredients> GetUnlockedIngredients()
+    {
+        List<Ingredients> unlockedIngredients = new();
+        foreach (var ingredient in ingredientsLockInfo.Keys)
+        {
+            if (ingredientsLockInfo[ingredient]) unlockedIngredients.Add(ingredient);
+        }
+
+        return unlockedIngredients;
     }
 
     public void RentIncrease()
@@ -144,9 +182,13 @@ public class GameManager : MonoBehaviour
         // Save desired stats from PlayerPrefs
         PlayerPrefs.SetInt("DayCount", DayCount);
         PlayerPrefs.SetInt("Gold", Gold);
-        foreach (var curse in cursesLockInfo)
+        foreach (var curse in cursesLockInfo.Keys)
         {
-            PlayerPrefs.SetInt(curse.Key.ToString(), curse.Value ? 1 : 0);
+            PlayerPrefs.SetInt(curse.ToString(), cursesLockInfo[curse] ? 1 : 0);
+        }
+        foreach (var ingredient in ingredientsLockInfo.Keys)
+        {
+            PlayerPrefs.SetInt(ingredient.ToString(), ingredientsLockInfo[ingredient] ? 1 : 0);
         }
         PlayerPrefs.Save();
     }
@@ -157,9 +199,13 @@ public class GameManager : MonoBehaviour
         DayCount = PlayerPrefs.GetInt("DayCount", 0);
         Gold = PlayerPrefs.GetInt("Gold", 0);
 
-        foreach (var infoKey in cursesLockInfo.Keys.ToList())
+        foreach (var curse in cursesLockInfo.Keys.ToList())
         {
-            cursesLockInfo[infoKey] = PlayerPrefs.GetInt(infoKey.ToString()) == 1 ? true : false;
+            cursesLockInfo[curse] = PlayerPrefs.GetInt(curse.ToString()) == 1 ? true : false;
+        }
+        foreach (var ingredient in ingredientsLockInfo.Keys.ToList())
+        {
+            ingredientsLockInfo[ingredient] = PlayerPrefs.GetInt(ingredient.ToString()) == 1 ? true : false;
         }
     }
 }

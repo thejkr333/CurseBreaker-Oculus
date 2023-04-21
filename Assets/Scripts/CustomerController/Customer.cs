@@ -167,24 +167,16 @@ public class Customer : MonoBehaviour
                     //    break;
 
                     default:
-                        //Create random curse
-                        if ((int)curse == -1)
-                        {
-                            int _curseNumber = UnityEngine.Random.Range(0, Enum.GetValues(typeof(Curses)).Length);
-                            curse = (Curses)_curseNumber;
-                        }
+                        //Create random curse from unlocked curses list
+                        if ((int)curse == -1) curse = CreateRandomUnlockedCurse();
                         break;
                 }
 
-                //Create random curse
-                if((int)curse == -1) 
-                {
-                    int _curseNumber = UnityEngine.Random.Range(0, Enum.GetValues(typeof(Curses)).Length);
-                    curse = (Curses)_curseNumber;
-                }
+                //Create random curse from unlocked curses list
+                if ((int)curse == -1) curse = CreateRandomUnlockedCurse();
 
                 //Add curse to the dictionary if it is new and give it a strength
-                if(!CursesStrength.ContainsKey(curse)) CursesStrength.Add(curse, UnityEngine.Random.Range(3, 9));
+                if (!CursesStrength.ContainsKey(curse)) CursesStrength.Add(curse, UnityEngine.Random.Range(3, 9));
                 else CursesStrength[curse] += UnityEngine.Random.Range(1, 4);
 
                 //Asssign the limb its correspondant values
@@ -192,7 +184,7 @@ public class Customer : MonoBehaviour
                 AffectedLimbs.Add(_affectedLimb);
 
                 //Add the correspondant curse to the limb gamobject
-                var _check = _affectedLimb.AffectedLimbGO.AddComponent(Type.GetType(curse.ToString()));
+                _affectedLimb.AffectedLimbGO.AddComponent(Type.GetType(curse.ToString()));
 
                 //Change visuals of the affected limb
                 Curse _curse = _affectedLimb.AffectedLimbGO.GetComponent<Curse>();
@@ -200,6 +192,13 @@ public class Customer : MonoBehaviour
                 break;
             }
         }
+    }
+
+    Curses CreateRandomUnlockedCurse()
+    {
+        List<Curses> unlockedCurses = GameManager.Instance.GetUnlockedCurses();
+        int _curseNumber = UnityEngine.Random.Range(0, unlockedCurses.Count);
+        return unlockedCurses[_curseNumber];
     }
 
     /// <summary>
