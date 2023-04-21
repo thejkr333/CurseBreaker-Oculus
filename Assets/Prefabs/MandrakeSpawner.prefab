@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3988553864119604760}
-  - component: {fileID: 3988553864119604767}
   - component: {fileID: 7084323526349359052}
-  m_Layer: 0
+  - component: {fileID: 6283321375231398329}
+  - component: {fileID: 1984209144379469023}
+  - component: {fileID: 165991853890112617}
+  m_Layer: 3
   m_Name: MandrakeSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,21 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -115.92, z: 0}
---- !u!114 &3988553864119604767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3988553864119604765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5544901b4c73c8a4299ff63d35dcf9c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ingredientPrefab: {fileID: 7149134073583334028, guid: 6b656de40ae6d9049951444ac8cfcf98, type: 3}
-  inside: {fileID: 0}
-  GotIngredient: 0
 --- !u!114 &7084323526349359052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,9 +48,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca854b7d5f34b664cad7f55274f87b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredeint: 1
-  cost: 2
-  MoneyParticle: {fileID: 2286828100554038462, guid: e894135aa83b1cf42ba80a9cee3d26a0, type: 3}
+  moneyParticle: {fileID: 2286828100554038462, guid: e894135aa83b1cf42ba80a9cee3d26a0, type: 3}
+  ingredientPrefab: {fileID: 7149134073583334028, guid: 6b656de40ae6d9049951444ac8cfcf98, type: 3}
+--- !u!114 &6283321375231398329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988553864119604765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.912394, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!54 &1984209144379469023
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988553864119604765}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &165991853890112617
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988553864119604765}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Center: {x: -0.03, y: 0, z: 0.03}
 --- !u!1001 &3988553862441820115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -190,21 +223,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7d882366949a4d94f9100fcded999e17, type: 3}
   m_PrefabInstance: {fileID: 3988553862441820115}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4295124847988990594 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d882366949a4d94f9100fcded999e17, type: 3}
-  m_PrefabInstance: {fileID: 3988553862441820115}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &7539092575787427594
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4295124847988990594}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01769324, y: 0.001729574, z: 0.011785769}
-  m_Center: {x: -0.00013535048, y: -0.0003064443, z: -0.00089288666}

@@ -247,7 +247,7 @@ public class Customer : MonoBehaviour
         cured = true;
 
         DayManager.Instance.NextCustomer();
-        GameManager.Instance.GoldGain();
+        GoldManager.Instance.GainGold();
     }
 
     void GetPotion(Potion potion)

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CurseController : MonoBehaviour
 {
-    public GameManager GM;
-
     public int CurseCount, CursedLimbCount, PrevLimbInt, SecondLimbCheck, ElementalRando, LimbTarget, ElementalCount;
     public int[] CursedLimbs, WhatCurse;
     public bool FinalCurseCheck, CheckFinished;
@@ -20,8 +18,6 @@ public class CurseController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
-
         element_color.Add(0, Color.black);
         element_color.Add(1, Color.white);
         element_color.Add(2, Color.blue);
@@ -185,26 +181,16 @@ public class CurseController : MonoBehaviour
                 color_limb(ElementalRando);
                 ElementalRando--;
                 return;
-
             }
-
-        
-
-
     }
     
-
-
-    
-    public void cure()
+    public void Cure()
     {
         CurseCount--;
 
-        if (CurseCount <= 0)
-            isCured = true;
+        if (CurseCount <= 0) isCured = true;
 
-        if (isCured)
-            GM.GoldGain();
+        if (isCured) GoldManager.Instance.GainGold();
     }
 
     public void color_limb( int element)
@@ -214,11 +200,9 @@ public class CurseController : MonoBehaviour
     public void Cure_limb()
     {
         revert_limb_color();
-        cure();
+        Cure();
 
         //set the limb color back to white once cured
         void revert_limb_color() => Limbs[LimbTarget - 1].GetComponentInChildren<Renderer>().material.color = Color.white;
     }
-
-
 }

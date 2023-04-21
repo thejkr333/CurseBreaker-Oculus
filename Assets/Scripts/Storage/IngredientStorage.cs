@@ -5,7 +5,9 @@ using UnityEngine;
 public class IngredientStorage : MonoBehaviour
 {
     public bool AngelLeaf, Mandrake, CorkWood, WolfsBane, NightShade, DragonTongue;
-    public StorageController StorageController;
+
+    [SerializeField] Ingredients ingredient;
+    [SerializeField] StorageController StorageController;
     public int CurrentAmount;
     // Start is called before the first frame update
     void Start()
@@ -19,12 +21,14 @@ public class IngredientStorage : MonoBehaviour
         if(CurrentAmount > 0)
         {
             CurrentAmount--;
-            GameManager.Instance.SellIngredient(4);
+            GoldManager.Instance.SellIngredient(4);
             //gameObject.GetComponent<IngredientSpawner>().GotIngredient = false;
         }
         if(CurrentAmount < 0) CurrentAmount = 0;
 
-        if(Mandrake== true)
+        CurrentAmount = StorageController.storageInfos[ingredient].amount;
+
+        if(Mandrake == true)
         {
             CurrentAmount = StorageController.MandrakeAmount;
         }
@@ -53,27 +57,27 @@ public class IngredientStorage : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Mandrake>()&&Mandrake==true)
         {
-            GameManager.Instance.GoldSubtract(4);
+            GoldManager.Instance.SubstractGold(4);
         }
         if (other.gameObject.GetComponent<CorkWood>()&&CorkWood == true)
         {
-            GameManager.Instance.GoldSubtract(4);
+            GoldManager.Instance.SubstractGold(4);
         }
         if (other.gameObject.GetComponent<WolfsBane>() && WolfsBane == true)
         {
-            GameManager.Instance.GoldSubtract(4);
+            GoldManager.Instance.SubstractGold(4);
         }
         if (other.gameObject.GetComponent<AngelLeaf>() && AngelLeaf == true)
         {
-            GameManager.Instance.GoldSubtract(4);
-        }
+            GoldManager.Instance.SubstractGold(4);
+        }   
         if(other.gameObject.GetComponent<DragonsTongue>() && DragonTongue == true)
         {
-            GameManager.Instance.GoldSubtract(4);
+            GoldManager.Instance.SubstractGold(4);
         }
         if(other.gameObject.GetComponent<Nightshade>() && NightShade == true)
         {
-            GameManager.Instance.GoldSubtract(4);
+            GoldManager.Instance.SubstractGold(4);
         }
     }
 }

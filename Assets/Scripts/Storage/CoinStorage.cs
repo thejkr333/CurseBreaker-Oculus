@@ -5,28 +5,27 @@ using UnityEngine;
 
 public class CoinStorage : MonoBehaviour
 {
+    private int goldCount, goldLimit;
 
-    private int goldCount, goldEnablingFrom, goldLimit;
     //to fix "free" ingredients
     public bool NoMoreMoney;
-    public GameObject[] Coins;
-    private List<bool> activeCoins;
+    [SerializeField] GameObject[] coins;
 
     public TMP_Text CoinText;
 
     // Start is called before the first frame update
     void Start()
     {
-        goldLimit = Coins.Length - 1;
+        goldLimit = coins.Length - 1;
         UpdateCoins();
 
-        GameManager.Instance.Transaction += UpdateCoins;
+        GoldManager.Instance.Transaction += UpdateCoins;
     }
 
     // Update is called once per frame
     public void UpdateCoins()
     {
-        goldCount = GameManager.Instance.Gold;
+        goldCount = GoldManager.Instance.Gold;
         CoinText.text = goldCount.ToString() + " :Gold Coins";
         if (goldCount < 0)
         {
@@ -38,7 +37,7 @@ public class CoinStorage : MonoBehaviour
         }
         if (goldCount == 0)
         {
-            ResetGold();
+            DeactivateCoins();
         }
 
         if (goldCount < goldLimit)
@@ -53,9 +52,9 @@ public class CoinStorage : MonoBehaviour
 
     }
 
-    void ResetGold()
+    void DeactivateCoins()
     {
-        foreach (var Coins in Coins)
+        foreach (var Coins in coins)
         {
             Coins.gameObject.SetActive(false);
         }
@@ -63,7 +62,7 @@ public class CoinStorage : MonoBehaviour
 
     void SpawnAllGold()
     {
-        foreach (var Coins in Coins)
+        foreach (var Coins in coins)
         {
             Coins.gameObject.SetActive(true);
         }
@@ -71,12 +70,11 @@ public class CoinStorage : MonoBehaviour
 
     void SpawnGold()
     {
-        ResetGold();
+        DeactivateCoins();
 
-        for (int a = 0; a < goldCount; a++)
+        for (int i = 0; i < goldCount; i++)
         {
-            Coins[a].SetActive(true);
+            coins[i].SetActive(true);
         }
     }
-
 }

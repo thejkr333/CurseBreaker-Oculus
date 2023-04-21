@@ -8,7 +8,8 @@ public class Ingredient : MonoBehaviour
 {
     [HideInInspector] public Ingredients ThisIngredient;
 
-    
+    public int SellCost;
+    public int BuyCost;
     protected virtual void Awake()
     {
 

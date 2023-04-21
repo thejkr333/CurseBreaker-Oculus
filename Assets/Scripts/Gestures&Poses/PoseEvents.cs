@@ -250,10 +250,23 @@ public class PoseEvents : MonoBehaviour
             if (rb == null) return;
 
             attractedObjRb = rb;
+
             if (rb.GetComponent<StirringStick>() != null) rb.GetComponent<StirringStick>().DisableAnim();
+
+            //If it's a chest spawn an ingredient and attract it
+            if (rb.TryGetComponent(out IngredientChest ingredientChest))
+            {
+                GameObject ing = ingredientChest.InstantiateIngredient();
+                if(ing == null)
+                {
+                    //no money
+                    return;
+                }
+                else attractedObjRb = ing.GetComponent<Rigidbody>();
+            }
+
             DeselectAim();
             StartAttract();
-            //StartCoroutine(AttractObject());
         }
         else
         {
@@ -330,15 +343,22 @@ public class PoseEvents : MonoBehaviour
     }
     void AttractFixed()
     {
-        if (Vector3.Distance(attractedObjRb.gameObject.transform.position, handSkeleton.transform.position) > .2f)
+        GameObject _obj = attractedObjRb.gameObject;
+        objectLayer = _obj.layer;
+        int _layerGrabbed = LayerMask.NameToLayer("Grabbed");
+        _obj.layer = _layerGrabbed;
+
+        if (Vector3.Distance(_obj.transform.position, handSkeleton.transform.position) > .2f)
         {
-            Vector3 direction = (handSkeleton.transform.position - attractedObjRb.gameObject.transform.position).normalized;
-            if (attractedObjRb != null) attractedObjRb.AddForce(direction * 3, ForceMode.Force);
+            Vector3 _direction = (handSkeleton.transform.position - _obj.transform.position).normalized;
+            attractedObjRb.AddForce(_direction * 3, ForceMode.Force);
         }
         else
         {
+            _obj.layer = objectLayer;
+
             attractedObjRb.velocity = Vector3.zero;
-            attractedObjRb.transform.position = handSkeleton.transform.position;
+            attractedObjRb.transform.position = handSkeleton.transform.GetChild(0).position;
             attractedObjRb.gameObject.layer = objectLayer;
             objectLayer = 0;
             attractedObjRb.useGravity = true;

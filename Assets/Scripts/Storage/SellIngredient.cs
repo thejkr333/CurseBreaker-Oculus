@@ -4,27 +4,16 @@ using UnityEngine;
 
 public class SellIngredient : MonoBehaviour
 {
-    public ParticleSystem MoneyParticle;
-
-
+    [SerializeField] ParticleSystem moneyParticle;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!(FindObjectOfType<GameManager>()))
-        {
-            Debug.Log("can't find the game manager");
-            return;
-        }
+        if (!collision.gameObject.TryGetComponent(out Ingredient _ingredient)) return;
 
-        if (collision.gameObject.GetComponent<Ingredient>())
-        {
-            GameManager.Instance.SellIngredient(1);
-            
-            ParticleSystem temp;
-            temp = Instantiate(MoneyParticle, this.transform);
-            Destroy(temp.gameObject, 1f);
-            Destroy(collision.gameObject);
-        }
+        GoldManager.Instance.SellIngredient(_ingredient.SellCost);
 
+        ParticleSystem temp = Instantiate(moneyParticle, this.transform);
+        Destroy(temp.gameObject, 1f);
+        Destroy(collision.gameObject);
     }
 }

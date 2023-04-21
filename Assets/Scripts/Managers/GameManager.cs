@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,8 +6,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
-    public int Gold, Rent, RentIncrement, PaymentIncrement;
 
     public bool InMenu;
 
@@ -18,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public event Action OnNewDay;
     public event Action<Ingredients[]> CreateShop;
-    public event Action Transaction;
+
 
     //True == unlocked ---- false == locked
     Dictionary<Curses, bool> cursesLockInfo = new();
@@ -42,12 +39,6 @@ public class GameManager : MonoBehaviour
 
         InitializeLockInfo();
         this.OnNewDay += NewDay;
-        //if there is saved data load game
-        if (PlayerPrefs.HasKey("DayCount"))
-        {
-            LoadGame();
-            DayCount--;
-        }
 
         foreach (var curses in cursesLockInfo)
         {
@@ -68,6 +59,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //if there is saved data load game
+        if (PlayerPrefs.HasKey("DayCount"))
+        {
+            LoadGame();
+            DayCount--;
+        }
+
         NextDay();
     }
 
@@ -125,37 +123,6 @@ public class GameManager : MonoBehaviour
         return unlockedIngredients;
     }
 
-    
-
-    public void RentIncrease()
-    {
-        Rent += RentIncrement;
-        Transaction?.Invoke();
-    }
-    public void GoldGain()
-    {
-        Gold += 10 + PaymentIncrement;
-        Transaction?.Invoke();
-    }
-    public void GoldSubtract(int cost)
-    {
-        Gold -= cost;
-        Transaction?.Invoke();
-    }
-    public void SellIngredient(int cost)
-    {
-        Gold += cost;
-        Transaction?.Invoke();
-    }
-
-    public void RentisDue()
-    {
-        if (Gold > Rent)
-        {
-            Gold -= Rent;
-        }
-    }
-
     public void DestroyGrabbedThings(GameObject obj)
     {
         obj.transform.position = Parla.position;
@@ -204,7 +171,7 @@ public class GameManager : MonoBehaviour
 
         // Save desired stats from PlayerPrefs
         PlayerPrefs.SetInt("DayCount", DayCount);
-        PlayerPrefs.SetInt("Gold", Gold);
+        PlayerPrefs.SetInt("Gold", GoldManager.Instance.Gold);
 
         //Return changes from inspector to test
         foreach (var item in _cursesLockInfo)
@@ -231,7 +198,7 @@ public class GameManager : MonoBehaviour
     {
         // Load desired stats from PlayerPrefs
         DayCount = PlayerPrefs.GetInt("DayCount", 0);
-        Gold = PlayerPrefs.GetInt("Gold", 0);
+        GoldManager.Instance.Gold = PlayerPrefs.GetInt("Gold", 0);
 
         foreach (var curse in cursesLockInfo.Keys.ToList())
         {

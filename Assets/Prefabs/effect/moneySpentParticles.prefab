@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2286828100554038462}
   - component: {fileID: 2286828100554038463}
   m_Layer: 0
-  m_Name: moneySpent
+  m_Name: moneySpentParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,34 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(IngredientSpawner))] 
+[RequireComponent (typeof(Outline))]
+[RequireComponent(typeof(Rigidbody))]
 public class IngredientChest : MonoBehaviour
 {
-    public Ingredients ingredeint;
-    string chestName;
-    public int cost;
-    public ParticleSystem MoneyParticle;
+    //[SerializeField] Ingredients ingredient;
+    //[SerializeField] int cost;
+    [SerializeField] ParticleSystem moneyParticle;
+    [SerializeField] GameObject ingredientPrefab;
 
-    private void Start()
+    private void Awake()
     {
-        chestName = ingredeint.ToString();
+        GetComponent<Outline>().enabled = false;
     }
-    public void SubtractMoney()
-    {   
-        if (!(FindObjectOfType<GameManager>())) return;
 
-        GameManager.Instance.GoldSubtract(cost);
+    void SubtractMoney()
+    {   
+        GoldManager.Instance.SubstractGold(ingredientPrefab.GetComponent<Ingredient>().BuyCost);
         
         PlayParticleEffect();
-
     }
 
     void PlayParticleEffect()
     {
-        ParticleSystem temp;
-        temp = Instantiate(MoneyParticle,this.transform);
+        ParticleSystem temp = Instantiate(moneyParticle,this.transform);
         Destroy(temp.gameObject, 1f);
     }
 
+    public GameObject InstantiateIngredient()
+    {
+        if (GoldManager.Instance.Gold < ingredientPrefab.GetComponent<Ingredient>().BuyCost) return null;
+
+        GameObject clon = Instantiate(ingredientPrefab);
+        clon.transform.position = transform.position;
+        SubtractMoney();
+        return clon;
+    }
 }
