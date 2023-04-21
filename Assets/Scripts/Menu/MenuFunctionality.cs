@@ -25,6 +25,7 @@ public class MenuFunctionality : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.Start) && (OVRInput.GetActiveController() == OVRInput.Controller.Hands))
         {
             Menu.SetActive(!Menu.activeInHierarchy);
+            GameManager.Instance.InMenu = Menu.activeInHierarchy;
             // HeightUp.SetActive(!Menu.activeInHierarchy);
            // HeightDown.SetActive(!Menu.activeInHierarchy);
         }

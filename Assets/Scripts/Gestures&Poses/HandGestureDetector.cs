@@ -80,6 +80,12 @@ public class HandGestureDetector : MonoBehaviour
         //if the initialization was successful
         if (hasStarted)
         {
+            if (GameManager.Instance.InMenu)
+            {
+                NotRecognize?.Invoke();
+                return;
+            }   
+
             // start to Recognize every gesture we make
             Pose _currentGesture = Recognize();
 

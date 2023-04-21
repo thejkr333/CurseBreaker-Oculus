@@ -7,7 +7,8 @@ public class CoinStorage : MonoBehaviour
 {
 
     private int goldCount, goldEnablingFrom, goldLimit;
-
+    //to fix "free" ingredients
+    public bool NoMoreMoney;
     public GameObject[] Coins;
     private List<bool> activeCoins;
 
@@ -27,7 +28,14 @@ public class CoinStorage : MonoBehaviour
     {
         goldCount = GameManager.Instance.Gold;
         CoinText.text = goldCount.ToString() + " :Gold Coins";
-
+        if (goldCount < 0)
+        {
+            NoMoreMoney = true;
+        }
+        if(goldCount > 0)
+        {
+            NoMoreMoney = false;
+        }
         if (goldCount == 0)
         {
             ResetGold();

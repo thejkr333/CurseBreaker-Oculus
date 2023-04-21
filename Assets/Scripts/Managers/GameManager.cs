@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public int Gold, Rent, RentIncrement, PaymentIncrement;
 
-   
+    public bool InMenu;
 
     public Transform Parla;
 
@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     //True == unlocked ---- false == locked
     Dictionary<Curses, bool> cursesLockInfo = new();
     Dictionary<Ingredients, bool> ingredientsLockInfo = new();
+
+    //Just list for debug and visualize changes in unlockedInfo
+    [SerializeField] List<CursexBool> _cursesLockInfo;
+    [SerializeField] List<IngredientxBool> _ingredientsLockInfo;
 
     private void Awake()
     {
@@ -44,6 +48,22 @@ public class GameManager : MonoBehaviour
             LoadGame();
             DayCount--;
         }
+
+        foreach (var curses in cursesLockInfo)
+        {
+            CursexBool c = new();
+            c.curse = curses.Key;
+            c.isLocked = curses.Value;
+            _cursesLockInfo.Add(c);
+        }
+
+        foreach (var ingredients in ingredientsLockInfo)
+        {
+            IngredientxBool i = new();
+            i.curse = ingredients.Key;
+            i.isLocked = ingredients.Value;
+            _ingredientsLockInfo.Add(i);
+        }
     }
 
     private void Start()
@@ -53,6 +73,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.O)) PlayerPrefs.DeleteAll();
+
         if (Input.GetKeyDown(KeyCode.P)) SaveGame();
     }
 
@@ -74,7 +96,7 @@ public class GameManager : MonoBehaviour
         cursesLockInfo[Curses.Wolfus] = true;
         cursesLockInfo[Curses.Gassle] = true;
 
-        //Starting unlocked curses
+        //Starting unlocked ingredients
         ingredientsLockInfo[Ingredients.WolfsBane] = true;
         ingredientsLockInfo[Ingredients.DragonsTongue] = true;
         ingredientsLockInfo[Ingredients.Mandrake] = true;
@@ -183,6 +205,17 @@ public class GameManager : MonoBehaviour
         // Save desired stats from PlayerPrefs
         PlayerPrefs.SetInt("DayCount", DayCount);
         PlayerPrefs.SetInt("Gold", Gold);
+
+        //Return changes from inspector to test
+        foreach (var item in _cursesLockInfo)
+        {
+            cursesLockInfo[item.curse] = item.isLocked;
+        }
+        foreach (var item in _ingredientsLockInfo)
+        {
+            ingredientsLockInfo[item.curse] = item.isLocked;
+        }
+
         foreach (var curse in cursesLockInfo.Keys)
         {
             PlayerPrefs.SetInt(curse.ToString(), cursesLockInfo[curse] ? 1 : 0);
@@ -209,4 +242,19 @@ public class GameManager : MonoBehaviour
             ingredientsLockInfo[ingredient] = PlayerPrefs.GetInt(ingredient.ToString()) == 1 ? true : false;
         }
     }
+}
+
+//Debug classes
+[Serializable]
+public class CursexBool
+{
+    public Curses curse;
+    public bool isLocked;
+}
+
+[Serializable]
+public class IngredientxBool
+{
+    public Ingredients curse;
+    public bool isLocked;
 }

@@ -85,6 +85,30 @@ MonoBehaviour:
     SpatialBlend: 0.5
     MaxDistance: 500
     RolloffMode: 0
+  - Name: turn_page
+    Clip: {fileID: 8300000, guid: 43b78aca2c35f254bbac0bf7822d5a15, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0.5
+    MaxDistance: 500
+    RolloffMode: 0
+  - Name: buy
+    Clip: {fileID: 8300000, guid: 6a3d03d1e8d2cb442a893a95d13638ac, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0.5
+    MaxDistance: 500
+    RolloffMode: 0
+  - Name: sell
+    Clip: {fileID: 8300000, guid: 23be3bbd9e1e31145a4e3b9bf40d52fe, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0.5
+    MaxDistance: 500
+    RolloffMode: 0
   Music:
   - Name: menu_music_1
     Clip: {fileID: 8300000, guid: f490f31184c9f7f42b7e4310eff76ed9, type: 3}
