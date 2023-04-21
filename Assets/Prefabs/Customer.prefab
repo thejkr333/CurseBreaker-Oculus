@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 208462482708992436}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 208462482786086589}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 208462482894392087}
   - component: {fileID: 208462482894392086}
   - component: {fileID: 208462482894392089}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: w_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 208462482978205733}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 208462483171448990}
   - component: {fileID: 208462483171448993}
   - component: {fileID: 208462483171448992}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 208462483432856613}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 208462483855417054}
   - component: {fileID: 208462483855417057}
   - component: {fileID: 208462483855417056}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 208462484056836996}
   - component: {fileID: 208462484056836999}
   - component: {fileID: 208462484056836998}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 1257095529007756415}
   - component: {fileID: 5465581485905930122}
   - component: {fileID: 7736293140006297746}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Customer
   m_TagString: Customer
   m_Icon: {fileID: 0}
@@ -581,7 +581,6 @@ MonoBehaviour:
   Light: {fileID: 21300000, guid: 32a3043d49fa6694585d013c34c2fef6, type: 3}
   Earth: {fileID: 21300000, guid: e67be4afb561606498fbceae9d641343, type: 3}
   Air: {fileID: 21300000, guid: 85473c85248e8944194ff34e225de62a, type: 3}
-  CurseStrength: 0
   Chances: 3
   AffectedLimbs: []
 --- !u!136 &1257095529007756415
@@ -645,7 +644,7 @@ GameObject:
   - component: {fileID: 208462484382605368}
   - component: {fileID: 208462484382605371}
   - component: {fileID: 208462484382605370}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +741,7 @@ GameObject:
   - component: {fileID: 208462484413524952}
   - component: {fileID: 208462484413524955}
   - component: {fileID: 208462484413524954}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: w
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -836,7 +835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 208462484447413453}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -869,7 +868,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 208462484684451972}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -905,7 +904,7 @@ GameObject:
   - component: {fileID: 4618308423981710293}
   - component: {fileID: 3441108686771350006}
   - component: {fileID: 1213610952102628455}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1007,7 +1006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7495537605731152938}
   - component: {fileID: 1174103152441382139}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ChatBoxContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1052,7 +1051,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8563538057748777585}
   - component: {fileID: 3632789938307561362}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HiddenMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1137,7 +1136,7 @@ GameObject:
   - component: {fileID: 913214515927733408}
   - component: {fileID: 2023728993716705709}
   - component: {fileID: 6915653333895951898}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CurseInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1272,7 +1271,7 @@ GameObject:
   - component: {fileID: 2710562849807842252}
   - component: {fileID: 449120337442383684}
   - component: {fileID: 8442793167223775765}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1406,7 +1405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7971377050501711252}
   - component: {fileID: 566895986619453627}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HiddenMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1491,7 +1490,7 @@ GameObject:
   - component: {fileID: 6787373140999011486}
   - component: {fileID: 7592063309691422179}
   - component: {fileID: 6679776235232359196}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1625,7 +1624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9095557690310508993}
   - component: {fileID: 5788891915697788549}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HiddenMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1709,7 +1708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7215860812588000458}
   - component: {fileID: 990198637092333601}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HiddenMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1793,7 +1792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5478856176318910768}
   - component: {fileID: 8315447465689082710}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HiddenMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1877,7 +1876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3882232037115484329}
   - component: {fileID: 8806921501927690563}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HiddenMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1962,7 +1961,7 @@ GameObject:
   - component: {fileID: 2733320027161162929}
   - component: {fileID: 1786103985867502070}
   - component: {fileID: 8760898543832290865}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wrong
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,6 +10,8 @@ public class IngredientSpawner : MonoBehaviour
     Vector3 scaleObj;
     private void Awake()
     {
+        inside = this.gameObject;
+
         scaleObj = inside.transform.localScale;
 
         GameObject clon = Instantiate(ingredientPrefab);
@@ -29,7 +31,8 @@ public class IngredientSpawner : MonoBehaviour
             clon.transform.localScale = scaleObj;
             inside = clon;
 
-            SendMessage("SubtractMoney");
+            if (!(GetComponent<IngredientChest>()))
+                GetComponent<IngredientChest>().SubtractMoney();
         }
     }
 }

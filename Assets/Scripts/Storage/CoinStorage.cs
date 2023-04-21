@@ -17,11 +17,13 @@ public class CoinStorage : MonoBehaviour
     void Start()
     {
         goldLimit = Coins.Length - 1;
-        Update_coins();
+        UpdateCoins();
+
+        GameManager.Instance.Transaction += UpdateCoins;
     }
 
     // Update is called once per frame
-    public void Update_coins()
+    public void UpdateCoins()
     {
         goldCount = GameManager.Instance.Gold;
         CoinText.text = goldCount.ToString() + " :Gold Coins";
