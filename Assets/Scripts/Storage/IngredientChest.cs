@@ -17,7 +17,7 @@ public class IngredientChest : MonoBehaviour
 
     }
     public void SubtractMoney(GameObject ingredient)
-    {
+    {   
         if (!(FindObjectOfType<GameManager>())) return;
 
         GameManager.Instance.GoldSubtract(cost);

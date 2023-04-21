@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public int Gold, Rent, RentIncrement, PaymentIncrement;
 
-    private CoinStorage coinChest;
+   
 
     public Transform Parla;
 
@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public event Action OnNewDay;
     public event Action<Ingredients[]> CreateShop;
+    public event Action Transaction;
 
     //True == unlocked ---- false == locked
     Dictionary<Curses, bool> cursesLockInfo = new();
@@ -25,8 +26,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        coinChest = GameObject.FindObjectOfType<CoinStorage>();
-
+        
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
         InitializeLockInfo();
         this.OnNewDay += NewDay;
+        this.Transaction
         //if there is saved data load game
         if (PlayerPrefs.HasKey("DayCount"))
         {
@@ -103,25 +104,27 @@ public class GameManager : MonoBehaviour
         return unlockedIngredients;
     }
 
+    
+
     public void RentIncrease()
     {
         Rent += RentIncrement;
-        coinChest.Update_coins();
+        Transaction?.Invoke();
     }
     public void GoldGain()
     {
         Gold += 10 + PaymentIncrement;
-        coinChest.Update_coins();
+        Transaction?.Invoke();
     }
     public void GoldSubtract(int cost)
     {
         Gold -= cost;
-        coinChest.Update_coins();
+        Transaction?.Invoke();
     }
     public void SellIngredient(int cost)
     {
         Gold += cost;
-        coinChest.Update_coins();
+        Transaction?.Invoke();
     }
 
     public void RentisDue()

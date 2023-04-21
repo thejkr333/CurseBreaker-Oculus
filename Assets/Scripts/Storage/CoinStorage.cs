@@ -36,6 +36,11 @@ public class CoinStorage : MonoBehaviour
             SpawnGold();
         }
 
+        if (goldCount > 6)
+        {
+            SpawnAllGold();
+        }
+
     }
 
     void ResetGold()
@@ -43,6 +48,14 @@ public class CoinStorage : MonoBehaviour
         foreach (var Coins in Coins)
         {
             Coins.gameObject.SetActive(false);
+        }
+    }
+
+    void SpawnAllGold()
+    {
+        foreach (var Coins in Coins)
+        {
+            Coins.gameObject.SetActive(true);
         }
     }
 
