@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public int Gold, Rent, RentIncrement, PaymentIncrement;
 
-   
+    public bool InMenu;
 
     public Transform Parla;
 

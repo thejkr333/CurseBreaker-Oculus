@@ -22,7 +22,6 @@ public class PoseEvents : MonoBehaviour
 
     private bool hasStarted = false;
 
-
     [Header("AIMING")]
     Vector3 indexProximal = Vector3.zero;
     Vector3 indexTip = Vector3.zero;
