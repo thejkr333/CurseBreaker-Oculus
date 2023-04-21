@@ -3427,7 +3427,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 1258842543}
     m_Modifications:
     - target: {fileID: 7234164115732488704, guid: 6595d9cd2f5ff804a9372e2c2621a5dc, type: 3}
-      propertyPath: parla
+      propertyPath: Parla
       value: 
       objectReference: {fileID: 243321873}
     - target: {fileID: 7234164115732488718, guid: 6595d9cd2f5ff804a9372e2c2621a5dc, type: 3}
@@ -6283,6 +6283,34 @@ PrefabInstance:
     - target: {fileID: 2320740121434764958, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[5].Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 43b78aca2c35f254bbac0bf7822d5a15, type: 3}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[5].Name
+      value: turn_page
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[5].Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[5].Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[5].MaxDistance
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[5].SpatialBlend
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BookInteraction : MonoBehaviour
 {
-
     public List<GameObject> Pages;
     int currentPage;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -22,6 +22,7 @@ public class BookInteraction : MonoBehaviour
 
     public void PreviousPage()
     {
+        AudioManager.Instance.PlaySoundStatic("turn_page", transform.position);
         if (currentPage >= 1)
         {
             currentPage--;
@@ -33,6 +34,7 @@ public class BookInteraction : MonoBehaviour
 
     public void NextPage()
     {
+        AudioManager.Instance.PlaySoundStatic("turn_page", transform.position);
         if (currentPage < Pages.Count-1)
         {
             currentPage++;
@@ -40,7 +42,6 @@ public class BookInteraction : MonoBehaviour
             Pages[currentPage].SetActive(true);
             Debug.Log("Current Page is " + (currentPage+1) + " of " + Pages.Count);
         }
-
     }
     public void SetPage(int pageToSet)
     {
