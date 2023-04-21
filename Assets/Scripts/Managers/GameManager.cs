@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
             Customer _customer = customersToday[i].GetComponent<Customer>();
             foreach (var limb in _customer.AffectedLimbs)
             {
-                CursexIngredientMatrix.ReturnIngredientsForCurse(limb.Curse, _customer.CurseStrength, ref _ingredients);            
+                CursexIngredientMatrix.ReturnIngredientsForCurse(limb.Curse, _customer.CursesStrength[limb.Curse], ref _ingredients);            
             }
         }
 

@@ -16,7 +16,8 @@ public class Customer : MonoBehaviour
     public Dictionary<Elements, LimbsList> ElementToLimbMapping = new();
 
     int numberOfPartsAffected;
-    public int CurseStrength;
+
+    public Dictionary<Curses, int> CursesStrength = new();
 
     bool cured;
     public int Chances = 3;
@@ -109,14 +110,7 @@ public class Customer : MonoBehaviour
             GiveCurseToLimb((LimbsList)_affectedLimbs[i]);
         }
 
-        CalculateCurseStrength();
-
         SetUpCurse();
-    }
-
-    void CalculateCurseStrength()
-    {
-        CurseStrength = UnityEngine.Random.Range(1, 7) * AffectedLimbs.Count / 2;
     }
 
     void GiveCurseToLimb(LimbsList limbName, Curses curse = (Curses)(-1))
@@ -129,19 +123,48 @@ public class Customer : MonoBehaviour
             {
                 switch (limbName)
                 {
-                    case LimbsList.Head:
-                        {
-                            Curses[] _curses = { Curses.Wolfus, Curses.Demonitis };
-                            CreateRandomCurseBetweenRange(_curses);
-                        }
-                        break;
+                    //case LimbsList.Head:
+                    //    {
+                    //        Curses[] _curses = { Curses.Wolfus, Curses.Demonitis };
+                    //        CreateRandomCurseBetweenRange(_curses);
+                    //    }
+                    //    break;
 
-                    case LimbsList.Torso:
-                        {
-                            Curses[] _curses = { Curses.Wolfus, Curses.Demonitis };
-                            CreateRandomCurseBetweenRange(_curses);
-                        }
-                        break;
+                    //case LimbsList.Torso:
+                    //    {
+                    //        Curses[] _curses = { Curses.Wolfus, Curses.Demonitis };
+                    //        CreateRandomCurseBetweenRange(_curses);
+                    //    }
+                    //    break;
+
+                    //case LimbsList.RightArm:
+                    //    {
+                    //        Curses[] _curses = { Curses.Wolfus, Curses.Demonitis };
+                    //        CreateRandomCurseBetweenRange(_curses);
+                    //    }
+                    //    break;
+
+                    //case LimbsList.LeftArm:
+                    //    {
+                    //        Curses[] _curses = { Curses.Wolfus, Curses.Demonitis };
+                    //        CreateRandomCurseBetweenRange(_curses);
+                    //    }
+                    //    break;
+
+                    //case LimbsList.RightLeg:
+                    //    {
+                    //        Curses[] _curses = { Curses.Wolfus, Curses.Demonitis };
+                    //        CreateRandomCurseBetweenRange(_curses);
+                    //    }
+                    //    break;
+
+
+                    //case LimbsList.LeftLeg:
+                    //    {
+                    //        Curses[] _curses = { Curses.Wolfus, Curses.Demonitis };
+                    //        CreateRandomCurseBetweenRange(_curses);
+                    //    }
+                    //    break;
 
                     default:
                         //Create random curse
@@ -159,6 +182,10 @@ public class Customer : MonoBehaviour
                     int _curseNumber = UnityEngine.Random.Range(0, Enum.GetValues(typeof(Curses)).Length);
                     curse = (Curses)_curseNumber;
                 }
+
+                //Add curse to the dictionary if it is new and give it a strength
+                if(!CursesStrength.ContainsKey(curse)) CursesStrength.Add(curse, UnityEngine.Random.Range(3, 9));
+                else CursesStrength[curse] += UnityEngine.Random.Range(1, 4);
 
                 //Asssign the limb its correspondant values
                 AffectedLimb _affectedLimb = new AffectedLimb(transform.GetChild(j).gameObject, curse, limbName, LimbToElementMapping[limbName]);
@@ -186,7 +213,7 @@ public class Customer : MonoBehaviour
         return curse;
     }
 
-    public virtual void SetUpCurse()
+    void SetUpCurse()
     {
         foreach (var limb in AffectedLimbs)
         {
@@ -224,15 +251,6 @@ public class Customer : MonoBehaviour
         GameManager.Instance.GoldGain();
     }
 
-    void CheckPotionStrength(AffectedLimb affectedLimb, Potion potion)
-    {
-        if (CurseStrength <= potion.Strength)
-        {
-            affectedLimb.Cured = true;
-            affectedLimb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
-        }
-    }
-
     void GetPotion(Potion potion)
     {
         foreach (Elements element in potion.PotionElements)
@@ -246,26 +264,28 @@ public class Customer : MonoBehaviour
                     {
                         //Do de math for each limb depending on the curse that it has (matrix)
                         int _potionStrength = CursexIngredientMatrix.CalculatePotionStrenght(_curse.CurrentCurse, potion.PotionIngredients);
-                        
-                        int _strengthDiff = _potionStrength - CurseStrength;
 
-                        if (_strengthDiff > 0)
+                        if (CursesStrength.ContainsKey(_curse.CurrentCurse))
                         {
-                            //potion too strong
-                            CurseStrength = _strengthDiff;
-                            Chances--;
-                        }
-                        else if (_strengthDiff < 0)
-                        {
-                            //potion too weak
-                            CurseStrength = -_strengthDiff;
-                            Chances--;
-                        }
-                        else
-                        {
-                            //perfect potion
-                            limb.Cured = true;
-                            limb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+                            int  _strengthDiff = _potionStrength - CursesStrength[_curse.CurrentCurse];
+                            if (_strengthDiff > 0)
+                            {
+                                //potion too strong
+                                CursesStrength[_curse.CurrentCurse] = _strengthDiff;
+                                Chances--;
+                            }
+                            else if (_strengthDiff < 0)
+                            {
+                                //potion too weak
+                                CursesStrength[_curse.CurrentCurse] = -_strengthDiff;
+                                Chances--;
+                            }
+                            else
+                            {
+                                //perfect potion
+                                limb.Cured = true;
+                                limb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+                            }
                         }
                     }
                     else
