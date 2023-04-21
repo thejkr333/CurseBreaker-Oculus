@@ -13,12 +13,24 @@ public class IngredientChest : MonoBehaviour
     private void Start()
     {
         chestName = ingredeint.ToString();
+        InvokeRepeating("PlayParticleEffect", 2f,1f) ;
+
     }
     public void SubtractMoney(GameObject ingredient)
     {
+        if (!(FindObjectOfType<GameManager>())) return;
+
         GameManager.Instance.GoldSubtract(cost);
-        MoneyParticle.Play();
+        
+        PlayParticleEffect();
+
     }
 
+    void PlayParticleEffect()
+    {
+        ParticleSystem temp;
+        temp = Instantiate(MoneyParticle,this.transform);
+        Destroy(temp.gameObject, 1f);
+    }
 
 }
