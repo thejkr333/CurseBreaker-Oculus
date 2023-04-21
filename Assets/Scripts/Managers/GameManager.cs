@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     private CoinStorage coinChest;
 
-    [SerializeField] Transform parla;
+    public Transform Parla;
 
     [Header("CUSTOMERS")]
     [SerializeField] GameObject customerPrefab;
@@ -97,15 +97,18 @@ public class GameManager : MonoBehaviour
 
     public void DestroyGrabbedThings(GameObject obj)
     {
-        obj.transform.position = parla.position;
+        obj.transform.position = Parla.position;
         Destroy(obj, 1f);
+    }
+
+    public void NextDay()
+    {
+        OnNewDay?.Invoke();
     }
 
     void NewDay()
     {
         dayCount++;
-        Ingredients[] _ingredients = CreateCustomers();
-        CreateShop?.Invoke(_ingredients);
         SaveGame();
     }
 
@@ -117,7 +120,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < NUMBEROFCUSTOMERSPERDAY; i++)
         {
             customersToday[i] = Instantiate(customerPrefab);
-            customersToday[i].transform.position = parla.position;
+            customersToday[i].transform.position = Parla.position;
             Customer _customer = customersToday[i].GetComponent<Customer>();
             foreach (var limb in _customer.AffectedLimbs)
             {
@@ -153,18 +156,6 @@ public class GameManager : MonoBehaviour
         // Load desired stats from PlayerPrefs
         dayCount = PlayerPrefs.GetInt("DayCount", 0);
         Gold = PlayerPrefs.GetInt("Gold", 0);
-
-        //for (int i = 0; i < cursesLockInfo.Count; i++)
-        //{
-        //    cursesLockInfo[(Curses)i] = PlayerPrefs.GetInt(((Curses)i).ToString()) == 1 ? true : false;
-        //}
-
-        //Dictionary<Curses, bool> _copyInfo = new(cursesLockInfo);
-        //foreach (var info in _copyInfo)
-        //{
-        //    cursesLockInfo[info.Key] = PlayerPrefs.GetInt(info.Key.ToString()) == 1 ? true : false;
-        //}
-
 
         foreach (var infoKey in cursesLockInfo.Keys.ToList())
         {
