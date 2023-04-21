@@ -33,11 +33,18 @@ public class DayManager : MonoBehaviour
         GameManager.Instance.OnNewDay += NewDay;
     }
 
+    private void Update()
+    {
+        //Skip debug
+        if (Input.GetKeyDown(KeyCode.K)) NextCustomer();
+    }
+
     private void NewDay()
     {
+        customerIndex = 0;
         ActivateCanvas();
         CreateCustomers();
-        Invoke(nameof(DeactivateCanvas), 2);
+        Invoke(nameof(DeactivateCanvas), 5);
     }
 
     void ActivateCanvas()
@@ -59,15 +66,14 @@ public class DayManager : MonoBehaviour
             customersToday[i].transform.position = GameManager.Instance.Parla.position;
         }
 
-        customersToday[0].transform.position = customerPosition.position;
+        CustomerIn(customersToday[0]);
     }
 
     public void NextCustomer()
     {
         CustomerOut(customersToday[customerIndex]);
-        customerIndex++;
 
-        if (customerIndex == 2) CustomersFinished?.Invoke();
+        if (customerIndex++ == 2) CustomersFinished?.Invoke();
         else CustomerIn(customersToday[customerIndex]);
     }
 
@@ -79,5 +85,6 @@ public class DayManager : MonoBehaviour
     void CustomerIn(GameObject customer)
     {
         customer.transform.position = customerPosition.position;
+        customer.transform.eulerAngles = new Vector3(0, customerPosition.eulerAngles.y, 0);
     }
 }

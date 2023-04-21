@@ -14,11 +14,6 @@ public class GameManager : MonoBehaviour
 
     public Transform Parla;
 
-    [Header("CUSTOMERS")]
-    [SerializeField] GameObject customerPrefab;
-    const int NUMBEROFCUSTOMERSPERDAY = 3;
-    [SerializeField] GameObject[] customersToday = new GameObject[NUMBEROFCUSTOMERSPERDAY];
-
     public int DayCount;
 
     public event Action OnNewDay;
@@ -41,15 +36,19 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
+        InitializeLockInfo();
         this.OnNewDay += NewDay;
-
         //if there is saved data load game
-        if (PlayerPrefs.HasKey("DayCount")) LoadGame();
-        else
+        if (PlayerPrefs.HasKey("DayCount"))
         {
-            InitializeLockInfo();
-            OnNewDay?.Invoke();
+            LoadGame();
+            DayCount--;
         }
+    }
+
+    private void Start()
+    {
+        NextDay();
     }
 
     private void Update()
@@ -150,30 +149,30 @@ public class GameManager : MonoBehaviour
         SaveGame();
     }
 
-    private Ingredients[] CreateCustomers()
-    {
-        Ingredients[] _ingredientsMoreUsed = new Ingredients[Shop.NUMBEROFITEMS];
-        Dictionary<Ingredients, int> _ingredients = new();
+    //private Ingredients[] CreateCustomers()
+    //{
+    //    Ingredients[] _ingredientsMoreUsed = new Ingredients[Shop.NUMBEROFITEMS];
+    //    Dictionary<Ingredients, int> _ingredients = new();
 
-        for (int i = 0; i < NUMBEROFCUSTOMERSPERDAY; i++)
-        {
-            customersToday[i] = Instantiate(customerPrefab);
-            customersToday[i].transform.position = Parla.position;
-            Customer _customer = customersToday[i].GetComponent<Customer>();
-            foreach (var limb in _customer.AffectedLimbs)
-            {
-                CursexIngredientMatrix.ReturnIngredientsForCurse(limb.Curse, _customer.CursesStrength[limb.Curse], ref _ingredients);            
-            }
-        }
+    //    for (int i = 0; i < NUMBEROFCUSTOMERSPERDAY; i++)
+    //    {
+    //        customersToday[i] = Instantiate(customerPrefab);
+    //        customersToday[i].transform.position = Parla.position;
+    //        Customer _customer = customersToday[i].GetComponent<Customer>();
+    //        foreach (var limb in _customer.AffectedLimbs)
+    //        {
+    //            CursexIngredientMatrix.ReturnIngredientsForCurse(limb.Curse, _customer.CursesStrength[limb.Curse], ref _ingredients);            
+    //        }
+    //    }
 
-        for (int i = 0; i < Shop.NUMBEROFITEMS; i++)
-        {
-            Ingredients _ing = Extensions.MaxValueKey(_ingredients);
-            _ingredientsMoreUsed[i] = _ing;
-            _ingredients.Remove(_ing);
-        }
-        return _ingredientsMoreUsed;
-    }
+    //    for (int i = 0; i < Shop.NUMBEROFITEMS; i++)
+    //    {
+    //        Ingredients _ing = Extensions.MaxValueKey(_ingredients);
+    //        _ingredientsMoreUsed[i] = _ing;
+    //        _ingredients.Remove(_ing);
+    //    }
+    //    return _ingredientsMoreUsed;
+    //}
 
     void SaveGame()
     {
