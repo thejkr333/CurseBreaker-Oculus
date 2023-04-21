@@ -11,18 +11,25 @@ public class IngredientSpawner : MonoBehaviour
     private void Awake()
     {
         scaleObj = inside.transform.localScale;
+
+        GameObject clon = Instantiate(ingredientPrefab);
+        clon.transform.position = transform.position;
+        clon.transform.localScale = scaleObj;
+        inside = clon;
     }
 
     // Update is called once per frame
     void Update()
     {
         //Check if the object iniside is STILL inside, if not create another one
-        if(Vector3.Distance(inside.transform.position, transform.position) > 1 && GotIngredient == true)
+        if(Vector3.Distance(inside.transform.position, transform.position) > 1)
         {
             GameObject clon = Instantiate(ingredientPrefab);
             clon.transform.position = transform.position;
             clon.transform.localScale = scaleObj;
             inside = clon;
+
+            SendMessage("SubtractMoney");
         }
     }
 }

@@ -6,13 +6,17 @@ public class SellIngredient : MonoBehaviour
 {
     public ParticleSystem MoneyParticle;
 
+
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Ingredient>())
         {
             GameManager.Instance.SellIngredient(1);
-            MoneyParticle.Play();
-            Destroy(collision.gameObject);
+            
+            ParticleSystem temp;
+            temp = Instantiate(MoneyParticle, this.transform);
+            Destroy(temp.gameObject, 1f);
         }
 
     }
