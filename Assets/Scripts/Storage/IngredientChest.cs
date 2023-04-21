@@ -13,8 +13,6 @@ public class IngredientChest : MonoBehaviour
     private void Start()
     {
         chestName = ingredeint.ToString();
-        InvokeRepeating("PlayParticleEffect", 2f,1f) ;
-
     }
     public void SubtractMoney()
     {   

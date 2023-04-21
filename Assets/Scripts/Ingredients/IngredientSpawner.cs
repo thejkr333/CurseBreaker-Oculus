@@ -31,7 +31,12 @@ public class IngredientSpawner : MonoBehaviour
             clon.transform.localScale = scaleObj;
             inside = clon;
 
-            if (!(GetComponent<IngredientChest>())) return;
+            if (!(GetComponent<IngredientChest>()))
+            {
+                Debug.Log("can´t get the ingredient");
+
+                return;
+            }
                 GetComponent<IngredientChest>().SubtractMoney();
         }
     }

@@ -23,6 +23,7 @@ public class SellIngredient : MonoBehaviour
             ParticleSystem temp;
             temp = Instantiate(MoneyParticle, this.transform);
             Destroy(temp.gameObject, 1f);
+            Destroy(collision.gameObject);
         }
 
     }
