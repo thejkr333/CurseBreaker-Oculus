@@ -647,8 +647,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Menu: {fileID: 1310780692890872271}
-  HeightUp: {fileID: 0}
-  HeightDown: {fileID: 0}
 --- !u!1 &1310780692339231229
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,6 +885,7 @@ GameObject:
   - component: {fileID: 1310780692890872259}
   - component: {fileID: 1310780692890872256}
   - component: {fileID: 1310780692890872257}
+  - component: {fileID: 3736600006138216216}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -983,6 +982,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3736600006138216216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310780692890872271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf960227867044282d921171d2d7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  pointer: {fileID: 0}
+  sortOrder: 0
 --- !u!1 &1310780693133622381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,6 +1619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4213395841333733125}
   - component: {fileID: 6202313131605553445}
+  - component: {fileID: 5022360862337182064}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -1678,10 +1697,23 @@ MonoBehaviour:
   m_MinValue: 1.5
   m_MaxValue: 1.8
   m_WholeNumbers: 0
-  m_Value: 1.5
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5022360862337182064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2528829422644879784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adbce0b4dbbf9e5408b1aa449f9a4b56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraRig: {fileID: 0}
 --- !u!1 &2688120883578488785
 GameObject:
   m_ObjectHideFlags: 0
