@@ -1036,7 +1036,7 @@ PrefabInstance:
     - target: {fileID: 2965470832340260730, guid: a9d2de84afb308a4796cc671d3432b4d, type: 3}
       propertyPath: _OVRRaycaster
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1159395954}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d2de84afb308a4796cc671d3432b4d, type: 3}
 --- !u!1001 &416555602
@@ -3479,6 +3479,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7234164115732488719, guid: 6595d9cd2f5ff804a9372e2c2621a5dc, type: 3}
   m_PrefabInstance: {fileID: 1117866468}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1159395954 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3736600006138216216, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
+  m_PrefabInstance: {fileID: 1484974132}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf960227867044282d921171d2d7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1180117844
 GameObject:
   m_ObjectHideFlags: 0
