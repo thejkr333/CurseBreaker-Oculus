@@ -7,7 +7,7 @@ public class IngredientStorage : MonoBehaviour
     public bool AngelLeaf, Mandrake, CorkWood, WolfsBane, NightShade, DragonTongue;
     public StorageController StorageController;
     public int CurrentAmount;
-    // Start is called before the first frame update
+
     void Start()
     {
         gameObject.GetComponent<IngredientSpawner>().GotIngredient = true;

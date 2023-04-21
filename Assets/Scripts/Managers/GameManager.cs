@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public int Gold, Rent, RentIncrement, PaymentIncrement;
 
+    private CoinStorage coinChest;
+
     [SerializeField] Transform parla;
 
     [Header("CUSTOMERS")]
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        coinChest = GameObject.FindObjectOfType<CoinStorage>();
+
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -65,10 +69,23 @@ public class GameManager : MonoBehaviour
     public void RentIncrease()
     {
         Rent += RentIncrement;
+        coinChest.Update_coins();
     }
    public void GoldGain()
+    public void GoldGain()
     {
         Gold += 10 + PaymentIncrement;
+        coinChest.Update_coins();
+    }
+    public void GoldSubtract(int cost)
+    {
+        Gold -= cost;
+        coinChest.Update_coins();
+    }
+    public void SellIngredient(int cost)
+    {
+        Gold += cost;
+        coinChest.Update_coins();
     }
 
     public void RentisDue()
