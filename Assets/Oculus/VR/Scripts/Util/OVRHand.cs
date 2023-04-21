@@ -55,7 +55,7 @@ public class OVRHand : MonoBehaviour,
 	private Hand HandType = Hand.None;
 	[SerializeField]
 	private Transform _pointerPoseRoot = null;
-	private GameObject _pointerPoseGO;
+	public GameObject _pointerPoseGO;
 	private OVRPlugin.HandState _handState = new OVRPlugin.HandState();
 
 	public bool IsDataValid { get; private set; }
@@ -71,7 +71,8 @@ public class OVRHand : MonoBehaviour,
 	private void Awake()
 	{
 		_pointerPoseGO = new GameObject();
-		PointerPose = _pointerPoseGO.transform;
+        _pointerPoseGO.name = $"{nameof(PointerPose)}_{HandType}";
+        PointerPose = _pointerPoseGO.transform;
 		if (_pointerPoseRoot != null)
 		{
 			PointerPose.SetParent(_pointerPoseRoot, false);

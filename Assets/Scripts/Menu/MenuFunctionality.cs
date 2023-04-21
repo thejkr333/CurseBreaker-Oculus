@@ -8,7 +8,9 @@ using UnityEngine;
 
 public class MenuFunctionality : MonoBehaviour
 {
-    public GameObject Menu, HeightUp,HeightDown;
+    public GameObject Menu; //HeightUp,HeightDown;
+    public LineRenderer MenuLinePointer;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -22,11 +24,12 @@ public class MenuFunctionality : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.Three) && (OVRInput.GetActiveController() == OVRInput.Controller.Hands))
+        if (OVRInput.GetDown(OVRInput.Button.Start) && (OVRInput.GetActiveController() == OVRInput.Controller.Hands))
         {
             Menu.SetActive(!Menu.activeInHierarchy);
-            HeightUp.SetActive(!Menu.activeInHierarchy);
-            HeightDown.SetActive(!Menu.activeInHierarchy);
+            MenuLinePointer.enabled = !MenuLinePointer;
+           // HeightUp.SetActive(!Menu.activeInHierarchy);
+         //   HeightDown.SetActive(!Menu.activeInHierarchy);
         }
         //Debug Keyboard Testing Uncomment for testing without headset
        /* if (Input.GetKeyDown(KeyCode.Space))
