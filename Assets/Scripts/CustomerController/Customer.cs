@@ -62,11 +62,17 @@ public class Customer : MonoBehaviour
 
     private void Update()
     {
+        if (Chances < 0) return;
+
         //Check if player failed to cure the customer - James
         if (Chances == 0)
         {
             gameObject.GetComponent<BasicChat>().ChatTime = 5;
             gameObject.GetComponent<BasicChat>().DespawnOnceDone = true;
+
+            DayManager.Instance.NextCustomer();
+            Chances--;
+            return;
         }
 
         //Check if all affected limbs are cured
@@ -213,6 +219,8 @@ public class Customer : MonoBehaviour
         gameObject.GetComponent<BasicChat>().DespawnOnceDone = true;
         gameObject.GetComponent<BasicChat>().Cured = true;
         cured = true;
+
+        DayManager.Instance.NextCustomer();
         GameManager.Instance.GoldGain();
     }
 
@@ -245,11 +253,13 @@ public class Customer : MonoBehaviour
                         {
                             //potion too strong
                             CurseStrength = _strengthDiff;
+                            Chances--;
                         }
                         else if (_strengthDiff < 0)
                         {
                             //potion too weak
                             CurseStrength = -_strengthDiff;
+                            Chances--;
                         }
                         else
                         {
@@ -263,7 +273,8 @@ public class Customer : MonoBehaviour
                         //Means the targeted limb doesn't have a curse on it. Affect negatively
                         //Give the limb a random curse from the main curses of the ingredients
                         Curses _curseToGive = CursexIngredientMatrix.GetRandomCurse(potion.PotionIngredients);
-                        GiveCurseToLimb(ElementToLimbMapping[element], _curseToGive);    
+                        GiveCurseToLimb(ElementToLimbMapping[element], _curseToGive);
+                        Chances--;
                     }
                     break;
                 }

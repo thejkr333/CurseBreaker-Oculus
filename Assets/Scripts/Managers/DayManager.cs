@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using TMPro;
 using UnityEngine;
 
 public class DayManager : MonoBehaviour
@@ -13,8 +13,11 @@ public class DayManager : MonoBehaviour
     [SerializeField] Transform customerPosition;
     int customerIndex;
 
+    public Action CustomersFinished;
 
-    [SerializeField] GameObject crystalBall;
+    [SerializeField] GameObject dayCanvas;
+    [SerializeField] TMP_Text dayText;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -26,12 +29,26 @@ public class DayManager : MonoBehaviour
             Instance = this;
         }
 
+        dayCanvas.SetActive(false);
         GameManager.Instance.OnNewDay += NewDay;
     }
 
     private void NewDay()
     {
+        ActivateCanvas();
         CreateCustomers();
+        Invoke(nameof(DeactivateCanvas), 2);
+    }
+
+    void ActivateCanvas()
+    {
+        dayText.text = "Day " + GameManager.Instance.DayCount;
+        dayCanvas.SetActive(true);
+    }
+
+    void DeactivateCanvas()
+    {
+        dayCanvas.SetActive(false);
     }
 
     void CreateCustomers()
@@ -49,11 +66,8 @@ public class DayManager : MonoBehaviour
     {
         CustomerOut(customersToday[customerIndex]);
         customerIndex++;
-        if(customerIndex == 2)
-        {
-            //Finish day
-            GameManager.Instance.NextDay();
-        }
+
+        if (customerIndex == 2) CustomersFinished?.Invoke();
         else CustomerIn(customersToday[customerIndex]);
     }
 

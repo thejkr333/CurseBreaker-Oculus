@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     const int NUMBEROFCUSTOMERSPERDAY = 3;
     [SerializeField] GameObject[] customersToday = new GameObject[NUMBEROFCUSTOMERSPERDAY];
 
-    [SerializeField] int dayCount;
+    public int DayCount;
 
     public event Action OnNewDay;
     public event Action<Ingredients[]> CreateShop;
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
 
     void NewDay()
     {
-        dayCount++;
+        DayCount++;
         SaveGame();
     }
 
@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Save");
 
         // Save desired stats from PlayerPrefs
-        PlayerPrefs.SetInt("DayCount", dayCount);
+        PlayerPrefs.SetInt("DayCount", DayCount);
         PlayerPrefs.SetInt("Gold", Gold);
         foreach (var curse in cursesLockInfo)
         {
@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
     void LoadGame()
     {
         // Load desired stats from PlayerPrefs
-        dayCount = PlayerPrefs.GetInt("DayCount", 0);
+        DayCount = PlayerPrefs.GetInt("DayCount", 0);
         Gold = PlayerPrefs.GetInt("Gold", 0);
 
         foreach (var infoKey in cursesLockInfo.Keys.ToList())
