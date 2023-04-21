@@ -7,6 +7,7 @@ public class IngredientStorage : MonoBehaviour
     public bool AngelLeaf, Mandrake, CorkWood, WolfsBane, NightShade, DragonTongue;
     public StorageController StorageController;
     public int CurrentAmount;
+    public GameManager GM;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +17,13 @@ public class IngredientStorage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CurrentAmount <= 0)
+        if(CurrentAmount >= 0)
         {
-            CurrentAmount = 0;
-            gameObject.GetComponent<IngredientSpawner>().GotIngredient = false;
+            CurrentAmount--;
+            GM.SellIngredient(4);
+            //gameObject.GetComponent<IngredientSpawner>().GotIngredient = false;
         }
-
+        if(CurrentAmount < 0) CurrentAmount = 0;
 
         if(Mandrake== true)
         {
@@ -52,27 +54,27 @@ public class IngredientStorage : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Mandrake>()&&Mandrake==true)
         {
-            StorageController.MandrakeAmount--;
+            GM.GoldSubtract(4);
         }
         if (other.gameObject.GetComponent<CorkWood>()&&CorkWood == true)
         {
-            StorageController.CorkWoodAmount--;
+            GM.GoldSubtract(4);
         }
         if (other.gameObject.GetComponent<WolfsBane>() && WolfsBane == true)
         {
-            StorageController.WolfsBaneAmount--;
+            GM.GoldSubtract(4);
         }
         if (other.gameObject.GetComponent<AngelLeaf>() && AngelLeaf == true)
         {
-            StorageController.AngelLeafAmount--;
+            GM.GoldSubtract(4);
         }
         if(other.gameObject.GetComponent<DragonsTongue>() && DragonTongue == true)
         {
-            StorageController.DragonTongueAmount--;
+            GM.GoldSubtract(4);
         }
         if(other.gameObject.GetComponent<Nightshade>() && NightShade == true)
         {
-            StorageController.NightShadeAmount--;
+            GM.GoldSubtract(4);
         }
     }
 }
