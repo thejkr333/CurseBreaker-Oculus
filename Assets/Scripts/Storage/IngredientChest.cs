@@ -16,8 +16,8 @@ public class IngredientChest : MonoBehaviour
         InvokeRepeating("PlayParticleEffect", 2f,1f) ;
 
     }
-    public void SubtractMoney(GameObject ingredient)
-    {
+    public void SubtractMoney()
+    {   
         if (!(FindObjectOfType<GameManager>())) return;
 
         GameManager.Instance.GoldSubtract(cost);

@@ -17,11 +17,13 @@ public class CoinStorage : MonoBehaviour
     void Start()
     {
         goldLimit = Coins.Length - 1;
-        Update_coins();
+        UpdateCoins();
+
+        GameManager.Instance.Transaction += UpdateCoins;
     }
 
     // Update is called once per frame
-    public void Update_coins()
+    public void UpdateCoins()
     {
         goldCount = GameManager.Instance.Gold;
         CoinText.text = goldCount.ToString() + " :Gold Coins";
@@ -36,6 +38,11 @@ public class CoinStorage : MonoBehaviour
             SpawnGold();
         }
 
+        if (goldCount > 6)
+        {
+            SpawnAllGold();
+        }
+
     }
 
     void ResetGold()
@@ -43,6 +50,14 @@ public class CoinStorage : MonoBehaviour
         foreach (var Coins in Coins)
         {
             Coins.gameObject.SetActive(false);
+        }
+    }
+
+    void SpawnAllGold()
+    {
+        foreach (var Coins in Coins)
+        {
+            Coins.gameObject.SetActive(true);
         }
     }
 
