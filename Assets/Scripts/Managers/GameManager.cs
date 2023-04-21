@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour
         Rent += RentIncrement;
         coinChest.Update_coins();
     }
-   public void GoldGain()
     public void GoldGain()
     {
         Gold += 10 + PaymentIncrement;
