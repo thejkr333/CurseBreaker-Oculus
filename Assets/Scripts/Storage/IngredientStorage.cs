@@ -21,7 +21,7 @@ public class IngredientStorage : MonoBehaviour
         if(CurrentAmount > 0)
         {
             CurrentAmount--;
-            GoldManager.Instance.SellIngredient(4);
+            //GoldManager.Instance.SellIngredient(4);
             //gameObject.GetComponent<IngredientSpawner>().GotIngredient = false;
         }
         if(CurrentAmount < 0) CurrentAmount = 0;

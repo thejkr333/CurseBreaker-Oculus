@@ -8,10 +8,10 @@ public class Ingredient : MonoBehaviour
 {
     [HideInInspector] public Ingredients ThisIngredient;
 
-    public int SellCost;
-    public int BuyCost;
+    public int SellCost = 4;
+    public int BuyCost = 4;
     protected virtual void Awake()
     {
-
+        if(TryGetComponent(out Outline outline)) outline.enabled = false;
     }
 }

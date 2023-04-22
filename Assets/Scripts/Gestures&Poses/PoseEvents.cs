@@ -279,16 +279,16 @@ public class PoseEvents : MonoBehaviour
     {
         if (attracting)
         {
-            StopCoroutine(AttractObject());
             attracting = false;
 
             if (attractedObjRb.TryGetComponent<AlwaysLookToCam>(out AlwaysLookToCam lookToCam))
             {
                 lookToCam.enabled = false;
             }
+
             attractedObjRb.useGravity = true;
-            attractedObjRb.gameObject.layer = objectLayer;
-            objectLayer = 0;
+            int _layerInteractable = LayerMask.NameToLayer("Interactable");
+            attractedObjRb.gameObject.layer = _layerInteractable;
             attractedObjRb = null;
         }
 
@@ -336,17 +336,14 @@ public class PoseEvents : MonoBehaviour
         attractedObjRb.useGravity = false;
 
         objectLayer = attractedObjRb.gameObject.layer;
-        int LayerGrabbed = LayerMask.NameToLayer("Grabbed");
-        attractedObjRb.gameObject.layer = LayerGrabbed;
+        int _layerGrabbed = LayerMask.NameToLayer("Grabbed");
+        attractedObjRb.gameObject.layer = _layerGrabbed;
 
         attracting = true;
     }
     void AttractFixed()
     {
         GameObject _obj = attractedObjRb.gameObject;
-        objectLayer = _obj.layer;
-        int _layerGrabbed = LayerMask.NameToLayer("Grabbed");
-        _obj.layer = _layerGrabbed;
 
         if (Vector3.Distance(_obj.transform.position, handSkeleton.transform.position) > .2f)
         {
@@ -355,7 +352,8 @@ public class PoseEvents : MonoBehaviour
         }
         else
         {
-            _obj.layer = objectLayer;
+            int _layerInteractable = LayerMask.NameToLayer("Interactable");
+            _obj.layer = _layerInteractable;
 
             attractedObjRb.velocity = Vector3.zero;
             attractedObjRb.transform.position = handSkeleton.transform.GetChild(0).position;

@@ -79,3 +79,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThisIngredient: 0
+  SellCost: 4
+  BuyCost: 4

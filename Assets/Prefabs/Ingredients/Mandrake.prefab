@@ -228,6 +228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThisIngredient: 0
+  SellCost: 4
+  BuyCost: 4
 --- !u!114 &7149134073583334071
 MonoBehaviour:
   m_ObjectHideFlags: 0

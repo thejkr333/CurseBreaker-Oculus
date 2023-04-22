@@ -17,7 +17,8 @@ public class IngredientChest : MonoBehaviour
     void SubtractMoney()
     {   
         GoldManager.Instance.SubstractGold(ingredientPrefab.GetComponent<Ingredient>().BuyCost);
-        
+        AudioManager.Instance.PlaySoundStatic("buy", transform.position);
+
         PlayParticleEffect();
     }
 

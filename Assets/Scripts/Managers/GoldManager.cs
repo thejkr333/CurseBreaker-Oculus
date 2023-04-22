@@ -33,10 +33,12 @@ public class GoldManager : MonoBehaviour
         Gold -= cost;
         Transaction?.Invoke();
     }
-    public void SellIngredient(int cost)
+    public void SellIngredient(int cost, Vector3 originPos)
     {
         Gold += cost;
         Transaction?.Invoke();
+
+        AudioManager.Instance.PlaySoundStatic("sell", originPos);
     }
     public void IncreaseRent()
     {

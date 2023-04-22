@@ -10,7 +10,7 @@ public class SellIngredient : MonoBehaviour
     {
         if (!collision.gameObject.TryGetComponent(out Ingredient _ingredient)) return;
 
-        GoldManager.Instance.SellIngredient(_ingredient.SellCost);
+        GoldManager.Instance.SellIngredient(_ingredient.SellCost, transform.position);
 
         ParticleSystem temp = Instantiate(moneyParticle, this.transform);
         Destroy(temp.gameObject, 1f);
