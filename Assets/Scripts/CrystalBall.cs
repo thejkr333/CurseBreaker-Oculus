@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class CrystalBall : MonoBehaviour
     {
         sphereCollider.enabled = true;
         particleSystem.Play();
+        AudioManager.Instance.PlaySoundStatic("Crystal_ball", transform.position);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,5 +34,6 @@ public class CrystalBall : MonoBehaviour
         sphereCollider.enabled = false;
         particleSystem.Stop();
         GameManager.Instance.NextDay();
+        AudioManager.Instance.StopSound("Crystal_ball");
     }
 }
