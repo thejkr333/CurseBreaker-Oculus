@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -165,6 +166,8 @@ public class GameManager : MonoBehaviour
     //    return _ingredientsMoreUsed;
     //}
 
+    #region Saving&Loading
+
     void SaveGame()
     {
         Debug.Log("Save");
@@ -209,6 +212,24 @@ public class GameManager : MonoBehaviour
             ingredientsLockInfo[ingredient] = PlayerPrefs.GetInt(ingredient.ToString()) == 1 ? true : false;
         }
     }
+    #endregion
+
+    #region SceneManagement
+    public string CurrentScene()
+    {
+        return SceneManager.GetActiveScene().ToString();
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void LoadScene(int sceneBuildNumber)
+    {
+        SceneManager.LoadScene(sceneBuildNumber);
+    }
+    #endregion
 }
 
 //Debug classes
