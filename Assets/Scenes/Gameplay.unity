@@ -6025,7 +6025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4603232327165924778, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
       propertyPath: m_Name
-      value: BookStand Tutorial_01
+      value: BookStand Tutorial
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
