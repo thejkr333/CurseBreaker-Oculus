@@ -109,6 +109,30 @@ MonoBehaviour:
     SpatialBlend: 0.5
     MaxDistance: 500
     RolloffMode: 0
+  - Name: Crystal_ball
+    Clip: {fileID: 8300000, guid: 3c3edb5d98eee0f4899fcbb2770f9eda, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 1
+    SpatialBlend: 0.5
+    MaxDistance: 500
+    RolloffMode: 0
+  - Name: Flipping_pages
+    Clip: {fileID: 8300000, guid: 4b45eb4d9a9d2f347907c8753b942e02, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 1
+    SpatialBlend: 0.5
+    MaxDistance: 500
+    RolloffMode: 0
+  - Name: Pop
+    Clip: {fileID: 8300000, guid: 297f38ddf01be2646a205699feecd634, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0.5
+    MaxDistance: 500
+    RolloffMode: 0
   Music:
   - Name: menu_music_1
     Clip: {fileID: 8300000, guid: f490f31184c9f7f42b7e4310eff76ed9, type: 3}

@@ -2285,6 +2285,7 @@ MonoBehaviour:
   WolfsBane: 0
   NightShade: 0
   DragonTongue: 0
+  ingredient: 0
   StorageController: {fileID: 1612988835}
   CurrentAmount: 0
 --- !u!1001 &872996748
@@ -3607,6 +3608,7 @@ MonoBehaviour:
   WolfsBane: 0
   NightShade: 1
   DragonTongue: 0
+  ingredient: 0
   StorageController: {fileID: 1612988835}
   CurrentAmount: 0
 --- !u!1 &1258842542
@@ -5306,6 +5308,7 @@ MonoBehaviour:
   WolfsBane: 0
   NightShade: 0
   DragonTongue: 1
+  ingredient: 0
   StorageController: {fileID: 1612988835}
   CurrentAmount: 0
 --- !u!1 &1881846410
@@ -5673,6 +5676,7 @@ MonoBehaviour:
   WolfsBane: 1
   NightShade: 0
   DragonTongue: 0
+  ingredient: 0
   StorageController: {fileID: 1612988835}
   CurrentAmount: 0
 --- !u!1 &2072907788
@@ -6032,6 +6036,10 @@ PrefabInstance:
     - target: {fileID: 588593584113868368, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
       propertyPath: m_Name
       value: OVRCameraRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 588593585946217948, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7570299794733912045, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
       propertyPath: Slider

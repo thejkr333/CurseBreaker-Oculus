@@ -100,7 +100,7 @@ public class AudioManager : MonoBehaviour
     }
 
     #region SFX
-    public void PlaySoundStatic(string name, Vector3 position)
+    public void PlaySoundStatic(string name, Vector3 position, float pitch = 1f)
     {
         if (soundSources.ContainsKey(name))
         {
@@ -115,6 +115,7 @@ public class AudioManager : MonoBehaviour
             AudioSource _source = soundSources[name];
             _source.transform.position = position;
             _source.volume = SfxVolume;
+            _source.pitch = pitch;
             _source.Play();
         }
         else
