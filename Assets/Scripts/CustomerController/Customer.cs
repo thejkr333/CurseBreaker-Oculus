@@ -26,6 +26,37 @@ public class Customer : MonoBehaviour
 
     private void Awake()
     {
+        LimbElementMapping();
+
+        InitiateAffectedLimbParts();
+    }
+
+    private void Update()
+    {
+        if (Chances < 0) return;
+
+        //Check if player failed to cure the customer - James
+        if (Chances == 0)
+        {
+            gameObject.GetComponent<BasicChat>().ChatTime = 5;
+            gameObject.GetComponent<BasicChat>().DespawnOnceDone = true;
+
+            DayManager.Instance.NextCustomer();
+            Chances--;
+            return;
+        }
+
+        //Check if all affected limbs are cured
+        if (cured) return;
+        foreach (var limb in AffectedLimbs)
+        {
+            if (!limb.Cured) return;
+        }
+        Cured();
+    }
+
+    void LimbElementMapping()
+    {
         //Create mapping element->limb and limb->element
         for (int i = 0; i < internMapping.Length; i++)
         {
@@ -55,38 +86,15 @@ public class Customer : MonoBehaviour
             LimbToElementMapping.Add((LimbsList)internMapping[i], (Elements)i);
             ElementToLimbMapping.Add((Elements)i, (LimbsList)internMapping[i]);
         }
-
-        //Select which parts to affect randomly
-        numberOfPartsAffected = UnityEngine.Random.Range(1, Enum.GetValues(typeof(LimbsList)).Length + 1);
-        InitiateAffectedLimbParts();
-    }
-
-    private void Update()
-    {
-        if (Chances < 0) return;
-
-        //Check if player failed to cure the customer - James
-        if (Chances == 0)
-        {
-            gameObject.GetComponent<BasicChat>().ChatTime = 5;
-            gameObject.GetComponent<BasicChat>().DespawnOnceDone = true;
-
-            DayManager.Instance.NextCustomer();
-            Chances--;
-            return;
-        }
-
-        //Check if all affected limbs are cured
-        if (cured) return;
-        foreach (var limb in AffectedLimbs)
-        {
-            if (!limb.Cured) return;
-        }
-        Cured();
     }
 
     public void InitiateAffectedLimbParts()
     {
+        //Select number of parts to affect randomly depending on which day you are
+        if (GameManager.Instance.DayCount <= 10) numberOfPartsAffected = UnityEngine.Random.Range(1, 3);
+        else if (GameManager.Instance.DayCount <= 20) numberOfPartsAffected = UnityEngine.Random.Range(1, 5);
+        else /*All parts*/ numberOfPartsAffected = UnityEngine.Random.Range(1, Enum.GetValues(typeof(LimbsList)).Length + 1);
+
         //Using a list of ints to easily identify duplicates
         List<int> _affectedLimbs = new();
         for (int i = 0; i < numberOfPartsAffected; i++)
