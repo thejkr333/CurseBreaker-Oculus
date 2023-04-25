@@ -383,6 +383,8 @@ public class PoseEvents : MonoBehaviour
     {
         EndGrab();
 
+        if (otherHandPoseEvent.CurrentPose != Poses.OpenHand) return;
+
         if (mainHand)
         {
             //Check if hands are close, if close put clap to true and wait until they get away
@@ -447,6 +449,8 @@ public class PoseEvents : MonoBehaviour
 
     void TV()
     {
+        if (otherHandPoseEvent.CurrentPose != Poses.TV) return;
+
         Vector3 _localThumbCoords = Vector3.zero;
         foreach (OVRBone bone in fingerbones)
         {
