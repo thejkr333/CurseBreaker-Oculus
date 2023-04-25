@@ -127,7 +127,7 @@ MonoBehaviour:
     RolloffMode: 0
   - Name: Pop
     Clip: {fileID: 8300000, guid: 297f38ddf01be2646a205699feecd634, type: 3}
-    Volume: 1
+    Volume: 0.7
     Pitch: 1
     Loop: 0
     SpatialBlend: 0.5
