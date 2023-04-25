@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
@@ -24,10 +22,29 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-
-    // Update is called once per frame
-    void Update()
+    public void SetSFXVolume(float volume)
     {
-        
+        AudioManager.Instance.SetSFXVolume(volume);
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        AudioManager.Instance.SetMusicVolume(volume);
+    }
+
+    public void NewGame()
+    {
+        PlayerPrefs.DeleteAll();
+        GameManager.Instance.LoadScene("Gameplay");
+    }
+
+    public void LoadGame()
+    {
+        GameManager.Instance.LoadScene("Gameplay");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
