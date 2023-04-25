@@ -50,7 +50,7 @@ public class PoseEvents : MonoBehaviour
 
 
     [Header("OPENHAND")]
-    bool hasClapped;
+    [SerializeField] bool hasClapped;
     void Start()
     {
         poseGrab = HandSkeleton.GetComponent<PoseGrab>();
@@ -375,6 +375,7 @@ public class PoseEvents : MonoBehaviour
     public void StartOpenHand()
     {
         if (CurrentPose != Poses.OpenHand) StartNewPose(CurrentPose);
+        else return;
 
         CurrentPose = Poses.OpenHand;
         hasClapped = false;
@@ -387,15 +388,17 @@ public class PoseEvents : MonoBehaviour
 
         if (mainHand)
         {
+            //Debug.LogWarning("distance: " + Vector3.Distance(otherHandPoseEvent.HandSkeleton.transform.position, HandSkeleton.transform.position));
+
             //Check if hands are close, if close put clap to true and wait until they get away
-            if(Vector3.Distance(otherHandPoseEvent.HandSkeleton.transform.position, HandSkeleton.transform.position) < .5f)
+            if (Vector3.Distance(otherHandPoseEvent.HandSkeleton.transform.position, HandSkeleton.transform.position) < .1f)
             {
                 if (hasClapped) return;
 
                 hasClapped = true;
                 Debug.LogWarning("Clap");
             }
-            else hasClapped = false;
+            else if (Vector3.Distance(otherHandPoseEvent.HandSkeleton.transform.position, HandSkeleton.transform.position) > .2f) hasClapped = false;
         }
     }
 
