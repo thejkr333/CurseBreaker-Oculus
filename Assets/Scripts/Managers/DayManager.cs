@@ -18,6 +18,8 @@ public class DayManager : MonoBehaviour
     [SerializeField] GameObject dayCanvas;
     [SerializeField] TMP_Text dayText;
 
+
+    public int SunState;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -35,6 +37,8 @@ public class DayManager : MonoBehaviour
 
     private void Update()
     {
+        //Declare SunState for the SunController
+        SunState = customerIndex;
         //Skip debug
         if (Input.GetKeyDown(KeyCode.K)) NextCustomer();
     }
