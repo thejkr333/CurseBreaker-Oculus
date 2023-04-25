@@ -6,9 +6,6 @@ using TMPro;
 
 public class Customer : MonoBehaviour
 {
-    //length -1 not to take NONE into account
-    int[] internMapping = new int[Enum.GetValues(typeof(Elements)).Length - 1];
-
     [SerializeField] Material hiddenMat;
     public Sprite Fire, Water, Dark, Light, Earth, Air;
 
@@ -57,14 +54,17 @@ public class Customer : MonoBehaviour
 
     void LimbElementMapping()
     {
+        //length -1 not to take VOID into account
+        int[] _internMapping = new int[Enum.GetValues(typeof(Elements)).Length - 1];
+
         //Create mapping element->limb and limb->element
-        for (int i = 0; i < internMapping.Length; i++)
+        for (int i = 0; i < _internMapping.Length; i++)
         {
             //Avoid duplicates
             bool _same = true;
             while (_same)
             {
-                internMapping[i] = UnityEngine.Random.Range(0, internMapping.Length);
+                _internMapping[i] = UnityEngine.Random.Range(0, _internMapping.Length);
 
                 if (i == 0)
                 {
@@ -74,7 +74,7 @@ public class Customer : MonoBehaviour
 
                 for (int j = 0; j < i; j++)
                 {
-                    if (internMapping[i] == internMapping[j])
+                    if (_internMapping[i] == _internMapping[j])
                     {
                         _same = true;
                         break;
@@ -83,8 +83,8 @@ public class Customer : MonoBehaviour
                 }
             }
             //Populate dictionary with the mapping created
-            LimbToElementMapping.Add((LimbsList)internMapping[i], (Elements)i);
-            ElementToLimbMapping.Add((Elements)i, (LimbsList)internMapping[i]);
+            LimbToElementMapping.Add((LimbsList)_internMapping[i], (Elements)i);
+            ElementToLimbMapping.Add((Elements)i, (LimbsList)_internMapping[i]);
         }
     }
 
