@@ -13,9 +13,7 @@ public class PoseEvents : MonoBehaviour
     public enum Poses { Aiming, Grab, OpenHand, SpellSelect, TV, Unknown }
     public Poses CurrentPose;
 
-    //Dictionary<Poses, bool> pose = new();
-
-    [SerializeField] protected OVRSkeleton handSkeleton;
+    public OVRSkeleton HandSkeleton;
     PoseGrab poseGrab;
 
     protected List<OVRBone> fingerbones = null;
@@ -49,9 +47,13 @@ public class PoseEvents : MonoBehaviour
     public bool recordingGesture;
     TrailRenderer trailRenderer;
     GameObject drawingFingerTip;
+
+
+    [Header("OPENHAND")]
+    bool hasClapped;
     void Start()
     {
-        poseGrab = handSkeleton.GetComponent<PoseGrab>();
+        poseGrab = HandSkeleton.GetComponent<PoseGrab>();
         lineRenderer = GetComponent<LineRenderer>();
         hiddenGO.SetActive(false);
         lineRenderer.enabled = false;
@@ -77,7 +79,7 @@ public class PoseEvents : MonoBehaviour
         blue = Color.blue;
         white = Color.white;
 
-        grabPoint = handSkeleton.transform.GetChild(0);
+        grabPoint = HandSkeleton.transform.GetChild(0);
         // When the Oculus hand had his time to initialize hand, with a simple coroutine i start a delay of
         // a function to initialize the script
         StartCoroutine(DelayRoutine(Initialize));
@@ -85,7 +87,7 @@ public class PoseEvents : MonoBehaviour
     // Coroutine used for delay some function
     public IEnumerator DelayRoutine(Action actionToDo)
     {
-        while (!handSkeleton.IsInitialized)
+        while (!HandSkeleton.IsInitialized)
         {
             yield return null;
         }
@@ -101,7 +103,7 @@ public class PoseEvents : MonoBehaviour
     public void SetSkeleton()
     {
         // Populate the private list of fingerbones from the current hand we put in the skeleton
-        fingerbones = new List<OVRBone>(handSkeleton.Bones);
+        fingerbones = new List<OVRBone>(HandSkeleton.Bones);
         foreach (var bone in fingerbones)
         {
             if (bone.Id == OVRSkeleton.BoneId.Hand_MiddleTip)
@@ -309,7 +311,7 @@ public class PoseEvents : MonoBehaviour
         int LayerGrabbed = LayerMask.NameToLayer("Grabbed");
         obj.layer = LayerGrabbed;
 
-        while (Vector3.Distance(obj.transform.position, handSkeleton.transform.position) > .2f)
+        while (Vector3.Distance(obj.transform.position, HandSkeleton.transform.position) > .2f)
         {
             Vector3 direction = (grabPoint.position - obj.transform.position).normalized;
             if (attractedObjRb != null) attractedObjRb.AddForce(direction * 3, ForceMode.Force);
@@ -318,7 +320,7 @@ public class PoseEvents : MonoBehaviour
         }
 
         attractedObjRb.velocity = Vector3.zero;
-        attractedObjRb.transform.position = handSkeleton.transform.position;
+        attractedObjRb.transform.position = HandSkeleton.transform.position;
         obj.layer = objectLayer;
         objectLayer = 0;
         attractedObjRb.useGravity = true;
@@ -345,9 +347,9 @@ public class PoseEvents : MonoBehaviour
     {
         GameObject _obj = attractedObjRb.gameObject;
 
-        if (Vector3.Distance(_obj.transform.position, handSkeleton.transform.position) > .2f)
+        if (Vector3.Distance(_obj.transform.position, HandSkeleton.transform.position) > .2f)
         {
-            Vector3 _direction = (handSkeleton.transform.position - _obj.transform.position).normalized;
+            Vector3 _direction = (HandSkeleton.transform.position - _obj.transform.position).normalized;
             attractedObjRb.AddForce(_direction * 3, ForceMode.Force);
         }
         else
@@ -356,7 +358,7 @@ public class PoseEvents : MonoBehaviour
             _obj.layer = _layerInteractable;
 
             attractedObjRb.velocity = Vector3.zero;
-            attractedObjRb.transform.position = handSkeleton.transform.GetChild(0).position;
+            attractedObjRb.transform.position = HandSkeleton.transform.GetChild(0).position;
             attractedObjRb.gameObject.layer = objectLayer;
             objectLayer = 0;
             attractedObjRb.useGravity = true;
@@ -373,18 +375,31 @@ public class PoseEvents : MonoBehaviour
     public void StartOpenHand()
     {
         if (CurrentPose != Poses.OpenHand) StartNewPose(CurrentPose);
-        else return;
 
         CurrentPose = Poses.OpenHand;
+        hasClapped = false;
     }
     void OpenHand()
     {
         EndGrab();
+
+        if (mainHand)
+        {
+            //Check if hands are close, if close put clap to true and wait until they get away
+            if(Vector3.Distance(otherHandPoseEvent.HandSkeleton.transform.position, HandSkeleton.transform.position) < .5f)
+            {
+                if (hasClapped) return;
+
+                hasClapped = true;
+                Debug.LogWarning("Clap");
+            }
+            else hasClapped = false;
+        }
     }
 
     void EndOpenHand()
     {
-
+        hasClapped = false;
     }
     #endregion
 
@@ -424,9 +439,7 @@ public class PoseEvents : MonoBehaviour
 
     #region TV
     public void StartTV()
-    {
-
-        
+    {       
         if (CurrentPose != Poses.TV) StartNewPose(CurrentPose);
 
         CurrentPose = Poses.TV;
@@ -434,9 +447,7 @@ public class PoseEvents : MonoBehaviour
 
     void TV()
     {
-        if (otherHandPoseEvent.CurrentPose != Poses.TV) return;
-
-        Vector3 localThumbCoords = Vector3.zero;
+        Vector3 _localThumbCoords = Vector3.zero;
         foreach (OVRBone bone in fingerbones)
         {
             if (bone.Id == OVRSkeleton.BoneId.Hand_Thumb0)
@@ -449,18 +460,18 @@ public class PoseEvents : MonoBehaviour
 
         if (mainHand)
         {
-            float x = (thumbMetacarpal.x - otherHandPoseEvent.thumbMetacarpal.x) * 0.5f;
-            float y = (thumbMetacarpal.y - otherHandPoseEvent.thumbMetacarpal.y) * 0.5f;
-            float z = (thumbMetacarpal.z - otherHandPoseEvent.thumbMetacarpal.z) * 0.5f;
+            float _x = (thumbMetacarpal.x - otherHandPoseEvent.thumbMetacarpal.x) * 0.5f;
+            float _y = (thumbMetacarpal.y - otherHandPoseEvent.thumbMetacarpal.y) * 0.5f;
+            float _z = (thumbMetacarpal.z - otherHandPoseEvent.thumbMetacarpal.z) * 0.5f;
 
-            Vector3 centre = new Vector3(thumbMetacarpal.x - x, thumbMetacarpal.y - y, thumbMetacarpal.z - z);
-            hiddenGO.transform.position = centre;
+            Vector3 _centre = new Vector3(thumbMetacarpal.x - _x, thumbMetacarpal.y - _y, thumbMetacarpal.z - _z);
+            hiddenGO.transform.position = _centre;
             //Renderer rend = hiddenGO.GetComponentInChildren<Renderer>();
 
-            hiddenGO.transform.forward = (centre - head.position).normalized;
+            hiddenGO.transform.forward = (_centre - head.position).normalized;
             hiddenGO.transform.localScale = Vector3.one;
-            localThumbCoords = hiddenGO.transform.worldToLocalMatrix.MultiplyPoint(thumbMetacarpal);
-            hiddenGO.transform.localScale = new Vector3(Mathf.Abs(localThumbCoords.x) * 2, Mathf.Abs(localThumbCoords.y) * 2, transform.localScale.z);
+            _localThumbCoords = hiddenGO.transform.worldToLocalMatrix.MultiplyPoint(thumbMetacarpal);
+            hiddenGO.transform.localScale = new Vector3(Mathf.Abs(_localThumbCoords.x) * 2, Mathf.Abs(_localThumbCoords.y) * 2, transform.localScale.z);
 
             //Debug.Log("plane right x: " + (centre.x + rend.bounds.extents.x) + " vs right thumb: " + thumbMetacarpal.x);
             //Debug.Log("plane up y: " + (centre.y + rend.bounds.extents.y) + " vs right thumb: " + thumbMetacarpal.y);
@@ -493,36 +504,36 @@ public class PoseEvents : MonoBehaviour
 
     void Resize(bool XAxis, bool increasing)
     {
-        Transform tr = hiddenGO.transform;
+        Transform _tr = hiddenGO.transform;
 
         if (XAxis)
         {
             if (increasing)
             {
-                tr.localScale += new Vector3(.01f, 0, 0);
+                _tr.localScale += new Vector3(.01f, 0, 0);
             }
             else
             {
-                tr.localScale -= new Vector3(.01f, 0, 0);
+                _tr.localScale -= new Vector3(.01f, 0, 0);
             }
         }
         else
         {
             if (increasing)
             {
-                tr.localScale += new Vector3(0, .01f, 0);
+                _tr.localScale += new Vector3(0, .01f, 0);
             }
             else
             {
-                tr.localScale -= new Vector3(0, .01f, 0);
+                _tr.localScale -= new Vector3(0, .01f, 0);
             }
         }
 
         //Clamp values so it's never too small or too big
-        if (tr.localScale.x < .1f) tr.localScale = new Vector3(.1f, tr.localScale.y, tr.localScale.z);
-        if (tr.localScale.y < .1f) tr.localScale = new Vector3(tr.localScale.x, .1f, tr.localScale.z);
-        if (tr.localScale.x > .6f) tr.localScale = new Vector3(.6f, tr.localScale.y, tr.localScale.z);
-        if (tr.localScale.y > .6f) tr.localScale = new Vector3(tr.localScale.x, .6f, tr.localScale.z);
+        if (_tr.localScale.x < .1f) _tr.localScale = new Vector3(.1f, _tr.localScale.y, _tr.localScale.z);
+        if (_tr.localScale.y < .1f) _tr.localScale = new Vector3(_tr.localScale.x, .1f, _tr.localScale.z);
+        if (_tr.localScale.x > .6f) _tr.localScale = new Vector3(.6f, _tr.localScale.y, _tr.localScale.z);
+        if (_tr.localScale.y > .6f) _tr.localScale = new Vector3(_tr.localScale.x, .6f, _tr.localScale.z);
     }
     void EndTV()
     {
