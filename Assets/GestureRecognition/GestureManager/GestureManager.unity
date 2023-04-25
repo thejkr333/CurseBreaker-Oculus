@@ -2199,10 +2199,10 @@ MonoBehaviour:
   file_import_combinations: Samples/Sample_Military_Gestures.dat
   file_load_subgestures: Samples/Sample_OneHanded_Gestures.dat
   file_load_subgestures_i: 0
-  file_load_gestures: C:\Users\The Joker\Desktop\GameLab\CurseBreaker-Oculus\Assets\GestureRecognition\GestureData\cursebreaker-oculus.dat
+  file_load_gestures: C:\Users\david\Desktop\Gamelab 6\CurseBreaker-Oculus\Assets\GestureRecognition\GestureData\cursebreaker-oculus.dat
   file_import_gestures: C:\Users\The Joker\Desktop\GameLab\CurseBreaker-Oculus\Assets\GestureRecognition\GestureData\cursebreaker-oculus.dat
   file_save_combinations: Samples/Sample_TwoHanded_MyGestures.dat
-  file_save_gestures: C:\Users\The Joker\Desktop\GameLab\CurseBreaker-Oculus\Assets\GestureRecognition\GestureData\cursebreaker-oculus.dat
+  file_save_gestures: C:\Users\david\Desktop\Gamelab 6\CurseBreaker-Oculus\Assets\GestureRecognition\GestureData\cursebreaker-oculus.dat
   create_combination_name: (new gesture combination name)
   create_gesture_name: (new gesture name)
   create_gesture_names: []
@@ -3870,6 +3870,7 @@ MonoBehaviour:
   m_gripTransform: {fileID: 4453512405616887}
   m_grabVolumes: []
   m_controller: 96
+  grabbingPoint: {fileID: 0}
   m_parentTransform: {fileID: 403676827}
   m_player: {fileID: 403260269}
   m_grabbedObj: {fileID: 0}
@@ -3925,6 +3926,7 @@ MonoBehaviour:
   m_gripTransform: {fileID: 4484591445860233}
   m_grabVolumes: []
   m_controller: 64
+  grabbingPoint: {fileID: 0}
   m_parentTransform: {fileID: 403679903}
   m_player: {fileID: 403260269}
   m_grabbedObj: {fileID: 0}
