@@ -647,6 +647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Menu: {fileID: 1310780692890872271}
+  HelperLaser: {fileID: 0}
 --- !u!1 &1310780692339231229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,7 +1698,7 @@ MonoBehaviour:
   m_MinValue: 1.5
   m_MaxValue: 1.8
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2436,8 +2437,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3469944085076733102}
         m_TargetAssemblyTypeName: MenuFunctionality, Assembly-CSharp
-        m_MethodName: QuitGame
-        m_Mode: 1
+        m_MethodName: LoadScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

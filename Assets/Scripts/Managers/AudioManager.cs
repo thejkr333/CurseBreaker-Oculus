@@ -165,7 +165,7 @@ public class AudioManager : MonoBehaviour
             {
                 if (!sourceObject.TryGetComponent<AudioSource>(out _source))
                 {
-                    Debug.LogWarning("AudioManager: Object " + sourceObject + " does not contain an AudioSource");
+                    //Debug.LogWarning("AudioManager: Object " + sourceObject + " does not contain an AudioSource");
                     return;
                 }
             }

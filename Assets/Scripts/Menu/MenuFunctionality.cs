@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //using Oculus;
 //using Oculus.VR;
 //using Oculus.Interaction;
@@ -9,14 +10,31 @@ using UnityEngine;
 public class MenuFunctionality : MonoBehaviour
 {
     public GameObject Menu;// HeightUp,HeightDown;
+
+    public GameObject HelperLaser;
+    private LineRenderer helperLaz;
+
     // Start is called before the first frame update
     void Awake()
     {
-        if (Menu == null)
+        if (SceneManager.GetActiveScene().buildIndex != 0)
         {
-            Debug.LogError("Menu isn't set. Please set the canvas child of " + this.name + " as the menu in the inspector.");
+            if (Menu == null)
+            {
+                Debug.LogError("Menu isn't set. Please set the canvas child of " + this.name + " as the menu in the inspector.");
+            }
+            Menu.SetActive(false);
+
+            if (HelperLaser == null)
+            {
+                Debug.LogError("Laser pointer not set.");
+            }
+            else
+            {
+                helperLaz = HelperLaser.GetComponent<LineRenderer>();
+                helperLaz.enabled = Menu.activeInHierarchy;
+            }
         }
-        Menu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,6 +44,7 @@ public class MenuFunctionality : MonoBehaviour
         {
             Menu.SetActive(!Menu.activeInHierarchy);
             GameManager.Instance.InMenu = Menu.activeInHierarchy;
+            helperLaz.enabled = Menu.activeInHierarchy;
             // HeightUp.SetActive(!Menu.activeInHierarchy);
            // HeightDown.SetActive(!Menu.activeInHierarchy);
         }
@@ -47,6 +66,11 @@ public class MenuFunctionality : MonoBehaviour
         {
             Debug.LogWarning("Hand-Tracking Start Button UP");
         }*/
+    }
+
+    public void LoadScene(int sceneToLoad)
+    {
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     public void QuitGame()
