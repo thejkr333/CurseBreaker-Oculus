@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 //using Oculus;
 //using Oculus.VR;
 //using Oculus.Interaction;
@@ -17,7 +14,7 @@ public class MenuFunctionality : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 0)
+        if (GameManager.Instance.CurrentScene() != "MainMenu")
         {
             if (Menu == null)
             {
@@ -70,7 +67,7 @@ public class MenuFunctionality : MonoBehaviour
 
     public void LoadScene(int sceneToLoad)
     {
-        SceneManager.LoadScene(sceneToLoad);
+        GameManager.Instance.LoadScene(sceneToLoad);
     }
 
     public void QuitGame()

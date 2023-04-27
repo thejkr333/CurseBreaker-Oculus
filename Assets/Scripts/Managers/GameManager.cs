@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public event Action OnNewDay;
     public event Action<Ingredients[]> CreateShop;
 
+    public bool VRTracking;
+
 
     //True == unlocked ---- false == locked
     Dictionary<Curses, bool> cursesLockInfo = new();
@@ -68,6 +70,19 @@ public class GameManager : MonoBehaviour
         }
 
         NextDay();
+
+        OVRManager.TrackingLost += TrackingFalse;
+        OVRManager.TrackingAcquired += TrackingTrue;
+    }
+
+    private void TrackingTrue()
+    {
+        VRTracking = true;
+    }
+
+    private void TrackingFalse()
+    {
+        VRTracking = false;
     }
 
     private void Update()

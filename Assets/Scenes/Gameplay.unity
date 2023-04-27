@@ -6773,6 +6773,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: OVRCameraRig
       objectReference: {fileID: 0}
+    - target: {fileID: 3387533568434931115, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: ovrMAnager
+      value: 
+      objectReference: {fileID: 588593585951024527}
+    - target: {fileID: 3387533569962347719, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+      propertyPath: ovrMAnager
+      value: 
+      objectReference: {fileID: 588593585951024527}
     - target: {fileID: 7570299794733912045, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
       propertyPath: Slider
       value: 
@@ -6792,6 +6800,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb7623a8f0b49cf4dbaa40aea4d4be64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &588593585951024527 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 588593584119360436, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
+  m_PrefabInstance: {fileID: 588593585951024525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105637853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e933e81d3c20c74ea6fdc708a67e3a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &919132149174350748

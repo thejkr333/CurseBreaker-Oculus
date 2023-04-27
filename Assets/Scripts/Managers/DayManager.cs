@@ -39,6 +39,7 @@ public class DayManager : MonoBehaviour
     {
         //Declare SunState for the SunController
         SunState = customerIndex;
+
         //Skip debug
         if (Input.GetKeyDown(KeyCode.K)) NextCustomer();
     }
@@ -76,6 +77,8 @@ public class DayManager : MonoBehaviour
     public void NextCustomer()
     {
         CustomerOut(customersToday[customerIndex]);
+
+        if (customerIndex >= 2) return;
 
         if (customerIndex++ == 2) CustomersFinished?.Invoke();
         else CustomerIn(customersToday[customerIndex]);

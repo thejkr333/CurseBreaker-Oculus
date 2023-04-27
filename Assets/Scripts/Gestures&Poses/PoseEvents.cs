@@ -15,6 +15,7 @@ public class PoseEvents : MonoBehaviour
 
     public OVRSkeleton HandSkeleton;
     PoseGrab poseGrab;
+    bool tracking;
 
     protected List<OVRBone> fingerbones = null;
 
@@ -51,6 +52,7 @@ public class PoseEvents : MonoBehaviour
 
     [Header("OPENHAND")]
     [SerializeField] bool hasClapped;
+    public static Action Clap;
     void Start()
     {
         poseGrab = HandSkeleton.GetComponent<PoseGrab>();
@@ -385,6 +387,7 @@ public class PoseEvents : MonoBehaviour
         EndGrab();
 
         if (otherHandPoseEvent.CurrentPose != Poses.OpenHand) return;
+        if (!GameManager.Instance.VRTracking) return;
 
         if (mainHand)
         {
@@ -396,6 +399,7 @@ public class PoseEvents : MonoBehaviour
                 if (hasClapped) return;
 
                 hasClapped = true;
+                Clap?.Invoke();
                 Debug.LogWarning("Clap");
             }
             else if (Vector3.Distance(otherHandPoseEvent.HandSkeleton.transform.position, HandSkeleton.transform.position) > .2f) hasClapped = false;
