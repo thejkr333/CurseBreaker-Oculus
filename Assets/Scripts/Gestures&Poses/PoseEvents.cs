@@ -14,6 +14,7 @@ public class PoseEvents : MonoBehaviour
     public Poses CurrentPose;
 
     public OVRSkeleton HandSkeleton;
+    OVRHand hand;
     PoseGrab poseGrab;
     bool tracking;
 
@@ -56,6 +57,7 @@ public class PoseEvents : MonoBehaviour
     void Start()
     {
         poseGrab = HandSkeleton.GetComponent<PoseGrab>();
+        hand = HandSkeleton.GetComponent<OVRHand>();
         lineRenderer = GetComponent<LineRenderer>();
         hiddenGO.SetActive(false);
         lineRenderer.enabled = false;
@@ -127,6 +129,7 @@ public class PoseEvents : MonoBehaviour
     void Update()
     {
         if (!hasStarted) return;
+        if (!hand.IsTracked) return;
 
         switch (CurrentPose)
         {
@@ -387,7 +390,6 @@ public class PoseEvents : MonoBehaviour
         EndGrab();
 
         if (otherHandPoseEvent.CurrentPose != Poses.OpenHand) return;
-        if (!GameManager.Instance.VRTracking) return;
 
         if (mainHand)
         {
