@@ -33,7 +33,10 @@ public class GoldManager : MonoBehaviour
         else
         {
             Instance = this;
+            dayBalance = new();
+            cycleBalance = new();
         }
+        ResetCyclebalances();
     }
 
     public void GainGold()
@@ -72,6 +75,28 @@ public class GoldManager : MonoBehaviour
         Transaction?.Invoke();
 
         AudioManager.Instance.PlaySoundStatic("sell", originPos);
+    }
+
+    public void ResetDayBalances()
+    {
+        dayBalance.initialGold = Gold;
+        dayBalance.goldEarned = 0;
+        dayBalance.ingredientGoldSpent = 0;
+        dayBalance.rentGoldSpent = 0;
+        dayBalance.scrollGoldSpent = 0;
+    }
+
+    //This method also reseets day balances;
+    public void ResetCyclebalances()
+    {
+        ResetDayBalances();
+
+        cycleBalance.initialGold = Gold;
+        cycleBalance.goldEarned = 0;
+        cycleBalance.ingredientGoldSpent = 0;
+        cycleBalance.rentGoldSpent = 0;
+        cycleBalance.scrollGoldSpent = 0;
+
     }
     public void IncreaseRent()
     {
