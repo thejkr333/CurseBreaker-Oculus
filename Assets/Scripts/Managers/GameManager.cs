@@ -78,11 +78,13 @@ public class GameManager : MonoBehaviour
     private void TrackingTrue()
     {
         VRTracking = true;
+        Debug.LogWarning("Tracking aquired");
     }
 
     private void TrackingFalse()
     {
         VRTracking = false;
+        Debug.LogWarning("Tracking lost");
     }
 
     private void Update()
