@@ -4,27 +4,23 @@ using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
-
+using System.Linq;
 
 public class CurseUI
 {
     public GameObject GO;
     public int Strength;
+    public List<AffectedLimb> affectedLimbs = new();
 }
 
 public class Customer : MonoBehaviour
 {
     [SerializeField] Material hiddenMat;
 
-    
-
     public Dictionary<LimbsList, Elements> LimbToElementMapping = new();
     public Dictionary<Elements, LimbsList> ElementToLimbMapping = new();
 
     int numberOfPartsAffected;
-
-    //public Dictionary<Curses, int> CursesStrength = new();
 
     bool cured;
     public int Chances = 3;
@@ -49,7 +45,6 @@ public class Customer : MonoBehaviour
         InitiateAffectedLimbParts();
 
         SetUpCurseUI();
-
     }
 
     private void Update()
@@ -207,18 +202,6 @@ public class Customer : MonoBehaviour
                 //Create random curse from unlocked curses list
                 if ((int)curse == -1) curse = CreateRandomUnlockedCurse();
 
-                //Add curse to the dictionary if it is new and give it a strength
-                CurseUI _curseUI = new();
-                if (!CursesStrength.ContainsKey(curse))
-                {
-
-                    _curseUI.Strength = UnityEngine.Random.Range(3, 9);
-                    _curseUI.GO = Instantiate(curseUIprefab, canvas.transform);
-                    CursesStrength.Add(curse, _curseUI);
-                }
-                else CursesStrength[curse].Strength += UnityEngine.Random.Range(1, 4);
-
-
                 //Asssign the limb its correspondant values
                 AffectedLimb _affectedLimb = new AffectedLimb(transform.GetChild(j).gameObject, curse, limbName, LimbToElementMapping[limbName]);
                 AffectedLimbs.Add(_affectedLimb);
@@ -230,6 +213,18 @@ public class Customer : MonoBehaviour
                 Curse _curse = _affectedLimb.AffectedLimbGO.GetComponent<Curse>();
                 _curse.CursedMaterial = Utils.GetCurseMaterial(curse);
                 _curse.ChangeVisuals(_affectedLimb.AffectedLimbGO);
+
+                //Add curse to the dictionary if it is new and give it a strength
+                CurseUI _curseUI = new();
+                if (!CursesStrength.ContainsKey(curse))
+                {
+                    _curseUI.Strength = UnityEngine.Random.Range(3, 9);
+                    _curseUI.GO = Instantiate(curseUIprefab, canvas.transform);
+                    _curseUI.affectedLimbs.Add(_affectedLimb);
+                    CursesStrength.Add(curse, _curseUI);
+                }
+                else CursesStrength[curse].Strength += UnityEngine.Random.Range(1, 4);
+
                 break;
             }
         }
@@ -285,9 +280,6 @@ public class Customer : MonoBehaviour
     }
     void Cured()
     {
-        gameObject.GetComponent<BasicChat>().ChatTime = 5;
-        gameObject.GetComponent<BasicChat>().DespawnOnceDone = true;
-        gameObject.GetComponent<BasicChat>().Cured = true;
         cured = true;
 
         DayManager.Instance.NextCustomer();
@@ -337,9 +329,9 @@ public class Customer : MonoBehaviour
                         //Give the limb a random curse from the main curses of the ingredients
                         Curses _curseToGive = CursexIngredientMatrix.GetRandomCurse(potion.PotionIngredients);
                         GiveCurseToLimb(ElementToLimbMapping[element], _curseToGive);
-                        SetUpCurseUI();
                         Chances--;
                     }
+                    SetUpCurseUI();
                     break;
                 }
             }
@@ -367,8 +359,29 @@ public class Customer : MonoBehaviour
 
     private void SetUpCurseUI()
     {
-        foreach(var curse in CursesStrength.Keys)
+        foreach(var curse in CursesStrength.Keys.ToList())
         {
+            bool _totallyCured = true;
+            foreach (var limb in CursesStrength[curse].affectedLimbs)
+            {
+                if (!limb.Cured)
+                {
+                    _totallyCured = false; 
+                    break;
+                }
+            }
+
+            if (_totallyCured)
+            {
+                if (CursesStrength.ContainsKey(curse))
+                {
+                    CursesStrength[curse].GO.SetActive(false);
+                    CursesStrength.Remove(curse);
+                }
+
+                continue;
+            }
+
             CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = Utils.GetCurseSprite(curse);
             CursesStrength[curse].GO.GetComponentInChildren<TMP_Text>().text = CursesStrength[curse].Strength.ToString();
 
@@ -399,19 +412,17 @@ public class Customer : MonoBehaviour
         }
     }
 
-    
-
-        private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Potion _potion))
         {
-            if (other.TryGetComponent(out Potion _potion))
+            if (_potion.TryGetComponent(out OVRGrabbable _grabbable))
             {
-                if (_potion.TryGetComponent(out OVRGrabbable _grabbable))
-                {
-                    if (_grabbable.isGrabbed) return;
-                }
-                GetPotion(_potion);
-                //teleport to parla, as destroying it bugs the grabber
-                _potion.transform.position = new Vector3(10000, -10, 10000);
+                if (_grabbable.isGrabbed) return;
             }
+            GetPotion(_potion);
+            //teleport to parla, as destroying it bugs the grabber
+            _potion.transform.position = new Vector3(10000, -10, 10000);
         }
     }
+}

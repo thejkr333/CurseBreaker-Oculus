@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spell : MonoBehaviour
-{ public GameObject FirstHand;
-   // private float deleteTimer = 10;
+{ 
+    public GameObject FirstHand;
+    // private float deleteTimer = 10;
     private bool removeSpell;
     public bool testDebug;
     // Start is called before the first frame update

@@ -96,7 +96,9 @@ public class StirringStick : MonoBehaviour
 
     public void BackOnIni()
     {
+        inCauldron = false;
         GetComponent<Collider>().enabled = true;
+        animator.enabled = false;
     }
 
 

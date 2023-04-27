@@ -62,11 +62,11 @@ public class GestureEvents : MonoBehaviour
 
     public void OnGestureCompleted(GestureCompletionData data)
     {
+        if (data.similarity < 0.4f) return;
+
         Debug.Log("Gesture finished");
         Debug.Log("Gesture recognized: " + data.gestureName);
         Debug.Log("Gesture similarity: " + data.similarity);
-
-        if(data.similarity < 0.4f) return;
 
         switch(data.gestureName)
         {

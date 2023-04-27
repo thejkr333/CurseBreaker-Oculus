@@ -10,13 +10,4 @@ public class AngelLeaf : Ingredient
 
         ThisIngredient = Ingredients.AngelLeaf;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-
 }

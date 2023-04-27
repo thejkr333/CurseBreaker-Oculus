@@ -24,8 +24,7 @@ public class GoldManager : MonoBehaviour
 
     public event Action Transaction;
 
-    [SerializeField]
-    public BalancesUIHandler BalancesUIHandler;
+    [SerializeField] BalancesUIHandler BalancesUIHandler;
 
     private void Awake()
     {
@@ -100,7 +99,6 @@ public class GoldManager : MonoBehaviour
         dayBalance.scrollGoldSpent = 0;
 
         BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
-
     }
 
     //This method also reseets day balances;

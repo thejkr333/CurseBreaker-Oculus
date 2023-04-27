@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
             LoadGame();
             DayCount--;
         }
+        else
+        {
+            GoldManager.Instance.Gold = 80;
+            DayCount = 0;
+        }
 
         NextDay();
 

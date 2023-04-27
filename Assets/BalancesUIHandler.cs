@@ -6,159 +6,156 @@ using TMPro;
 public class BalancesUIHandler : MonoBehaviour
 {
     // Start is called before the first frame update
-    [Header("Day texts")]
-    [SerializeField] TMP_Text ingredientCostD;
-    [SerializeField] TMP_Text scrollCostD;
-    [SerializeField] TMP_Text rentCostD;
-    [SerializeField] TMP_Text goldEarnedD;
-    [SerializeField] TMP_Text profitD;
+    [Header("DAY TEXTS")]
+    [SerializeField] TMP_Text dayIngredientsSpent;
+    [SerializeField] TMP_Text cycleScrollSpent;
+    [SerializeField] TMP_Text dayRentCost;
+    [SerializeField] TMP_Text dayGoldEarned;
+    [SerializeField] TMP_Text dayProfit;
 
-    [Header("Cycle texts")]
-    [SerializeField] TMP_Text ingredientCostC;
-    [SerializeField] TMP_Text scrollCostC;
-    [SerializeField] TMP_Text rentCostC;
-    [SerializeField] TMP_Text goldEarnedC;
-    [SerializeField] TMP_Text profitC;
-    void Start()
+    [Header("CYCLE TEXTS")]
+    [SerializeField] TMP_Text cycleIngredientSpent;
+    [SerializeField] TMP_Text dayScrollSpent;
+    [SerializeField] TMP_Text cycleRentCost;
+    [SerializeField] TMP_Text cycleGoldEarned;
+    [SerializeField] TMP_Text cycleProfit;
+
+    public void UpdateUI(Balance dayBalance, Balance cycleBalance)
     {
-
+        UpdateDayUI(dayBalance);
+        UpdateCycleUI(cycleBalance);
     }
-
-
-    public void UpdateUI(Balance dayBal, Balance cycleBal)
+    public void UpdateDayUI(Balance balance)
     {
-        UpdateDayUI(dayBal);
-        UpdateCycleUI(cycleBal);
-    }
-    public void UpdateDayUI(Balance bal)
-    {
-        if(bal.ingredientGoldSpent > 0)
+        if(balance.ingredientGoldSpent > 0)
         {
-            ingredientCostD.color = Color.red;
+            dayIngredientsSpent.color = Color.red;
         }
         else
         {
-            ingredientCostD.color = Color.white;
+            dayIngredientsSpent.color = Color.white;
         }
-        ingredientCostD.text = "-" + bal.ingredientGoldSpent.ToString();
+        dayIngredientsSpent.text = "-" + balance.ingredientGoldSpent.ToString();
 
 
-        if (bal.scrollGoldSpent > 0)
+        if (balance.scrollGoldSpent > 0)
         {
-            scrollCostD.color = Color.red;
+            dayScrollSpent.color = Color.red;
         }
         else
         {
-            scrollCostD.color = Color.white;
+            dayScrollSpent.color = Color.white;
         }
-        scrollCostD.text = "-" + bal.scrollGoldSpent.ToString();
+        dayScrollSpent.text = "-" + balance.scrollGoldSpent.ToString();
 
 
-        if (bal.rentGoldSpent > 0)
+        if (balance.rentGoldSpent > 0)
         {
-            rentCostD.color = Color.red;
+            dayRentCost.color = Color.red;
         }
         else
         {
-            rentCostD.color = Color.white;
+            dayRentCost.color = Color.white;
         }
-        rentCostD.text = bal.rentGoldSpent.ToString();
+        dayRentCost.text = balance.rentGoldSpent.ToString();
 
 
-        if (bal.goldEarned > 0)
+        if (balance.goldEarned > 0)
         {
-            goldEarnedD.color = Color.green;
+            dayGoldEarned.color = Color.green;
         }
         else
         {
-            goldEarnedD.color = Color.white;
+            dayGoldEarned.color = Color.white;
         }
-        goldEarnedD.text = "+" + bal.goldEarned.ToString();
+        dayGoldEarned.text = "+" + balance.goldEarned.ToString();
 
 
-        int totalProfit = bal.goldEarned - bal.rentGoldSpent - bal.scrollGoldSpent - bal.ingredientGoldSpent;
-        if(totalProfit > 0)
-        {
-            profitD.color = Color.green;
-            profitD.text = "+";
-        }
-        else if(totalProfit < 0){
-            profitD.color = Color.red;
+        int totalProfit = balance.goldEarned - balance.rentGoldSpent - balance.scrollGoldSpent - balance.ingredientGoldSpent;
+        dayProfit.text = "";
 
-        }
-        else
-        {
-            profitD.color = Color.white;
-            profitD.text = "";
-        }
-        profitD.text = profitD.text + totalProfit.ToString();
-    }
-
-
-
-    public void UpdateCycleUI(Balance bal)
-    {
-        if (bal.ingredientGoldSpent > 0)
-        {
-            ingredientCostC.color = Color.red;
-        }
-        else
-        {
-            ingredientCostC.color = Color.white;
-        }
-        ingredientCostC.text = "-" + bal.ingredientGoldSpent.ToString();
-
-
-        if (bal.scrollGoldSpent > 0)
-        {
-            scrollCostC.color = Color.red;
-        }
-        else
-        {
-            scrollCostC.color = Color.white;
-        }
-        scrollCostC.text = "-" + bal.scrollGoldSpent.ToString();
-
-
-        if (bal.rentGoldSpent > 0)
-        {
-            rentCostC.color = Color.red;
-        }
-        else
-        {
-            rentCostC.color = Color.white;
-        }
-        rentCostC.text = "-" + bal.rentGoldSpent.ToString();
-
-
-        if (bal.goldEarned > 0)
-        {
-            goldEarnedC.color = Color.green;
-        }
-        else
-        {
-            goldEarnedC.color = Color.white;
-        }
-        goldEarnedC.text = "+" + bal.goldEarned.ToString();
-
-
-        int totalProfit = bal.goldEarned - bal.rentGoldSpent - bal.scrollGoldSpent - bal.ingredientGoldSpent;
         if (totalProfit > 0)
         {
-            profitC.color = Color.green;
-            profitC.text = "+";
+            dayProfit.color = Color.green;
+            dayProfit.text = "+";
+        }
+        else if(totalProfit < 0){
+            dayProfit.color = Color.red;
+
+        }
+        else
+        {
+            dayProfit.color = Color.white;
+        }
+        dayProfit.text += totalProfit.ToString();
+    }
+
+
+
+    public void UpdateCycleUI(Balance balance)
+    {
+        if (balance.ingredientGoldSpent > 0)
+        {
+            cycleIngredientSpent.color = Color.red;
+        }
+        else
+        {
+            cycleIngredientSpent.color = Color.white;
+        }
+        cycleIngredientSpent.text = "-" + balance.ingredientGoldSpent.ToString();
+
+
+        if (balance.scrollGoldSpent > 0)
+        {
+            cycleScrollSpent.color = Color.red;
+        }
+        else
+        {
+            cycleScrollSpent.color = Color.white;
+        }
+        cycleScrollSpent.text = "-" + balance.scrollGoldSpent.ToString();
+
+
+        if (balance.rentGoldSpent > 0)
+        {
+            cycleRentCost.color = Color.red;
+        }
+        else
+        {
+            cycleRentCost.color = Color.white;
+        }
+        cycleRentCost.text = "-" + balance.rentGoldSpent.ToString();
+
+
+        if (balance.goldEarned > 0)
+        {
+            cycleGoldEarned.color = Color.green;
+        }
+        else
+        {
+            cycleGoldEarned.color = Color.white;
+        }
+        cycleGoldEarned.text = "+" + balance.goldEarned.ToString();
+
+
+        int totalProfit = balance.goldEarned - balance.rentGoldSpent - balance.scrollGoldSpent - balance.ingredientGoldSpent;
+        cycleProfit.text = "";
+
+        if (totalProfit > 0)
+        {
+            cycleProfit.color = Color.green;
+            cycleProfit.text = "+";
         }
         else if (totalProfit < 0)
         {
-            profitC.color = Color.red;
+            cycleProfit.color = Color.red;
         }
         else
         {
-            profitC.color = Color.white;
-            profitC.text = "";
+            cycleProfit.color = Color.white;
         }
 
-        profitC.text = profitC.text + totalProfit.ToString();
+        cycleProfit.text += totalProfit.ToString();
     }
 
 }
