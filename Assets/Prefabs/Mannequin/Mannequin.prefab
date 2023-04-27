@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 7736293140006297746}
   - component: {fileID: 7871688434746856455}
   - component: {fileID: 5465581485905930122}
+  - component: {fileID: 72499609943139794}
   m_Layer: 3
   m_Name: Mannequin
   m_TagString: Customer
@@ -217,18 +218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hiddenMat: {fileID: 2100000, guid: 905dfbc5267cd5e4da87f6a621d9563c, type: 2}
-  Fire: {fileID: 21300000, guid: 0bb819120a1a6eb469e55041bf17b88c, type: 3}
-  Water: {fileID: 21300000, guid: 8883cc359c060c14c9f2882b3043858f, type: 3}
-  Dark: {fileID: 21300000, guid: c23d2563e2b848241b7b441f79bbe221, type: 3}
-  Light: {fileID: 21300000, guid: 32a3043d49fa6694585d013c34c2fef6, type: 3}
-  Earth: {fileID: 21300000, guid: e67be4afb561606498fbceae9d641343, type: 3}
-  Air: {fileID: 21300000, guid: 85473c85248e8944194ff34e225de62a, type: 3}
-  WolfusImage: {fileID: 21300000, guid: 558fe893a0dc2ce44b284921ff2eaa46, type: 3}
-  GassleImage: {fileID: 21300000, guid: e6fe74923eda7f047882be30668137bd, type: 3}
-  DemonitisImage: {fileID: 21300000, guid: 4e407ab08e4b1e445ba9ac332f922053, type: 3}
-  PetrificationImage: {fileID: 21300000, guid: a6316e35a08bae14ea693ddefa59c32c, type: 3}
-  PorkoImage: {fileID: 21300000, guid: 518a4ea7063ae0a4c9f5ab006719c653, type: 3}
-  RuneBlightImage: {fileID: 21300000, guid: 2cfb2a126cbb7a4438ebdf24c11a396f, type: 3}
   Chances: 3
   AffectedLimbs: []
   curseUIprefab: {fileID: 9163307963177241112, guid: 516cba202bf499d4da22c0ab5b4bb253, type: 3}
@@ -249,8 +238,26 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints:
-  - {fileID: 0}
+  - {fileID: 8335165792767135719}
   m_grabbedBy: {fileID: 0}
+--- !u!114 &72499609943139794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208462484191308216}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.9234619, g: 1, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &208462484447413452
 GameObject:
   m_ObjectHideFlags: 0
