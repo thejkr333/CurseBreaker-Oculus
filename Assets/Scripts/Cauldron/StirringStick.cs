@@ -88,7 +88,7 @@ public class StirringStick : MonoBehaviour
             animator.enabled = true;
             stirring = false;
             inCauldron = false;
-            GetComponent<Collider2D>().enabled = false;
+            GetComponent<Collider>().enabled = false;
             lapCounter = 0;
             sliderController.StartMinigame();
         }
@@ -96,7 +96,7 @@ public class StirringStick : MonoBehaviour
 
     public void BackOnIni()
     {
-        GetComponent<Collider2D>().enabled = true;
+        GetComponent<Collider>().enabled = true;
     }
 
 
