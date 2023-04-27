@@ -36,6 +36,7 @@ public class SliderController : MonoBehaviour
         background.GetComponent<Image>().material.SetFloat("_SuccessMargin", successMargin);
 
         transform.parent.gameObject.SetActive(false);
+        PoseEvents.Clap += InputReceived;
     }
 
 
@@ -136,9 +137,10 @@ public class SliderController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PoseGrab>() != null)
-        {
-            InputReceived();
-        }
+        //if (other.GetComponent<PoseGrab>() != null)
+        //{
+        //    InputReceived();
+            
+        //}
     }
 }
