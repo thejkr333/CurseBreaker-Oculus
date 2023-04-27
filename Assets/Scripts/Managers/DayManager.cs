@@ -50,6 +50,7 @@ public class DayManager : MonoBehaviour
         ActivateCanvas();
         CreateCustomers();
         Invoke(nameof(DeactivateCanvas), 5);
+        GoldManager.Instance.ResetDayBalances();
     }
 
     void ActivateCanvas()
