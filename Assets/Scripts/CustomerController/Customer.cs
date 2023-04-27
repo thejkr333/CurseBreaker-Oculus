@@ -3,34 +3,53 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
+
+
+public class CurseUI
+{
+    public GameObject GO;
+    public int Strength;
+}
 
 public class Customer : MonoBehaviour
 {
     [SerializeField] Material hiddenMat;
-    public Sprite Fire, Water, Dark, Light, Earth, Air;
+
+    
 
     public Dictionary<LimbsList, Elements> LimbToElementMapping = new();
     public Dictionary<Elements, LimbsList> ElementToLimbMapping = new();
 
     int numberOfPartsAffected;
 
-    public Dictionary<Curses, int> CursesStrength = new();
+    //public Dictionary<Curses, int> CursesStrength = new();
 
     bool cured;
     public int Chances = 3;
 
     public List<AffectedLimb> AffectedLimbs = new();
-    
+
     Material defaultMaterial;
 
+    [SerializeField] GameObject curseUIprefab;
+
+
+    GameObject canvas;
+    public Dictionary<Curses, CurseUI> CursesStrength = new();
 
     private void Awake()
     {
         defaultMaterial = GetComponentInChildren<MeshRenderer>().material;
+        canvas = GetComponentInChildren<Canvas>().gameObject;
 
         LimbElementMapping();
 
         InitiateAffectedLimbParts();
+
+        SetUpCurseUI();
+
     }
 
     private void Update()
@@ -189,8 +208,16 @@ public class Customer : MonoBehaviour
                 if ((int)curse == -1) curse = CreateRandomUnlockedCurse();
 
                 //Add curse to the dictionary if it is new and give it a strength
-                if (!CursesStrength.ContainsKey(curse)) CursesStrength.Add(curse, UnityEngine.Random.Range(3, 9));
-                else CursesStrength[curse] += UnityEngine.Random.Range(1, 4);
+                CurseUI _curseUI = new();
+                if (!CursesStrength.ContainsKey(curse))
+                {
+
+                    _curseUI.Strength = UnityEngine.Random.Range(3, 9);
+                    _curseUI.GO = Instantiate(curseUIprefab, canvas.transform);
+                    CursesStrength.Add(curse, _curseUI);
+                }
+                else CursesStrength[curse].Strength += UnityEngine.Random.Range(1, 4);
+
 
                 //Asssign the limb its correspondant values
                 AffectedLimb _affectedLimb = new AffectedLimb(transform.GetChild(j).gameObject, curse, limbName, LimbToElementMapping[limbName]);
@@ -201,6 +228,7 @@ public class Customer : MonoBehaviour
 
                 //Change visuals of the affected limb
                 Curse _curse = _affectedLimb.AffectedLimbGO.GetComponent<Curse>();
+                _curse.CursedMaterial = Utils.GetCurseMaterial(curse);
                 _curse.ChangeVisuals(_affectedLimb.AffectedLimbGO);
                 break;
             }
@@ -229,27 +257,30 @@ public class Customer : MonoBehaviour
     {
         foreach (var limb in AffectedLimbs)
         {
-            switch (limb.Element)
-            {
-                case Elements.Fire:
-                    limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Fire;
-                    break;
-                case Elements.Water:
-                    limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Water;
-                    break;
-                case Elements.Dark:
-                    limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Dark;
-                    break;
-                case Elements.Light:
-                    limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Light;
-                    break;
-                case Elements.Air:
-                    limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Air;
-                    break;
-                case Elements.Earth:
-                    limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Earth;
-                    break;
-            }
+
+            limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Utils.GetElementSprite(limb.Element);
+
+            //switch (limb.Element)
+            //{
+            //    case Elements.Fire:
+            //        limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Fire;
+            //        break;
+            //    case Elements.Water:
+            //        limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Water;
+            //        break;
+            //    case Elements.Dark:
+            //        limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Dark;
+            //        break;
+            //    case Elements.Light:
+            //        limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Light;
+            //        break;
+            //    case Elements.Air:
+            //        limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Air;
+            //        break;
+            //    case Elements.Earth:
+            //        limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Earth;
+            //        break;
+            //}
         }
     }
     void Cured()
@@ -268,28 +299,28 @@ public class Customer : MonoBehaviour
         foreach (Elements element in potion.PotionElements)
         {
             //Check which limb is affected by the elements
-            foreach(var limb in AffectedLimbs)
+            foreach (var limb in AffectedLimbs)
             {
-                if(ElementToLimbMapping[element] == limb.LimbName)
+                if (ElementToLimbMapping[element] == limb.LimbName)
                 {
-                    if(limb.AffectedLimbGO.TryGetComponent(out Curse _curse))
+                    if (limb.AffectedLimbGO.TryGetComponent(out Curse _curse))
                     {
                         //Do de math for each limb depending on the curse that it has (matrix)
                         int _potionStrength = CursexIngredientMatrix.CalculatePotionStrenght(_curse.CurrentCurse, potion.PotionIngredients);
 
                         if (CursesStrength.ContainsKey(_curse.CurrentCurse))
                         {
-                            int  _strengthDiff = _potionStrength - CursesStrength[_curse.CurrentCurse];
+                            int _strengthDiff = _potionStrength - CursesStrength[_curse.CurrentCurse].Strength;
                             if (_strengthDiff > 0)
                             {
                                 //potion too strong
-                                CursesStrength[_curse.CurrentCurse] = _strengthDiff;
+                                CursesStrength[_curse.CurrentCurse].Strength = _strengthDiff;
                                 Chances--;
                             }
                             else if (_strengthDiff < 0)
                             {
                                 //potion too weak
-                                CursesStrength[_curse.CurrentCurse] = -_strengthDiff;
+                                CursesStrength[_curse.CurrentCurse].Strength = -_strengthDiff;
                                 Chances--;
                             }
                             else
@@ -306,25 +337,81 @@ public class Customer : MonoBehaviour
                         //Give the limb a random curse from the main curses of the ingredients
                         Curses _curseToGive = CursexIngredientMatrix.GetRandomCurse(potion.PotionIngredients);
                         GiveCurseToLimb(ElementToLimbMapping[element], _curseToGive);
+                        SetUpCurseUI();
                         Chances--;
                     }
                     break;
                 }
             }
         }
+        UpdateCustomerVisuals();
+
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void UpdateCustomerVisuals()
     {
-        if (other.TryGetComponent(out Potion _potion))
+        //This should be called each time that the customer is given a potion
+
+        //Update limb visuals
+
+
+        //Update curses strenght
+        foreach (var curse in CursesStrength.Keys)
         {
-            if (_potion.TryGetComponent(out OVRGrabbable _grabbable))
-            {
-                if (_grabbable.isGrabbed) return;
-            }
-            GetPotion(_potion);
-            //teleport to parla, as destroying it bugs the grabber
-            _potion.transform.position = new Vector3(10000, -10, 10000);
+            CursesStrength[curse].GO.GetComponentInChildren<TMP_Text>().text = CursesStrength[curse].Strength.ToString();
+        }
+
+       
+    }
+
+
+    private void SetUpCurseUI()
+    {
+        foreach(var curse in CursesStrength.Keys)
+        {
+            CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = Utils.GetCurseSprite(curse);
+            CursesStrength[curse].GO.GetComponentInChildren<TMP_Text>().text = CursesStrength[curse].Strength.ToString();
+
+            //switch (curse)
+            //{
+            //    case Curses.Wolfus:
+            //        CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = WolfusImage;
+            //            break;
+            //    case Curses.Gassle:
+            //        CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = GassleImage;
+            //        break;
+            //    case Curses.Demonitis:
+            //        CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = DemonitisImage;
+            //        break;
+            //    case Curses.Petrification:
+            //        CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = PetrificationImage;
+            //        break;
+            //    case Curses.Porko:
+            //        CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = PorkoImage;
+            //        break;
+            //    case Curses.Runeblight:
+            //        CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = RuneBlightImage;
+            //        break;
+            //}
+
+            
+
         }
     }
-}
+
+    
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out Potion _potion))
+            {
+                if (_potion.TryGetComponent(out OVRGrabbable _grabbable))
+                {
+                    if (_grabbable.isGrabbed) return;
+                }
+                GetPotion(_potion);
+                //teleport to parla, as destroying it bugs the grabber
+                _potion.transform.position = new Vector3(10000, -10, 10000);
+            }
+        }
+    }
