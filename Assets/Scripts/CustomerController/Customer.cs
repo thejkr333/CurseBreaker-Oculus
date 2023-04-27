@@ -20,9 +20,14 @@ public class Customer : MonoBehaviour
     public int Chances = 3;
 
     public List<AffectedLimb> AffectedLimbs = new();
+    
+    Material defaultMaterial;
+
 
     private void Awake()
     {
+        defaultMaterial = GetComponentInChildren<MeshRenderer>().material;
+
         LimbElementMapping();
 
         InitiateAffectedLimbParts();
@@ -291,7 +296,7 @@ public class Customer : MonoBehaviour
                             {
                                 //perfect potion
                                 limb.Cured = true;
-                                limb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+                                limb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material = defaultMaterial;
                             }
                         }
                     }

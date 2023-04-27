@@ -29,11 +29,12 @@ public class AffectedLimb
 public class Curse : MonoBehaviour
 {
     public Curses CurrentCurse;
+    [SerializeField] Material cursedMaterial;
     
    public virtual void ChangeVisuals(GameObject affectedLimb)
    {
-
-   }
+        affectedLimb.GetComponentInChildren<MeshRenderer>().material = cursedMaterial;
+    }
 
     // Update is called once per frame
     protected virtual void Update()

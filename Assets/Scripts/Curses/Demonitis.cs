@@ -8,22 +8,4 @@ public class Demonitis : Curse
     {
         CurrentCurse = Curses.Demonitis;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    public override void ChangeVisuals(GameObject affectedLimb)
-    {
-        base.ChangeVisuals(affectedLimb);
-
-        affectedLimb.GetComponentInChildren<MeshRenderer>().material.color = Color.magenta;
-    }
-
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
 }
