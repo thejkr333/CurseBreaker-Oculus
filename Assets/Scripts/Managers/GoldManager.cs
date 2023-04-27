@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 public enum TransactionType { Ingredient, Scroll, Rent };
-class Balance
+public class Balance
 {
     public int initialGold;
     public int ingredientGoldSpent;
@@ -24,6 +24,9 @@ public class GoldManager : MonoBehaviour
 
     public event Action Transaction;
 
+    [SerializeField]
+    public BalancesUIHandler BalancesUIHandler;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -39,11 +42,18 @@ public class GoldManager : MonoBehaviour
         ResetCyclebalances();
     }
 
+    private void Start()
+    {
+        BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
+    }
     public void GainGold()
     {
         Gold += 10 + paymentIncrement;
         dayBalance.goldEarned += 10 + paymentIncrement;
         Transaction?.Invoke();
+        BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
+
+
     }
     public void SubstractGold(int cost, TransactionType type)
     {
@@ -65,6 +75,8 @@ public class GoldManager : MonoBehaviour
         }
 
         Transaction?.Invoke();
+        BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
+
     }
     public void SellIngredient(int cost, Vector3 originPos)
     {
@@ -75,6 +87,8 @@ public class GoldManager : MonoBehaviour
         Transaction?.Invoke();
 
         AudioManager.Instance.PlaySoundStatic("sell", originPos);
+        BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
+
     }
 
     public void ResetDayBalances()
@@ -84,6 +98,9 @@ public class GoldManager : MonoBehaviour
         dayBalance.ingredientGoldSpent = 0;
         dayBalance.rentGoldSpent = 0;
         dayBalance.scrollGoldSpent = 0;
+
+        BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
+
     }
 
     //This method also reseets day balances;
@@ -109,5 +126,9 @@ public class GoldManager : MonoBehaviour
         {
             Gold -= rent;
         }
+
+        Transaction?.Invoke();
+        BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
+
     }
 }
