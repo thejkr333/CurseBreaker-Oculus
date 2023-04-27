@@ -57,27 +57,27 @@ public class IngredientStorage : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Mandrake>()&&Mandrake==true)
         {
-            GoldManager.Instance.SubstractGold(4);
+            GoldManager.Instance.SubstractGold(4, TransactionType.Ingredient);
         }
         if (other.gameObject.GetComponent<CorkWood>()&&CorkWood == true)
         {
-            GoldManager.Instance.SubstractGold(4);
+            GoldManager.Instance.SubstractGold(4, TransactionType.Ingredient);
         }
         if (other.gameObject.GetComponent<WolfsBane>() && WolfsBane == true)
         {
-            GoldManager.Instance.SubstractGold(4);
+            GoldManager.Instance.SubstractGold(4, TransactionType.Ingredient);
         }
         if (other.gameObject.GetComponent<AngelLeaf>() && AngelLeaf == true)
         {
-            GoldManager.Instance.SubstractGold(4);
+            GoldManager.Instance.SubstractGold(4, TransactionType.Ingredient);
         }   
         if(other.gameObject.GetComponent<DragonsTongue>() && DragonTongue == true)
         {
-            GoldManager.Instance.SubstractGold(4);
+            GoldManager.Instance.SubstractGold(4, TransactionType.Ingredient);
         }
         if(other.gameObject.GetComponent<Nightshade>() && NightShade == true)
         {
-            GoldManager.Instance.SubstractGold(4);
+            GoldManager.Instance.SubstractGold(4, TransactionType.Ingredient);
         }
     }
 }

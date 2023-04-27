@@ -87,10 +87,18 @@ public class StirringStick : MonoBehaviour
             AudioManager.Instance.StopSound("boiling_water");
             animator.enabled = true;
             stirring = false;
+            inCauldron = false;
+            GetComponent<Collider2D>().enabled = false;
             lapCounter = 0;
             sliderController.StartMinigame();
         }
     }
+
+    public void BackOnIni()
+    {
+        GetComponent<Collider2D>().enabled = true;
+    }
+
 
     public void DisableAnim()
     {
