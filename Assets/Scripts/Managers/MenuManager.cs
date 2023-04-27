@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
+
+    [SerializeField] Slider sfx, music;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -20,6 +23,12 @@ public class MenuManager : MonoBehaviour
         {
             if(light.transform.parent.name != "PotV1") light.intensity = 2f;
         }
+    }
+
+    private void Start()
+    {
+        sfx.value = AudioManager.Instance.SfxVolume;
+        music.value = AudioManager.Instance.MusicVolume;
     }
 
     public void SetSFXVolume(float volume)
