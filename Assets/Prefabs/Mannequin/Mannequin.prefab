@@ -141,11 +141,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 208462484191308214}
-  - component: {fileID: 8335165792767135719}
   - component: {fileID: 7736293140006297746}
   - component: {fileID: 7871688434746856455}
   - component: {fileID: 5465581485905930122}
   - component: {fileID: 72499609943139794}
+  - component: {fileID: 2413333435770710728}
   m_Layer: 3
   m_Name: Mannequin
   m_TagString: Customer
@@ -175,20 +175,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &8335165792767135719
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 208462484191308216}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.06
-  m_Height: 0.24
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.015, z: 0}
 --- !u!54 &7736293140006297746
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -238,7 +224,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints:
-  - {fileID: 8335165792767135719}
+  - {fileID: 2413333435770710728}
   m_grabbedBy: {fileID: 0}
 --- !u!114 &72499609943139794
 MonoBehaviour:
@@ -258,6 +244,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!65 &2413333435770710728
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208462484191308216}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09997495, y: 0.2368558, z: 0.07381259}
+  m_Center: {x: 0.000831116, y: -0.01808685, z: -0.0012989324}
 --- !u!1 &208462484447413452
 GameObject:
   m_ObjectHideFlags: 0
