@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //using Oculus;
 //using Oculus.VR;
 //using Oculus.Interaction;
@@ -7,14 +8,14 @@ using UnityEngine;
 public class MenuFunctionality : MonoBehaviour
 {
     public GameObject Menu;// HeightUp,HeightDown;
-
+   
     public GameObject HelperLaser;
     private LineRenderer helperLaz;
 
     // Start is called before the first frame update
     void Awake()
     {
-        if (GameManager.Instance.CurrentScene() != "MainMenu")
+        if (SceneManager.GetActiveScene().name != "MainMenu")
         {
             if (Menu == null)
             {
