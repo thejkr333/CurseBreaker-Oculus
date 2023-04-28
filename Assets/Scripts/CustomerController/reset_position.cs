@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class reset_position : MonoBehaviour
 {
-    CustomerController controller;
+    public CustomerController controller;
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
     {

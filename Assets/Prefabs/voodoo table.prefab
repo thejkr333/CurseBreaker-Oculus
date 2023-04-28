@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 2550550676162847173}
   - component: {fileID: 2550550676162847172}
   - component: {fileID: 2550550676162847163}
-  - component: {fileID: 2550550676162847162}
+  - component: {fileID: 1014234065779302685}
   m_Layer: 0
   m_Name: reset vodo doll
   m_TagString: Untagged
@@ -234,7 +234,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2550550676162847162
+--- !u!114 &1014234065779302685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,12 +243,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2550550676162847161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7e5300317c552741a0c78997b57e50a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c6eef7b72da1b04cab2247fc269f21f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slider: {fileID: 0}
-  Increase: 1
-  Decrease: 0
+  controller: {fileID: 8350404401198767008}
 --- !u!1 &2550550676705031769
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +487,17 @@ PrefabInstance:
       objectReference: {fileID: 2550550677114077711}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 185a5e505f3939c4ab02e41041f73f17, type: 3}
+--- !u!114 &8350404401198767008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5802880268990405487, guid: 185a5e505f3939c4ab02e41041f73f17, type: 3}
+  m_PrefabInstance: {fileID: 2550550676040335567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c71fa6d30881c4d82b05063257260f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8350404401198767009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5802880268990405486, guid: 185a5e505f3939c4ab02e41041f73f17, type: 3}
