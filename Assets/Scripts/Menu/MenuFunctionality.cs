@@ -12,25 +12,30 @@ public class MenuFunctionality : MonoBehaviour
     public GameObject HelperLaser;
     private LineRenderer helperLaz;
 
+    public bool DevMode;
+
     // Start is called before the first frame update
     void Awake()
     {
-        if (SceneManager.GetActiveScene().name != "MainMenu")
+        if (DevMode == false)
         {
-            if (Menu == null)
+            if (SceneManager.GetActiveScene().name != "MainMenu")
             {
-                Debug.LogError("Menu isn't set. Please set the canvas child of " + this.name + " as the menu in the inspector.");
-            }
-            Menu.SetActive(false);
+                if (Menu == null)
+                {
+                    Debug.LogError("Menu isn't set. Please set the canvas child of " + this.name + " as the menu in the inspector.");
+                }
+                Menu.SetActive(false);
 
-            if (HelperLaser == null)
-            {
-                Debug.LogError("Laser pointer not set.");
-            }
-            else
-            {
-                helperLaz = HelperLaser.GetComponent<LineRenderer>();
-                helperLaz.enabled = Menu.activeInHierarchy;
+                if (HelperLaser == null)
+                {
+                    Debug.LogError("Laser pointer not set.");
+                }
+                else
+                {
+                    helperLaz = HelperLaser.GetComponent<LineRenderer>();
+                    helperLaz.enabled = Menu.activeInHierarchy;
+                }
             }
         }
     }
@@ -46,6 +51,7 @@ public class MenuFunctionality : MonoBehaviour
             // HeightUp.SetActive(!Menu.activeInHierarchy);
            // HeightDown.SetActive(!Menu.activeInHierarchy);
         }
+
         //Debug Keyboard Testing Uncomment for testing without headset
        /* if (Input.GetKeyDown(KeyCode.Space))
         {

@@ -8,10 +8,14 @@ public class HeightSlider : MonoBehaviour
     public GameObject CameraRig;
     Slider slider;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         slider = GetComponent<Slider>();
         slider.value = 0;
+        if (CameraRig == null)
+        {
+            CameraRig = GameObject.Find("OVRCameraRig");
+        }
     }
 
     // Update is called once per frame
