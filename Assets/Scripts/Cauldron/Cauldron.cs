@@ -19,6 +19,7 @@ public class Cauldron : MonoBehaviour
         if (other.TryGetComponent(out Ingredient _ingredient))
         {
             //if (ingredient.selected) return;
+            AudioManager.Instance.PlaySoundStatic("Splash", transform.position);
 
             AddIngredient(_ingredient.ThisIngredient);
 

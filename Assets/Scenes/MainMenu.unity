@@ -4728,5 +4728,5 @@ MonoBehaviour:
   Menu: {fileID: 111562912}
   HelperLaser: {fileID: 496484826}
   DevMode: 0
-  sfxSlider: {fileID: 0}
-  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 1563473362}
+  musicSlider: {fileID: 220974143}
