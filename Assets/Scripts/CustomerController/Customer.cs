@@ -364,6 +364,7 @@ public class Customer : MonoBehaviour
                         //Give the limb a random curse from the main curses of the ingredients
                         Curses _curseToGive = CursexIngredientMatrix.GetRandomCurse(potion.PotionIngredients);
                         GiveCurseToLimb(ElementToLimbMapping[element], _curseToGive);
+                        notAffectedLimbs.Remove(limb);
                         Chances--;
                         break;
                     }
