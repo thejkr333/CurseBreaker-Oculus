@@ -22,6 +22,11 @@ public class GestureEvents : MonoBehaviour
     [Header("PORTAL")]
     [SerializeField] GameObject portalPrefab;
 
+    private void Start()
+    {
+        currentDrawingHand = rightHand;
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -351,9 +351,7 @@ public class Customer : MonoBehaviour
         foreach (var curse in CursesStrength.Keys)
         {
             CursesStrength[curse].GO.GetComponentInChildren<TMP_Text>().text = CursesStrength[curse].Strength.ToString();
-        }
-
-       
+        }     
     }
 
 
@@ -384,31 +382,6 @@ public class Customer : MonoBehaviour
 
             CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = Utils.GetCurseSprite(curse);
             CursesStrength[curse].GO.GetComponentInChildren<TMP_Text>().text = CursesStrength[curse].Strength.ToString();
-
-            //switch (curse)
-            //{
-            //    case Curses.Wolfus:
-            //        CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = WolfusImage;
-            //            break;
-            //    case Curses.Gassle:
-            //        CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = GassleImage;
-            //        break;
-            //    case Curses.Demonitis:
-            //        CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = DemonitisImage;
-            //        break;
-            //    case Curses.Petrification:
-            //        CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = PetrificationImage;
-            //        break;
-            //    case Curses.Porko:
-            //        CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = PorkoImage;
-            //        break;
-            //    case Curses.Runeblight:
-            //        CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = RuneBlightImage;
-            //        break;
-            //}
-
-            
-
         }
     }
 
@@ -420,6 +393,7 @@ public class Customer : MonoBehaviour
             {
                 if (_grabbable.isGrabbed) return;
             }
+
             GetPotion(_potion);
             //teleport to parla, as destroying it bugs the grabber
             _potion.transform.position = new Vector3(10000, -10, 10000);
