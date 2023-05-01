@@ -9,33 +9,18 @@ public class GestureEvents : MonoBehaviour
     [SerializeField] List<string> gestureNames = new();
 
     [Header("HAND STUFF")]
-    [SerializeField] GameObject leftHand, rightHand;
+    [SerializeField] GameObject leftHand;
+    [SerializeField] GameObject rightHand;
     [SerializeField] PoseEvents poseEventLeft, poseEventRight;
-    OVRGrabber leftHandGrabber, rightHandGrabber;
-
-    [SerializeField] GameObject currentDrawingHand;
-
-    [SerializeField] GameObject fire, dark, light, water, air, earth;
+    GameObject currentDrawingHand;
     [SerializeField] Transform headPos;
-    Vector3 initialPos;
+
+    [Header("GESTURE ELEMENTS")]
+    [SerializeField] GameObject fire, dark, light, water, air, earth;
     enum Gestures { Fire, Dark, Light, Water, Air, Earth}
 
     [Header("PORTAL")]
     [SerializeField] GameObject portalPrefab;
-
-    private void Awake()
-    {
-        initialPos = headPos.position;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        poseEventLeft = GameObject.Find("LeftHandPoseEvents").GetComponent<PoseEvents>();
-        poseEventRight = GameObject.Find("RightHandPoseEvents").GetComponent<PoseEvents>();
-        leftHandGrabber = leftHand.GetComponent<OVRGrabber>();
-        rightHandGrabber = leftHand.GetComponent<OVRGrabber>();
-    }
 
     // Update is called once per frame
     void Update()
