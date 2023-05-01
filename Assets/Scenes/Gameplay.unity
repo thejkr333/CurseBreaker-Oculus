@@ -1447,6 +1447,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2550550677114077711, guid: 246d863e99f29eb4489315b6e40b7e1c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.018999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550550677114077711, guid: 246d863e99f29eb4489315b6e40b7e1c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0000009983777
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550550677114077711, guid: 246d863e99f29eb4489315b6e40b7e1c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550550677114077711, guid: 246d863e99f29eb4489315b6e40b7e1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 2728076503301382988, guid: 246d863e99f29eb4489315b6e40b7e1c, type: 3}
       propertyPath: m_Name
       value: voodoo table
