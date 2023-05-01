@@ -39,7 +39,6 @@ public class StirringStick : MonoBehaviour
 
         if (animator.enabled || grabbable.isGrabbed) { timer = 0; return; }
 
-        Debug.Log("Ditance: " + Vector3.Distance(transform.position, initialPos));
         if (Vector3.Distance(transform.position, initialPos) > tpDistance)
         {
             timer += Time.deltaTime;

@@ -22,6 +22,9 @@ MonoBehaviour:
   - curse: 0
     ingredient: 1
     value: 3
+  - curse: 0
+    ingredient: 0
+    value: 0
   - curse: 5
     ingredient: 5
     value: 1
