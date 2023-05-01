@@ -4,7 +4,7 @@ using UnityEngine;
 public class Cauldron : MonoBehaviour
 {
 
-    private void Awake()
+    private void Start()
     {
         AudioManager.Instance.PlaySoundStatic("fire_crackling", transform.position);
     }
