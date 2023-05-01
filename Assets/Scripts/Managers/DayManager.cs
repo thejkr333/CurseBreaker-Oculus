@@ -47,6 +47,7 @@ public class DayManager : MonoBehaviour
     private void NewDay()
     {
         customerIndex = 0;
+        GoldManager.Instance.Gold += 40;
         ActivateCanvas();
         CreateCustomers();
         Invoke(nameof(DeactivateCanvas), 5);

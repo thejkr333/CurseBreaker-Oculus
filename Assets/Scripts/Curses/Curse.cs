@@ -9,21 +9,33 @@ public enum LimbsList { Head, LeftArm, RightArm, LeftLeg, RightLeg, Torso }
 public enum Curses { Wolfus, Gassle, Demonitis, Petrification,  Porko, Runeblight}
 
 [System.Serializable]
-public class AffectedLimb
+public class Limb
 {
     public GameObject AffectedLimbGO;
     public Curses Curse;
     public LimbsList LimbName;
     public bool Cured;
+    public bool Cursed;
     public Elements Element;
 
-    public AffectedLimb(GameObject _affectedLimbGO, Curses _curse, LimbsList _limbName, Elements _element)
+    public Limb(GameObject _affectedLimbGO, Curses _curse, LimbsList _limbName, Elements _element)
     {
         Element = _element;
         AffectedLimbGO = _affectedLimbGO;
         Curse = _curse;
         LimbName = _limbName;
         Cured = false;
+        Cursed = true;
+    }
+
+    public Limb(GameObject _affectedLimbGO, LimbsList limbName, Elements _element)
+    {
+        AffectedLimbGO = _affectedLimbGO;
+        Curse = Curses.Wolfus;
+        LimbName = limbName;
+        Cured = false;
+        Cursed = false;
+        Element = _element;
     }
 }
 public class Curse : MonoBehaviour

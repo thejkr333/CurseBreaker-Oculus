@@ -10,7 +10,7 @@ public class CurseUI
 {
     public GameObject GO;
     public int Strength;
-    public List<AffectedLimb> affectedLimbs = new();
+    public List<Limb> affectedLimbs = new();
 }
 
 public class Customer : MonoBehaviour
@@ -25,7 +25,8 @@ public class Customer : MonoBehaviour
     bool cured;
     public int Chances = 3;
 
-    public List<AffectedLimb> AffectedLimbs = new();
+    public List<Limb> AffectedLimbs = new();
+    List <Limb> notAffectedLimbs = new();
 
     Material defaultMaterial;
 
@@ -115,14 +116,14 @@ public class Customer : MonoBehaviour
         else /*All parts*/ numberOfPartsAffected = UnityEngine.Random.Range(1, Enum.GetValues(typeof(LimbsList)).Length + 1);
 
         //Using a list of ints to easily identify duplicates
-        List<int> _affectedLimbs = new();
+        List<LimbsList> _affectedLimbs = new();
         for (int i = 0; i < numberOfPartsAffected; i++)
         {
             //Avoid duplicates
             bool _same = true;
             while (_same)
             {
-                int _limb = UnityEngine.Random.Range(0, Enum.GetValues(typeof(LimbsList)).Length);
+                LimbsList _limb = (LimbsList)UnityEngine.Random.Range(0, Enum.GetValues(typeof(LimbsList)).Length);
                 if (_affectedLimbs.Contains(_limb))
                 {
                     _same = true;
@@ -134,10 +135,36 @@ public class Customer : MonoBehaviour
                 }
             }
 
-            GiveCurseToLimb((LimbsList)_affectedLimbs[i]);
+            GiveCurseToLimb(_affectedLimbs[i]);
         }
 
+        InitiateLimbsNotAffected(ref _affectedLimbs);
+
         SetUpCurse();
+    }
+
+    void InitiateLimbsNotAffected(ref List<LimbsList> affectedLimbs)
+    {
+        for (int i = 0; i < Enum.GetValues(typeof(LimbsList)).Length; i++)
+        {
+            bool _isAffected = false;
+            foreach (var limb in affectedLimbs)
+            {
+                if ((LimbsList)i == limb) _isAffected = true;
+            }
+            if (_isAffected) continue;
+
+            for (int j = 0; j < transform.childCount - 1; j++)
+            {
+                if (transform.GetChild(j).name == ((LimbsList)i).ToString())
+                {
+                    //Asssign the limb its correspondant values
+                    Limb _notAffectedLimb = new Limb(transform.GetChild(j).gameObject, (LimbsList)i, LimbToElementMapping[(LimbsList)i]);
+                    notAffectedLimbs.Add(_notAffectedLimb);
+                    break;
+                }
+            }
+        }
     }
 
     void GiveCurseToLimb(LimbsList limbName, Curses curse = (Curses)(-1))
@@ -203,7 +230,7 @@ public class Customer : MonoBehaviour
                 if ((int)curse == -1) curse = CreateRandomUnlockedCurse();
 
                 //Asssign the limb its correspondant values
-                AffectedLimb _affectedLimb = new AffectedLimb(transform.GetChild(j).gameObject, curse, limbName, LimbToElementMapping[limbName]);
+                Limb _affectedLimb = new Limb(transform.GetChild(j).gameObject, curse, limbName, LimbToElementMapping[limbName]);
                 AffectedLimbs.Add(_affectedLimb);
 
                 //Add the correspondant curse to the limb gamobject
@@ -224,8 +251,6 @@ public class Customer : MonoBehaviour
                     CursesStrength.Add(curse, _curseUI);
                 }
                 else CursesStrength[curse].Strength += UnityEngine.Random.Range(1, 4);
-
-                break;
             }
         }
     }
@@ -290,11 +315,13 @@ public class Customer : MonoBehaviour
     {
         foreach (Elements element in potion.PotionElements)
         {
+            bool _affected = false;
             //Check which limb is affected by the elements
             foreach (var limb in AffectedLimbs)
             {
                 if (ElementToLimbMapping[element] == limb.LimbName)
                 {
+                    _affected = true;
                     if (limb.AffectedLimbGO.TryGetComponent(out Curse _curse))
                     {
                         //Do de math for each limb depending on the curse that it has (matrix)
@@ -323,21 +350,29 @@ public class Customer : MonoBehaviour
                             }
                         }
                     }
-                    else
+
+                    break;
+                }
+            }
+            if (!_affected)
+            {
+                foreach (var limb in notAffectedLimbs)
+                {
+                    if (ElementToLimbMapping[element] == limb.LimbName)
                     {
                         //Means the targeted limb doesn't have a curse on it. Affect negatively
                         //Give the limb a random curse from the main curses of the ingredients
                         Curses _curseToGive = CursexIngredientMatrix.GetRandomCurse(potion.PotionIngredients);
                         GiveCurseToLimb(ElementToLimbMapping[element], _curseToGive);
                         Chances--;
+                        break;
                     }
-                    SetUpCurseUI();
-                    break;
                 }
             }
         }
-        UpdateCustomerVisuals();
 
+        SetUpCurseUI();
+        UpdateCustomerVisuals();
     }
 
     private void UpdateCustomerVisuals()
