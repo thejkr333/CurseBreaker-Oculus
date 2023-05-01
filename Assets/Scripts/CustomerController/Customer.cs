@@ -372,6 +372,7 @@ public class Customer : MonoBehaviour
             }
         }
 
+        SetUpCurse();
         SetUpCurseUI();
         UpdateCustomerVisuals();
     }
