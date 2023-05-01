@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3988553864119604765, guid: bdc7a4384e1e53244aa979c922113e3f, type: 3}
       propertyPath: m_Name
-      value: AngelLeafSpawner
+      value: AngelLeafSpawner Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3988553864119604767, guid: bdc7a4384e1e53244aa979c922113e3f, type: 3}
       propertyPath: inside
