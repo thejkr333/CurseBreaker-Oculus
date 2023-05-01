@@ -15,6 +15,7 @@ public class StirringStick : MonoBehaviour
     OVRGrabbable grabbable;
 
     [SerializeField] SliderController sliderController;
+    [SerializeField] float tpDistance;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class StirringStick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         UpdateAnim();
 
         ResetPosition();
@@ -34,9 +36,11 @@ public class StirringStick : MonoBehaviour
 
     void ResetPosition()
     {
+
         if (animator.enabled || grabbable.isGrabbed) { timer = 0; return; }
 
-        if (Vector3.Distance(transform.position, initialPos) > .5f)
+        Debug.Log("Ditance: " + Vector3.Distance(transform.position, initialPos));
+        if (Vector3.Distance(transform.position, initialPos) > tpDistance)
         {
             timer += Time.deltaTime;
             if (timer >= offPosTime)
