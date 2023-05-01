@@ -3075,6 +3075,7 @@ MonoBehaviour:
   customerPosition: {fileID: 1881846411}
   dayCanvas: {fileID: 420153400}
   dayText: {fileID: 686202601}
+  SunState: 0
 --- !u!1001 &808104011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4114,11 +4115,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5731436576174337978, guid: 551f50fc3ab88f04c919ffbcbe6a9ca7, type: 3}
   m_PrefabInstance: {fileID: 939364392}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &950126107 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3830543600992841961, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-  m_PrefabInstance: {fileID: 588593585951024525}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &964645181
 GameObject:
   m_ObjectHideFlags: 0
@@ -5140,11 +5136,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1271632214 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1939139632620570439, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-  m_PrefabInstance: {fileID: 588593585951024525}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1299487438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6404,7 +6395,7 @@ PrefabInstance:
     - target: {fileID: 3469944085076733102, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: HeightUp
       value: 
-      objectReference: {fileID: 1271632214}
+      objectReference: {fileID: 0}
     - target: {fileID: 3469944085076733102, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -6412,7 +6403,7 @@ PrefabInstance:
     - target: {fileID: 3469944085076733102, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: HeightDown
       value: 
-      objectReference: {fileID: 950126107}
+      objectReference: {fileID: 0}
     - target: {fileID: 4211870458002088904, guid: f4959aa9c85cf694597ba2126e68b0e7, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -6835,6 +6826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliderController: {fileID: 73491569}
+  tpDistance: 0
 --- !u!95 &1583019301
 Animator:
   serializedVersion: 5
@@ -7165,6 +7157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8126c560d89a0ab40bdeae9eb8017dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfx: {fileID: 0}
+  music: {fileID: 0}
 --- !u!4 &1634695940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5731436576174337978, guid: 551f50fc3ab88f04c919ffbcbe6a9ca7, type: 3}
@@ -8004,6 +7998,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 248361931463643663, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 659543375532113541, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1644339232633062428, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3794889363173773072, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -8060,9 +8066,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3955785967693376842, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4603232327165924778, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
       propertyPath: m_Name
       value: BookStand Tutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306352951697613193, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5f40bda8078c90448e2f609bdcd9810, type: 3}
+    - target: {fileID: 8359624079400923929, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8387368228253599363, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
