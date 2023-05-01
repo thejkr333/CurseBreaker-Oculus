@@ -253,18 +253,17 @@ public class PoseEvents : MonoBehaviour
 
         if (lastOutline != null && lastOutline.enabled == true)
         {
-            Rigidbody rb = lastOutline.GetComponent<Rigidbody>();
-            if (rb == null) return;
+            if (!lastOutline.TryGetComponent(out Rigidbody rb)) return;
 
             attractedObjRb = rb;
 
-            if (rb.GetComponent<StirringStick>() != null) rb.GetComponent<StirringStick>().DisableAnim();
+            if (rb.TryGetComponent(out StirringStick stick)) stick.DisableAnim();
 
             //If it's a chest spawn an ingredient and attract it
             if (rb.TryGetComponent(out IngredientChest ingredientChest))
             {
                 GameObject ing = ingredientChest.InstantiateIngredient();
-                if(ing == null)
+                if (ing == null)
                 {
                     //no money
                     return;

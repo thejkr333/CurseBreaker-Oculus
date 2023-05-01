@@ -7,10 +7,12 @@ public class StirringStick : MonoBehaviour
     Vector3 initialPos, initialRot;
     Animator animator;
 
-    float timer, offPosTime = 3;
+    float timer, offPosTime = 5;
     bool inCauldron, stirring;
 
     int lapCounter;
+
+    OVRGrabbable grabbable;
 
     [SerializeField] SliderController sliderController;
     // Start is called before the first frame update
@@ -19,6 +21,7 @@ public class StirringStick : MonoBehaviour
         initialPos = transform.position;
         initialRot = transform.eulerAngles;
         animator = GetComponent<Animator>();
+        grabbable = GetComponent<OVRGrabbable>();
     }
 
     // Update is called once per frame
@@ -26,19 +29,24 @@ public class StirringStick : MonoBehaviour
     {
         UpdateAnim();
 
-        //if (inCauldron || stirring) { timer = 0; return; }
+        ResetPosition();
+    }
 
-        //if (Vector3.Distance(transform.position, initialPos) > .5f)
-        //{
-        //    timer += Time.deltaTime;
-        //    if (timer >= offPosTime)
-        //    {
-        //        transform.position = initialPos;
-        //        transform.eulerAngles = initialRot;
-        //        timer = 0;
-        //    }
-        //}
-        //else timer = 0;
+    void ResetPosition()
+    {
+        if (animator.enabled || grabbable.isGrabbed) { timer = 0; return; }
+
+        if (Vector3.Distance(transform.position, initialPos) > .5f)
+        {
+            timer += Time.deltaTime;
+            if (timer >= offPosTime)
+            {
+                transform.position = initialPos;
+                transform.eulerAngles = initialRot;
+                timer = 0;
+            }
+        }
+        else timer = 0;
     }
 
 
