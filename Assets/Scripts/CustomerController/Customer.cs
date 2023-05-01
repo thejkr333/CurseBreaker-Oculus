@@ -26,7 +26,7 @@ public class Customer : MonoBehaviour
     public int Chances = 3;
 
     public List<Limb> AffectedLimbs = new();
-    List <Limb> notAffectedLimbs = new();
+    [SerializeField] List <Limb> notAffectedLimbs = new();
 
     Material defaultMaterial;
 
