@@ -362,7 +362,8 @@ public class Customer : MonoBehaviour
                     {
                         //Means the targeted limb doesn't have a curse on it. Affect negatively
                         //Give the limb a random curse from the main curses of the ingredients
-                        Curses _curseToGive = CursexIngredientMatrix.GetRandomCurse(potion.PotionIngredients);
+                        Curses _curseToGive = CreateRandomUnlockedCurse();
+                        //Curses _curseToGive = CursexIngredientMatrix.GetRandomCurse(potion.PotionIngredients);
                         GiveCurseToLimb(ElementToLimbMapping[element], _curseToGive);
                         notAffectedLimbs.Remove(limb);
                         Chances--;
