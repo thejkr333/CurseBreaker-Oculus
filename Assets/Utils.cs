@@ -22,7 +22,7 @@ public class Utils: MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-       
+        if (elementImage.Count > 0) return;
 
         //We are not using void
         for (int i = 0; i < Enum.GetValues(typeof(Elements)).Length - 1; i++)
@@ -34,6 +34,10 @@ public class Utils: MonoBehaviour
             curseImage.Add((Curses)i, curseSprites[i]);
             curseMaterial.Add((Curses)i, curseMaterials[i]);
         }
+    }
+
+    private void Start()
+    {
 
     }
 

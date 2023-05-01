@@ -20,6 +20,11 @@ public class BalancesUIHandler : MonoBehaviour
     [SerializeField] TMP_Text cycleGoldEarned;
     [SerializeField] TMP_Text cycleProfit;
 
+    private void Start()
+    {
+        GoldManager.Instance.UpdateUI += UpdateUI;
+        UpdateUI(GoldManager.Instance.dayBalance, GoldManager.Instance.cycleBalance);
+    }
     public void UpdateUI(Balance dayBalance, Balance cycleBalance)
     {
         UpdateDayUI(dayBalance);

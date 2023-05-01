@@ -45,11 +45,13 @@ public class MenuManager : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         GameManager.Instance.LoadScene("Gameplay");
+        GameManager.Instance.StartGame();
     }
 
     public void LoadGame()
     {
         GameManager.Instance.LoadScene("Gameplay");
+        GameManager.Instance.StartGame();
     }
 
     public void QuitGame()

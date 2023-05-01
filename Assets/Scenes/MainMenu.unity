@@ -801,6 +801,7 @@ Transform:
   - {fileID: 1019463536}
   - {fileID: 1499338768}
   - {fileID: 252047294}
+  - {fileID: 488245229}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1073,6 +1074,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412285323}
   m_CullTransparentMesh: 1
+--- !u!1 &488245228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 488245229}
+  - component: {fileID: 488245230}
+  m_Layer: 0
+  m_Name: GoldManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &488245229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488245228}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 270089561}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &488245230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488245228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdedc7e70e2c7394e95e0b2e99a00ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gold: 80
+  paymentIncrement: 0
+  rent: 0
+  rentIncrement: 0
 --- !u!1001 &496484825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4678,3 +4727,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 111562912}
   HelperLaser: {fileID: 496484826}
+  DevMode: 0
+  sfxSlider: {fileID: 0}
+  musicSlider: {fileID: 0}

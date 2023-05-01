@@ -33,6 +33,7 @@ public class DayManager : MonoBehaviour
 
         dayCanvas.SetActive(false);
         GameManager.Instance.OnNewDay += NewDay;
+        GameManager.Instance.NextDay();
     }
 
     private void Update()

@@ -14,8 +14,9 @@ public class Balance
 }
 public class GoldManager : MonoBehaviour
 {
+    public Action<Balance, Balance> UpdateUI;
 
-    Balance dayBalance, cycleBalance;
+    public Balance dayBalance, cycleBalance;
     public static GoldManager Instance;
 
     public int Gold;
@@ -23,8 +24,6 @@ public class GoldManager : MonoBehaviour
     [SerializeField] int paymentIncrement, rent, rentIncrement;
 
     public event Action Transaction;
-
-    [SerializeField] BalancesUIHandler BalancesUIHandler;
 
     private void Awake()
     {
@@ -35,24 +34,20 @@ public class GoldManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(this);
             dayBalance = new();
             cycleBalance = new();
         }
         ResetCyclebalances();
     }
 
-    private void Start()
-    {
-        BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
-    }
     public void GainGold()
     {
-        Gold += 10 + paymentIncrement;
-        dayBalance.goldEarned += 10 + paymentIncrement;
+        Gold += 20 + paymentIncrement;
+        dayBalance.goldEarned += 20 + paymentIncrement;
+        cycleBalance.goldEarned += 20 + paymentIncrement;
         Transaction?.Invoke();
-        BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
-
-
+        UpdateUI?.Invoke(dayBalance, cycleBalance);
     }
     public void SubstractGold(int cost, TransactionType type)
     {
@@ -74,8 +69,7 @@ public class GoldManager : MonoBehaviour
         }
 
         Transaction?.Invoke();
-        BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
-
+        UpdateUI?.Invoke(dayBalance, cycleBalance);
     }
     public void SellIngredient(int cost, Vector3 originPos)
     {
@@ -86,8 +80,7 @@ public class GoldManager : MonoBehaviour
         Transaction?.Invoke();
 
         AudioManager.Instance.PlaySoundStatic("sell", originPos);
-        BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
-
+        UpdateUI?.Invoke(dayBalance, cycleBalance);
     }
 
     public void ResetDayBalances()
@@ -98,7 +91,7 @@ public class GoldManager : MonoBehaviour
         dayBalance.rentGoldSpent = 0;
         dayBalance.scrollGoldSpent = 0;
 
-        BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
+        UpdateUI?.Invoke(dayBalance, cycleBalance);
     }
 
     //This method also reseets day balances;
@@ -126,7 +119,6 @@ public class GoldManager : MonoBehaviour
         }
 
         Transaction?.Invoke();
-        BalancesUIHandler.UpdateUI(dayBalance, cycleBalance);
-
+        UpdateUI?.Invoke(dayBalance, cycleBalance);
     }
 }

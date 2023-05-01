@@ -347,6 +347,7 @@ public class Customer : MonoBehaviour
                                 //perfect potion
                                 limb.Cured = true;
                                 limb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material = defaultMaterial;
+                                limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = null;
                             }
                         }
                     }

@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         InitializeLockInfo();
@@ -62,20 +63,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //if there is saved data load game
-        if (PlayerPrefs.HasKey("DayCount"))
-        {
-            LoadGame();
-            DayCount--;
-        }
-        else
-        {
-            GoldManager.Instance.Gold = 80;
-            DayCount = 0;
-        }
-
-        NextDay();
-
         OVRManager.TrackingLost += TrackingFalse;
         OVRManager.TrackingAcquired += TrackingTrue;
     }
@@ -219,19 +206,29 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    void LoadGame()
+    public void StartGame()
     {
-        // Load desired stats from PlayerPrefs
-        DayCount = PlayerPrefs.GetInt("DayCount", 0);
-        GoldManager.Instance.Gold = PlayerPrefs.GetInt("Gold", 0);
+        //if there is saved data load game
+        if (PlayerPrefs.HasKey("DayCount"))
+        {
+            // Load desired stats from PlayerPrefs
+            DayCount = PlayerPrefs.GetInt("DayCount", 0);
+            GoldManager.Instance.Gold = PlayerPrefs.GetInt("Gold", 0);
 
-        foreach (var curse in cursesLockInfo.Keys.ToList())
-        {
-            cursesLockInfo[curse] = PlayerPrefs.GetInt(curse.ToString()) == 1 ? true : false;
+            foreach (var curse in cursesLockInfo.Keys.ToList())
+            {
+                cursesLockInfo[curse] = PlayerPrefs.GetInt(curse.ToString()) == 1 ? true : false;
+            }
+            foreach (var ingredient in ingredientsLockInfo.Keys.ToList())
+            {
+                ingredientsLockInfo[ingredient] = PlayerPrefs.GetInt(ingredient.ToString()) == 1 ? true : false;
+            }
+            DayCount--;
         }
-        foreach (var ingredient in ingredientsLockInfo.Keys.ToList())
+        else
         {
-            ingredientsLockInfo[ingredient] = PlayerPrefs.GetInt(ingredient.ToString()) == 1 ? true : false;
+            GoldManager.Instance.Gold = 80;
+            DayCount = 0;
         }
     }
     #endregion
