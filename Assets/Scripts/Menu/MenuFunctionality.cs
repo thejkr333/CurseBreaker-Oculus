@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 //using Oculus;
 //using Oculus.VR;
@@ -13,6 +14,8 @@ public class MenuFunctionality : MonoBehaviour
     private LineRenderer helperLaz;
 
     public bool DevMode;
+
+    [SerializeField] Slider sfxSlider, musicSlider;
 
     // Start is called before the first frame update
     void Awake()
@@ -38,6 +41,12 @@ public class MenuFunctionality : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void Start()
+    {
+        if (sfxSlider != null) sfxSlider.value = AudioManager.Instance.SfxVolume;
+        if (musicSlider != null) musicSlider.value = AudioManager.Instance.MusicVolume;
     }
 
     // Update is called once per frame
@@ -87,5 +96,15 @@ public class MenuFunctionality : MonoBehaviour
         #else
                  Application.Quit();
         #endif
+    }
+
+    public void SFXVolume (float volume)
+    {
+        AudioManager.Instance.SetSFXVolume(volume);
+    }
+
+    public void MusicVolume(float volume)
+    {
+        AudioManager.Instance.SetMusicVolume(volume);
     }
 }

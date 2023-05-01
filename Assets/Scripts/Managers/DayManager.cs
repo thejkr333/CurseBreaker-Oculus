@@ -97,4 +97,12 @@ public class DayManager : MonoBehaviour
         customer.transform.position = customerPosition.position;
         customer.transform.eulerAngles = new Vector3(0, customerPosition.eulerAngles.y, 0);
     }
+
+    public void ResetCustomerPos()
+    {
+        if (customerIndex > 2) return;
+
+        customersToday[customerIndex].transform.position = customerPosition.position;
+        customersToday[customerIndex].transform.eulerAngles = new Vector3(0, customerPosition.eulerAngles.y, 0);
+    }
 }
