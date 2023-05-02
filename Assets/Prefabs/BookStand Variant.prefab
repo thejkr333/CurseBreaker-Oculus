@@ -54,26 +54,30 @@ PrefabInstance:
     - target: {fileID: -4265338650084452101, guid: 42ae17e22b55dec449fdee091839178d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 17f4d93fa0e3d3d4498d51c4e0186a1d, type: 2}
+      objectReference: {fileID: 2100000, guid: 424ff518508dbfd4cb3ee3b28fbfeb1a, type: 2}
     - target: {fileID: -4027642482357137423, guid: 42ae17e22b55dec449fdee091839178d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fc56348226bb30a418f19989593bd9a6, type: 2}
+      objectReference: {fileID: 2100000, guid: 694ef41bfb2d0fb419e518ef2ce20dd2, type: 2}
     - target: {fileID: -3230632015617803487, guid: 42ae17e22b55dec449fdee091839178d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fc56348226bb30a418f19989593bd9a6, type: 2}
+      objectReference: {fileID: 2100000, guid: 694ef41bfb2d0fb419e518ef2ce20dd2, type: 2}
     - target: {fileID: -2771873690047173276, guid: 42ae17e22b55dec449fdee091839178d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fc56348226bb30a418f19989593bd9a6, type: 2}
+      objectReference: {fileID: 2100000, guid: 694ef41bfb2d0fb419e518ef2ce20dd2, type: 2}
     - target: {fileID: -2091092354991392994, guid: 42ae17e22b55dec449fdee091839178d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fc56348226bb30a418f19989593bd9a6, type: 2}
+      objectReference: {fileID: 2100000, guid: 694ef41bfb2d0fb419e518ef2ce20dd2, type: 2}
     - target: {fileID: 919132149155446097, guid: 42ae17e22b55dec449fdee091839178d, type: 3}
       propertyPath: m_Name
       value: BookStand Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7054144470096349240, guid: 42ae17e22b55dec449fdee091839178d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 00fe531ae70c6324a9b8fc4b57e0edba, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42ae17e22b55dec449fdee091839178d, type: 3}
