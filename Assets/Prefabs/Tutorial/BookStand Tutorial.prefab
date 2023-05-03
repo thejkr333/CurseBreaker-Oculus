@@ -3047,7 +3047,7 @@ GameObject:
   - component: {fileID: 1846787391}
   - component: {fileID: 1846787390}
   - component: {fileID: 1846787389}
-  - component: {fileID: 1846787388}
+  - component: {fileID: 4770731045411573225}
   m_Layer: 0
   m_Name: PreviousPageTrigger
   m_TagString: Untagged
@@ -3131,9 +3131,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.84, y: 1, z: 0.9}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1846787388
+--- !u!114 &4770731045411573225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3142,10 +3142,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1846787386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1dd4471d65f174a90b21218fc8288b, type: 3}
+  m_Script: {fileID: 11500000, guid: b52d29c34b6b23648a005be032a9a4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsNextPage: 0
+  Enter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1009030846}
+        m_TargetAssemblyTypeName: BookInteraction, Assembly-CSharp
+        m_MethodName: LeftPageTouched
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Exit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1922695119
 GameObject:
   m_ObjectHideFlags: 0
@@ -3905,7 +3922,7 @@ GameObject:
   - component: {fileID: 1306517652531912883}
   - component: {fileID: 6997783547792437440}
   - component: {fileID: 789346134109855605}
-  - component: {fileID: 8151112988202207040}
+  - component: {fileID: 5044916291034234475}
   m_Layer: 0
   m_Name: NextPageTrigger
   m_TagString: Untagged
@@ -3989,9 +4006,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.76, y: 1, z: 0.91}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8151112988202207040
+--- !u!114 &5044916291034234475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4000,10 +4017,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 776077032161328435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1dd4471d65f174a90b21218fc8288b, type: 3}
+  m_Script: {fileID: 11500000, guid: b52d29c34b6b23648a005be032a9a4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsNextPage: 1
+  Enter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1009030846}
+        m_TargetAssemblyTypeName: BookInteraction, Assembly-CSharp
+        m_MethodName: RightPageTouched
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Exit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2228624048520543069
 GameObject:
   m_ObjectHideFlags: 0

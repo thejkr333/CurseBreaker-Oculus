@@ -8859,6 +8859,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db70a0978ca3da24dbc615c9c8567662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatOnX: 1
+  floatOnY: 1
+  floatOnZ: 1
   noiseMultiplier: 0.1
   noiseFrequency: 0.15
 --- !u!4 &5637952743394626673
@@ -9053,6 +9056,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db70a0978ca3da24dbc615c9c8567662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatOnX: 1
+  floatOnY: 1
+  floatOnZ: 1
   noiseMultiplier: 0.1
   noiseFrequency: 0.15
 --- !u!1 &6788466549649454952
@@ -9296,6 +9302,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db70a0978ca3da24dbc615c9c8567662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatOnX: 1
+  floatOnY: 1
+  floatOnZ: 1
   noiseMultiplier: 0.1
   noiseFrequency: 0.15
 --- !u!1 &7584832063643736136
@@ -9573,6 +9582,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db70a0978ca3da24dbc615c9c8567662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatOnX: 1
+  floatOnY: 1
+  floatOnZ: 1
   noiseMultiplier: 0.1
   noiseFrequency: 0.15
 --- !u!4 &8687735674448183770

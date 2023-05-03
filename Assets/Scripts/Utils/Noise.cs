@@ -8,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public class Noise : MonoBehaviour
 {
+    [SerializeField] bool floatOnX, floatOnY, floatOnZ;
+
     /// <summary>
     /// Máquina de estados que controla el scan del rudio
     /// </summary>
@@ -73,7 +75,11 @@ public class Noise : MonoBehaviour
         float _noiseX = Mathf.PerlinNoise(xX, y);  //Toma el ruido
         float _noiseY = Mathf.PerlinNoise(xY, y);  //Toma el ruido
         float _noiseZ = Mathf.PerlinNoise(xZ, y);  //Toma el ruido
-                                                  //float ruido = Random.value;
+                                                   //float ruido = Random.value;
+
+        if (!floatOnX) _noiseX = 0;
+        if (!floatOnY) _noiseY = 0;
+        if (!floatOnZ) _noiseZ = 0;
 
         transform.position = new Vector3(
             initialPosition.x + (_noiseX * noiseMultiplier),
@@ -87,6 +93,5 @@ public class Noise : MonoBehaviour
         else if (y < minY)
             incrementState = IncrementState.ascending;
         #endregion
-
     }
 }
