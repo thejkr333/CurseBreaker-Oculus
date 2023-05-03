@@ -18,8 +18,10 @@ public class DayManager : MonoBehaviour
     [SerializeField] GameObject dayCanvas;
     [SerializeField] TMP_Text dayText;
 
+    GameObject currentCustomer;
 
     public int SunState;
+    public Action customerCured, nextCustomer, customerOut;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -32,8 +34,10 @@ public class DayManager : MonoBehaviour
         }
 
         dayCanvas.SetActive(false);
-        GameManager.Instance.OnNewDay += NewDay;
-        GameManager.Instance.NextDay();
+        //GameManager.Instance.OnNewDay += NewDay;
+        currentCustomer = Instantiate(customerPrefab);
+        CustomerIn(currentCustomer);
+        //GameManager.Instance.NextDay();
     }
 
     private void Update()
@@ -50,7 +54,9 @@ public class DayManager : MonoBehaviour
         customerIndex = 0;
         GoldManager.Instance.Gold += 40;
         ActivateCanvas();
+
         CreateCustomers();
+      
         Invoke(nameof(DeactivateCanvas), 5);
         GoldManager.Instance.ResetDayBalances();
     }
@@ -79,17 +85,23 @@ public class DayManager : MonoBehaviour
 
     public void NextCustomer()
     {
-        if (customerIndex > 2) return;
+        //if (customerIndex > NUMBEROFCUSTOMERSPERDAY - 1) return;
 
-        CustomerOut(customersToday[customerIndex]);
+        //CustomerOut(customersToday[customerIndex]);
+        CustomerOut(currentCustomer);
 
-        if (customerIndex++ == 2) CustomersFinished?.Invoke();
-        else CustomerIn(customersToday[customerIndex]);
+        //if (customerIndex++ == NUMBEROFCUSTOMERSPERDAY - 1) CustomersFinished?.Invoke();
+        //else CustomerIn(customersToday[customerIndex]);
+        currentCustomer = Instantiate(customerPrefab);
+        CustomerIn(currentCustomer);
+
+        nextCustomer?.Invoke();
     }
 
     void CustomerOut(GameObject customer)
     {
         Destroy(customer);
+        customerOut?.Invoke();
     }
 
     void CustomerIn(GameObject customer)
@@ -102,9 +114,17 @@ public class DayManager : MonoBehaviour
 
     public void ResetCustomerPos()
     {
-        if (customerIndex > 2) return;
+        //if (customerIndex > 2) return;
 
-        customersToday[customerIndex].transform.position = customerPosition.position;
-        customersToday[customerIndex].transform.eulerAngles = new Vector3(0, customerPosition.eulerAngles.y, 0);
+        //customersToday[customerIndex].transform.position = customerPosition.position;
+        //customersToday[customerIndex].transform.eulerAngles = new Vector3(0, customerPosition.eulerAngles.y, 0); 
+        currentCustomer.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        currentCustomer.transform.position = customerPosition.position;
+        currentCustomer.transform.eulerAngles = new Vector3(0, customerPosition.eulerAngles.y, 0);
+    }
+
+    public void CustomerCured()
+    {
+        customerCured?.Invoke();
     }
 }

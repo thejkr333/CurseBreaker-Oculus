@@ -91,24 +91,24 @@ public class GameManager : MonoBehaviour
         //Populate the dictionary putting all the curses as locked
         foreach (Curses curse in Enum.GetValues(typeof(Curses)))
         {
-            cursesLockInfo.Add(curse, false);
+            cursesLockInfo.Add(curse, true);
         }
 
         //Populate the dictionary putting all the ingredients as locked
         foreach (Ingredients ingredients in Enum.GetValues(typeof(Ingredients)))
         {
-            ingredientsLockInfo.Add(ingredients, false);
+            ingredientsLockInfo.Add(ingredients, true);
         }
 
-        //Starting unlocked curses
-        cursesLockInfo[Curses.Wolfus] = true;
-        cursesLockInfo[Curses.Gassle] = true;
+        ////Starting unlocked curses
+        //cursesLockInfo[Curses.Wolfus] = true;
+        //cursesLockInfo[Curses.Gassle] = true;
 
-        //Starting unlocked ingredients
-        ingredientsLockInfo[Ingredients.WolfsBane] = true;
-        ingredientsLockInfo[Ingredients.DragonsTongue] = true;
-        ingredientsLockInfo[Ingredients.Mandrake] = true;
-        ingredientsLockInfo[Ingredients.CorkWood] = true;
+        ////Starting unlocked ingredients
+        //ingredientsLockInfo[Ingredients.WolfsBane] = true;
+        //ingredientsLockInfo[Ingredients.DragonsTongue] = true;
+        //ingredientsLockInfo[Ingredients.Mandrake] = true;
+        //ingredientsLockInfo[Ingredients.CorkWood] = true;
     }
 
     public List<Curses> GetUnlockedCurses()
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
     void NewDay()
     {
         DayCount++;
-        SaveGame();
+        //SaveGame();
     }
 
     //private Ingredients[] CreateCustomers()
