@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BookInteraction : MonoBehaviour
 {
@@ -13,28 +14,35 @@ public class BookInteraction : MonoBehaviour
     float timer;
     GameObject handTouched;
 
+    [SerializeField] TMP_Text pageNumber;
+
     // Start is called before the first frame update
     void Awake()
     {
         SetPage(0);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P)) { PreviousPage(); }
-        if(Input.GetKeyDown(KeyCode.N)) { NextPage(); }
+        if (Input.GetKeyDown(KeyCode.P)) { PreviousPage(); }
+        if (Input.GetKeyDown(KeyCode.N)) { NextPage(); }
 
-        if(rightPageTouched || leftPageTouched) 
+        if (rightPageTouched || leftPageTouched)
         {
             timer -= Time.deltaTime;
-            if(timer <= 0)
+            if (timer <= 0)
             {
                 ResetTouch();
             }
         }
     }
 
+    private void UpdatePageNumber()
+    {
+        pageNumber.text = (currentPage + 1).ToString() + "/" + Pages.Count;
+    }
     private void ResetTouch()
     {
         Debug.Log("AA Reset");
@@ -46,25 +54,29 @@ public class BookInteraction : MonoBehaviour
 
     public void PreviousPage()
     {
-        AudioManager.Instance.PlaySoundStatic("turn_page", transform.position);
         if (currentPage >= 1)
         {
+            AudioManager.Instance.PlaySoundStatic("turn_page", transform.position);
             currentPage--;
             foreach (GameObject obj in Pages) { obj.SetActive(false); }
             Pages[currentPage].SetActive(true);
             Debug.Log("Current Page is " + (currentPage + 1) + " of " + Pages.Count);
+            UpdatePageNumber();
+
         }
     }
 
     public void NextPage()
     {
-        AudioManager.Instance.PlaySoundStatic("turn_page", transform.position);
-        if (currentPage < Pages.Count-1)
+        if (currentPage < Pages.Count - 1)
         {
+            AudioManager.Instance.PlaySoundStatic("turn_page", transform.position);
             currentPage++;
-            foreach(GameObject obj in Pages) { obj.SetActive(false); }
+            foreach (GameObject obj in Pages) { obj.SetActive(false); }
             Pages[currentPage].SetActive(true);
-            Debug.Log("Current Page is " + (currentPage+1) + " of " + Pages.Count);
+            Debug.Log("Current Page is " + (currentPage + 1) + " of " + Pages.Count);
+            UpdatePageNumber();
+
         }
     }
     public void SetPage(int pageToSet)
@@ -72,7 +84,9 @@ public class BookInteraction : MonoBehaviour
         currentPage = pageToSet;
         foreach (GameObject obj in Pages) { obj.SetActive(false); }
         Pages[currentPage].SetActive(true);
-        Debug.Log("Current Page is " + (currentPage+1) + " of " + Pages.Count);
+        Debug.Log("Current Page is " + (currentPage + 1) + " of " + Pages.Count);
+        UpdatePageNumber();
+
     }
 
     public void RightPageTouched(Collider other)
@@ -119,7 +133,7 @@ public class BookInteraction : MonoBehaviour
                 timer = timeToTurnPage;
                 return;
             }
-            
+
             if (handTouched != poseGrab.gameObject)
             {
                 ResetTouch();
