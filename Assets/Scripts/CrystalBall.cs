@@ -4,14 +4,16 @@ public class CrystalBall : MonoBehaviour
 {
     SphereCollider sphereCollider;
     ParticleSystem particleSystem;
+
+    ParticleSystemRenderer psRenderer;
+    [SerializeField] Material red, green;
     private void Awake()
     {
         sphereCollider = GetComponentInChildren<SphereCollider>();
         particleSystem = GetComponentInChildren<ParticleSystem>();
+        psRenderer = GetComponentInChildren<ParticleSystemRenderer>();
 
         sphereCollider.enabled = false;
-
-        StartParticlesRed();
     }
 
     private void Start()
@@ -20,6 +22,8 @@ public class CrystalBall : MonoBehaviour
         DayManager.Instance.customerCured += ChangeParticlesToGreen;
         DayManager.Instance.nextCustomer += StartParticlesRed;
         DayManager.Instance.customerOut += StopParticles;
+
+        StartParticlesRed();
     }
 
     private void StopParticles()
@@ -32,14 +36,13 @@ public class CrystalBall : MonoBehaviour
     {
         AudioManager.Instance.PlaySoundStatic("Crystal_ball", transform.position);
         particleSystem.Play();
-        var main = particleSystem.main;
-        main.startColor = Color.red;
+
+        psRenderer.material = red;
     }
 
     private void ChangeParticlesToGreen()
     {
-        var main = particleSystem.main;
-        main.startColor = Color.green;
+        psRenderer.material = green;
     }
 
     void GetReadyForNextDay()

@@ -9,7 +9,8 @@ public class BookInteraction : MonoBehaviour
     int currentPage;
 
     bool rightPageTouched, leftPageTouched;
-    float timeToTurnPage, timer;
+    [SerializeField] float timeToTurnPage;
+    float timer;
     GameObject handTouched;
 
     // Start is called before the first frame update
@@ -36,6 +37,7 @@ public class BookInteraction : MonoBehaviour
 
     private void ResetTouch()
     {
+        Debug.Log("AA Reset");
         handTouched = null;
         rightPageTouched = false;
         leftPageTouched = false;
@@ -75,27 +77,31 @@ public class BookInteraction : MonoBehaviour
 
     public void RightPageTouched(Collider other)
     {
-        if(other.TryGetComponent(out PoseGrab poseGrab))
+        if (other.TryGetComponent(out PoseGrab poseGrab))
         {
-            if (handTouched == null) handTouched = poseGrab.gameObject;
-            else if (handTouched != poseGrab.gameObject)
+            //First time touching
+            if (handTouched == null)
+            {
+                Debug.Log("AA 1st time right");
+                handTouched = poseGrab.gameObject;
+
+                rightPageTouched = true;
+                timer = timeToTurnPage;
+                return;
+            }
+
+            //Check if its the same hand touching it
+            if (handTouched != poseGrab.gameObject)
             {
                 ResetTouch();
                 return;
             }
-            else
+
+            if (leftPageTouched)
             {
-                if (leftPageTouched)
-                {
-                    NextPage();
-                    ResetTouch();
-                    return;
-                }
-                else
-                {
-                    rightPageTouched = true;
-                    timer = timeToTurnPage;
-                }
+                PreviousPage();
+                ResetTouch();
+                return;
             }
         }
     }
@@ -104,25 +110,27 @@ public class BookInteraction : MonoBehaviour
     {
         if (other.TryGetComponent(out PoseGrab poseGrab))
         {
-            if (handTouched == null) handTouched = poseGrab.gameObject;
-            else if (handTouched != poseGrab.gameObject)
+            if (handTouched == null)
+            {
+                Debug.Log("AA 1st time left");
+                handTouched = poseGrab.gameObject;
+
+                leftPageTouched = true;
+                timer = timeToTurnPage;
+                return;
+            }
+            
+            if (handTouched != poseGrab.gameObject)
             {
                 ResetTouch();
                 return;
             }
-            else
+
+            if (rightPageTouched)
             {
-                if (rightPageTouched)
-                {
-                    PreviousPage();
-                    ResetTouch();
-                    return;
-                }
-                else
-                {
-                    leftPageTouched = true;
-                    timer = timeToTurnPage;
-                }
+                NextPage();
+                ResetTouch();
+                return;
             }
         }
     }

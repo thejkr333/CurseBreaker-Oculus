@@ -7192,6 +7192,18 @@ PrefabInstance:
       propertyPath: m_enableAutoSizing
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1009030846, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: timeToTurnPage
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009030846, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: Pages.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 248361931463643663, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3794889363173773072, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
       propertyPath: m_RootOrder
       value: 6
