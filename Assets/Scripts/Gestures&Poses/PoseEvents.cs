@@ -184,7 +184,7 @@ public class PoseEvents : MonoBehaviour
         //Blue[0].color = Color.blue;
         //Blue[1].color = Color.blue;
         //lineRenderer.colorGradient.SetKeys(Blue, Alpha);
-        lineRenderer.material.color = blue;      
+        lineRenderer.material.color = blue;
     }
     void Aim()
     {
@@ -194,8 +194,8 @@ public class PoseEvents : MonoBehaviour
 
         //Colour Change goes in these two lines, just changing the start and end values towards white over 5 seconds
         Color.Lerp(lineRenderer.material.color, white, 5);
-      //  Color.Lerp(Blue[0].color, White[0].color, 5);
-     //   Color.Lerp(Blue[1].color, White[1].color, 5);
+        //  Color.Lerp(Blue[0].color, White[0].color, 5);
+        //   Color.Lerp(Blue[1].color, White[1].color, 5);
 
         foreach (OVRBone bone in fingerbones)
         {
@@ -231,7 +231,7 @@ public class PoseEvents : MonoBehaviour
     void EndAim()
     {
         lineRenderer.enabled = false;
-        Invoke(nameof(DeselectAim), 2);       
+        Invoke(nameof(DeselectAim), 2);
     }
     void DeselectAim()
     {
@@ -255,7 +255,7 @@ public class PoseEvents : MonoBehaviour
         if (rb.TryGetComponent(out StirringStick stick)) stick.DisableAnim();
 
         //If it's a chest spawn an ingredient and attract it
-        if (rb.TryGetComponent(out IngredientChest ingredientChest))
+        else if (rb.TryGetComponent(out IngredientChest ingredientChest))
         {
             GameObject ing = ingredientChest.InstantiateIngredient();
             if (ing == null)
@@ -265,9 +265,7 @@ public class PoseEvents : MonoBehaviour
             }
             else attractedObjRb = ing.GetComponent<Rigidbody>();
         }
-
-
-        if(rb.TryGetComponent(out DecorationObject decorObj))
+        else if (rb.TryGetComponent(out DecorationObject decorObj))
         {
             decorObj.StartGrabbing();
         }
@@ -464,7 +462,7 @@ public class PoseEvents : MonoBehaviour
 
     #region TV
     public void StartTV()
-    {       
+    {
         if (CurrentPose != Poses.TV) StartNewPose(CurrentPose);
 
         CurrentPose = Poses.TV;
@@ -575,8 +573,8 @@ public class PoseEvents : MonoBehaviour
                 EndAim();
                 break;
 
-            case Poses.Grab:              
-               // EndGrab();             
+            case Poses.Grab:
+                // EndGrab();             
                 break;
 
             case Poses.OpenHand:
