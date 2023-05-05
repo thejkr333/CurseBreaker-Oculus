@@ -44,6 +44,7 @@ public class PoseEvents : MonoBehaviour
     Rigidbody attractedObjRb;
     LayerMask objectLayer;
     [SerializeField] float objMaxDistanceMovement;
+    bool kinematic;
 
 
     [Header("DRAWING GESTURES")]
@@ -250,12 +251,12 @@ public class PoseEvents : MonoBehaviour
         DrawingWithThisHand = false;
     }
 
-    private void GrabDependingOnObject(ref Rigidbody rb, ref Rigidbody attractedObjRb)
+    private void GrabDependingOnObject(ref Rigidbody attractedObjRb)
     {
-        if (rb.TryGetComponent(out StirringStick stick)) stick.DisableAnim();
+        if (attractedObjRb.TryGetComponent(out StirringStick stick)) stick.DisableAnim();
 
         //If it's a chest spawn an ingredient and attract it
-        else if (rb.TryGetComponent(out IngredientChest ingredientChest))
+        else if (attractedObjRb.TryGetComponent(out IngredientChest ingredientChest))
         {
             GameObject ing = ingredientChest.InstantiateIngredient();
             if (ing == null)
@@ -265,9 +266,17 @@ public class PoseEvents : MonoBehaviour
             }
             else attractedObjRb = ing.GetComponent<Rigidbody>();
         }
-        else if (rb.TryGetComponent(out DecorationObject decorObj))
+        else if (attractedObjRb.TryGetComponent(out DecorationObject decorObj))
         {
             decorObj.StartGrabbing();
+        }
+        else if(attractedObjRb.TryGetComponent(out Bubble bubble))
+        {
+            attractedObjRb = bubble.IngredientInside.GetComponent<Rigidbody>();
+            attractedObjRb.transform.SetParent(null);
+            attractedObjRb.isKinematic = false;
+
+            bubble.Pop();
         }
     }
 
@@ -281,7 +290,7 @@ public class PoseEvents : MonoBehaviour
 
             attractedObjRb = rb;
 
-            GrabDependingOnObject(ref rb, ref attractedObjRb);
+            GrabDependingOnObject(ref attractedObjRb);
             DeselectAim();
             StartAttract();
         }
@@ -355,19 +364,21 @@ public class PoseEvents : MonoBehaviour
         objectLayer = attractedObjRb.gameObject.layer;
         int _layerGrabbed = LayerMask.NameToLayer("Grabbed");
         attractedObjRb.gameObject.layer = _layerGrabbed;
+        kinematic = attractedObjRb.isKinematic;
 
         attracting = true;
     }
     void AttractFixed()
     {
         GameObject _obj = attractedObjRb.gameObject;
+        attractedObjRb.isKinematic = false;
 
         if (Vector3.Distance(_obj.transform.position, HandSkeleton.transform.position) > .2f)
         {
             //Vector3 _direction = (HandSkeleton.transform.position - _obj.transform.position).normalized;
             //attractedObjRb.AddForce(_direction * 3, ForceMode.Force);
 
-            attractedObjRb.transform.position = Vector3.MoveTowards(attractedObjRb.transform.position, hand.transform.position, objMaxDistanceMovement);
+            _obj.transform.position = Vector3.MoveTowards(_obj.transform.position, grabPoint.position, objMaxDistanceMovement);
         }
         else
         {
@@ -379,6 +390,7 @@ public class PoseEvents : MonoBehaviour
             attractedObjRb.gameObject.layer = objectLayer;
             objectLayer = 0;
             attractedObjRb.useGravity = true;
+            attractedObjRb.isKinematic = kinematic;
 
             poseGrab.DetectGrabbing(true);
 

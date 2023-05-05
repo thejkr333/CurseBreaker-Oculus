@@ -15,6 +15,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1b68ffca77c4c6344af03830dbeca2ca, type: 2}
+    - target: {fileID: 7149134072853656216, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.73590106
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149134072853656216, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.73590106
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149134072853656216, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.73590106
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149134072853656216, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.027
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149134073583334025, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334028, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_Name
       value: CorkWood
@@ -37,15 +57,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334029, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.572
+      value: 4.3
       objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334029, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334029, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.06304611
+      value: -2.6249635
       objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334029, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -81,43 +101,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334070, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_Size.x
-      value: 0.6034851
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149134073583334070, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
+      propertyPath: m_Size.y
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334070, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_Size.z
-      value: 0.555384
+      value: 0.46835518
       objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334070, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_Center.x
-      value: 0.0732851
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149134073583334070, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
+      propertyPath: m_Center.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7149134073583334070, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_Center.z
-      value: -0.020394832
+      value: 0.0015420914
       objectReference: {fileID: 0}
     - target: {fileID: 8623191485796352347, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_Size.x
-      value: 0.5419464
+      value: 0.34272766
       objectReference: {fileID: 0}
     - target: {fileID: 8623191485796352347, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_Size.y
-      value: 0.44343323
+      value: 0.5064261
       objectReference: {fileID: 0}
     - target: {fileID: 8623191485796352347, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_Size.z
-      value: 1.320258
+      value: 0.9622028
       objectReference: {fileID: 0}
     - target: {fileID: 8623191485796352347, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_Center.x
-      value: 0.020309448
+      value: -0.011951894
       objectReference: {fileID: 0}
     - target: {fileID: 8623191485796352347, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_Center.y
-      value: -0.022438377
+      value: 0.009058028
       objectReference: {fileID: 0}
     - target: {fileID: 8623191485796352347, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
       propertyPath: m_Center.z
-      value: 0.08987096
+      value: 0.033228993
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6ea0337a3f30c747a12dfafd8d185fe, type: 3}
@@ -217,5 +245,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corkwood Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5467201213598889073, guid: 715c06c15fdf072459db2b33cee2b48f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 715c06c15fdf072459db2b33cee2b48f, type: 3}
