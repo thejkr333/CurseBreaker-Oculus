@@ -141,12 +141,12 @@ MonoBehaviour:
     SpatialBlend: 0.5
     MaxDistance: 500
     RolloffMode: 0
-  - Name: SmokePuff
-    Clip: {fileID: 8300000, guid: 49bce7338065c554681622144557e629, type: 3}
-    Volume: 1
-    Pitch: -0.34
+  - Name: PopBubble
+    Clip: {fileID: 8300000, guid: bdb9418a51b170246a260a59ac0d9db0, type: 3}
+    Volume: 0.7
+    Pitch: 1
     Loop: 0
-    SpatialBlend: 0
+    SpatialBlend: 0.5
     MaxDistance: 500
     RolloffMode: 0
   Music:

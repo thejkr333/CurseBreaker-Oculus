@@ -46,7 +46,7 @@ public class Noise : MonoBehaviour
     Vector3 noiseIncrement;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         //Establece el estado inicial
         incrementState = IncrementState.ascending;

@@ -171,7 +171,7 @@ public class OVRGrabber : MonoBehaviour
         {
             MoveGrabbedObject(destPos, destRot);
         }
-        //These two were the ones that prevented the grabbable object from behing thrown
+        //These two were the ones that prevented the grabbable object from being thrown
         //m_lastPos = transform.position;
         //m_lastRot = transform.rotation;
 

@@ -7,11 +7,15 @@ public class PoseGrab : OVRGrabber
     [SerializeField]
     bool isGrabbing = false;
     public bool SpellRelease;
+
+    OVRHand hand;
     protected override void Start()
     {
         // We begin by initialize the base.Start function where are set few variable from OVRGrabber like:
         // m_lastPos, m_last_Rot and the m_parentTransform.
         base.Start();
+
+        hand = GetComponent<OVRHand>();
     }
 
     // Function used as a switch to determinate if we are grabbing or not by passing as argument
@@ -34,6 +38,13 @@ public class PoseGrab : OVRGrabber
 
     public override void Update()
     {
+        if(!hand.IsTracked)
+        {
+            isGrabbing = false;
+            IsReleasing();
+            GrabEnd();
+        }
+
         // we call the base.Update to make sure that OVRGrabber update some values
         base.Update();
         //Debug.Log("Update R linear velocity: " + transform);
@@ -61,8 +72,8 @@ public class PoseGrab : OVRGrabber
     // To call in the gestures to refresh the position and rotation when releasing
     public void IsReleasing()
     {
-        //m_lastPos = transform.position;
-        //m_lastRot = transform.rotation;
+        m_lastPos = transform.position;
+        m_lastRot = transform.rotation;
     }
 
     protected override void GrabEnd()
