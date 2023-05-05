@@ -9,6 +9,8 @@ public class DecorationObject : MonoBehaviour
     Vector3 startingPosition;
     Rigidbody rb;
     Quaternion initialRotation;
+    [SerializeField]
+    ParticleSystem smokeParticles;
     void Start()
     {
         parent = transform.parent;
@@ -28,10 +30,14 @@ public class DecorationObject : MonoBehaviour
     {
         if (collision.transform.tag == "Floor")
         {
+            AudioManager.Instance.PlaySoundStatic("SmokePuff", transform.position);
+            //AudioManager.Instance.PlaySoundDynamic("SmokePuff", gameObject);
+            smokeParticles.Emit(15); 
             transform.rotation = initialRotation;
             transform.parent = parent;
             transform.localPosition = startingPosition;
             rb.isKinematic = true;
+            smokeParticles.Emit(15);
         }
     }
 }
