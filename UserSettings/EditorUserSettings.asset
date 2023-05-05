@@ -33,7 +33,11 @@ EditorUserSettings:
       value: 0504510453575a0d0857582446225a4441164d2f782b766475284832b0b9633e
       flags: 0
     RecentlyUsedSceneGuid-9:
+<<<<<<< Updated upstream
       value: 56040c0400025b0a0b085d2149775a444e151d7a7b7870647e704537b0b53539
+=======
+      value: 0554010200025f0f590f5b7140720c44414e4a7c2f7e223275794e32e3e5326b
+>>>>>>> Stashed changes
       flags: 0
     UnityRemoteDevice:
       value: 225f4d46245b0d4902070862342649191512

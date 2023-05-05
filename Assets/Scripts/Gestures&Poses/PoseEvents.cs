@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 using System;
+using Oculus.Interaction;
 
 public class PoseEvents : MonoBehaviour
 {
@@ -248,6 +249,30 @@ public class PoseEvents : MonoBehaviour
         CurrentPose = Poses.Grab;
         DrawingWithThisHand = false;
     }
+
+    private void GrabDependingOnObject(ref Rigidbody rb, ref Rigidbody attractedObjRb)
+    {
+        if (rb.TryGetComponent(out StirringStick stick)) stick.DisableAnim();
+
+        //If it's a chest spawn an ingredient and attract it
+        if (rb.TryGetComponent(out IngredientChest ingredientChest))
+        {
+            GameObject ing = ingredientChest.InstantiateIngredient();
+            if (ing == null)
+            {
+                //no money
+                return;
+            }
+            else attractedObjRb = ing.GetComponent<Rigidbody>();
+        }
+
+
+        if(rb.TryGetComponent(out DecorationObject decorObj))
+        {
+            decorObj.StartGrabbing();
+        }
+    }
+
     void Grab()
     {
         if (attracting) return;
@@ -258,20 +283,7 @@ public class PoseEvents : MonoBehaviour
 
             attractedObjRb = rb;
 
-            if (rb.TryGetComponent(out StirringStick stick)) stick.DisableAnim();
-
-            //If it's a chest spawn an ingredient and attract it
-            if (rb.TryGetComponent(out IngredientChest ingredientChest))
-            {
-                GameObject ing = ingredientChest.InstantiateIngredient();
-                if (ing == null)
-                {
-                    //no money
-                    return;
-                }
-                else attractedObjRb = ing.GetComponent<Rigidbody>();
-            }
-
+            GrabDependingOnObject(ref rb, ref attractedObjRb);
             DeselectAim();
             StartAttract();
         }

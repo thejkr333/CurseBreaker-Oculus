@@ -1049,6 +1049,10 @@ PrefabInstance:
       propertyPath: handSkeleton
       value: 
       objectReference: {fileID: 701466678877185030}
+    - target: {fileID: 491963381120680911, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: objMaxDistanceMovement
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 491963382277425827, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: head
       value: 
@@ -1065,6 +1069,10 @@ PrefabInstance:
       propertyPath: handSkeleton
       value: 
       objectReference: {fileID: 701466677532394760}
+    - target: {fileID: 491963382277425827, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: objMaxDistanceMovement
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 863045929836295590, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: Skeleton
       value: 
@@ -1137,6 +1145,10 @@ PrefabInstance:
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 589337289752190284}
+    - target: {fileID: 8060969377196579642, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: portalPrefab
+      value: 
+      objectReference: {fileID: 588593585347101691}
     - target: {fileID: 8060969377196579642, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: poseEventLeft
       value: 
