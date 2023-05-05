@@ -318,7 +318,6 @@ public class PoseEvents : MonoBehaviour
             attractedObjRb = null;
         }
 
-        poseGrab.IsReleasing();
         poseGrab.DetectGrabbing(false);
     }
     IEnumerator AttractObject()
