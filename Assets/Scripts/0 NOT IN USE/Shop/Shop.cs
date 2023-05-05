@@ -22,7 +22,7 @@ public class Shop : MonoBehaviour
         scrollProbabilty = .25f;
 
         GameManager.Instance.OnNewDay += Event_NewDay;
-        GameManager.Instance.CreateShop += Event_CreateShop;
+        //GameManager.Instance.CreateShop += Event_CreateShop;
     }
 
     private void Event_NewDay()

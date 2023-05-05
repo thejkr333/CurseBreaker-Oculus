@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -44,7 +43,7 @@ public class Noise : MonoBehaviour
     [SerializeField] float noiseMultiplier = 0.25f;
     [SerializeField] float noiseFrequency = 0.25f;
 
-    float threshold = 0.5f;
+    Vector3 noiseIncrement;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +61,7 @@ public class Noise : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         #region Incrementa o decrementa el ruido
         if (incrementState == IncrementState.ascending)
@@ -93,5 +92,42 @@ public class Noise : MonoBehaviour
         else if (y < minY)
             incrementState = IncrementState.ascending;
         #endregion
+    }
+
+    protected Vector3 CalculateNoise()
+    {
+        if (incrementState == IncrementState.ascending)
+            y += Time.deltaTime * noiseFrequency;
+        else
+            y -= Time.deltaTime * noiseFrequency;
+
+        float _noiseX = Mathf.PerlinNoise(xX, y);  //Toma el ruido
+        float _noiseY = Mathf.PerlinNoise(xY, y);  //Toma el ruido
+        float _noiseZ = Mathf.PerlinNoise(xZ, y);  //Toma el ruido
+                                                   //float ruido = Random.value;
+        if (!floatOnX) _noiseX = 0;
+        if (!floatOnY) _noiseY = 0;
+        if (!floatOnZ) _noiseZ = 0;
+
+        return new Vector3(_noiseX * noiseMultiplier, _noiseY * noiseMultiplier, _noiseZ * noiseMultiplier);
+    }
+
+    protected void IncrementManagement()
+    {
+        #region Gestion del estado del incrmento
+        if (y >= maxY)
+            incrementState = IncrementState.descending;
+        else if (y < minY)
+            incrementState = IncrementState.ascending;
+        #endregion
+    }
+
+    public IEnumerator Move(Vector3 target)
+    {
+        while (Vector3.Distance(transform.position, target) < .5f)
+        {
+
+            yield return null;
+        }
     }
 }
