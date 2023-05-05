@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: -264430861247414160, guid: 5b7e12d80cd40004b98f2e09b952fc32, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f273fda7fc193344e8630e0a664de042, type: 2}
+      objectReference: {fileID: 2100000, guid: f17b64a4169aa7e4c8e3a505ae9fd1c7, type: 2}
     - target: {fileID: 919132149155446097, guid: 5b7e12d80cd40004b98f2e09b952fc32, type: 3}
       propertyPath: m_Name
       value: CrystalBall_Stand Variant
@@ -78,7 +78,7 @@ PrefabInstance:
     - target: {fileID: 2586607309129781981, guid: 5b7e12d80cd40004b98f2e09b952fc32, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 17f4d93fa0e3d3d4498d51c4e0186a1d, type: 2}
+      objectReference: {fileID: 2100000, guid: d13c9692f1a7fad46b83085f8e166fc9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b7e12d80cd40004b98f2e09b952fc32, type: 3}
 --- !u!1 &5000728352296544015 stripped
@@ -4911,3 +4911,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739d7209cebf9bc40828447e21ae1377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  red: {fileID: 0}
+  green: {fileID: 0}
