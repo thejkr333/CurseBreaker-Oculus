@@ -3,14 +3,14 @@ using UnityEngine;
 public class CrystalBall : MonoBehaviour
 {
     SphereCollider sphereCollider;
-    ParticleSystem particleSystem;
+    ParticleSystem ps;
 
     ParticleSystemRenderer psRenderer;
     [SerializeField] Material red, green;
     private void Awake()
     {
         sphereCollider = GetComponentInChildren<SphereCollider>();
-        particleSystem = GetComponentInChildren<ParticleSystem>();
+        ps = GetComponentInChildren<ParticleSystem>();
         psRenderer = GetComponentInChildren<ParticleSystemRenderer>();
 
         sphereCollider.enabled = false;
@@ -29,13 +29,13 @@ public class CrystalBall : MonoBehaviour
     private void StopParticles()
     {
         AudioManager.Instance.StopSound("Crystal_ball");
-        particleSystem.Stop();
+        ps.Stop();
     }
 
     private void StartParticlesRed()
     {
         AudioManager.Instance.PlaySoundStatic("Crystal_ball", transform.position);
-        particleSystem.Play();
+        ps.Play();
 
         psRenderer.material = red;
     }
@@ -48,7 +48,7 @@ public class CrystalBall : MonoBehaviour
     void GetReadyForNextDay()
     {
         sphereCollider.enabled = true;
-        particleSystem.Play();
+        ps.Play();
         AudioManager.Instance.PlaySoundStatic("Crystal_ball", transform.position);
     }
 

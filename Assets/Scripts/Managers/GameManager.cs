@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public int DayCount;
 
     public event Action OnNewDay;
-    public event Action<Ingredients[]> CreateShop;
+    //public event Action<Ingredients[]> CreateShop;
 
     public bool VRTracking;
 

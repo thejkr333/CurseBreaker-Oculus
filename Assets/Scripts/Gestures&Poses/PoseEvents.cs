@@ -42,6 +42,7 @@ public class PoseEvents : MonoBehaviour
     Transform grabPoint;
     Rigidbody attractedObjRb;
     LayerMask objectLayer;
+    [SerializeField] float objMaxDistanceMovement;
 
 
     [Header("DRAWING GESTURES")]
@@ -353,8 +354,10 @@ public class PoseEvents : MonoBehaviour
 
         if (Vector3.Distance(_obj.transform.position, HandSkeleton.transform.position) > .2f)
         {
-            Vector3 _direction = (HandSkeleton.transform.position - _obj.transform.position).normalized;
-            attractedObjRb.AddForce(_direction * 3, ForceMode.Force);
+            //Vector3 _direction = (HandSkeleton.transform.position - _obj.transform.position).normalized;
+            //attractedObjRb.AddForce(_direction * 3, ForceMode.Force);
+
+            attractedObjRb.transform.position = Vector3.MoveTowards(attractedObjRb.transform.position, hand.transform.position, objMaxDistanceMovement);
         }
         else
         {
