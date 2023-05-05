@@ -133,6 +133,22 @@ MonoBehaviour:
     SpatialBlend: 0.5
     MaxDistance: 500
     RolloffMode: 0
+  - Name: Splash
+    Clip: {fileID: 8300000, guid: a48a2376ab0fc8947a7e48030be7f1ab, type: 3}
+    Volume: 0.7
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0.5
+    MaxDistance: 500
+    RolloffMode: 0
+  - Name: SmokePuff
+    Clip: {fileID: 8300000, guid: 49bce7338065c554681622144557e629, type: 3}
+    Volume: 1
+    Pitch: -0.34
+    Loop: 0
+    SpatialBlend: 0
+    MaxDistance: 500
+    RolloffMode: 0
   Music:
   - Name: menu_music_1
     Clip: {fileID: 8300000, guid: f490f31184c9f7f42b7e4310eff76ed9, type: 3}
