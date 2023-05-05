@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8290848241087323656}
   - component: {fileID: 8290848241087323766}
   - component: {fileID: 2321374334128427977}
+  - component: {fileID: -4698279202604400862}
   m_Layer: 3
   m_Name: Bubble
   m_TagString: Untagged
@@ -183,6 +184,21 @@ MonoBehaviour:
   floatOnZ: 1
   noiseMultiplier: 0.25
   noiseFrequency: 0.25
-  IngredientInside: 0
+  IngredientInside: {fileID: 0}
   WayPoints: []
   MaxMoveDistance: 0
+  RotSpeed: 0
+  BubbleManager: {fileID: 0}
+--- !u!114 &-4698279202604400862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8290848241087323763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b548f5fdddf5585499cb96eee069a984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trashable: 0
