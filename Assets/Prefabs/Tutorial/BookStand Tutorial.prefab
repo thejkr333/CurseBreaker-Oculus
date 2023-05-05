@@ -6582,7 +6582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 248361930637250867, guid: ca1661c99ef021e4f809622ae73baed8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 757378727020992325, guid: ca1661c99ef021e4f809622ae73baed8, type: 3}
       propertyPath: m_RootOrder
@@ -6777,7 +6777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 153603276919425591, guid: ca1661c99ef021e4f809622ae73baed8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 248361930637250867, guid: ca1661c99ef021e4f809622ae73baed8, type: 3}
       propertyPath: m_Name
@@ -6785,7 +6785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 248361930637250867, guid: ca1661c99ef021e4f809622ae73baed8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 757378727020992325, guid: ca1661c99ef021e4f809622ae73baed8, type: 3}
       propertyPath: m_RootOrder
@@ -6838,18 +6838,18 @@ PrefabInstance:
     - target: {fileID: 2023962287688187952, guid: ca1661c99ef021e4f809622ae73baed8, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ecf28cdaafad4ba48a1b113b77fe8e70, type: 3}
+      objectReference: {fileID: 21300000, guid: 525bd5f7618c5d244a5a68698538376f, type: 3}
     - target: {fileID: 2362402304431007692, guid: ca1661c99ef021e4f809622ae73baed8, type: 3}
       propertyPath: m_text
       value: "<size=35><u>Potion Advice</u></size>\nAfter all desired ingredients
         are in the cauldron, add the ladle and it will begin stirring. When it's
         done the brewing process is almost done, you just need to give a gentle clap
-        to finalise the potion. \nOnce you have the potion, you can imbue it with
+        to finalise the potion. \n\nOnce you have the potion, you can imbue it with
         elements to change what body parts it affects."
       objectReference: {fileID: 0}
     - target: {fileID: 2362402304431007692, guid: ca1661c99ef021e4f809622ae73baed8, type: 3}
       propertyPath: m_fontSize
-      value: 14.8
+      value: 14.15
       objectReference: {fileID: 0}
     - target: {fileID: 2362402304431007692, guid: ca1661c99ef021e4f809622ae73baed8, type: 3}
       propertyPath: m_fontStyle
@@ -6911,7 +6911,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Clap
 
-        <size=20>A gentle clap, to stop a trap.</size>'
+        <size=20>A gentle clap to stop a brew</size>'
       objectReference: {fileID: 0}
     - target: {fileID: 7256653881105038511, guid: ca1661c99ef021e4f809622ae73baed8, type: 3}
       propertyPath: m_fontSize
