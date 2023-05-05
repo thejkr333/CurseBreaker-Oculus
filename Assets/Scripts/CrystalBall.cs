@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CrystalBall : MonoBehaviour
@@ -6,7 +7,13 @@ public class CrystalBall : MonoBehaviour
     ParticleSystem ps;
 
     ParticleSystemRenderer psRenderer;
-    [SerializeField] Material red, green;
+    //[SerializeField] Material particlesRed, particlesGreen;
+    //[SerializeField] Material sphereRed, sphereGreen;
+    [SerializeField] Color sphereRed, sphereGreen;
+
+    [SerializeField] GameObject particles;
+    [SerializeField] MeshRenderer sphere;
+    float duration = 2.0f;
     private void Awake()
     {
         sphereCollider = GetComponentInChildren<SphereCollider>();
@@ -29,20 +36,53 @@ public class CrystalBall : MonoBehaviour
     private void StopParticles()
     {
         AudioManager.Instance.StopSound("Crystal_ball");
-        ps.Stop();
+        //ps.Stop();
+
+        for (int i = 0; i < particles.transform.childCount; i++)
+        {
+            particles.transform.GetChild(i).GetComponent<ParticleSystem>().Stop();
+        }
     }
 
     private void StartParticlesRed()
     {
         AudioManager.Instance.PlaySoundStatic("Crystal_ball", transform.position);
-        ps.Play();
+        //ps.Play();
 
-        psRenderer.material = red;
+        //psRenderer.material = particlesRed;
+        for (int i = 0; i < particles.transform.childCount; i++)
+        {
+            var main = particles.transform.GetChild(i).GetComponent<ParticleSystem>().main;
+            main.startColor = sphereRed;
+            particles.transform.GetChild(i).GetComponent<ParticleSystem>().Play();
+        }
+
+        StartCoroutine(ChangeMaterialColor(sphereRed));
     }
 
     private void ChangeParticlesToGreen()
     {
-        psRenderer.material = green;
+        //psRenderer.material = particlesGreen;
+        for (int i = 0; i < particles.transform.childCount; i++)
+        {
+            var main = particles.transform.GetChild(i).GetComponent<ParticleSystem>().main;
+            main.startColor = sphereGreen;
+        }
+
+        StartCoroutine(ChangeMaterialColor(sphereGreen));
+    }
+
+    IEnumerator ChangeMaterialColor(Color endColor)
+    {
+        Color _sphereMatCol = sphere.material.color;
+        float _timer = 0;
+        while (_timer < duration)
+        {
+            _timer += Time.deltaTime;
+            sphere.material.color = Color.Lerp(_sphereMatCol, endColor, _timer/duration);
+            yield return null;
+        }
+        sphere.material.color = endColor;
     }
 
     void GetReadyForNextDay()
