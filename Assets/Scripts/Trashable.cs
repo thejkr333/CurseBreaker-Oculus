@@ -18,6 +18,8 @@ public class Trashable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ovrgrab == null) return;
+
         if (ovrgrab.isGrabbed != true) trashable = true;
         else trashable = false;
     }

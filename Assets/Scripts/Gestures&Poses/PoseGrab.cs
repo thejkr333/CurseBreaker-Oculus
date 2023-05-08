@@ -78,7 +78,6 @@ public class PoseGrab : OVRGrabber
 
     protected override void GrabEnd()
     {
-        Debug.Log("GrabEnds 1");
         // if there is an object we are grabbing
         if (m_grabbedObj != null)
         {

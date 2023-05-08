@@ -16,6 +16,7 @@ public class CurseUI
 public class Customer : MonoBehaviour
 {
     [SerializeField] Material hiddenMat;
+    [SerializeField] Transform hiddenChild, normalChild;
 
     public Dictionary<LimbsList, Elements> LimbToElementMapping = new();
     public Dictionary<Elements, LimbsList> ElementToLimbMapping = new();
@@ -26,22 +27,25 @@ public class Customer : MonoBehaviour
     public int Chances = 3;
 
     public List<Limb> AffectedLimbs = new();
-    [SerializeField] List <Limb> notAffectedLimbs = new();
-
-    Material defaultMaterial;
 
     [SerializeField] GameObject curseUIprefab;
 
-
     GameObject canvas;
     public Dictionary<Curses, CurseUI> CursesStrength = new();
+    public Dictionary<LimbsList, bool> affectedLimbsInfo = new();
 
     private void Awake()
     {
-        defaultMaterial = GetComponentInChildren<MeshRenderer>().material;
         canvas = GetComponentInChildren<Canvas>().gameObject;
 
+        foreach (LimbsList limb in Enum.GetValues(typeof(LimbsList)))
+        {
+            affectedLimbsInfo.Add(limb, false);
+        }
+
         LimbElementMapping();
+
+        SetUpElementSprites();
 
         InitiateAffectedLimbParts();
 
@@ -55,9 +59,6 @@ public class Customer : MonoBehaviour
         //Check if player failed to cure the customer - James
         if (Chances == 0)
         {
-            gameObject.GetComponent<BasicChat>().ChatTime = 5;
-            gameObject.GetComponent<BasicChat>().DespawnOnceDone = true;
-
             DayManager.Instance.NextCustomer();
             Chances--;
             return;
@@ -135,32 +136,27 @@ public class Customer : MonoBehaviour
                 }
             }
 
+            affectedLimbsInfo[_affectedLimbs[i]] = true;
             GiveCurseToLimb(_affectedLimbs[i]);
         }
 
-        InitiateLimbsNotAffected(ref _affectedLimbs);
+        InitiateLimbsNotAffected();
 
         SetUpCurse();
     }
 
-    void InitiateLimbsNotAffected(ref List<LimbsList> affectedLimbs)
+    void InitiateLimbsNotAffected()
     {
-        for (int i = 0; i < Enum.GetValues(typeof(LimbsList)).Length; i++)
+        foreach (var limb in affectedLimbsInfo.Keys)
         {
-            bool _isAffected = false;
-            foreach (var limb in affectedLimbs)
-            {
-                if ((LimbsList)i == limb) _isAffected = true;
-            }
-            if (_isAffected) continue;
+            if (affectedLimbsInfo[limb]) continue;
 
-            for (int j = 0; j < transform.childCount - 1; j++)
+            normalChild.gameObject.SetActive(true);
+            for (int j = 0; j < normalChild.childCount; j++)
             {
-                if (transform.GetChild(j).name == ((LimbsList)i).ToString())
+                if (normalChild.GetChild(j).name == limb.ToString())
                 {
-                    //Asssign the limb its correspondant values
-                    Limb _notAffectedLimb = new Limb(transform.GetChild(j).gameObject, (LimbsList)i, LimbToElementMapping[(LimbsList)i]);
-                    notAffectedLimbs.Add(_notAffectedLimb);
+                    normalChild.GetChild(j).gameObject.SetActive(true);
                     break;
                 }
             }
@@ -169,6 +165,60 @@ public class Customer : MonoBehaviour
 
     void GiveCurseToLimb(LimbsList limbName, Curses curse = (Curses)(-1))
     {
+        //Create random curse from unlocked curses list
+        if ((int)curse == -1) curse = CreateRandomUnlockedCurse();
+
+        //Go through the different curses in children
+        for (int i = 0; i < transform.childCount - 2; i++)
+        {
+            //Select the child with the curse that needs to be given
+            Transform _child = transform.GetChild(i);
+            if(_child.name == curse.ToString())
+            {
+                _child.gameObject.SetActive(true);
+                for (int j = 0; j < _child.childCount; j++)
+                {
+                    //Select the child with the limb that needs to be affected
+                    Transform _grandchild = _child.GetChild(j);
+                    if(_grandchild.name == limbName.ToString())
+                    {
+                        _grandchild.gameObject.SetActive(true);
+
+                        //Asssign the limb its correspondant values
+                        Limb _affectedLimb = new Limb(_grandchild.gameObject, curse, limbName, LimbToElementMapping[limbName]);
+                        AffectedLimbs.Add(_affectedLimb);
+
+                        //Add the correspondant curse to the limb gamobject
+                        _affectedLimb.AffectedLimbGO.AddComponent(Type.GetType(curse.ToString()));
+
+                        //Add curse to the dictionary if it is new and give it a strength
+                        CurseUI _curseUI = new();
+                        if (!CursesStrength.ContainsKey(curse))
+                        {
+                            _curseUI.Strength = UnityEngine.Random.Range(3, 9);
+                            _curseUI.GO = Instantiate(curseUIprefab, canvas.transform);
+                            _curseUI.affectedLimbs.Add(_affectedLimb);
+                            CursesStrength.Add(curse, _curseUI);
+                        }
+                        else CursesStrength[curse].Strength += UnityEngine.Random.Range(1, 4);
+                        break;
+                    }
+                }
+                //for (int k = 0; k < normalChild.childCount; k++)
+                //{
+                //    //Select the child with the limb that needs to be affected
+                //    Transform _grandchild = normalChild.GetChild(k);
+                //    if (_grandchild.name == limbName.ToString())
+                //    {
+                //        _grandchild.gameObject.SetActive(false);
+                //        break;
+                //    }
+                //}
+                break;
+            }
+        }
+
+        return;
         //Populate the affectedLimb list with the correspondant affected limbs
         for (int j = 0; j < transform.childCount - 1; j++)
         {
@@ -225,32 +275,6 @@ public class Customer : MonoBehaviour
                         if ((int)curse == -1) curse = CreateRandomUnlockedCurse();
                         break;
                 }
-
-                //Create random curse from unlocked curses list
-                if ((int)curse == -1) curse = CreateRandomUnlockedCurse();
-
-                //Asssign the limb its correspondant values
-                Limb _affectedLimb = new Limb(transform.GetChild(j).gameObject, curse, limbName, LimbToElementMapping[limbName]);
-                AffectedLimbs.Add(_affectedLimb);
-
-                //Add the correspondant curse to the limb gamobject
-                _affectedLimb.AffectedLimbGO.AddComponent(Type.GetType(curse.ToString()));
-
-                //Change visuals of the affected limb
-                Curse _curse = _affectedLimb.AffectedLimbGO.GetComponent<Curse>();
-                _curse.CursedMaterial = Utils.GetCurseMaterial(curse);
-                _curse.ChangeVisuals(_affectedLimb.AffectedLimbGO);
-
-                //Add curse to the dictionary if it is new and give it a strength
-                CurseUI _curseUI = new();
-                if (!CursesStrength.ContainsKey(curse))
-                {
-                    _curseUI.Strength = UnityEngine.Random.Range(3, 9);
-                    _curseUI.GO = Instantiate(curseUIprefab, canvas.transform);
-                    _curseUI.affectedLimbs.Add(_affectedLimb);
-                    CursesStrength.Add(curse, _curseUI);
-                }
-                else CursesStrength[curse].Strength += UnityEngine.Random.Range(1, 4);
             }
         }
     }
@@ -273,34 +297,36 @@ public class Customer : MonoBehaviour
         return curse;
     }
 
+    void SetUpElementSprites()
+    {
+        //Set up all the element sprites for the mapping
+        foreach (var limb in LimbToElementMapping.Keys)
+        {
+            for (int i = 0; i < hiddenChild.childCount; i++)
+            {
+                if (limb.ToString() == hiddenChild.GetChild(i).name)
+                {
+                    hiddenChild.GetChild(i).GetComponentInChildren<SpriteRenderer>().sprite = Utils.GetElementSprite(LimbToElementMapping[limb]);
+                    hiddenChild.GetChild(i).gameObject.SetActive(false);
+                    break;
+                }
+            }
+        }
+    }
+
     void SetUpCurse()
     {
-        foreach (var limb in AffectedLimbs)
-        {
-
-            limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Utils.GetElementSprite(limb.Element);
-
-            //switch (limb.Element)
-            //{
-            //    case Elements.Fire:
-            //        limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Fire;
-            //        break;
-            //    case Elements.Water:
-            //        limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Water;
-            //        break;
-            //    case Elements.Dark:
-            //        limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Dark;
-            //        break;
-            //    case Elements.Light:
-            //        limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Light;
-            //        break;
-            //    case Elements.Air:
-            //        limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Air;
-            //        break;
-            //    case Elements.Earth:
-            //        limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = Earth;
-            //        break;
-            //}
+        //Activate the elements needed for the curse
+        foreach (var limb in affectedLimbsInfo.Keys)
+        {      
+            for (int i = 0; i < hiddenChild.childCount; i++)
+            {
+                if (limb.ToString() == hiddenChild.GetChild(i).name)
+                {
+                    hiddenChild.GetChild(i).gameObject.SetActive(affectedLimbsInfo[limb]);
+                    break;
+                }
+            }
         }
     }
     void Cured()
@@ -347,8 +373,9 @@ public class Customer : MonoBehaviour
                             {
                                 //perfect potion
                                 limb.Cured = true;
-                                limb.AffectedLimbGO.GetComponentInChildren<MeshRenderer>().material = defaultMaterial;
-                                limb.AffectedLimbGO.GetComponentInChildren<SpriteRenderer>().sprite = null;
+                                affectedLimbsInfo[limb.LimbName] = false;
+                                limb.AffectedLimbGO.SetActive(false);
+                                SetUpCurse();
                             }
                         }
                     }
@@ -358,17 +385,18 @@ public class Customer : MonoBehaviour
             }
             if (!_affected)
             {
-                foreach (var limb in notAffectedLimbs)
+                foreach (var limb in affectedLimbsInfo.Keys)
                 {
-                    if (ElementToLimbMapping[element] == limb.LimbName)
+                    if (affectedLimbsInfo[limb]) continue;
+
+                    if (ElementToLimbMapping[element] == limb)
                     {
                         //Means the targeted limb doesn't have a curse on it. Affect negatively
                         //Give the limb a random curse from the main curses of the ingredients
                         Curses _curseToGive = CreateRandomUnlockedCurse();
+                        affectedLimbsInfo[limb] = true;
                         //Curses _curseToGive = CursexIngredientMatrix.GetRandomCurse(potion.PotionIngredients);
-                        GiveCurseToLimb(ElementToLimbMapping[element], _curseToGive);
-                        notAffectedLimbs.Remove(limb);
-                        Chances--;
+                        GiveCurseToLimb(limb, _curseToGive);
                         break;
                     }
                 }
