@@ -8008,6 +8008,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookStand Tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 6449425638504417250, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: noiseFrequency
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449425638504417250, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: noiseMultiplier
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6757510422838238922, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
       propertyPath: m_IsActive
       value: 1

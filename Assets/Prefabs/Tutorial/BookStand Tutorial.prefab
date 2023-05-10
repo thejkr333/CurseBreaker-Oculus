@@ -5332,6 +5332,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1749201452528995025, guid: f7bee7e39cfad2248a15e3ed698f3463, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2396964829742681301, guid: f7bee7e39cfad2248a15e3ed698f3463, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5452,6 +5456,23 @@ MonoBehaviour:
   - {fileID: 1885009284652608472}
   timeToTurnPage: 0.75
   pageNumber: {fileID: 9011198523992945161}
+--- !u!114 &6449425638504417250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4603232327165924778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db70a0978ca3da24dbc615c9c8567662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatOnX: 1
+  floatOnY: 1
+  floatOnZ: 1
+  noiseMultiplier: 0.15
+  noiseFrequency: 0.12
 --- !u!1001 &2788426669188190657
 PrefabInstance:
   m_ObjectHideFlags: 0
