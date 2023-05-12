@@ -7,11 +7,20 @@ public enum Ingredients { AngelLeaf, Mandrake, WolfsBane, CorkWood, Nightshade, 
 public class Ingredient : MonoBehaviour
 {
     [HideInInspector] public Ingredients ThisIngredient;
+    Outline outline;
 
     public int SellCost = 4;
     public int BuyCost = 4;
     protected virtual void Awake()
     {
-        if(TryGetComponent(out Outline outline)) outline.enabled = false;
+        if(TryGetComponent(out outline)) outline.enabled = false;
+    }
+
+    protected void Update()
+    {
+        if(transform.parent == null) return;
+
+        if (!transform.parent.TryGetComponent(out Outline _parentOutline)) return;
+        outline.enabled = _parentOutline.enabled;
     }
 }

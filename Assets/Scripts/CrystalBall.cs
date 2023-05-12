@@ -28,7 +28,7 @@ public class CrystalBall : MonoBehaviour
         //DayManager.Instance.CustomersFinished += GetReadyForNextDay;     
         DayManager.Instance.customerCured += ChangeParticlesToGreen;
         DayManager.Instance.nextCustomer += StartParticlesRed;
-        DayManager.Instance.customerOut += StopParticles;
+        //DayManager.Instance.customerOut += StopParticles;
 
         StartParticlesRed();
     }

@@ -218,8 +218,7 @@ public class PoseEvents : MonoBehaviour
         Ray ray = new Ray(indexTip, indexTip - indexProximal);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, interactable))
         {
-            Outline outline = hitInfo.transform.GetComponent<Outline>();
-            if (outline == null) return;
+            if (!hitInfo.transform.TryGetComponent(out Outline outline)) return;
 
             //you outline the new object
             outline.enabled = true;
