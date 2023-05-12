@@ -391,8 +391,8 @@ MonoBehaviour:
   floatOnY: 1
   floatOnZ: 1
   initialPosition: {x: 0, y: 0, z: 0}
-  noiseMultiplier: 0.25
-  noiseFrequency: 0.25
+  noiseMultiplier: 0.15
+  noiseFrequency: 0.15
 --- !u!114 &3715852899194957865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,9 +406,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 0}
-  speed: 2
-  startFloatDistance: 0.5
-  goToPosDistance: 5
+  speed: 0.2
+  startFloatDistance: 0.001
+  goToPosDistance: 50
+  Attracted: 0
 --- !u!1 &208462484447413452
 GameObject:
   m_ObjectHideFlags: 0
