@@ -29,6 +29,7 @@ public class PoseEvents : MonoBehaviour
     Vector3 thumbMetacarpal = Vector3.zero;
     private Color blue, white;
     LineRenderer lineRenderer;
+    LineController lineController;
 
 
     [Header("TV")]
@@ -61,8 +62,10 @@ public class PoseEvents : MonoBehaviour
     {
         poseGrab = HandSkeleton.GetComponent<PoseGrab>();
         hand = HandSkeleton.GetComponent<OVRHand>();
+        lineController = GetComponent<LineController>();
         lineRenderer = GetComponent<LineRenderer>();
         hiddenGO.SetActive(false);
+        lineController.enabled = false;
         lineRenderer.enabled = false;
 
         //Defining colours and alpha for the line here
@@ -185,11 +188,13 @@ public class PoseEvents : MonoBehaviour
         //Blue[0].color = Color.blue;
         //Blue[1].color = Color.blue;
         //lineRenderer.colorGradient.SetKeys(Blue, Alpha);
-        lineRenderer.material.color = blue;
+        //lineRenderer.material.color = blue;
+
+        lineController.enabled = true;
+        lineRenderer.enabled = true;
     }
     void Aim()
     {
-        lineRenderer.enabled = true;
         indexProximal = Vector3.zero;
         indexTip = Vector3.zero;
 
@@ -230,6 +235,7 @@ public class PoseEvents : MonoBehaviour
     }
     void EndAim()
     {
+        lineController.enabled = false;
         lineRenderer.enabled = false;
         Invoke(nameof(DeselectAim), 2);
     }
