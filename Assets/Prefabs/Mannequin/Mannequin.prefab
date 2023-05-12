@@ -258,6 +258,8 @@ GameObject:
   - component: {fileID: 5465581485905930122}
   - component: {fileID: 72499609943139794}
   - component: {fileID: 2413333435770710728}
+  - component: {fileID: 8384749773158286417}
+  - component: {fileID: 3715852899194957865}
   m_Layer: 3
   m_Name: Mannequin
   m_TagString: Customer
@@ -323,7 +325,6 @@ MonoBehaviour:
   Chances: 3
   AffectedLimbs: []
   curseUIPrefab: {fileID: 9163307963177241112, guid: 516cba202bf499d4da22c0ab5b4bb253, type: 3}
-  affectedLimbsInfoDebug: 
 --- !u!114 &5465581485905930122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +375,40 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.09997495, y: 0.2368558, z: 0.07381259}
   m_Center: {x: 0.000831116, y: -0.01808685, z: -0.0012989324}
+--- !u!114 &8384749773158286417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208462484191308216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db70a0978ca3da24dbc615c9c8567662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatOnX: 1
+  floatOnY: 1
+  floatOnZ: 1
+  initialPosition: {x: 0, y: 0, z: 0}
+  noiseMultiplier: 0.25
+  noiseFrequency: 0.25
+--- !u!114 &3715852899194957865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208462484191308216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed624f2c990e0340bd1a1c4dd7e914b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 0}
+  speed: 2
+  startFloatDistance: 0.5
+  goToPosDistance: 5
 --- !u!1 &208462484447413452
 GameObject:
   m_ObjectHideFlags: 0
