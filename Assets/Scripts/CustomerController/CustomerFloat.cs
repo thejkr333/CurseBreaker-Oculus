@@ -11,6 +11,7 @@ public class CustomerFloat : MonoBehaviour
     [HideInInspector] public Transform spawn;
     Transform tr;
     [SerializeField] private float speed = 2, startFloatDistance = .5f, goToPosDistance = 5;
+    public bool attracted;
 
     private void Awake()
     {
@@ -26,6 +27,12 @@ public class CustomerFloat : MonoBehaviour
     void Update()
     {
         if (grabbable.isGrabbed)
+        {
+            noise.enabled = false;
+            attracted = false;
+        }
+
+        if (attracted)
         {
             noise.enabled = false;
             return;

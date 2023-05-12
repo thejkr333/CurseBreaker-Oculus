@@ -295,7 +295,7 @@ public class PoseEvents : MonoBehaviour
         else if(attractedObjRb.TryGetComponent(out Customer customer))
         {
             attractedObjRb.useGravity = true;
-            customer.GetComponent<Noise>().enabled = false;
+            customer.GetComponent<CustomerFloat>().attracted = true;
         }
     }
 
