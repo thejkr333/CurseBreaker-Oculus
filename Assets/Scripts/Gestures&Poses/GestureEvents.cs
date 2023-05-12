@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class GestureEvents : MonoBehaviour
 {
@@ -166,13 +167,17 @@ public class GestureEvents : MonoBehaviour
     private void Garbo()
     {
         GameObject clon = Instantiate(garbo);
-        clon.transform.position = currentDrawingHand.transform.position;
+        clon.transform.position = currentDrawingHand.transform.GetChild(0).position;
+        Destroy(clon, 2f);
         /*
         clon.transform.forward = headPos.forward;
         clon.transform.position = new Vector3(headPos.position.x, (headPos.position.y - initialPos.y) / 3 * 2, headPos.position.z);
         clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;*/
         Debug.Log("Garbo");
+        
     }
+
+    
     #endregion
     void CreatePortal()
     {
