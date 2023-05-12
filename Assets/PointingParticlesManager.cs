@@ -48,6 +48,7 @@ public class PointingParticlesManager : MonoBehaviour
     public void StopEmitting()
     {
         particleSystem.Stop();
+        transform.parent = null;
     }
 
     
