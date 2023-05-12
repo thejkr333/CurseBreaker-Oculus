@@ -294,6 +294,11 @@ public class PoseEvents : MonoBehaviour
 
             attractedObjRb.isKinematic = false;
         }
+        else if(attractedObjRb.TryGetComponent(out Customer customer))
+        {
+            attractedObjRb.useGravity = true;
+            customer.GetComponent<Noise>().enabled = false;
+        }
     }
 
     void Grab()

@@ -36,6 +36,7 @@ public class DayManager : MonoBehaviour
         dayCanvas.SetActive(false);
         //GameManager.Instance.OnNewDay += NewDay;
         currentCustomer = Instantiate(customerPrefab);
+        currentCustomer.GetComponent<CustomerFloat>().spawn = customerPosition;
         CustomerIn(currentCustomer);
         //GameManager.Instance.NextDay();
     }
@@ -93,6 +94,7 @@ public class DayManager : MonoBehaviour
         //if (customerIndex++ == NUMBEROFCUSTOMERSPERDAY - 1) CustomersFinished?.Invoke();
         //else CustomerIn(customersToday[customerIndex]);
         currentCustomer = Instantiate(customerPrefab);
+        currentCustomer.GetComponent<CustomerFloat>().spawn = customerPosition;
         CustomerIn(currentCustomer);
 
         nextCustomer?.Invoke();

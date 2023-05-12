@@ -2043,6 +2043,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3432879270864618799, guid: 246d863e99f29eb4489315b6e40b7e1c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3845931209737246158, guid: 246d863e99f29eb4489315b6e40b7e1c, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -9332,6 +9336,7 @@ MonoBehaviour:
   floatOnX: 1
   floatOnY: 1
   floatOnZ: 1
+  initialPosition: {x: 0, y: 0, z: 0}
   noiseMultiplier: 0.1
   noiseFrequency: 0.15
 --- !u!4 &5637952743394626673
@@ -9529,6 +9534,7 @@ MonoBehaviour:
   floatOnX: 1
   floatOnY: 1
   floatOnZ: 1
+  initialPosition: {x: 0, y: 0, z: 0}
   noiseMultiplier: 0.1
   noiseFrequency: 0.15
 --- !u!1 &6788466549649454952
@@ -9775,6 +9781,7 @@ MonoBehaviour:
   floatOnX: 1
   floatOnY: 1
   floatOnZ: 1
+  initialPosition: {x: 0, y: 0, z: 0}
   noiseMultiplier: 0.1
   noiseFrequency: 0.15
 --- !u!1 &7584832063643736136
@@ -10055,6 +10062,7 @@ MonoBehaviour:
   floatOnX: 1
   floatOnY: 1
   floatOnZ: 1
+  initialPosition: {x: 0, y: 0, z: 0}
   noiseMultiplier: 0.1
   noiseFrequency: 0.15
 --- !u!4 &8687735674448183770
