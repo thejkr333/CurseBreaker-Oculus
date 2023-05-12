@@ -4,9 +4,9 @@ using UnityEngine;
 using static OVRPlugin;
 using Unity.VisualScripting;
 
-public enum LimbsList { Head, LeftArm, RightArm, LeftLeg, RightLeg, Torso }
+public enum LimbsList { Head, Torso, LeftArm, RightArm, LeftLeg, RightLeg}
 [System.Serializable]
-public enum Curses { Wolfus, Gassle, Demonitis, Petrification,  Porko, Runeblight}
+public enum Curses { Wolfus, Gassle, Demonitis, Petrification, Porko, Runeblight}
 
 [System.Serializable]
 public class Limb

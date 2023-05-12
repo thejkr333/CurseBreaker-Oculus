@@ -10,13 +10,4 @@ public class Mandrake : Ingredient
 
         ThisIngredient = Ingredients.Mandrake;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-
 }

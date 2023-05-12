@@ -18,9 +18,9 @@ public class Ingredient : MonoBehaviour
 
     protected void Update()
     {
-        if(transform.root == null) return;
+        if(transform.parent == null) return;
 
-        if (!transform.root.TryGetComponent(out Outline _parentOutline)) return;
+        if (!transform.parent.TryGetComponent(out Outline _parentOutline)) return;
         outline.enabled = _parentOutline.enabled;
     }
 }

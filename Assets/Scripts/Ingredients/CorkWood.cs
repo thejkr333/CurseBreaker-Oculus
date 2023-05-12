@@ -10,13 +10,4 @@ public class CorkWood : Ingredient
 
         ThisIngredient = Ingredients.CorkWood;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-
 }

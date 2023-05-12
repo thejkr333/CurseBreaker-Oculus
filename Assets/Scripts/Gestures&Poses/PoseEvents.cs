@@ -223,7 +223,13 @@ public class PoseEvents : MonoBehaviour
         Ray ray = new Ray(indexTip, indexTip - indexProximal);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, interactable))
         {
-            if (!hitInfo.transform.TryGetComponent(out Outline outline)) return;
+            Outline outline = null;
+
+            if (hitInfo.transform.TryGetComponent(out Bubble bubble))
+            {
+                outline = bubble.GetComponentInChildren<Outline>();
+            }
+            else if (!hitInfo.transform.TryGetComponent(out outline)) return;
 
             //you outline the new object
             outline.enabled = true;
@@ -275,13 +281,16 @@ public class PoseEvents : MonoBehaviour
         {
             decorObj.StartGrabbing();
         }
-        else if(attractedObjRb.TryGetComponent(out Bubble bubble))
+        else if(attractedObjRb.TryGetComponent(out Ingredient ingredient))
         {
-            attractedObjRb = bubble.IngredientInside.GetComponent<Rigidbody>();
-            attractedObjRb.transform.SetParent(null);
-            attractedObjRb.isKinematic = false;
+            if (ingredient.transform != null)
+            {
+                Bubble _bubble = ingredient.GetComponentInParent<Bubble>();
+                _bubble.Pop();
+                attractedObjRb.transform.SetParent(null);
+            }
 
-            bubble.Pop();
+            attractedObjRb.isKinematic = false;
         }
     }
 

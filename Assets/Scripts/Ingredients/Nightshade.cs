@@ -10,13 +10,4 @@ public class Nightshade : Ingredient
 
         ThisIngredient = Ingredients.Nightshade;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-
 }

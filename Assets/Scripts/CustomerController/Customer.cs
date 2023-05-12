@@ -28,7 +28,7 @@ public class Customer : MonoBehaviour
 
     public List<Limb> AffectedLimbs = new();
 
-    [SerializeField] GameObject curseUIprefab;
+    [SerializeField] GameObject curseUIPrefab;
 
     GameObject canvas;
     public Dictionary<Curses, CurseUI> CursesStrength = new();
@@ -175,8 +175,9 @@ public class Customer : MonoBehaviour
         //Create random curse from unlocked curses list
         if ((int)curse == -1) curse = CreateRandomUnlockedCurse();
 
+        int count = AffectedLimbs.Count;
         //Go through the different curses in children
-        for (int i = 0; i < transform.childCount - 2; i++)
+        for (int i = 0; i < Enum.GetValues(typeof(Curses)).Length; i++)
         {
             //Select the child with the curse that needs to be given
             Transform _child = transform.GetChild(i);
@@ -203,7 +204,7 @@ public class Customer : MonoBehaviour
                         if (!CursesStrength.ContainsKey(curse))
                         {
                             _curseUI.Strength = UnityEngine.Random.Range(3, 9);
-                            _curseUI.GO = Instantiate(curseUIprefab, canvas.transform);
+                            _curseUI.GO = Instantiate(curseUIPrefab, canvas.transform);
                             _curseUI.affectedLimbs.Add(_affectedLimb);
                             CursesStrength.Add(curse, _curseUI);
                         }
@@ -214,7 +215,8 @@ public class Customer : MonoBehaviour
                 break;
             }
         }
-
+        if (AffectedLimbs.Count - count != 1)
+            Debug.Log("dissonance");
         return;
         //Populate the affectedLimb list with the correspondant affected limbs
         for (int j = 0; j < transform.childCount - 1; j++)

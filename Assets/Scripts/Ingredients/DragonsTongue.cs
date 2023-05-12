@@ -10,13 +10,4 @@ public class DragonsTongue : Ingredient
 
         ThisIngredient = Ingredients.DragonsTongue;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-
 }
