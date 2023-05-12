@@ -44,6 +44,7 @@ public class Noise : MonoBehaviour
     [SerializeField] float noiseFrequency = 0.25f;
 
     Vector3 noiseIncrement;
+    float beginMultiplier;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -129,5 +130,23 @@ public class Noise : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(Co_Begin());
+    }
+
+    IEnumerator Co_Begin()
+    {
+        beginMultiplier = 0;
+
+        while (beginMultiplier < 1)
+        {
+            beginMultiplier += Time.deltaTime;
+            yield return null;
+        }
+
+        beginMultiplier = 1;
     }
 }

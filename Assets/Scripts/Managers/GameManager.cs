@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public bool InMenu;
+    public bool InMenu, NextDayAnimation;
 
     public Transform Parla;
 
@@ -141,11 +141,14 @@ public class GameManager : MonoBehaviour
 
     public void NextDay()
     {
+        NextDayAnimation = true;
+        
         OnNewDay?.Invoke();
     }
 
     void NewDay()
     {
+        
         DayCount++;
         //SaveGame();
     }

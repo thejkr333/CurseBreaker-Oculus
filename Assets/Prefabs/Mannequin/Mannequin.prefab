@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 2413333435770710728}
   - component: {fileID: 8384749773158286417}
   - component: {fileID: 3715852899194957865}
+  - component: {fileID: 1781657405492289093}
   m_Layer: 3
   m_Name: Mannequin
   m_TagString: Customer
@@ -408,8 +409,21 @@ MonoBehaviour:
   spawn: {fileID: 0}
   speed: 0.2
   startFloatDistance: 0.001
-  goToPosDistance: 50
+  endFloatDistance: 1
   Attracted: 0
+--- !u!114 &1781657405492289093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208462484191308216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7800cb0c6f766240a26eb2fbc5f2748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinMaxRepeat: {x: 10, y: 20}
 --- !u!1 &208462484447413452
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,9 +10,8 @@ public class CustomerFloat : MonoBehaviour
     Rigidbody rb;
     public Transform spawn;
     Transform tr;
-    [SerializeField] private float speed = .5f, startFloatDistance = .5f, goToPosDistance = 5;
+    [SerializeField] private float speed = .5f, startFloatDistance = .5f, endFloatDistance = 5;
     public bool Attracted;
-    bool chilling;
 
     private void Awake()
     {
@@ -43,25 +42,24 @@ public class CustomerFloat : MonoBehaviour
         rb.useGravity = false;
         tr.eulerAngles = new Vector3(0, spawn.eulerAngles.y, 0);
 
-        float _distance = Vector3.Distance(tr.position, spawn.position);
-        if (_distance <= startFloatDistance && !chilling)
+        float _distanceToTarget = Vector3.Distance(tr.position, spawn.position);
+
+        if (_distanceToTarget < startFloatDistance)
         {
-            chilling = true;
-            noise.enabled = true;
-            noise.initialPosition = tr.position;
-        }
-        else 
-        {
-            if (chilling)
+            if (!noise.enabled)
             {
-                if(_distance >= 1)
-                {
-                    tr.position = Vector3.MoveTowards(tr.position, spawn.position, speed * Time.deltaTime);
-                    chilling = false;
-                    noise.enabled = false;
-                }
+                noise.initialPosition = tr.position;
+                noise.enabled = true;
             }
-            else
+        }
+        else
+        {
+            if (noise.enabled && _distanceToTarget > endFloatDistance)
+            {
+                noise.enabled = false;
+            }
+
+            if (!noise.enabled)
             {
                 tr.position = Vector3.MoveTowards(tr.position, spawn.position, speed * Time.deltaTime);
             }
