@@ -16,8 +16,8 @@ public class GestureEvents : MonoBehaviour
     [SerializeField] Transform headPos;
 
     [Header("GESTURE ELEMENTS")]
-    [SerializeField] GameObject fire, dark, light, water, air, earth;
-    enum Gestures { Fire, Dark, Light, Water, Air, Earth}
+    [SerializeField] GameObject fire, dark, light, water, air, earth, voidElement;
+    enum Gestures { Fire, Dark, Light, Water, Air, Earth, Void}
 
     [Header("PORTAL")]
     [SerializeField] GameObject portalPrefab;
@@ -78,11 +78,17 @@ public class GestureEvents : MonoBehaviour
             case "earth":
                 Earth();
                 break;
+            case "void":
+                VoidSpell();
+                break;
+            case "garbo":
+                Debug.Log("Garbo recognised");
+                break;
             case "portal":
                 CreatePortal();
                 break;
             default:
-                Debug.Log("Gesture not assigned");
+                Debug.Log("Gesture not assigned/recognised");
                 break;
         }
     }
@@ -145,6 +151,16 @@ public class GestureEvents : MonoBehaviour
         clon.transform.position = new Vector3(headPos.position.x, (headPos.position.y - initialPos.y) / 3 * 2, headPos.position.z);
         clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;*/
         Debug.Log("Earth");
+    }
+    private void VoidSpell()
+    {
+        GameObject clon = Instantiate(voidElement);
+        clon.transform.position = currentDrawingHand.transform.position;
+        /*
+        clon.transform.forward = headPos.forward;
+        clon.transform.position = new Vector3(headPos.position.x, (headPos.position.y - initialPos.y) / 3 * 2, headPos.position.z);
+        clon.GetComponent<Rigidbody>().velocity = clon.transform.forward * 5;*/
+        Debug.Log("Void");
     }
     #endregion
     void CreatePortal()

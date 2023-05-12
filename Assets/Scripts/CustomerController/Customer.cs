@@ -140,26 +140,33 @@ public class Customer : MonoBehaviour
             GiveCurseToLimb(_affectedLimbs[i]);
         }
 
-        InitiateLimbsNotAffected();
+        UpdateLimbsNotAffected();
 
-        SetUpCurse();
+        ActivateCursedLimbElements();
     }
 
-    void InitiateLimbsNotAffected()
+    void UpdateLimbsNotAffected()
     {
-        foreach (var limb in affectedLimbsInfo.Keys)
-        {
-            if (affectedLimbsInfo[limb]) continue;
+        //foreach (var limb in affectedLimbsInfo.Keys)
+        //{
+        //    if (affectedLimbsInfo[limb]) continue;
 
-            normalChild.gameObject.SetActive(true);
-            for (int j = 0; j < normalChild.childCount; j++)
-            {
-                if (normalChild.GetChild(j).name == limb.ToString())
-                {
-                    normalChild.GetChild(j).gameObject.SetActive(true);
-                    break;
-                }
-            }
+        //    normalChild.gameObject.SetActive(true);
+        //    for (int j = 0; j < normalChild.childCount; j++)
+        //    {
+        //        if (normalChild.GetChild(j).name == limb.ToString())
+        //        {
+        //            normalChild.GetChild(j).gameObject.SetActive(true);
+        //            break;
+        //        }
+        //    }
+        //}
+
+        normalChild.gameObject.SetActive(true);
+        for (int i = 0; i < normalChild.childCount; i++)
+        {
+            LimbsList _limb = Enum.Parse<LimbsList>(normalChild.GetChild(i).name);
+            normalChild.GetChild(i).gameObject.SetActive(!affectedLimbsInfo[_limb]);
         }
     }
 
@@ -204,16 +211,6 @@ public class Customer : MonoBehaviour
                         break;
                     }
                 }
-                //for (int k = 0; k < normalChild.childCount; k++)
-                //{
-                //    //Select the child with the limb that needs to be affected
-                //    Transform _grandchild = normalChild.GetChild(k);
-                //    if (_grandchild.name == limbName.ToString())
-                //    {
-                //        _grandchild.gameObject.SetActive(false);
-                //        break;
-                //    }
-                //}
                 break;
             }
         }
@@ -299,34 +296,19 @@ public class Customer : MonoBehaviour
 
     void SetUpElementSprites()
     {
-        //Set up all the element sprites for the mapping
-        foreach (var limb in LimbToElementMapping.Keys)
+        for (int i = 0; i < hiddenChild.childCount; i++)
         {
-            for (int i = 0; i < hiddenChild.childCount; i++)
-            {
-                if (limb.ToString() == hiddenChild.GetChild(i).name)
-                {
-                    hiddenChild.GetChild(i).GetComponentInChildren<SpriteRenderer>().sprite = Utils.GetElementSprite(LimbToElementMapping[limb]);
-                    hiddenChild.GetChild(i).gameObject.SetActive(false);
-                    break;
-                }
-            }
+            LimbsList _limb = Enum.Parse<LimbsList>(hiddenChild.GetChild(i).name);
+            hiddenChild.GetChild(i).GetComponentInChildren<SpriteRenderer>().sprite = Utils.GetElementSprite(LimbToElementMapping[_limb]);
         }
     }
 
-    void SetUpCurse()
+    void ActivateCursedLimbElements()
     {
-        //Activate the elements needed for the curse
-        foreach (var limb in affectedLimbsInfo.Keys)
-        {      
-            for (int i = 0; i < hiddenChild.childCount; i++)
-            {
-                if (limb.ToString() == hiddenChild.GetChild(i).name)
-                {
-                    hiddenChild.GetChild(i).gameObject.SetActive(affectedLimbsInfo[limb]);
-                    break;
-                }
-            }
+        for (int i = 0; i < hiddenChild.childCount; i++)
+        {
+            LimbsList _limb = Enum.Parse<LimbsList>(hiddenChild.GetChild(i).name);
+            hiddenChild.GetChild(i).gameObject.SetActive(affectedLimbsInfo[_limb]);
         }
     }
     void Cured()
@@ -375,11 +357,9 @@ public class Customer : MonoBehaviour
                                 limb.Cured = true;
                                 affectedLimbsInfo[limb.LimbName] = false;
                                 limb.AffectedLimbGO.SetActive(false);
-                                SetUpCurse();
                             }
                         }
                     }
-
                     break;
                 }
             }
@@ -403,7 +383,8 @@ public class Customer : MonoBehaviour
             }
         }
 
-        SetUpCurse();
+        UpdateLimbsNotAffected();
+        ActivateCursedLimbElements();
         SetUpCurseUI();
         UpdateCustomerVisuals();
     }
@@ -449,6 +430,7 @@ public class Customer : MonoBehaviour
             }
 
             CursesStrength[curse].GO.GetComponentInChildren<Image>().sprite = Utils.GetCurseSprite(curse);
+            CursesStrength[curse].GO.GetComponentInChildren<Image>().useSpriteMesh = true;
             CursesStrength[curse].GO.GetComponentInChildren<TMP_Text>().text = CursesStrength[curse].Strength.ToString();
         }
     }
@@ -463,8 +445,7 @@ public class Customer : MonoBehaviour
             }
 
             GetPotion(_potion);
-            //teleport to parla, as destroying it bugs the grabber
-            _potion.transform.position = new Vector3(10000, -10, 10000);
+            GameManager.Instance.DestroyGrabbedThings(_potion.gameObject);
         }
     }
 }

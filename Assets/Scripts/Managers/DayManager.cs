@@ -126,5 +126,6 @@ public class DayManager : MonoBehaviour
     public void CustomerCured()
     {
         customerCured?.Invoke();
+        Invoke(nameof(NextCustomer), 2);
     }
 }
