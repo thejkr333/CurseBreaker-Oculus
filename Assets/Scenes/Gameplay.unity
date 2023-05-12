@@ -8707,7 +8707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
       propertyPath: Sounds.Array.size
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
       propertyPath: Sounds.Array.data[11].Clip
@@ -8738,6 +8738,14 @@ PrefabInstance:
       value: Wolfus
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[14].Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 184e09897814eb54eba4ba7b5552596f, type: 3}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[14].Name
+      value: Gassle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
       propertyPath: Sounds.Array.data[11].Pitch
       value: 1
       objectReference: {fileID: 0}
@@ -8747,6 +8755,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
       propertyPath: Sounds.Array.data[13].Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[14].Pitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
@@ -8762,11 +8774,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[14].Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
       propertyPath: Sounds.Array.data[11].MaxDistance
       value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
       propertyPath: Sounds.Array.data[13].MaxDistance
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[14].MaxDistance
       value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
