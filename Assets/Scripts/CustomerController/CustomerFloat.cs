@@ -8,10 +8,11 @@ public class CustomerFloat : MonoBehaviour
     Noise noise;
     OVRGrabbable grabbable;
     Rigidbody rb;
-    [HideInInspector] public Transform spawn;
+    public Transform spawn;
     Transform tr;
-    [SerializeField] private float speed = 2, startFloatDistance = .5f, goToPosDistance = 5;
-    public bool attracted;
+    [SerializeField] private float speed = .5f, startFloatDistance = .5f, goToPosDistance = 5;
+    public bool Attracted;
+    bool chilling;
 
     private void Awake()
     {
@@ -29,32 +30,41 @@ public class CustomerFloat : MonoBehaviour
         if (grabbable.isGrabbed)
         {
             noise.enabled = false;
-            attracted = false;
+            Attracted = false;
+            return;
         }
 
-        if (attracted)
+        if (Attracted)
         {
             noise.enabled = false;
             return;
         }
 
+        rb.useGravity = false;
+        tr.eulerAngles = new Vector3(0, spawn.eulerAngles.y, 0);
+
         float _distance = Vector3.Distance(tr.position, spawn.position);
-        if (_distance <= startFloatDistance)
+        if (_distance <= startFloatDistance && !chilling)
         {
-            rb.useGravity = false;
+            chilling = true;
             noise.enabled = true;
-            noise.initialPosition = spawn.position;
+            noise.initialPosition = tr.position;
         }
         else 
         {
-            noise.enabled = false;
-            if(_distance < goToPosDistance)
+            if (chilling)
             {
-                rb.useGravity = false;
-                Vector3 _dir = spawn.position - tr.position;
-                tr.Translate(speed * Time.deltaTime * _dir);
+                if(_distance >= 1)
+                {
+                    tr.position = Vector3.MoveTowards(tr.position, spawn.position, speed * Time.deltaTime);
+                    chilling = false;
+                    noise.enabled = false;
+                }
             }
-            else rb.useGravity = true;
+            else
+            {
+                tr.position = Vector3.MoveTowards(tr.position, spawn.position, speed * Time.deltaTime);
+            }
         }
     }
 }

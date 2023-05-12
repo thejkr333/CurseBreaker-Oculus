@@ -109,7 +109,6 @@ public class DayManager : MonoBehaviour
     void CustomerIn(GameObject customer)
     {
         customer.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        customer.transform.parent = customerPosition;
         customer.transform.position = customerPosition.position;
         customer.transform.eulerAngles = new Vector3(0, customerPosition.eulerAngles.y, 0);
     }
