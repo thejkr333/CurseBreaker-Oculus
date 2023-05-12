@@ -105,4 +105,5 @@ MonoBehaviour:
   air: {fileID: 3155554930152478369, guid: f3c901013342ee64b92b92d82221740c, type: 3}
   earth: {fileID: 1866106105139345148, guid: 3a149d4c67404284488b21b672faaf32, type: 3}
   voidElement: {fileID: 3155554930152478369, guid: 6ce017bf485699f4985aa5de46e9dbb3, type: 3}
+  garbo: {fileID: 3155554930152478369, guid: 35510f4dd1ea5c3419931d28ffcff0a2, type: 3}
   portalPrefab: {fileID: 0}
