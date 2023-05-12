@@ -47,7 +47,7 @@ public class MenuFunctionality : MonoBehaviour
     {
         if (sfxSlider != null) sfxSlider.value = AudioManager.Instance.SfxVolume;
         if (musicSlider != null) musicSlider.value = AudioManager.Instance.MusicVolume;
-        PoseEvents.Clap += ToggleMenu;
+        //PoseEvents.Clap += ToggleMenu;
     }
 
     public void ToggleMenu()
