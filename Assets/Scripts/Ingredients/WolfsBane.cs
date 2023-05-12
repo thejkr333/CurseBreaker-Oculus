@@ -10,13 +10,4 @@ public class WolfsBane : Ingredient
 
         ThisIngredient = Ingredients.WolfsBane;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-
 }
