@@ -18,7 +18,7 @@ public class Noise : MonoBehaviour
     /// <summary>
     /// Posición inicial del objeto
     /// </summary>
-    Vector3 initialPosition;
+    [HideInInspector] public Vector3 initialPosition;
 
     //Variable auxiliar para el scan del ruido en el eje x de perlin para el eje X del objeto
     float xX;

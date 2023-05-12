@@ -10,6 +10,9 @@ scopes = {
 	"last_search.2138236A" = "height"
 	"OpenInspectorPreview.2138236A" = "0"
 	"currentGroup.2138236A" = "_group_provider_Files"
+	"last_search.DE949528" = "curve"
+	"OpenInspectorPreview.DE949528" = "0"
+	"currentGroup.DE949528" = "all"
 }
 providers = {
 	adb = {
@@ -56,6 +59,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"an"
 	"height"
 ]
 searchItemFavorites = [
