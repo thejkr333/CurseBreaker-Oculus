@@ -15,6 +15,7 @@ TagManager:
   - Customer
   - Slider
   - Floor
+  - Spell/Void
   layers:
   - Default
   - TransparentFX
