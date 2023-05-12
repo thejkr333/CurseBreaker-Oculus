@@ -39,6 +39,7 @@ public class PointingParticlesManager : MonoBehaviour
 
         var main = particleSystem.main;
         main.startLifetime = 3 * Vector3.Distance(destination.transform.position, particleSystem.transform.position);
+        //main.duration = 3 * Vector3.Distance(destination.transform.position, particleSystem.transform.position);
         particleSystem.Play();
     }
 
