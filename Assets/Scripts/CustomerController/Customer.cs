@@ -215,8 +215,6 @@ public class Customer : MonoBehaviour
                 break;
             }
         }
-        if (AffectedLimbs.Count - count != 1)
-            Debug.Log("dissonance");
         return;
         //Populate the affectedLimb list with the correspondant affected limbs
         for (int j = 0; j < transform.childCount - 1; j++)
