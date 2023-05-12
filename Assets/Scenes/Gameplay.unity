@@ -8622,7 +8622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
       propertyPath: Sounds.Array.size
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
       propertyPath: Sounds.Array.data[11].Clip
@@ -8641,11 +8641,27 @@ PrefabInstance:
       value: SmokePuff
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[13].Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e12374133698da443bca4ec90bc87777, type: 3}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[13].Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[13].Name
+      value: Wolfus
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
       propertyPath: Sounds.Array.data[11].Pitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
       propertyPath: Sounds.Array.data[12].Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[13].Pitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
@@ -8657,7 +8673,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[13].Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
       propertyPath: Sounds.Array.data[11].MaxDistance
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
+      propertyPath: Sounds.Array.data[13].MaxDistance
       value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}

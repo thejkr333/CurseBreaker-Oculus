@@ -124,7 +124,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySoundDynamic(string name, GameObject followObject)
+    public void PlaySoundDynamic(string name, GameObject followObject, float pitch = 1)
     {
         if (soundSources.ContainsKey(name))
         {
@@ -137,7 +137,7 @@ public class AudioManager : MonoBehaviour
 
             _source.clip = soundSources[name].clip;
             _source.volume = soundSources[name].volume;
-            _source.pitch = soundSources[name].pitch;
+            _source.pitch = pitch;
             _source.playOnAwake = false;
             _source.loop = soundSources[name].loop;
             _source.rolloffMode = soundSources[name].rolloffMode;

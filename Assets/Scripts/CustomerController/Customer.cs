@@ -34,9 +34,11 @@ public class Customer : MonoBehaviour
     public Dictionary<Curses, CurseUI> CursesStrength = new();
     public Dictionary<LimbsList, bool> affectedLimbsInfo = new();
 
+    PlayCurseSound curseSound;
     private void Awake()
     {
         canvas = GetComponentInChildren<Canvas>().gameObject;
+        curseSound = GetComponent<PlayCurseSound>();    
 
         foreach (LimbsList limb in Enum.GetValues(typeof(LimbsList)))
         {
@@ -50,6 +52,14 @@ public class Customer : MonoBehaviour
         InitiateAffectedLimbParts();
 
         SetUpCurseUI();
+    }
+
+    private void Start()
+    {
+        foreach (var limb in AffectedLimbs)
+        {
+            curseSound.PlaySoundS(limb.Curse.ToString());
+        }
     }
 
     private void Update()
