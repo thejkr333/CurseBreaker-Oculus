@@ -1,3 +1,4 @@
+using Oculus.Platform.Models;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class PointingParticlesManager : MonoBehaviour
             Instance = this;
             particleSystem = GetComponent<ParticleSystem>();
             destination = transform.GetComponentInChildren<ParticleSystemForceField>();
+            //Debug.Log("AAAAAAA" + Vector3.Distance(destination.transform.position, particleSystem.transform.position));
         }
         else
         {
@@ -24,22 +26,24 @@ public class PointingParticlesManager : MonoBehaviour
     }
 
 
-    public void NewObjectOutlined(GameObject handAttracting)
+    public void NewObjectOutlined(GameObject handAttracting, GameObject objectAttracted)
     {
-        particleSystem.Play();
-        transform.parent = null;
-        transform.position = handAttracting.transform.position;
-        transform.parent = handAttracting.transform.parent;
+        destination.transform.parent = handAttracting.transform;
+        destination.transform.localPosition = Vector3.zero;
+
+
+        transform.SetParent(objectAttracted.transform, true);
+        transform.localPosition = Vector3.zero;
+
         transform.LookAt(handAttracting.transform.position);
 
-
-
-        destination.transform.parent = null;
-        destination.transform.position = handAttracting.transform.position;
-        destination.transform.parent = handAttracting.transform;
-
+        var main = particleSystem.main;
+        main.startLifetime = 3 * Vector3.Distance(destination.transform.position, particleSystem.transform.position);
+        particleSystem.Play();
     }
 
+
+    
 
     public void StopEmitting()
     {

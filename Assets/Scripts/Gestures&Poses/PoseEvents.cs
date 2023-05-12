@@ -227,7 +227,7 @@ public class PoseEvents : MonoBehaviour
 
             //you outline the new object
             outline.enabled = true;
-            PointingParticlesManager.Instance.NewObjectOutlined(outline.gameObject);
+            PointingParticlesManager.Instance.NewObjectOutlined(HandSkeleton.gameObject, outline.gameObject);
 
             if (lastOutline != null && lastOutline != outline && lastOutline.enabled) { lastOutline.enabled = false; lastOutline = null; }
 
