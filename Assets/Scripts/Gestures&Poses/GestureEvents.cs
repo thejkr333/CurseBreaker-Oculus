@@ -165,7 +165,7 @@ public class GestureEvents : MonoBehaviour
     }
     private void Garbo()
     {
-        GameObject clon = Instantiate(voidElement);
+        GameObject clon = Instantiate(garbo);
         clon.transform.position = currentDrawingHand.transform.position;
         /*
         clon.transform.forward = headPos.forward;
