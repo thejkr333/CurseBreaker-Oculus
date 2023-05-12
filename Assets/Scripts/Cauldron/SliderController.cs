@@ -36,7 +36,7 @@ public class SliderController : MonoBehaviour
         background.GetComponent<Image>().material.SetFloat("_SuccessMargin", successMargin);
 
         transform.parent.gameObject.SetActive(false);
-        //PoseEvents.Clap += InputReceived;
+        PoseEvents.Clap += InputReceived;
     }
 
 
