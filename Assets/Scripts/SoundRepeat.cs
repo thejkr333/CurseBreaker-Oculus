@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof(AudioSource))]
-public class WolfSound : MonoBehaviour
+public class SoundRepeat : MonoBehaviour
 {
-    [SerializeField] AudioClip Sound;
+    [SerializeField] AudioClip SoundClip;
+    [SerializeField] float Repeat;
     AudioSource Source;
     // Start is called before the first frame update
     void Start()
     {
-        if(Sound != null)
+        if(SoundClip != null)
         {
-            Source.clip = Sound;
-            InvokeRepeating("PlaySound", 10f, 1f);
+            Source.clip = SoundClip;
+            InvokeRepeating("PlaySound", Repeat, 1f);
         }
 
     }
