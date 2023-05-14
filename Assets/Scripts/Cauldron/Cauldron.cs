@@ -1,19 +1,22 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Cauldron : MonoBehaviour
 {
-
-    private void Start()
-    {
-        AudioManager.Instance.PlaySoundStatic("fire_crackling", transform.position);
-    }
+    //public static Action<List<Color>> IngredientIn;
+    public static Action<Color> IngredientIn;
+    public static Action ClearCauldron;
+    List<Color> colorList = new();
 
     public List<Ingredients> IngredientsInCauldron = new ();
     //[SerializeField] Recipe[] recipes;
 
     [SerializeField] GameObject basePotionPrefab;
-
+    private void Start()
+    {
+        AudioManager.Instance.PlaySoundStatic("fire_crackling", transform.position);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Ingredient _ingredient))
@@ -21,7 +24,7 @@ public class Cauldron : MonoBehaviour
             //if (ingredient.selected) return;
             AudioManager.Instance.PlaySoundStatic("Splash", transform.position);
 
-            AddIngredient(_ingredient.ThisIngredient);
+            AddIngredient(_ingredient.ThisIngredient, _ingredient.IngColor);
 
             //teleport to parla as destroying it makes it lose the reference in the list IngredientsInCauldron
             _ingredient.transform.position = new Vector3(10000, -10, 10000);
@@ -35,20 +38,24 @@ public class Cauldron : MonoBehaviour
         {
             //if (_ingredient.selected) return;
 
-            RemoveIngredient(_ingredient.ThisIngredient);
+            RemoveIngredient(_ingredient.ThisIngredient, _ingredient.IngColor);
         }
 
     }
-    void AddIngredient(Ingredients ingredient)
+    void AddIngredient(Ingredients ingredient, Color ingColor)
     {
         IngredientsInCauldron.Add(ingredient);
+        colorList.Add(ingColor);
+        //IngredientIn?.Invoke(colorList);
+        IngredientIn?.Invoke(ingColor);
 
         Debug.Log(ingredient);
     }
 
-    void RemoveIngredient(Ingredients ingredient)
+    void RemoveIngredient(Ingredients ingredient, Color ingColor)
     {
         IngredientsInCauldron.Remove(ingredient);
+        colorList.Remove(ingColor);
 
         Debug.Log(ingredient);
     }
@@ -69,6 +76,8 @@ public class Cauldron : MonoBehaviour
 
         //Reset lists
         IngredientsInCauldron.Clear();
+        colorList.Clear();
+        ClearCauldron?.Invoke();
     }
 
     #region Recipe stuff

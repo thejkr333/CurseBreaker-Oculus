@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThisIngredient: 0
+  IngColor: {r: 0.19089936, g: 0.5471698, b: 0.080010675, a: 1}
   SellCost: 4
   BuyCost: 4
 --- !u!114 &7149134073583334071

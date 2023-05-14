@@ -7,6 +7,7 @@ public enum Ingredients { AngelLeaf, Mandrake, WolfsBane, CorkWood, Nightshade, 
 public class Ingredient : MonoBehaviour
 {
     [HideInInspector] public Ingredients ThisIngredient;
+    public Color IngColor;
     Outline outline;
 
     public int SellCost = 4;
