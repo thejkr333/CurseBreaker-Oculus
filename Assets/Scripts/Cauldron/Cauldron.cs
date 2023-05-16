@@ -8,6 +8,7 @@ public class Cauldron : MonoBehaviour
     public static Action<Color> IngredientIn;
     public static Action ClearCauldron;
     List<Color> colorList = new();
+    public bool PotionDone;
 
     public List<Ingredients> IngredientsInCauldron = new ();
     //[SerializeField] Recipe[] recipes;
@@ -16,6 +17,7 @@ public class Cauldron : MonoBehaviour
     private void Start()
     {
         AudioManager.Instance.PlaySoundStatic("fire_crackling", transform.position);
+        StirringStick.PotionFinished += SetPotionDone;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -46,18 +48,15 @@ public class Cauldron : MonoBehaviour
     {
         IngredientsInCauldron.Add(ingredient);
         colorList.Add(ingColor);
+        PotionDone = false;
         //IngredientIn?.Invoke(colorList);
         IngredientIn?.Invoke(ingColor);
-
-        Debug.Log(ingredient);
     }
 
     void RemoveIngredient(Ingredients ingredient, Color ingColor)
     {
         IngredientsInCauldron.Remove(ingredient);
         colorList.Remove(ingColor);
-
-        Debug.Log(ingredient);
     }
 
     public void StirCauldron(bool success = true)
@@ -77,6 +76,17 @@ public class Cauldron : MonoBehaviour
         //Reset lists
         IngredientsInCauldron.Clear();
         colorList.Clear();
+        ClearCauldron?.Invoke();
+    }
+
+    void SetPotionDone()
+    {
+        PotionDone = true;
+    }
+
+    public void ResetCauldron()
+    {
+        PotionDone = false;
         ClearCauldron?.Invoke();
     }
 

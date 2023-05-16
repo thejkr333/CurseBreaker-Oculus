@@ -36,10 +36,12 @@ public class AudioManager : MonoBehaviour
 
     public List<Sound> Sounds = new List<Sound>();
     public List<MusicTrack> Music = new List<MusicTrack>();
+    public List<MusicTrack> EasterEggs = new List<MusicTrack>();
 
     private Dictionary<string, AudioSource> soundSources = new Dictionary<string, AudioSource>();
     private Dictionary<string, AudioClip> musicClips = new Dictionary<string, AudioClip>();
-    private AudioSource musicSource;
+    private Dictionary<string, AudioClip> easterEggClips = new Dictionary<string, AudioClip>();
+    private AudioSource musicSource, easterEggSource;
 
     [Range(0f, 1f)]
     public float MusicVolume = 1f;
@@ -83,17 +85,25 @@ public class AudioManager : MonoBehaviour
             soundSources[sound.Name] = _source;
         }
 
-        // Create AudioSources for each Sound object
+        // Initialize musicSource
         foreach (MusicTrack music in Music)
         {
             musicClips[music.Name] = music.Clip;
         }
-
-        // Initialize musicSource
         musicSource = gameObject.AddComponent<AudioSource>();
-        musicSource.loop = true; 
-        musicSource.volume = 1f; 
+        musicSource.loop = true;
+        musicSource.volume = 1f;
         musicSource.pitch = 1f;
+
+        // Initialize easterEggSource
+        foreach (MusicTrack easterEgg in EasterEggs)
+        {
+            easterEggClips[easterEgg.Name] = easterEgg.Clip;
+        }
+        easterEggSource = gameObject.AddComponent<AudioSource>();
+        easterEggSource.loop = false;
+        easterEggSource.volume = 1f;
+        easterEggSource.pitch = 1f;
 
         string _startingMusic = Music[Random.Range(1, Music.Count)].Name;
         PlayMusic(_startingMusic);
@@ -194,16 +204,16 @@ public class AudioManager : MonoBehaviour
             if (musicSource.clip == null)
             {
                 musicSource.clip = musicClips[name];
-                StartCoroutine(FadeAudio(musicSource, MusicVolume));
-                StartCoroutine(PlayNextSong(name));
+                StartCoroutine(FadeAudio(musicSource, MusicVolume, fadeDuration));
+                StartCoroutine(PlayNextSong(name, fadeDuration));
             }
             else if (musicSource.clip != musicClips[name])
             {
-                StartCoroutine(FadeOutMusic(() =>
+                StartCoroutine(FadeOutMusic(musicSource, fadeDuration, () =>
                 {
                     musicSource.clip = musicClips[name];
-                    StartCoroutine(PlayNextSong(name));
-                    StartCoroutine(FadeAudio(musicSource, MusicVolume));
+                    StartCoroutine(PlayNextSong(name, fadeDuration));
+                    StartCoroutine(FadeAudio(musicSource, MusicVolume, fadeDuration));
                 }));
             }
         }
@@ -213,39 +223,39 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeOutMusic(System.Action callback = null)
+    private IEnumerator FadeOutMusic(AudioSource source, float fade, System.Action callback = null)
     {
-        float _startVolume = musicSource.volume;
+        float _startVolume = source.volume;
 
-        while (musicSource.volume > 0)
+        while (source.volume > 0)
         {
-            musicSource.volume -= _startVolume * Time.deltaTime / fadeDuration;
+            source.volume -= _startVolume * Time.deltaTime / fade;
             yield return null;
         }
 
-        musicSource.Stop();
-        musicSource.volume = _startVolume;
+        source.Pause();
+        source.volume = _startVolume;
 
         if (callback != null) callback();
     }
 
-    IEnumerator FadeAudio(AudioSource source, float targetVolume)
+    IEnumerator FadeAudio(AudioSource source, float targetVolume, float fade)
     {
         // Fade in new music
         source.volume = 0f;
         source.Play();
         while (Mathf.Abs(source.volume - targetVolume) > 0.01f)
         {
-            source.volume += Time.deltaTime / fadeDuration;
+            source.volume += Time.deltaTime / fade;
             yield return null;
         }
 
         source.volume = targetVolume;
     }
 
-    IEnumerator PlayNextSong(string currentSong)
+    IEnumerator PlayNextSong(string currentSong, float fade)
     {
-        float timeForNextSong = musicClips[currentSong].length - fadeDuration * 2f;
+        float timeForNextSong = musicClips[currentSong].length - fade * 2f;
 
         yield return new WaitForSeconds(timeForNextSong);
 
@@ -258,6 +268,39 @@ public class AudioManager : MonoBehaviour
 
         PlayMusic(_newSong);
     }
+
+    void StopMusic()
+    {
+        StartCoroutine(FadeOutMusic(musicSource, 1, () =>
+        {
+            StopCoroutine(nameof(PlayNextSong));
+        }));
+    }
+    #endregion
+
+    #region EasterEggs
+    public void PlayEasterEgg(string name)
+    {
+        StopMusic();
+
+        if (easterEggClips.ContainsKey(name))
+        {
+            easterEggSource.clip = easterEggClips[name];
+            StartCoroutine(FadeAudio(easterEggSource, MusicVolume, 1));
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager: EasterEgg not found - " + name);
+        }
+    }
+
+    public void StopEasterEgg()
+    {
+        StartCoroutine(FadeOutMusic(easterEggSource, 1, () =>
+        {
+            musicSource.UnPause();
+        }));
+    }
     #endregion
 
     public void SetMusicVolume(float volume)
@@ -267,6 +310,11 @@ public class AudioManager : MonoBehaviour
         if (musicSource != null)
         {
             musicSource.volume = volume;
+        }
+
+        if(easterEggSource != null)
+        {
+            easterEggSource.volume = volume;
         }
 
         // Save the music volume to PlayerPrefs
@@ -296,6 +344,7 @@ public class AudioManager : MonoBehaviour
         if (isMuted)
         {
             musicSource.Pause();
+            easterEggSource.Pause();
 
             foreach (KeyValuePair<string, AudioSource> sound in soundSources)
             {
@@ -305,6 +354,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             musicSource.UnPause();
+            easterEggSource.UnPause();
 
             foreach (KeyValuePair<string, AudioSource> sound in soundSources)
             {

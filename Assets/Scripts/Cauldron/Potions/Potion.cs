@@ -8,16 +8,13 @@ public class Potion : MonoBehaviour
 
     public List<Elements> PotionElements = new();
 
-    [SerializeField] GameObject elementParticles;
+    [HideInInspector] public GameObject elementParticles;
 
-    [SerializeField] Color fireColor, waterColor, airColor, earthColor, lightColor, darkColor; 
-
-    [SerializeField] Gradient gradient;
-    [SerializeField] List<GradientColorKey> gradientColorKeys = new();
+    [HideInInspector] public Gradient gradient;
+    List<GradientColorKey> gradientColorKeys = new();
     List<GradientAlphaKey> gradientAlphaKeys = new();
 
-    public int Strength;
-    private void Awake()
+    private void Start()
     {
         gradient.mode = GradientMode.Fixed;
     }
@@ -32,33 +29,33 @@ public class Potion : MonoBehaviour
         {
             case "Spell/Fire":
                 PotionElements.Add(Elements.Fire);
-                AddColorToGradient(fireColor);
+                AddColorToGradient(Elements.Fire);
                 break;
 
             case "Spell/Air":
                 PotionElements.Add(Elements.Air);
-                AddColorToGradient(airColor);
+                AddColorToGradient(Elements.Air);
                 break;
 
             case "Spell/Water":
                 PotionElements.Add(Elements.Water);
-                AddColorToGradient(waterColor);
+                AddColorToGradient(Elements.Water);
                 break;
 
             case "Spell/Earth":
                 PotionElements.Add(Elements.Earth);
-                AddColorToGradient(earthColor);
+                AddColorToGradient(Elements.Earth);
                 break;
 
             case "Spell/Light":
                 PotionElements.Add(Elements.Light);
-                AddColorToGradient(lightColor);
+                AddColorToGradient(Elements.Light);
                 break;
 
             case "Spell/Dark":
                 //Darkened= true;
                 PotionElements.Add(Elements.Dark);
-                AddColorToGradient(darkColor);
+                AddColorToGradient(Elements.Dark);
                 break;
 
             default:
@@ -78,10 +75,12 @@ public class Potion : MonoBehaviour
         //PS.shape.meshRenderer = gameObject.GetComponent<MeshRenderer>()
     }
 
-    void AddColorToGradient(Color color)
+    void AddColorToGradient(Elements element)
     {
+        Color _color = Utils.GetElementColor(element);
+
         GradientColorKey key = new GradientColorKey();
-        key.color = color;
+        key.color = _color;
         gradientColorKeys.Add(key);
 
         GradientColorKey[] colorKeys = gradientColorKeys.ToArray();
@@ -113,8 +112,6 @@ public class Potion : MonoBehaviour
             main.startColor = randomColors;
 
             elementParticles.transform.GetChild(i).GetComponent<ParticleSystem>().Play();
-        }
-
-        
+        }       
     }
 }

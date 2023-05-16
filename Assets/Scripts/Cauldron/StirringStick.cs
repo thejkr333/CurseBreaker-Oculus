@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class StirringStick : MonoBehaviour
 
     [SerializeField] SliderController sliderController;
     [SerializeField] float tpDistance;
+
+    public static Action PotionFinished;
     // Start is called before the first frame update
     void Start()
     {
@@ -101,7 +104,8 @@ public class StirringStick : MonoBehaviour
             inCauldron = false;
             GetComponent<Collider>().enabled = false;
             lapCounter = 0;
-            sliderController.StartMinigame();
+            PotionFinished?.Invoke();
+            //sliderController.StartMinigame();
         }
     }
 

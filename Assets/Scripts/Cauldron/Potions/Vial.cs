@@ -7,10 +7,13 @@ public class Vial : MonoBehaviour
     [SerializeField] float timeForCompletion = 1;
     [SerializeField] GameObject liquid;
     SphereCollider sphereCollider;
+
+    [SerializeField] GameObject elementParticles;
+    [SerializeField] Gradient gradient;
     // Start is called before the first frame update
     void Start()
     {
-        sphereCollider = GetComponent<SphereCollider>();    
+        sphereCollider = GetComponent<SphereCollider>();
     }
 
     IEnumerator Co_CheckSubmerge(Collider cauldronCol)
@@ -23,7 +26,6 @@ public class Vial : MonoBehaviour
             if (totallySubmerged)
             {
                 submergeTime += Time.deltaTime;
-                Debug.LogWarning("Submerged for: " + submergeTime + " time");
             }
             else
             {
@@ -31,7 +33,12 @@ public class Vial : MonoBehaviour
             }
             yield return null;
         }
-        liquid.SetActive(true);
+        if (cauldronCol.TryGetComponent(out Cauldron cauldron))
+        {
+            liquid.GetComponent<MeshRenderer>().material.color = Utils.PotionDoneColor;
+            liquid.SetActive(true);
+            ConvertToPotion(cauldron);
+        }
     }
 
     bool CheckBounds(Collider container)
@@ -52,10 +59,21 @@ public class Vial : MonoBehaviour
         return true;
     }
 
+    void ConvertToPotion(Cauldron cauldron)
+    {
+        cauldron.ResetCauldron();
+        Potion _potion = gameObject.AddComponent<Potion>();
+        _potion.CreatePotion(cauldron.IngredientsInCauldron);
+        _potion.elementParticles = elementParticles;
+        _potion.gradient = gradient;
+        this.enabled = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent(out Cauldron cauldron))
         {
+            if (!cauldron.PotionDone) return;
             StartCoroutine(Co_CheckSubmerge(other));
         }
     }

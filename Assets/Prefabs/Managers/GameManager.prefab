@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InMenu: 0
+  NextDayAnimation: 0
   Parla: {fileID: 363216064}
   DayCount: 0
   VRTracking: 0
@@ -116,3 +117,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a84f8373046c99a46b954548cd2b3168, type: 2}
   - {fileID: 2100000, guid: a3212e3faf54aa647981845431ef99bf, type: 2}
   - {fileID: 2100000, guid: 482809f4fbc078f408a6258090462e74, type: 2}
+  elementColors:
+  - {r: 1, g: 0, b: 0, a: 0.627451}
+  - {r: 0, g: 0, b: 1, a: 0.627451}
+  - {r: 1, g: 1, b: 0, a: 0.627451}
+  - {r: 0, g: 1, b: 0, a: 0.627451}
+  - {r: 1, g: 1, b: 1, a: 0.627451}
+  - {r: 0, g: 0, b: 0, a: 0.627451}

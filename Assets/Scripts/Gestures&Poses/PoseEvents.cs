@@ -11,7 +11,7 @@ public class PoseEvents : MonoBehaviour
     [SerializeField] PoseEvents otherHandPoseEvent;
     [SerializeField] bool mainHand;
     public bool DrawingWithThisHand;
-    public enum Poses { Aiming, Grab, OpenHand, SpellSelect, TV, Unknown }
+    public enum Poses { Aiming, Grab, OpenHand, RocknRoll, SpellSelect, TV, Unknown }
     public Poses CurrentPose;
 
     public OVRSkeleton HandSkeleton;
@@ -58,6 +58,8 @@ public class PoseEvents : MonoBehaviour
     [Header("OPENHAND")]
     [SerializeField] bool hasClapped;
     public static Action Clap;
+
+    bool hasRocknRoll;
     void Start()
     {
         poseGrab = HandSkeleton.GetComponent<PoseGrab>();
@@ -151,6 +153,10 @@ public class PoseEvents : MonoBehaviour
                 OpenHand();
                 break;
 
+            case Poses.RocknRoll:
+                RocknRoll();
+                break;
+
             case Poses.SpellSelect:
                 SpellSelect();
                 break;
@@ -163,6 +169,8 @@ public class PoseEvents : MonoBehaviour
                 break;
         }
     }
+
+
     private void FixedUpdate()
     {
         if (attracting)
@@ -174,15 +182,13 @@ public class PoseEvents : MonoBehaviour
     #region Aim
     public void StartAim()
     {
-        if (CurrentPose != Poses.Aiming) StartNewPose(CurrentPose);
+        if (CurrentPose != Poses.Aiming) EndLastPose(CurrentPose);
         else return;
 
         CurrentPose = Poses.Aiming;
 
         //Testing the grab end on another pose
         DrawingWithThisHand = false;
-
-        EndGrab();
 
         //Colour Reset every time you start aiming, just incase it doesnt. at best the line should be blue. might also not change to white as the gradient itself cannot be lerped...
         //Blue[0].color = Color.blue;
@@ -257,7 +263,7 @@ public class PoseEvents : MonoBehaviour
     #region Grab
     public void StartGrab()
     {
-        if (CurrentPose != Poses.Grab) StartNewPose(CurrentPose);
+        if (CurrentPose != Poses.Grab) EndLastPose(CurrentPose);
         else return;
 
         CurrentPose = Poses.Grab;
@@ -423,7 +429,9 @@ public class PoseEvents : MonoBehaviour
     #region OpenHand
     public void StartOpenHand()
     {
-        if (CurrentPose != Poses.OpenHand) StartNewPose(CurrentPose);
+        EndGrab();
+
+        if (CurrentPose != Poses.OpenHand) EndLastPose(CurrentPose);
         else return;
 
         CurrentPose = Poses.OpenHand;
@@ -431,8 +439,6 @@ public class PoseEvents : MonoBehaviour
     }
     void OpenHand()
     {
-        EndGrab();
-
         if (otherHandPoseEvent.CurrentPose != Poses.OpenHand) return;
 
         if (mainHand)
@@ -458,17 +464,45 @@ public class PoseEvents : MonoBehaviour
     }
     #endregion
 
+    #region RocknRoll
+
+    public void StartRocknRoll()
+    {
+        if (CurrentPose != Poses.RocknRoll) EndLastPose(CurrentPose);
+        else return;
+
+        hasRocknRoll = false;
+        CurrentPose = Poses.RocknRoll;
+        Debug.LogWarning($"RocknRoll: {gameObject.name}");
+
+    }
+    private void RocknRoll()
+    {
+        if (otherHandPoseEvent.CurrentPose != Poses.RocknRoll) return;
+
+        if (mainHand && !hasRocknRoll)
+        {
+            hasRocknRoll = true;
+            AudioManager.Instance.PlayEasterEgg("RocknRoll");
+        }
+    }
+
+    void EndRocknRoll()
+    {
+        hasRocknRoll = false;
+        AudioManager.Instance.StopEasterEgg();
+    }
+    #endregion
+
     #region SpellSelect
     public void StartSpellSelect()
     {
-        if (CurrentPose != Poses.SpellSelect) StartNewPose(CurrentPose);
+        if (CurrentPose != Poses.SpellSelect) EndLastPose(CurrentPose);
         else return;
 
         CurrentPose = Poses.SpellSelect;
 
         AudioManager.Instance.PlaySoundDynamic("magic_drawing", drawingFingerTip.gameObject);
-
-        EndGrab();
         DrawingWithThisHand = true;
 
         if (trailRenderer == null) return;
@@ -495,7 +529,7 @@ public class PoseEvents : MonoBehaviour
     #region TV
     public void StartTV()
     {
-        if (CurrentPose != Poses.TV) StartNewPose(CurrentPose);
+        if (CurrentPose != Poses.TV) EndLastPose(CurrentPose);
 
         CurrentPose = Poses.TV;
     }
@@ -597,7 +631,7 @@ public class PoseEvents : MonoBehaviour
         hiddenGO.SetActive(false);
     }
     #endregion
-    void StartNewPose(Poses lastPose)
+    void EndLastPose(Poses lastPose)
     {
         switch (lastPose)
         {
@@ -606,11 +640,15 @@ public class PoseEvents : MonoBehaviour
                 break;
 
             case Poses.Grab:
-                // EndGrab();             
+                //EndGrab();
                 break;
 
             case Poses.OpenHand:
                 EndOpenHand();
+                break;
+
+            case Poses.RocknRoll: 
+                EndRocknRoll(); 
                 break;
 
             case Poses.TV:
@@ -635,6 +673,6 @@ public class PoseEvents : MonoBehaviour
     {
         CurrentPose = Poses.Unknown;
 
-        StartNewPose(CurrentPose);
+        EndLastPose(CurrentPose);
     }
 }

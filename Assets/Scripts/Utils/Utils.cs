@@ -14,10 +14,15 @@ public class Utils: MonoBehaviour
     static Dictionary<Elements, Sprite> elementImage = new();
     [SerializeField] Sprite[] elementSprites;
 
-
     [Header("CURSE MATERIALS")]
-    static Dictionary<Curses, Material>  curseMaterial= new();
+    static Dictionary<Curses, Material> curseMaterial= new();
     [SerializeField] Material[] curseMaterials;
+
+    [Header("POTION")]
+    static Dictionary<Elements, Color> elementColor = new();
+    [SerializeField] Color[] elementColors;
+    [SerializeField] Color potionDoneColor;
+    public static Color PotionDoneColor;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,19 +33,16 @@ public class Utils: MonoBehaviour
         for (int i = 0; i < Enum.GetValues(typeof(Elements)).Length - 1; i++)
         {
             elementImage.Add((Elements)i, elementSprites[i]);
+            elementColor.Add((Elements)i, elementColors[i]);
         }
         for (int i = 0; i < Enum.GetValues(typeof(Curses)).Length; i++)
         {
             curseImage.Add((Curses)i, curseSprites[i]);
             curseMaterial.Add((Curses)i, curseMaterials[i]);
         }
+
+        PotionDoneColor = potionDoneColor;
     }
-
-    private void Start()
-    {
-
-    }
-
 
     static public Sprite GetCurseSprite(Curses curse)
     {
@@ -70,5 +72,15 @@ public class Utils: MonoBehaviour
             return null;
         }
         return curseMaterial[curse];
+    }
+
+    static public Color GetElementColor(Elements element)
+    {
+        if (!elementColor.ContainsKey(element) || element == Elements.Void)
+        {
+            Debug.LogError("element color not assigned");
+            return Color.black;
+        }
+        return elementColor[element];
     }
 }

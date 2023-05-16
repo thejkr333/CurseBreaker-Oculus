@@ -13,6 +13,7 @@ public class ChangeColor : MonoBehaviour
         //Cauldron.IngredientIn += CombineColors;
         Cauldron.IngredientIn += NewTargetColor;
         Cauldron.ClearCauldron += ResetColor;
+        StirringStick.PotionFinished += FinishedPotion;
 
         if (TryGetComponent(out MeshRenderer meshRenderer))
         {
@@ -43,6 +44,11 @@ public class ChangeColor : MonoBehaviour
         StartCoroutine(Co_ChangeColors(targetColor));
     }
 
+    void FinishedPotion()
+    {
+        NewTargetColor(Utils.PotionDoneColor); 
+    }
+
     void CombineColors(List<Color> colors)
     {
         targetColor = new Color(0, 0, 0, 0);
@@ -57,6 +63,6 @@ public class ChangeColor : MonoBehaviour
 
     void ResetColor()
     {
-        material.color = initialColor;
+        NewTargetColor(initialColor);
     }
 }

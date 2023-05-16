@@ -141,12 +141,28 @@ MonoBehaviour:
     SpatialBlend: 0.5
     MaxDistance: 500
     RolloffMode: 0
-  - Name: PopBubble
-    Clip: {fileID: 8300000, guid: bdb9418a51b170246a260a59ac0d9db0, type: 3}
-    Volume: 0.7
+  - Name: SmokePuff
+    Clip: {fileID: 8300000, guid: 49bce7338065c554681622144557e629, type: 3}
+    Volume: 1
     Pitch: 1
     Loop: 0
-    SpatialBlend: 0.5
+    SpatialBlend: 0
+    MaxDistance: 500
+    RolloffMode: 0
+  - Name: Wolfus
+    Clip: {fileID: 8300000, guid: e12374133698da443bca4ec90bc87777, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0
+    MaxDistance: 500
+    RolloffMode: 0
+  - Name: Gassle
+    Clip: {fileID: 8300000, guid: 184e09897814eb54eba4ba7b5552596f, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0
     MaxDistance: 500
     RolloffMode: 0
   Music:
@@ -162,6 +178,11 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: d7861f6d2f2c6de4bbd4531962618b4a, type: 3}
   - Name: gameplay_music_5
     Clip: {fileID: 8300000, guid: 46939e7649601ee45b206b603bf32dd0, type: 3}
+  EasterEggs:
+  - Name: RocknRoll
+    Clip: {fileID: 8300000, guid: d7e1842c0215a29419143a4df765671b, type: 3}
+  - Name: Sans
+    Clip: {fileID: 8300000, guid: ec5e876acf721e143b8f1333261147c4, type: 3}
   MusicVolume: 1
   SfxVolume: 1
   fadeDuration: 10
