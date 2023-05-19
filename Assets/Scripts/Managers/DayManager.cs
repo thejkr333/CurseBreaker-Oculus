@@ -153,15 +153,15 @@ public class DayManager : MonoBehaviour
     IEnumerator Co_ChangeLights()
     {
         Light[] _changeLights = FindObjectsOfType<Light>();
-        Light[] _initialSceneLightValues = new Light[_changeLights.Length];
-        _changeLights.CopyTo(_initialSceneLightValues, 0);
+        float[] _intensities = new float[_changeLights.Length];
+        Color[] _colors = new Color[_changeLights.Length];
 
-        //for (int i = 0; i < _changeLights.Length; i++)
-        //{
-        //    _initialSceneLightValues[i].intensity = _changeLights[i].intensity;
-        //    _initialSceneLightValues[i].color = _changeLights[i].color;
-        //    yield return null;
-        //}
+        for (int i = 0; i < _changeLights.Length; i++)
+        {
+            _intensities[i] = _changeLights[i].intensity;
+            _colors[i] = _changeLights[i].color;
+            yield return null;
+        }
 
         bool _intensityReached = false;
         while(!_intensityReached)
@@ -185,7 +185,9 @@ public class DayManager : MonoBehaviour
             yield return null;
         }
       
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(30);
+
+        AudioManager.Instance.StopEasterEgg();
 
         _intensityReached = false;
         while (!_intensityReached)
@@ -193,9 +195,9 @@ public class DayManager : MonoBehaviour
             _intensityReached = true;
             for (int i = 0; i < _changeLights.Length; i++)
             {
-                _changeLights[i].color = _initialSceneLightValues[i].color;
+                _changeLights[i].color = _colors[i];
 
-                if (_changeLights[i].intensity < _initialSceneLightValues[i].intensity)
+                if (_changeLights[i].intensity < _intensities[i])
                 {
                     _changeLights[i].intensity += Time.deltaTime;
                 }
@@ -204,11 +206,9 @@ public class DayManager : MonoBehaviour
                     _changeLights[i].intensity -= Time.deltaTime;
                 }
 
-                if (Mathf.Abs(_changeLights[i].intensity - _initialSceneLightValues[i].intensity) > .01f) _intensityReached = false;
+                if (Mathf.Abs(_changeLights[i].intensity - _intensities[i]) > .01f) _intensityReached = false;
             }
             yield return null;
         }
-
-        AudioManager.Instance.StopEasterEgg();
     }
 }
