@@ -82,9 +82,9 @@ public class Noise : MonoBehaviour
         if (!floatOnZ) _noiseZ = 0;
 
         transform.position = new Vector3(
-            initialPosition.x + (_noiseX * noiseMultiplier),
-            initialPosition.y + (_noiseY * noiseMultiplier),
-            initialPosition.z + (_noiseZ * noiseMultiplier));  //Set de la posición
+            initialPosition.x + (_noiseX * noiseMultiplier * beginMultiplier),
+            initialPosition.y + (_noiseY * noiseMultiplier * beginMultiplier),
+            initialPosition.z + (_noiseZ * noiseMultiplier * beginMultiplier));  //Set de la posición
         #endregion
 
         #region Gestion del estado del incrmento
