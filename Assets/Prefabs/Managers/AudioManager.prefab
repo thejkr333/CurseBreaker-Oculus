@@ -183,6 +183,8 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: d7e1842c0215a29419143a4df765671b, type: 3}
   - Name: Sans
     Clip: {fileID: 8300000, guid: ec5e876acf721e143b8f1333261147c4, type: 3}
+  - Name: Fabrice
+    Clip: {fileID: 8300000, guid: 541a98e21d9045540a02620e9b060d0d, type: 3}
   MusicVolume: 1
   SfxVolume: 1
   fadeDuration: 10
