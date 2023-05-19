@@ -294,8 +294,15 @@ public class PoseEvents : MonoBehaviour
             if (ingredient.transform != null)
             {
                 Bubble _bubble = ingredient.GetComponentInParent<Bubble>();
-                _bubble.Pop();
-                attractedObjRb.transform.SetParent(null);
+                if(_bubble != null)
+                {
+                    _bubble.Pop();
+                    attractedObjRb.transform.SetParent(null);
+                }
+                else
+                {
+
+                }
             }
 
             attractedObjRb.isKinematic = false;
