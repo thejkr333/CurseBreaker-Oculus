@@ -112,9 +112,8 @@ public class DayManager : MonoBehaviour
         else
         {
             currentCustomer = Instantiate(customerPrefab);
-            currentCustomer.GetComponent<CustomerFloat>().spawn = customerPosition;
         }
-
+        currentCustomer.GetComponent<CustomerFloat>().spawn = customerPosition;
         CustomerIn(currentCustomer);
 
         nextCustomer?.Invoke();
