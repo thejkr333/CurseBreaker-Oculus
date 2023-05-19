@@ -21,6 +21,9 @@ public class Customer : MonoBehaviour
     public Dictionary<LimbsList, Elements> LimbToElementMapping = new();
     public Dictionary<Elements, LimbsList> ElementToLimbMapping = new();
 
+    [SerializeField] GameObject successParticle;
+    [SerializeField] GameObject failParticle;
+
     int numberOfPartsAffected;
 
     bool cured;
@@ -33,6 +36,7 @@ public class Customer : MonoBehaviour
     [SerializeField] GameObject canvas;
     public Dictionary<Curses, CurseUI> CursesStrength = new();
     public Dictionary<LimbsList, bool> affectedLimbsInfo = new();
+
 
     PlayCurseSound curseSound;
     private void Awake()
@@ -323,6 +327,7 @@ public class Customer : MonoBehaviour
     void Cured()
     {
         cured = true;
+        SpawnParticle(successParticle);
         DayManager.Instance.CustomerCured();
 
         //DayManager.Instance.NextCustomer();
@@ -353,12 +358,14 @@ public class Customer : MonoBehaviour
                                 //potion too strong
                                 CursesStrength[_curse.CurrentCurse].Strength = _strengthDiff;
                                 Chances--;
+                                SpawnParticle(failParticle);
                             }
                             else if (_strengthDiff < 0)
                             {
                                 //potion too weak
                                 CursesStrength[_curse.CurrentCurse].Strength = -_strengthDiff;
                                 Chances--;
+                                SpawnParticle(failParticle);
                             }
                             else
                             {
@@ -366,6 +373,7 @@ public class Customer : MonoBehaviour
                                 limb.Cured = true;
                                 affectedLimbsInfo[limb.LimbName] = false;
                                 limb.AffectedLimbGO.SetActive(false);
+                                SpawnParticle(successParticle);
                             }
                         }
                     }
@@ -374,12 +382,14 @@ public class Customer : MonoBehaviour
             }
             if (!_affected)
             {
+                SpawnParticle(failParticle);
                 foreach (var limb in affectedLimbsInfo.Keys)
                 {
                     if (affectedLimbsInfo[limb]) continue;
 
                     if (ElementToLimbMapping[element] == limb)
                     {
+                        
                         //Means the targeted limb doesn't have a curse on it. Affect negatively
                         //Give the limb a random curse from the main curses of the ingredients
                         Curses _curseToGive = CreateRandomUnlockedCurse();
@@ -456,5 +466,14 @@ public class Customer : MonoBehaviour
             GetPotion(_potion);
             GameManager.Instance.DestroyGrabbedThings(_potion.gameObject);
         }
+    }
+
+  
+    void SpawnParticle(GameObject Particle)
+    {
+        GameObject _currentParticle = Particle;
+        _currentParticle = Instantiate(successParticle, gameObject.transform);
+
+        Destroy(_currentParticle, 2f);
     }
 }
