@@ -1265,7 +1265,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2f0310b887d84c84285f8400b3c8be77, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 232475a600ee04f4ca4ec146b2dfe9c8, type: 2}
+      objectReference: {fileID: 2100000, guid: 87a9688db4a10b34b8efdf30149cd203, type: 2}
     - target: {fileID: 919132149155446097, guid: 2f0310b887d84c84285f8400b3c8be77, type: 3}
       propertyPath: m_Name
       value: BookStand_InfoPages
