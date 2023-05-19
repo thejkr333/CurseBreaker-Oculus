@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 5686877374858729642}
   - component: {fileID: 7516161657088053145}
   - component: {fileID: 5569194690607687152}
+  - component: {fileID: -5225318376394348429}
+  - component: {fileID: 568208189477787185}
   m_Layer: 3
   m_Name: FullDemonitis
   m_TagString: Untagged
@@ -107,6 +109,39 @@ MonoBehaviour:
   endFloatDistance: 1
   Attracted: 0
   dragSpeed: 0
+--- !u!114 &-5225318376394348429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5686877374858729641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints:
+  - {fileID: 568208189477787185}
+  m_grabbedBy: {fileID: 0}
+--- !u!136 &568208189477787185
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5686877374858729641}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.08
+  m_Height: 0.3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5686877375043828196
 GameObject:
   m_ObjectHideFlags: 0

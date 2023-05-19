@@ -6093,42 +6093,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 425176510010751329, guid: 96a20a49148364544bd51875502b5f12, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 425176510010751329, guid: 96a20a49148364544bd51875502b5f12, type: 3}
-      propertyPath: m_FlipY
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 425176510010751329, guid: 96a20a49148364544bd51875502b5f12, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 425176510010751329, guid: 96a20a49148364544bd51875502b5f12, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 425176510010751329, guid: 96a20a49148364544bd51875502b5f12, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 425176510010751329, guid: 96a20a49148364544bd51875502b5f12, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 425176510010751329, guid: 96a20a49148364544bd51875502b5f12, type: 3}
-      propertyPath: m_DrawMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 425176510010751329, guid: 96a20a49148364544bd51875502b5f12, type: 3}
-      propertyPath: m_MaskInteraction
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 425176510010751329, guid: 96a20a49148364544bd51875502b5f12, type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2167319739113408528, guid: 96a20a49148364544bd51875502b5f12, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -6176,18 +6140,6 @@ PrefabInstance:
     - target: {fileID: 2167319739113408533, guid: 96a20a49148364544bd51875502b5f12, type: 3}
       propertyPath: m_Name
       value: Void
-      objectReference: {fileID: 0}
-    - target: {fileID: 2167319739113408535, guid: 96a20a49148364544bd51875502b5f12, type: 3}
-      propertyPath: ShapeModule.type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2167319739113408535, guid: 96a20a49148364544bd51875502b5f12, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 2167319739113408535, guid: 96a20a49148364544bd51875502b5f12, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.a
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96a20a49148364544bd51875502b5f12, type: 3}
