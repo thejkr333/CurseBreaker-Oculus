@@ -73,6 +73,7 @@ public class BubbleManager : MonoBehaviour
 
     public void PopBubble(Ingredients ingredient)
     {
+
         if(ingredientsBubble.TryGetValue(ingredient, out GameObject ingredientGO))
         {
             for (int i = 0; i < maxNumBubbles; i++)
@@ -80,6 +81,7 @@ public class BubbleManager : MonoBehaviour
                 if (bubbles[i].GetComponent<Bubble>().IngredientInside.ThisIngredient == ingredient)
                 {
                     AudioManager.Instance.PlaySoundStatic("PopBubble", bubbles[i].transform.position);
+                    PointingParticlesManager.Instance.StopEmitting();
                     Destroy(bubbles[i]);
                     bubbles[i] = Instantiate(bubblePrefab);
                     SetBubble(ref bubbles[i], ingredientGO);
