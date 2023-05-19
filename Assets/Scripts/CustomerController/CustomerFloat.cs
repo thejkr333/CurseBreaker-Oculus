@@ -40,6 +40,7 @@ public class CustomerFloat : MonoBehaviour
         }
 
         rb.useGravity = false;
+        rb.velocity = Vector3.zero;
         tr.eulerAngles = new Vector3(0, spawn.eulerAngles.y, 0);
 
         float _distanceToTarget = Vector3.Distance(tr.position, spawn.position);
