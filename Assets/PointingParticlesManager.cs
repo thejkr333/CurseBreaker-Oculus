@@ -31,8 +31,8 @@ public class PointingParticlesManager : MonoBehaviour
         destination.transform.parent = handAttracting.transform;
         destination.transform.localPosition = Vector3.zero;
 
-
-        transform.SetParent(objectAttracted.transform, true);
+        Transform parentTransform = (objectAttracted.GetComponent<Ingredient>() && objectAttracted.transform.parent) ? objectAttracted.transform.parent.transform : objectAttracted.transform;
+        transform.SetParent(parentTransform, true);
         transform.localPosition = Vector3.zero;
 
         transform.LookAt(handAttracting.transform.position);
