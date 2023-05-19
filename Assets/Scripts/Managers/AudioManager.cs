@@ -134,13 +134,30 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlaySoundStaticAtTime(string name, Vector3 position, float timePercentage, float pitch = 1f)
+    {
+        if (soundSources.ContainsKey(name))
+        {
+            AudioSource _source = soundSources[name];
+            _source.transform.position = position;
+            _source.volume = SfxVolume;
+            _source.pitch = pitch;
+            _source.time = timePercentage * soundSources[name].clip.length;
+            _source.Play();
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager: Sound not found - " + name);
+        }
+    }
+
     public void PlaySoundDynamic(string name, GameObject followObject, float pitch = 1)
     {
         if (soundSources.ContainsKey(name))
         {
             if (followObject == null) return;
 
-            if (!followObject.TryGetComponent<AudioSource>(out AudioSource _source))
+            if (!followObject.TryGetComponent(out AudioSource _source))
             {
                 _source = followObject.AddComponent<AudioSource>();
             }
@@ -163,6 +180,19 @@ public class AudioManager : MonoBehaviour
         else
         {
             Debug.LogWarning("AudioManager: Sound not found - " + name);
+        }
+    }
+
+    public bool IsSoundPlaying(string name)
+    {
+        if (soundSources.ContainsKey(name))
+        {
+            return soundSources[name].isPlaying;
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager: Sound not found - " + name);
+            return false;
         }
     }
 

@@ -26,10 +26,12 @@ public class Vial : MonoBehaviour
             if (totallySubmerged)
             {
                 submergeTime += Time.deltaTime;
+                if(!AudioManager.Instance.IsSoundPlaying("Fill_Potion")) 
+                    AudioManager.Instance.PlaySoundStaticAtTime("Fill_Potion", transform.position, (submergeTime / timeForCompletion) * .01f);
             }
             else
             {
-                //submergeTime = 0;
+                if(AudioManager.Instance.IsSoundPlaying("Fill_Potion")) AudioManager.Instance.StopSound("Fill_Potion");
             }
             yield return null;
         }
