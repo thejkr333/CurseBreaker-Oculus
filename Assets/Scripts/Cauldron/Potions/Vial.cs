@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class Vial : MonoBehaviour
 
     [SerializeField] GameObject elementParticles;
     [SerializeField] Gradient gradient;
+
+    public Action onDestroy;
     // Start is called before the first frame update
     void Start()
     {
@@ -86,5 +89,10 @@ public class Vial : MonoBehaviour
         {
             StopCoroutine(Co_CheckSubmerge(other));
         }
+    }
+
+    private void OnDestroy()
+    {
+        onDestroy?.Invoke();
     }
 }
