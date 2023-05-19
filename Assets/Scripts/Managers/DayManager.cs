@@ -139,7 +139,7 @@ public class DayManager : MonoBehaviour
 
         //customersToday[customerIndex].transform.position = customerPosition.position;
         //customersToday[customerIndex].transform.eulerAngles = new Vector3(0, customerPosition.eulerAngles.y, 0); 
-        currentCustomer.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        if (currentCustomer.TryGetComponent(out Rigidbody rb)) rb.velocity = Vector3.zero;
         currentCustomer.transform.position = customerPosition.position;
         currentCustomer.transform.eulerAngles = new Vector3(0, customerPosition.eulerAngles.y, 0);
     }
@@ -210,5 +210,7 @@ public class DayManager : MonoBehaviour
             }
             yield return null;
         }
+
+        NextCustomer();
     }
 }
