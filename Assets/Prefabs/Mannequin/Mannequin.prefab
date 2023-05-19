@@ -414,7 +414,7 @@ MonoBehaviour:
   startFloatDistance: 0.001
   endFloatDistance: 1
   Attracted: 0
-  dragSpeed: 0
+  dragSpeed: 1
 --- !u!114 &1781657405492289093
 MonoBehaviour:
   m_ObjectHideFlags: 0
