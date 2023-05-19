@@ -13,6 +13,7 @@ public class CustomerFloat : MonoBehaviour
     [SerializeField] private float speed = .5f, startFloatDistance = .5f, endFloatDistance = 5;
     public bool Attracted;
 
+    [SerializeField] float dragSpeed;
     private void Awake()
     {
         noise = GetComponent<Noise>();
@@ -40,7 +41,19 @@ public class CustomerFloat : MonoBehaviour
         }
 
         rb.useGravity = false;
-        rb.velocity = Vector3.zero;
+        float x, y, z;
+        if(rb.velocity.magnitude > 0)
+        {
+            if (rb.velocity.x > 0) x = -Time.deltaTime;
+            else x = Time.deltaTime;
+            if(rb.velocity.y > 0) y = -Time.deltaTime;
+            else y = Time.deltaTime;
+            if (rb.velocity.z > 0) z = -Time.deltaTime;
+            else z = Time.deltaTime;
+
+            Vector3 subs = new Vector3(x, y, z);
+            rb.velocity += subs * dragSpeed;
+        }
         tr.eulerAngles = new Vector3(0, spawn.eulerAngles.y, 0);
 
         float _distanceToTarget = Vector3.Distance(tr.position, spawn.position);
