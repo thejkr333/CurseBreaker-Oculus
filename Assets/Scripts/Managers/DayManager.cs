@@ -152,8 +152,16 @@ public class DayManager : MonoBehaviour
 
     IEnumerator Co_ChangeLights()
     {
-        Light[] _initialSceneLightValues = FindObjectsOfType<Light>();
-        Light[] _changeLights = _initialSceneLightValues;
+        Light[] _changeLights = FindObjectsOfType<Light>();
+        Light[] _initialSceneLightValues = new Light[_changeLights.Length];
+        _changeLights.CopyTo(_initialSceneLightValues, 0);
+
+        //for (int i = 0; i < _changeLights.Length; i++)
+        //{
+        //    _initialSceneLightValues[i].intensity = _changeLights[i].intensity;
+        //    _initialSceneLightValues[i].color = _changeLights[i].color;
+        //    yield return null;
+        //}
 
         bool _intensityReached = false;
         while(!_intensityReached)
@@ -177,7 +185,7 @@ public class DayManager : MonoBehaviour
             yield return null;
         }
       
-        yield return new WaitForSeconds(30);
+        yield return new WaitForSeconds(10);
 
         _intensityReached = false;
         while (!_intensityReached)
