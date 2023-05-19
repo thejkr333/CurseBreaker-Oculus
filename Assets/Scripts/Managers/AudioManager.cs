@@ -311,10 +311,10 @@ public class AudioManager : MonoBehaviour
     #region EasterEggs
     public void PlayEasterEgg(string name)
     {
-        StopMusic();
-
         if (easterEggClips.ContainsKey(name))
         {
+            if (easterEggSource.isPlaying) return;
+            StopMusic();
             easterEggSource.clip = easterEggClips[name];
             StartCoroutine(FadeAudio(easterEggSource, MusicVolume, 1));
         }

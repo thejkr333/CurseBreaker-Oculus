@@ -3084,6 +3084,8 @@ MonoBehaviour:
   dayCanvas: {fileID: 420153400}
   dayText: {fileID: 686202601}
   SunState: 0
+  demonitisEasterEggProb: 90
+  demonitisEasterEggPrefab: {fileID: 5686877374858729641, guid: 3ec72b5c8d7ebaf48a59d112e1a20dfb, type: 3}
 --- !u!1 &825041276
 GameObject:
   m_ObjectHideFlags: 0

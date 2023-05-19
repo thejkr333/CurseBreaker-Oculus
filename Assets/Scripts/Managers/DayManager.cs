@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -22,6 +23,9 @@ public class DayManager : MonoBehaviour
 
     public int SunState;
     public Action customerCured, nextCustomer, customerOut;
+
+    [SerializeField] int demonitisEasterEggProb = 1;
+    [SerializeField] GameObject demonitisEasterEggPrefab;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -35,10 +39,14 @@ public class DayManager : MonoBehaviour
 
         dayCanvas.SetActive(false);
         //GameManager.Instance.OnNewDay += NewDay;
+        //GameManager.Instance.NextDay();
+    }
+
+    private void Start()
+    {
         currentCustomer = Instantiate(customerPrefab);
         currentCustomer.GetComponent<CustomerFloat>().spawn = customerPosition;
         CustomerIn(currentCustomer);
-        //GameManager.Instance.NextDay();
     }
 
     private void Update()
@@ -93,8 +101,20 @@ public class DayManager : MonoBehaviour
 
         //if (customerIndex++ == NUMBEROFCUSTOMERSPERDAY - 1) CustomersFinished?.Invoke();
         //else CustomerIn(customersToday[customerIndex]);
-        currentCustomer = Instantiate(customerPrefab);
-        currentCustomer.GetComponent<CustomerFloat>().spawn = customerPosition;
+
+        if (UnityEngine.Random.Range(1, 101) <= demonitisEasterEggProb)
+        {
+            currentCustomer = Instantiate(demonitisEasterEggPrefab);
+            currentCustomer.transform.position = customerPosition.position;
+            AudioManager.Instance.PlayEasterEgg("Sans");
+            StartCoroutine(nameof(Co_ChangeLights));
+        }
+        else
+        {
+            currentCustomer = Instantiate(customerPrefab);
+            currentCustomer.GetComponent<CustomerFloat>().spawn = customerPosition;
+        }
+
         CustomerIn(currentCustomer);
 
         nextCustomer?.Invoke();
@@ -108,7 +128,7 @@ public class DayManager : MonoBehaviour
 
     void CustomerIn(GameObject customer)
     {
-        customer.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        if(customer.TryGetComponent(out Rigidbody rb)) rb.velocity = Vector3.zero;
         customer.transform.position = customerPosition.position;
         customer.transform.eulerAngles = new Vector3(0, customerPosition.eulerAngles.y, 0);
     }
@@ -128,5 +148,59 @@ public class DayManager : MonoBehaviour
     {
         customerCured?.Invoke();
         Invoke(nameof(NextCustomer), 2);
+    }
+
+    IEnumerator Co_ChangeLights()
+    {
+        Light[] _initialSceneLightValues = FindObjectsOfType<Light>();
+        Light[] _changeLights = _initialSceneLightValues;
+
+        bool _intensityReached = false;
+        while(!_intensityReached)
+        {
+            _intensityReached = true;
+            for (int i = 0; i < _changeLights.Length; i++)
+            {
+                _changeLights[i].color = Color.red;
+
+                if (_changeLights[i].intensity < 2)
+                {
+                    _changeLights[i].intensity += Time.deltaTime;
+                }
+                else
+                {
+                    _changeLights[i].intensity -= Time.deltaTime;
+                }
+
+                if (Mathf.Abs(_changeLights[i].intensity - 2) > .1f) _intensityReached = false;
+            }
+            yield return null;
+        }
+      
+        yield return new WaitForSeconds(30);
+
+        _intensityReached = false;
+        while (!_intensityReached)
+        {
+            _intensityReached = true;
+            for (int i = 0; i < _changeLights.Length; i++)
+            {
+                _changeLights[i].color = _initialSceneLightValues[i].color;
+
+                if (_changeLights[i].intensity < _initialSceneLightValues[i].intensity)
+                {
+                    _changeLights[i].intensity += Time.deltaTime;
+                }
+                else
+                {
+                    _changeLights[i].intensity -= Time.deltaTime;
+                }
+
+                if (Mathf.Abs(_changeLights[i].intensity - _initialSceneLightValues[i].intensity) > .01f) _intensityReached = false;
+            }
+            yield return null;
+        }
+
+        AudioManager.Instance.StopEasterEgg();
     }
 }

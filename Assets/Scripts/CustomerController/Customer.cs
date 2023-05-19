@@ -30,14 +30,13 @@ public class Customer : MonoBehaviour
 
     [SerializeField] GameObject curseUIPrefab;
 
-    GameObject canvas;
+    [SerializeField] GameObject canvas;
     public Dictionary<Curses, CurseUI> CursesStrength = new();
     public Dictionary<LimbsList, bool> affectedLimbsInfo = new();
 
     PlayCurseSound curseSound;
     private void Awake()
     {
-        canvas = GetComponentInChildren<Canvas>().gameObject;
         curseSound = GetComponent<PlayCurseSound>();    
 
         foreach (LimbsList limb in Enum.GetValues(typeof(LimbsList)))
