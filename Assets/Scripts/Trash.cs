@@ -11,7 +11,7 @@ public class Trash : MonoBehaviour
         Destroy(other.gameObject);*/
         if (other.TryGetComponent(out Trashable trashable))
         {
-            if(other.GetComponent<Trashable>().trashable == true) Destroy(other.gameObject);
+            if(other.GetComponent<Trashable>().CanBeDestroyed == true) Destroy(other.gameObject);
         }
         
     }

@@ -5,13 +5,11 @@ using UnityEngine;
 //the entire script is here just to avoid accidentally breaking the grabbing incase your hand somehow enters the bin while holding the object
 public class Trashable : MonoBehaviour
 {
-    private BoxCollider collider;
     private OVRGrabbable ovrgrab;
-    public bool trashable;
+    public bool CanBeDestroyed;
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<BoxCollider>();
         ovrgrab = GetComponent<OVRGrabbable>();
     }
 
@@ -20,7 +18,6 @@ public class Trashable : MonoBehaviour
     {
         if (ovrgrab == null) return;
 
-        if (ovrgrab.isGrabbed != true) trashable = true;
-        else trashable = false;
+        CanBeDestroyed = !ovrgrab.isGrabbed;
     }
 }
