@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b548f5fdddf5585499cb96eee069a984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashable: 0
+  CanBeDestroyed: 0
 --- !u!114 &-887117729018255377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThisIngredient: 0
-  IngColor: {r: 0.35686275, g: 0.11764707, b: 0.32156864, a: 1}
+  IngColor: {r: 0.5568628, g: 0.09411766, b: 0.6, a: 1}
   SellCost: 4
   BuyCost: 4
 --- !u!1001 &6372491362529401037

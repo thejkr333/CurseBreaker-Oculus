@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b548f5fdddf5585499cb96eee069a984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashable: 0
+  CanBeDestroyed: 0
 --- !u!114 &8802034711361053259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThisIngredient: 0
-  IngColor: {r: 0.28832805, g: 0.23268954, b: 0.5943396, a: 1}
+  IngColor: {r: 0.2901961, g: 0.23137257, b: 0.59607846, a: 1}
   SellCost: 4
   BuyCost: 4
 --- !u!4 &6891262858591904113 stripped
