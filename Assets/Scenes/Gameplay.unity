@@ -1366,7 +1366,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &347520940
 GameObject:
@@ -1962,7 +1962,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &467019865
 MonoBehaviour:
@@ -1976,7 +1976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07081c5a4c6f0041a7214f854d71038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 0.7
+  range: 2
   attractionForce: 8
   destructionParticles: {fileID: 6186746426463999555, guid: e84f70cd308367b4294ba9eda14b9f0f, type: 3}
 --- !u!1 &486210153
@@ -4308,6 +4308,30 @@ PrefabInstance:
       propertyPath: potionDoneColor.r
       value: 0.8396226
       objectReference: {fileID: 0}
+    - target: {fileID: 1117866471, guid: 6595d9cd2f5ff804a9372e2c2621a5dc, type: 3}
+      propertyPath: elementSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2a12f40a7c291cd4c94ba05c65febe5b, type: 3}
+    - target: {fileID: 1117866471, guid: 6595d9cd2f5ff804a9372e2c2621a5dc, type: 3}
+      propertyPath: elementSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 28794c599f0092249b535f3f590517c7, type: 3}
+    - target: {fileID: 1117866471, guid: 6595d9cd2f5ff804a9372e2c2621a5dc, type: 3}
+      propertyPath: elementSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: c40b7b92872eee04684e32b73f6e4ed3, type: 3}
+    - target: {fileID: 1117866471, guid: 6595d9cd2f5ff804a9372e2c2621a5dc, type: 3}
+      propertyPath: elementSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ddafb902222c0242921ea4d6c578e28, type: 3}
+    - target: {fileID: 1117866471, guid: 6595d9cd2f5ff804a9372e2c2621a5dc, type: 3}
+      propertyPath: elementSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 0aef749da621c6a48b904e71c1343531, type: 3}
+    - target: {fileID: 1117866471, guid: 6595d9cd2f5ff804a9372e2c2621a5dc, type: 3}
+      propertyPath: elementSprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: d1ee145b8f1978345ade2f503cfe00ab, type: 3}
     - target: {fileID: 7234164115732488718, guid: 6595d9cd2f5ff804a9372e2c2621a5dc, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -4651,7 +4675,7 @@ Transform:
   - {fileID: 1887175161}
   - {fileID: 578793598}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1267975776
 GameObject:
@@ -5911,7 +5935,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1583019293
 GameObject:
@@ -6263,7 +6287,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 17.641, y: -71.538, z: 8.71}
 --- !u!1 &1663883363
 GameObject:
