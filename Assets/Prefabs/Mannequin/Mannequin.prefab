@@ -323,7 +323,7 @@ MonoBehaviour:
   hiddenMat: {fileID: 2100000, guid: 905dfbc5267cd5e4da87f6a621d9563c, type: 2}
   hiddenChild: {fileID: 8884337068598414679}
   normalChild: {fileID: 7764873721249496936}
-  successParticle: {fileID: 1854487505067035021, guid: 77be620564589bd4496d13c72ebb3857, type: 3}
+  successParticle: {fileID: 1063597910337860908, guid: 0acb65cf04502104780f309a8219df7a, type: 3}
   failParticle: {fileID: 4023477586796899340, guid: f2ad47bdc393d694c8ce6be6f1a2dc2d, type: 3}
   Chances: 3
   AffectedLimbs: []
