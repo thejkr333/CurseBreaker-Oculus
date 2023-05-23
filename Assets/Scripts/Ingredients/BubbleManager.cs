@@ -90,7 +90,7 @@ public class BubbleManager : MonoBehaviour
                     }
                     else
                     {
-                        StartCoroutine(Co_DissolveBubble(bubbles[i], ingredientGO));
+                        StartCoroutine(Co_DissolveBubble(bubbles[i], i, ingredientGO));
                     }
                     break;
                 }
@@ -98,24 +98,24 @@ public class BubbleManager : MonoBehaviour
         }
     }
 
-    IEnumerator Co_DissolveBubble(GameObject bubble, GameObject ingredientGO)
+    IEnumerator Co_DissolveBubble(GameObject bubble, int bubbleNumber, GameObject ingredientGO)
     {
         MeshRenderer _bubbleRenderer = bubble.GetComponent<MeshRenderer>();
         float _dissolveAmount = _bubbleRenderer.material.GetFloat("_DissolveAmount");
-        while(_dissolveAmount < 1)
+
+        Rigidbody _ingRb = bubble.transform.GetChild(0).GetComponent<Rigidbody>();
+        _ingRb.isKinematic = false;
+        _ingRb.useGravity = true;
+        _ingRb.transform.parent = null;
+        while (_dissolveAmount < 1)
         {
             _dissolveAmount += Time.deltaTime * 2;
             _bubbleRenderer.material.SetFloat("_DissolveAmount", _dissolveAmount);
             yield return null;
         }
 
-         Rigidbody _ingRb = bubble.transform.GetChild(0).GetComponent<Rigidbody>();
-         _ingRb.isKinematic = false;
-         _ingRb.useGravity = true;
-         _ingRb.transform.parent = null;
-
          Destroy(bubble);
-         bubble = Instantiate(bubblePrefab);
-         SetBubble(ref bubble, ingredientGO);
+         bubbles[bubbleNumber] = Instantiate(bubblePrefab);
+         SetBubble(ref bubbles[bubbleNumber], ingredientGO);
     }
 }
