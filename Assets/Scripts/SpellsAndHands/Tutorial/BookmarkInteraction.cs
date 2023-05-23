@@ -23,7 +23,7 @@ public class BookmarkInteraction : MonoBehaviour
         
     }
 
-    void ToBeDeterminedLaterAsICannotThinkWhatItShouldBeCalledYetOrIfItShouldBeATriggerEvent()
+    void JumpToPage()
     {
         if (bookScript!=null)//&& if the it is the bookmark interaction specified with the hand
         {
