@@ -395,7 +395,6 @@ public class Customer : MonoBehaviour
                         Curses _curseToGive = CreateRandomUnlockedCurse();
                         affectedLimbsInfo[limb] = true;
                         //Curses _curseToGive = CursexIngredientMatrix.GetRandomCurse(potion.PotionIngredients);
-                        GiveCurseToLimb(limb, _curseToGive);
                         break;
                     }
                 }
@@ -471,9 +470,8 @@ public class Customer : MonoBehaviour
   
     void SpawnParticle(GameObject Particle)
     {
-        GameObject _currentParticle = Particle;
-        _currentParticle = Instantiate(successParticle, gameObject.transform);
+        GameObject _currentParticle;
 
-        Destroy(_currentParticle, 2f);
+        _currentParticle = Instantiate(Particle, gameObject.transform);
     }
 }
