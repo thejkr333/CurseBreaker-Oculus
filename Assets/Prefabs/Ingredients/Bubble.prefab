@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ace76c57911e04d42ad601e327dd8e1f, type: 2}
+  - {fileID: 2100000, guid: 15aa8af97f666d247b2f4d7ec9f8a12b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   floatOnX: 1
   floatOnY: 1
   floatOnZ: 1
+  initialPosition: {x: 0, y: 0, z: 0}
   noiseMultiplier: 0.25
   noiseFrequency: 0.25
   IngredientInside: {fileID: 0}
@@ -150,4 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b548f5fdddf5585499cb96eee069a984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashable: 0
+  CanBeDestroyed: 0

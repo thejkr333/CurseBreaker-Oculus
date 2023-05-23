@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -73,7 +74,6 @@ public class BubbleManager : MonoBehaviour
 
     public void PopBubble(Ingredients ingredient)
     {
-
         if(ingredientsBubble.TryGetValue(ingredient, out GameObject ingredientGO))
         {
             for (int i = 0; i < maxNumBubbles; i++)
@@ -82,12 +82,40 @@ public class BubbleManager : MonoBehaviour
                 {
                     AudioManager.Instance.PlaySoundStatic("PopBubble", bubbles[i].transform.position);
                     PointingParticlesManager.Instance.StopEmitting();
-                    Destroy(bubbles[i]);
-                    bubbles[i] = Instantiate(bubblePrefab);
-                    SetBubble(ref bubbles[i], ingredientGO);
+                    if (bubbles[i].transform.childCount == 0)
+                    {
+                        Destroy(bubbles[i]);
+                        bubbles[i] = Instantiate(bubblePrefab);
+                        SetBubble(ref bubbles[i], ingredientGO);
+                    }
+                    else
+                    {
+                        StartCoroutine(Co_DissolveBubble(bubbles[i], ingredientGO));
+                    }
                     break;
                 }
             }
         }
+    }
+
+    IEnumerator Co_DissolveBubble(GameObject bubble, GameObject ingredientGO)
+    {
+        MeshRenderer _bubbleRenderer = bubble.GetComponent<MeshRenderer>();
+        float _dissolveAmount = _bubbleRenderer.material.GetFloat("_DissolveAmount");
+        while(_dissolveAmount < 1)
+        {
+            _dissolveAmount += Time.deltaTime * 2;
+            _bubbleRenderer.material.SetFloat("_DissolveAmount", _dissolveAmount);
+            yield return null;
+        }
+
+         Rigidbody _ingRb = bubble.transform.GetChild(0).GetComponent<Rigidbody>();
+         _ingRb.isKinematic = false;
+         _ingRb.useGravity = true;
+         _ingRb.transform.parent = null;
+
+         Destroy(bubble);
+         bubble = Instantiate(bubblePrefab);
+         SetBubble(ref bubble, ingredientGO);
     }
 }
