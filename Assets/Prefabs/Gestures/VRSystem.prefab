@@ -1094,6 +1094,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 701466678877185030}
     - target: {fileID: 863045929836295590, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: indexTipPrefab
+      value: 
+      objectReference: {fileID: 4249769476090672390, guid: 4703dd344587be44b9d78f263b99aeff, type: 3}
+    - target: {fileID: 863045929836295590, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: Poses.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -1473,6 +1477,10 @@ PrefabInstance:
       propertyPath: Skeleton
       value: 
       objectReference: {fileID: 701466677532394760}
+    - target: {fileID: 7108896577612019056, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: indexTipPrefab
+      value: 
+      objectReference: {fileID: 4249769476090672390, guid: 4703dd344587be44b9d78f263b99aeff, type: 3}
     - target: {fileID: 7108896577612019056, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: Poses.Array.size
       value: 6

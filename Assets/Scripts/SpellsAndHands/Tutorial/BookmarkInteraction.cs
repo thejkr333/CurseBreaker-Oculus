@@ -17,13 +17,7 @@ public class BookmarkInteraction : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void JumpToPage()
+    public void JumpToPage()
     {
         if (bookScript!=null)//&& if the it is the bookmark interaction specified with the hand
         {

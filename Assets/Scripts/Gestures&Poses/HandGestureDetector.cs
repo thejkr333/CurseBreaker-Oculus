@@ -19,6 +19,8 @@ public class HandGestureDetector : MonoBehaviour
 {
     [SerializeField] TMP_Text poseText;
 
+    [SerializeField] private GameObject indexTipPrefab;
+
     // How much accurate the recognize should be
     [Header("Threshold value")]
     public float Threshold = 0.1f;
@@ -66,6 +68,14 @@ public class HandGestureDetector : MonoBehaviour
     {
         // Populate the private list of fingerbones from the current hand we put in the skeleton
         fingerbones = new List<OVRBone>(Skeleton.Bones);
+
+        foreach (var bone in fingerbones)
+        {
+            if (bone.Id == OVRSkeleton.BoneId.Hand_IndexTip)
+            {
+                GameObject clon = Instantiate(indexTipPrefab, bone.Transform);
+            }
+        }
     }
 
     void Update()
