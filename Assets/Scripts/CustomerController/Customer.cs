@@ -27,7 +27,7 @@ public class Customer : MonoBehaviour
     int numberOfPartsAffected;
 
     bool cured;
-    public int Chances = 3;
+    //public int Chances = 3;
 
     public List<Limb> AffectedLimbs = new();
 
@@ -67,15 +67,15 @@ public class Customer : MonoBehaviour
 
     private void Update()
     {
-        if (Chances < 0) return;
+        //if (Chances < 0) return;
 
-        //Check if player failed to cure the customer - James
-        if (Chances == 0)
-        {
-            DayManager.Instance.NextCustomer();
-            Chances--;
-            return;
-        }
+        ////Check if player failed to cure the customer - James
+        //if (Chances == 0)
+        //{
+        //    DayManager.Instance.NextCustomer();
+        //    Chances--;
+        //    return;
+        //}
 
         //Check if all affected limbs are cured
         if (cured) return;
@@ -357,14 +357,14 @@ public class Customer : MonoBehaviour
                             {
                                 //potion too strong
                                 CursesStrength[_curse.CurrentCurse].Strength = _strengthDiff;
-                                Chances--;
+                                //Chances--;
                                 SpawnParticle(failParticle);
                             }
                             else if (_strengthDiff < 0)
                             {
                                 //potion too weak
                                 CursesStrength[_curse.CurrentCurse].Strength = -_strengthDiff;
-                                Chances--;
+                                //Chances--;
                                 SpawnParticle(failParticle);
                             }
                             else
