@@ -25,14 +25,13 @@ public class PointingParticlesManager : MonoBehaviour
         }
     }
 
-
     public void NewObjectOutlined(GameObject handAttracting, GameObject objectAttracted)
     {
         destination.transform.parent = handAttracting.transform;
         destination.transform.localPosition = Vector3.zero;
 
-        Transform parentTransform = (objectAttracted.GetComponent<Ingredient>() && objectAttracted.transform.parent) ? objectAttracted.transform.parent.transform : objectAttracted.transform;
-        transform.SetParent(parentTransform, true);
+        //Transform parentTransform = (objectAttracted.GetComponent<Ingredient>() && objectAttracted.transform.parent) ? objectAttracted.transform.parent.transform : objectAttracted.transform;
+        transform.SetParent(objectAttracted.transform, true);
         transform.localPosition = Vector3.zero;
 
         transform.LookAt(handAttracting.transform.position);
@@ -41,18 +40,11 @@ public class PointingParticlesManager : MonoBehaviour
         main.startLifetime = 3 * Vector3.Distance(destination.transform.position, particleSystem.transform.position);
         //main.duration = 3 * Vector3.Distance(destination.transform.position, particleSystem.transform.position);
         particleSystem.Play();
-    }
-
-
-    
+    } 
 
     public void StopEmitting()
     {
         particleSystem.Stop();
         transform.parent = null;
     }
-
-    
-
-    
 }

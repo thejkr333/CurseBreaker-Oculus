@@ -2240,9 +2240,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: PointingParticlesManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2511383677786523281, guid: 7ca1f170960cf264e950a3803785c97d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4464112135536883749, guid: 7ca1f170960cf264e950a3803785c97d, type: 3}
       propertyPath: m_Parameters.m_GravityCurve.scalar
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695458543373051130, guid: 7ca1f170960cf264e950a3803785c97d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8211906285386048818, guid: 7ca1f170960cf264e950a3803785c97d, type: 3}
       propertyPath: m_RootOrder
@@ -8742,28 +8750,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
-      propertyPath: Sounds.Array.size
-      value: 16
+      propertyPath: Sounds.Array.data[9].Loop
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
-      propertyPath: Sounds.Array.data[15].Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 87ed4dce1a30efd40bc3190ca95a29d3, type: 3}
-    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
-      propertyPath: Sounds.Array.data[15].Name
-      value: Fill_Potion
-      objectReference: {fileID: 0}
-    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
-      propertyPath: Sounds.Array.data[15].Pitch
+      propertyPath: Sounds.Array.data[10].Volume
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
-      propertyPath: Sounds.Array.data[15].Volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2320740121434764959, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}
-      propertyPath: Sounds.Array.data[15].MaxDistance
-      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f08f5c6084ccb1d418832df70eca9dd4, type: 3}

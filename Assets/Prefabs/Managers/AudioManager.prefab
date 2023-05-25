@@ -118,7 +118,7 @@ MonoBehaviour:
     MaxDistance: 500
     RolloffMode: 0
   - Name: Flipping_pages
-    Clip: {fileID: 8300000, guid: 4b45eb4d9a9d2f347907c8753b942e02, type: 3}
+    Clip: {fileID: 8300000, guid: 93a139f3a8c5a7843821bd4653b1cbb7, type: 3}
     Volume: 1
     Pitch: 1
     Loop: 1
@@ -159,6 +159,14 @@ MonoBehaviour:
     RolloffMode: 0
   - Name: Gassle
     Clip: {fileID: 8300000, guid: 184e09897814eb54eba4ba7b5552596f, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0
+    MaxDistance: 500
+    RolloffMode: 0
+  - Name: Fill_Potion
+    Clip: {fileID: 8300000, guid: 87ed4dce1a30efd40bc3190ca95a29d3, type: 3}
     Volume: 1
     Pitch: 1
     Loop: 0

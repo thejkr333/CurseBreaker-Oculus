@@ -80,8 +80,8 @@ public class BubbleManager : MonoBehaviour
             {
                 if (bubbles[i].GetComponent<Bubble>().IngredientInside.ThisIngredient == ingredient)
                 {
-                    AudioManager.Instance.PlaySoundStatic("PopBubble", bubbles[i].transform.position);
-                    PointingParticlesManager.Instance.StopEmitting();
+                    AudioManager.Instance.PlaySoundStatic("Pop", bubbles[i].transform.position);
+                    PointingParticlesManager.Instance?.StopEmitting();
                     if (bubbles[i].transform.childCount == 0)
                     {
                         Destroy(bubbles[i]);
@@ -109,8 +109,9 @@ public class BubbleManager : MonoBehaviour
         _ingRb.transform.parent = null;
         while (_dissolveAmount < 1)
         {
-            _dissolveAmount += Time.deltaTime * 2;
+            _dissolveAmount += Time.deltaTime;
             _bubbleRenderer.material.SetFloat("_DissolveAmount", _dissolveAmount);
+            Debug.Log("Dissolve amount" + _dissolveAmount);
             yield return null;
         }
 
