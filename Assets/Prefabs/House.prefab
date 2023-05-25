@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliderController: {fileID: 0}
+  tpDistance: 0
 --- !u!95 &130251234
 Animator:
   serializedVersion: 5
@@ -1140,18 +1141,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8198261491875045327, guid: 10a1e8c27380b854aae48f7815e7f560, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cd590be88d7b40a4c927ebb989cb13ab, type: 2}
     - target: {fileID: -3584497630037689987, guid: 10a1e8c27380b854aae48f7815e7f560, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 386a0c8c7a6bbce46818b02929def874, type: 2}
+      objectReference: {fileID: 2100000, guid: 928314ccc995f9346b47ce0eb6c2c233, type: 2}
     - target: {fileID: -426693480180053716, guid: 10a1e8c27380b854aae48f7815e7f560, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 17f4d93fa0e3d3d4498d51c4e0186a1d, type: 2}
+      objectReference: {fileID: 2100000, guid: cd590be88d7b40a4c927ebb989cb13ab, type: 2}
     - target: {fileID: 919132149155446097, guid: 10a1e8c27380b854aae48f7815e7f560, type: 3}
       propertyPath: m_Name
       value: Hexagon_House
       objectReference: {fileID: 0}
+    - target: {fileID: 4370951913967234905, guid: 10a1e8c27380b854aae48f7815e7f560, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 06e7baa209d656243b3b6d34be81e3a0, type: 2}
+    - target: {fileID: 8247994413960396516, guid: 10a1e8c27380b854aae48f7815e7f560, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7c48c197fa39f4d4391b8ce9b04ba523, type: 2}
     - target: {fileID: 8286880790419587165, guid: 10a1e8c27380b854aae48f7815e7f560, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
