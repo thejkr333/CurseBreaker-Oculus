@@ -325,7 +325,6 @@ MonoBehaviour:
   normalChild: {fileID: 7764873721249496936}
   successParticle: {fileID: 1063597910337860908, guid: 0acb65cf04502104780f309a8219df7a, type: 3}
   failParticle: {fileID: 4023477586796899340, guid: f2ad47bdc393d694c8ce6be6f1a2dc2d, type: 3}
-  Chances: 3
   AffectedLimbs: []
   curseUIPrefab: {fileID: 9163307963177241112, guid: 516cba202bf499d4da22c0ab5b4bb253, type: 3}
   canvas: {fileID: 1532650023480231491}
@@ -2842,7 +2841,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 50e7148ff6f3fe9428e22ab04411f8c9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3cb9764e31b77ff42bef0a167bac2c60, type: 2}
+      objectReference: {fileID: 2100000, guid: c230bd1e8fbd07848b9104553e2320ad, type: 2}
     - target: {fileID: 919132149155446097, guid: 50e7148ff6f3fe9428e22ab04411f8c9, type: 3}
       propertyPath: m_Name
       value: Mannequinn_L_Arm
@@ -3308,7 +3307,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 67d25d6e39e49e34081bbc28ac424fb8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3cb9764e31b77ff42bef0a167bac2c60, type: 2}
+      objectReference: {fileID: 2100000, guid: c230bd1e8fbd07848b9104553e2320ad, type: 2}
     - target: {fileID: 540545429613148200, guid: 67d25d6e39e49e34081bbc28ac424fb8, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4100,7 +4099,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c7bdd075e61e0854daec55fee97533a1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3cb9764e31b77ff42bef0a167bac2c60, type: 2}
+      objectReference: {fileID: 2100000, guid: c230bd1e8fbd07848b9104553e2320ad, type: 2}
     - target: {fileID: 919132149155446097, guid: c7bdd075e61e0854daec55fee97533a1, type: 3}
       propertyPath: m_Name
       value: Mannequinn_R_Leg
@@ -4166,7 +4165,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 76f691c6ce164d047842e05b412d8fca, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3cb9764e31b77ff42bef0a167bac2c60, type: 2}
+      objectReference: {fileID: 2100000, guid: c230bd1e8fbd07848b9104553e2320ad, type: 2}
     - target: {fileID: -6422190139597944947, guid: 76f691c6ce164d047842e05b412d8fca, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -5704,7 +5703,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: b01938ccbc20bcd47aead5414c8ca309, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3cb9764e31b77ff42bef0a167bac2c60, type: 2}
+      objectReference: {fileID: 2100000, guid: c230bd1e8fbd07848b9104553e2320ad, type: 2}
     - target: {fileID: 919132149155446097, guid: b01938ccbc20bcd47aead5414c8ca309, type: 3}
       propertyPath: m_Name
       value: Mannequinn_L_Leg
@@ -6294,7 +6293,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 8ab9ec34ae6a6ed49a82fa87ff031bf1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3cb9764e31b77ff42bef0a167bac2c60, type: 2}
+      objectReference: {fileID: 2100000, guid: c230bd1e8fbd07848b9104553e2320ad, type: 2}
     - target: {fileID: 919132149155446097, guid: 8ab9ec34ae6a6ed49a82fa87ff031bf1, type: 3}
       propertyPath: m_Name
       value: Mannequinn_R_Arm
