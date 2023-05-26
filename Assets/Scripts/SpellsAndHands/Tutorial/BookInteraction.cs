@@ -17,6 +17,7 @@ public class BookInteraction : MonoBehaviour
 
     [SerializeField] TMP_Text pageNumber;
 
+    bool turningnPagesCRRunning = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -88,8 +89,8 @@ public class BookInteraction : MonoBehaviour
 
     public IEnumerator TurnPages(int page, float time)
     {
-        if (page == currentPage) yield break;
-
+        if (page == currentPage || turningnPagesCRRunning) yield break;
+        turningnPagesCRRunning = true;
         AudioManager.Instance.PlaySoundStatic("Flipping_pages", transform.position);
 
         int pageDiff = math.abs(page - currentPage);
@@ -102,6 +103,7 @@ public class BookInteraction : MonoBehaviour
             SetPage(currentPage + pageAddition);
             yield return new WaitForSeconds(timeInterval);
         }
+        turningnPagesCRRunning = false;
     }
 
     public void RightPageTouched(Collider other)
