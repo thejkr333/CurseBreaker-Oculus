@@ -30,9 +30,6 @@ public class PoseEvents : MonoBehaviour
     private Color blue, white;
     LineRenderer lineRenderer;
     LineController lineController;
-    ParticleSystem particleSystem;
-    ParticleSystem.EmissionModule emission;
-    
 
 
     [Header("TV")]
@@ -69,13 +66,9 @@ public class PoseEvents : MonoBehaviour
         hand = HandSkeleton.GetComponent<OVRHand>();
         lineController = GetComponent<LineController>();
         lineRenderer = GetComponent<LineRenderer>();
-        particleSystem = GetComponent<ParticleSystem>();
         hiddenGO.SetActive(false);
         lineController.enabled = false;
         lineRenderer.enabled = false;
-
-        var _emission = particleSystem.emission;
-        _emission.enabled = false;
 
         //Defining colours and alpha for the line here
         //it is only able to understand it as an array, so to change it, it needs to be lerped individuallly
@@ -519,10 +512,9 @@ public class PoseEvents : MonoBehaviour
         AudioManager.Instance.PlaySoundDynamic("magic_drawing", drawingFingerTip.gameObject);
         DrawingWithThisHand = true;
 
-        if (particleSystem == null) return;
+        if (trailRenderer == null) return;
 
-        
-        emission.enabled = true;
+        trailRenderer.enabled = true;
     }
     void SpellSelect()
     {
@@ -534,10 +526,10 @@ public class PoseEvents : MonoBehaviour
 
         recordingGesture = false;
 
-        if (particleSystem == null) return;
+        if (trailRenderer == null) return;
 
-        emission.enabled = false;
-        particleSystem.Clear();
+        trailRenderer.Clear();
+        trailRenderer.enabled = false;
     }
     #endregion
 
