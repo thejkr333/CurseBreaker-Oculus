@@ -348,7 +348,7 @@ public class Customer : MonoBehaviour
                     if (limb.AffectedLimbGO.TryGetComponent(out Curse _curse))
                     {
                         //Do de math for each limb depending on the curse that it has (matrix)
-                        int _potionStrength = CursexIngredientMatrix.CalculatePotionStrenght(_curse.CurrentCurse, potion.PotionIngredients);
+                        int _potionStrength = GameManager.Instance.CalculatePotionStrenght(_curse.CurrentCurse, potion.PotionIngredients);
 
                         if (CursesStrength.ContainsKey(_curse.CurrentCurse))
                         {
@@ -457,10 +457,10 @@ public class Customer : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Potion _potion))
         {
-            if (_potion.TryGetComponent(out OVRGrabbable _grabbable))
-            {
-                if (_grabbable.isGrabbed) return;
-            }
+            //if (_potion.TryGetComponent(out OVRGrabbable _grabbable))
+            //{
+            //    if (_grabbable.isGrabbed) return;
+            //}
 
             GetPotion(_potion);
             GameManager.Instance.DestroyGrabbedThings(_potion.gameObject);

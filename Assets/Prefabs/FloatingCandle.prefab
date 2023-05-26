@@ -5287,8 +5287,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.2
-      minScalar: 0.95
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9923,6 +9923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5731436576174337978}
   - component: {fileID: 5731436576174337957}
+  - component: {fileID: 8305096414302087604}
   m_Layer: 0
   m_Name: FloatingCandle
   m_TagString: Untagged
@@ -9964,6 +9965,209 @@ MonoBehaviour:
   LerpSpeed: 1
   BaseDistance: 5
   DoLerp: 1
+--- !u!114 &8305096414302087604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731436576174337979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3669f7bc2713441856dd2130da3992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Flames: {fileID: 6974511496385138204}
+  minSize: 0.5
+  maxSize: 1
+  minLife: 0.1
+  maxLife: 2
+  CandleBody: {fileID: 2611244185792531017}
+  RandomiseBodyColour: 1
+  RandomiseFlameColour: 1
+  UseDefinedColours: 1
+  RandomiseFlameSize: 1
+  possibleBodyColours:
+  - {r: 1, g: 1, b: 1, a: 0}
+  - {r: 0.6603774, g: 0.245461, b: 0.245461, a: 0}
+  - {r: 0.7169812, g: 0.47000793, b: 0.28002846, a: 0}
+  - {r: 0.7264151, g: 0.6632486, b: 0.29056603, a: 0}
+  - {r: 0.4887705, g: 0.6792453, b: 0.30373797, a: 0}
+  - {r: 0.2781061, g: 0.6792453, b: 0.34786952, a: 0}
+  - {r: 0.30304378, g: 0.7075472, b: 0.6020246, a: 0}
+  - {r: 0.32936987, g: 0.54233754, b: 0.6792453, a: 0}
+  - {r: 0.37968442, g: 0.3747241, b: 0.7169812, a: 0}
+  - {r: 0.6402193, g: 0.3095051, b: 0.7924528, a: 0}
+  - {r: 0.7372549, g: 0.46666667, b: 0.6784022, a: 0}
+  possibleFlameColours:
+  - serializedVersion: 2
+    key0: {r: 1, g: 0.9843137, b: 0.7411765, a: 0}
+    key1: {r: 1, g: 0.43529412, b: 0, a: 1}
+    key2: {r: 0.7137255, g: 0.13725491, b: 0.13725491, a: 0}
+    key3: {r: 1, g: 1, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 5783
+    ctime2: 24672
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 4048
+    atime2: 43947
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 3
+  - serializedVersion: 2
+    key0: {r: 1, g: 0.9843137, b: 0.7411765, a: 0}
+    key1: {r: 0.23166561, g: 1, b: 0, a: 1}
+    key2: {r: 0.7137255, g: 0.13725491, b: 0.13725491, a: 0}
+    key3: {r: 1, g: 1, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 5783
+    ctime2: 24672
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 4048
+    atime2: 43947
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 3
+  - serializedVersion: 2
+    key0: {r: 1, g: 0.9843137, b: 0.7411765, a: 0}
+    key1: {r: 0, g: 0.9499974, b: 1, a: 1}
+    key2: {r: 0.7137255, g: 0.13725491, b: 0.13725491, a: 0}
+    key3: {r: 1, g: 1, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 5783
+    ctime2: 24672
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 4048
+    atime2: 43947
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 3
+  - serializedVersion: 2
+    key0: {r: 1, g: 0.9843137, b: 0.7411765, a: 0}
+    key1: {r: 0, g: 0.051216125, b: 1, a: 1}
+    key2: {r: 0.7137255, g: 0.13725491, b: 0.13725491, a: 0}
+    key3: {r: 1, g: 1, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 5783
+    ctime2: 24672
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 4048
+    atime2: 43947
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 3
+  - serializedVersion: 2
+    key0: {r: 1, g: 0.9843137, b: 0.7411765, a: 0}
+    key1: {r: 0.68303776, g: 0, b: 1, a: 1}
+    key2: {r: 0.7137255, g: 0.13725491, b: 0.13725491, a: 0}
+    key3: {r: 1, g: 1, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 5783
+    ctime2: 24672
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 4048
+    atime2: 43947
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 3
+  - serializedVersion: 2
+    key0: {r: 1, g: 0.9843137, b: 0.7411765, a: 0}
+    key1: {r: 1, g: 0, b: 0.72537994, a: 1}
+    key2: {r: 0.7137255, g: 0.13725491, b: 0.13725491, a: 0}
+    key3: {r: 1, g: 1, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 5783
+    ctime2: 24672
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 4048
+    atime2: 43947
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 3
 --- !u!1 &5731436576390472442
 GameObject:
   m_ObjectHideFlags: 0
@@ -14916,6 +15120,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 426a7b6f9fd2c714f9dc7b30bd66f40b, type: 3}
+--- !u!1 &2611244185792531017 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 426a7b6f9fd2c714f9dc7b30bd66f40b, type: 3}
+  m_PrefabInstance: {fileID: 2953350979128063768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3420150129733636339 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 426a7b6f9fd2c714f9dc7b30bd66f40b, type: 3}

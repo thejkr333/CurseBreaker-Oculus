@@ -24,7 +24,7 @@ public class TrashVoid : MonoBehaviour
                 if (!trashable.CanBeDestroyed) return;
 
                 float _distance = Vector3.Distance(transform.position, trashable.transform.position);
-                if (_distance > .1f)
+                if (_distance > .25f)
                 {
                     Attract(trashable.gameObject);
                 }

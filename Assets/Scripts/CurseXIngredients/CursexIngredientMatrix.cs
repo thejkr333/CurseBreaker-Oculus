@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Cursebreaker", menuName = "matrix")]
 public class CursexIngredientMatrix : ScriptableObject, ISerializationCallbackReceiver
 {
-    static Dictionary<Curses, Dictionary<Ingredients, int>> factors;
+    public static Dictionary<Curses, Dictionary<Ingredients, int>> factors;
     [SerializeField] List<CurseIngredientFact> factorIngredients = new();
 
     public void OnAfterDeserialize()
@@ -35,6 +35,11 @@ public class CursexIngredientMatrix : ScriptableObject, ISerializationCallbackRe
         }
     }
 
+    //private void OnEnable()
+    //{
+    //    EditorUtility.SetDirty(this);
+    //}
+
     public int GetValue(Curses curse, Ingredients ingredient)
     {
         if (!factors.ContainsKey(curse)) return 0;
@@ -42,6 +47,7 @@ public class CursexIngredientMatrix : ScriptableObject, ISerializationCallbackRe
 
         return factors[curse][ingredient];
     }
+
     public void SetValue(Curses curse, Ingredients ingredient, int value)
     {
         if (!factors.ContainsKey(curse)) factors.Add(curse, new Dictionary<Ingredients, int>());
