@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.Mathematics;
 
 public class BookInteraction : MonoBehaviour
 {
@@ -87,6 +88,22 @@ public class BookInteraction : MonoBehaviour
         Debug.Log("Current Page is " + (currentPage + 1) + " of " + Pages.Count);
         UpdatePageNumber();
 
+    }
+
+    public IEnumerator TurnPages(int page, float time)
+    {
+        int pageDiff = math.abs(page - currentPage);
+        float timeInterval = time / pageDiff;
+
+        int pageAddition = (page < currentPage) ? -1 : 1;
+
+        while(currentPage != page)
+        {
+            SetPage(currentPage + pageAddition);
+            yield return new WaitForSeconds(timeInterval);
+        }
+
+        yield return null;
     }
 
     public void RightPageTouched(Collider other)
