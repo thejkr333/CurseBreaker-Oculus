@@ -45,7 +45,6 @@ public class BookInteraction : MonoBehaviour
     }
     private void ResetTouch()
     {
-        Debug.Log("AA Reset");
         handTouched = null;
         rightPageTouched = false;
         leftPageTouched = false;
@@ -60,7 +59,6 @@ public class BookInteraction : MonoBehaviour
             currentPage--;
             foreach (GameObject obj in Pages) { obj.SetActive(false); }
             Pages[currentPage].SetActive(true);
-            Debug.Log("Current Page is " + (currentPage + 1) + " of " + Pages.Count);
             UpdatePageNumber();
 
         }
@@ -74,7 +72,6 @@ public class BookInteraction : MonoBehaviour
             currentPage++;
             foreach (GameObject obj in Pages) { obj.SetActive(false); }
             Pages[currentPage].SetActive(true);
-            Debug.Log("Current Page is " + (currentPage + 1) + " of " + Pages.Count);
             UpdatePageNumber();
 
         }
@@ -84,7 +81,6 @@ public class BookInteraction : MonoBehaviour
         currentPage = pageToSet;
         foreach (GameObject obj in Pages) { obj.SetActive(false); }
         Pages[currentPage].SetActive(true);
-        Debug.Log("Current Page is " + (currentPage + 1) + " of " + Pages.Count);
         UpdatePageNumber();
 
     }
@@ -96,7 +92,6 @@ public class BookInteraction : MonoBehaviour
             //First time touching
             if (handTouched == null)
             {
-                Debug.Log("AA 1st time right");
                 handTouched = poseGrab.gameObject;
 
                 rightPageTouched = true;
@@ -126,7 +121,6 @@ public class BookInteraction : MonoBehaviour
         {
             if (handTouched == null)
             {
-                Debug.Log("AA 1st time left");
                 handTouched = poseGrab.gameObject;
 
                 leftPageTouched = true;

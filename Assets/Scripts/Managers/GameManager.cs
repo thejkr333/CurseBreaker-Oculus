@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
     //Just list for debug and visualize changes in unlockedInfo
     [SerializeField] List<CursexBool> _cursesLockInfo;
     [SerializeField] List<IngredientxBool> _ingredientsLockInfo;
+
+    public Dictionary<Curses, Dictionary<Ingredients, int>> CurseIngRelation;
 
     private void Awake()
     {
@@ -59,6 +62,9 @@ public class GameManager : MonoBehaviour
             i.isLocked = ingredients.Value;
             _ingredientsLockInfo.Add(i);
         }
+
+        CurseIngRelation = new();
+        CurseIngRelation = CursexIngredientMatrix.factors;
     }
 
     private void Start()
@@ -177,6 +183,37 @@ public class GameManager : MonoBehaviour
     //    }
     //    return _ingredientsMoreUsed;
     //}
+
+    public int CalculatePotionStrenght(Curses curse, List<Ingredients> ingredients)
+    {
+        int _potionStrength = 0;
+        foreach (Ingredients ing in ingredients)
+        {
+            if (!CurseIngRelation[curse].TryGetValue(ing, out int _ingValue))
+            {
+                _potionStrength = 0;
+            }
+            else
+            {
+                switch (_ingValue)
+                {
+                    case 1:
+                        _potionStrength += 5;
+                        break;
+                    case 2:
+                        _potionStrength += 2;
+                        break;
+                    case 3:
+                        _potionStrength -= 1;
+                        break;
+                    default:
+                        _potionStrength = 0;
+                        break;
+                }
+            }
+        }
+        return _potionStrength;
+    }
 
     #region Saving&Loading
 

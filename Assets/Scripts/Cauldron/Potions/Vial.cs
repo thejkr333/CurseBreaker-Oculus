@@ -13,6 +13,7 @@ public class Vial : MonoBehaviour
     [SerializeField] Gradient gradient;
 
     public Action onDestroy;
+    bool coroutineRunning;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class Vial : MonoBehaviour
 
     IEnumerator Co_CheckSubmerge(Collider cauldronCol)
     {
+        coroutineRunning = true;
         bool totallySubmerged = false;
         float submergeTime = 0;
         while (!totallySubmerged || submergeTime < timeForCompletion)
@@ -79,15 +81,7 @@ public class Vial : MonoBehaviour
         if(other.TryGetComponent(out Cauldron cauldron))
         {
             if (!cauldron.PotionDone) return;
-            StartCoroutine(Co_CheckSubmerge(other));
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent(out Cauldron cauldron))
-        {
-            StopCoroutine(Co_CheckSubmerge(other));
+            if(!coroutineRunning) StartCoroutine(Co_CheckSubmerge(other));
         }
     }
 

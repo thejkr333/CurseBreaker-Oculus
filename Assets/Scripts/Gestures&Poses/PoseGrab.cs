@@ -60,7 +60,6 @@ public class PoseGrab : OVRGrabber
         else if (m_grabbedObj != null && !isGrabbing)
         {
             // we call the override GrabEnd
-            Debug.Log("GrabEnds 0");
             GrabEnd();
         }
 
@@ -91,7 +90,6 @@ public class PoseGrab : OVRGrabber
 
             Vector3 linearVelocity = (transform.position - (m_lastPos)) / Time.deltaTime;
             //Vector3 linearVelocity = OVRInput.GetLocalControllerVelocity(m_controller); //This doesnt work because ony supports OCULUS controllers
-            Debug.Log("Releasing linear velocity: " + linearVelocity);
             // the same operation is calculated but in this case is calculated on the EulerAngles
             Vector3 angularVelocity = (transform.eulerAngles - m_lastRot.eulerAngles) / Time.deltaTime;
             //Vector3 angularVelocity = OVRInput.GetLocalControllerAngularVelocity(m_controller); //This doesnt work because ony supports OCULUS controllers

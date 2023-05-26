@@ -64,6 +64,9 @@ MonoBehaviour:
   - curse: 2
     ingredient: 3
     value: 3
+  - curse: 2
+    ingredient: 5
+    value: 0
   - curse: 4
     ingredient: 4
     value: 1

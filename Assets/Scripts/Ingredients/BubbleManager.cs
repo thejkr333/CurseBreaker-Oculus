@@ -111,7 +111,6 @@ public class BubbleManager : MonoBehaviour
         {
             _dissolveAmount += Time.deltaTime;
             _bubbleRenderer.material.SetFloat("_DissolveAmount", _dissolveAmount);
-            Debug.Log("Dissolve amount" + _dissolveAmount);
             yield return null;
         }
 
