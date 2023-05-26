@@ -21,8 +21,7 @@ public class BookmarkInteraction : MonoBehaviour
     {
         if (bookScript!=null)//&& if the it is the bookmark interaction specified with the hand
         {
-            AudioManager.Instance.PlaySoundStatic("Flipping_pages", transform.position);
-            StartCoroutine(bookScript.TurnPages(PageToSet, 0.5f));
+            StartCoroutine(bookScript.TurnPages(PageToSet, 0.7f));
         }
     }
 }

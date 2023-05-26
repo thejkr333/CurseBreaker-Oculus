@@ -88,6 +88,10 @@ public class BookInteraction : MonoBehaviour
 
     public IEnumerator TurnPages(int page, float time)
     {
+        if (page == currentPage) yield break;
+
+        AudioManager.Instance.PlaySoundStatic("Flipping_pages", transform.position);
+
         int pageDiff = math.abs(page - currentPage);
         float timeInterval = time / pageDiff;
 
@@ -98,8 +102,6 @@ public class BookInteraction : MonoBehaviour
             SetPage(currentPage + pageAddition);
             yield return new WaitForSeconds(timeInterval);
         }
-
-        yield return null;
     }
 
     public void RightPageTouched(Collider other)
