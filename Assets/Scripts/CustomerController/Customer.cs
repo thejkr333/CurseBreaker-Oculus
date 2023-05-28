@@ -383,6 +383,22 @@ public class Customer : MonoBehaviour
             if (!_affected)
             {
                 SpawnParticle(failParticle);
+                
+                /*foreach (var limb in affectedLimbsInfo.Keys)
+                {
+                    if (affectedLimbsInfo[limb]) continue;
+
+                    if (ElementToLimbMapping[element] == limb)
+                    {
+                        
+                        //Means the targeted limb doesn't have a curse on it. Affect negatively
+                        //Give the limb a random curse from the main curses of the ingredients
+                        Curses _curseToGive = CreateRandomUnlockedCurse();
+                        affectedLimbsInfo[limb] = true;
+                        //Curses _curseToGive = CursexIngredientMatrix.GetRandomCurse(potion.PotionIngredients);
+                        break;
+                    }
+                }*/
             }
         }
 
