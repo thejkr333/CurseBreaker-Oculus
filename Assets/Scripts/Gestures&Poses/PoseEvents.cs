@@ -50,6 +50,8 @@ public class PoseEvents : MonoBehaviour
 
     [Header("DRAWING GESTURES")]
     [SerializeField] Material paintMaterial;
+    [SerializeField] GameObject paintParticlesPrefab;
+    ParticleSystem drawingParticles;
     public bool recordingGesture;
     TrailRenderer trailRenderer;
     GameObject drawingFingerTip;
@@ -122,13 +124,17 @@ public class PoseEvents : MonoBehaviour
             {
                 drawingFingerTip = bone.Transform.gameObject;
 
-                trailRenderer = bone.Transform.gameObject.AddComponent<TrailRenderer>();
-                trailRenderer.material = paintMaterial;
-                paintMaterial.color = Color.white;
-                trailRenderer.time = 4;
-                trailRenderer.minVertexDistance = .0001f;
-                trailRenderer.startWidth = .01f;
-                trailRenderer.enabled = false;
+                GameObject clon = Instantiate(paintParticlesPrefab, bone.Transform);
+                drawingParticles = clon.GetComponent<ParticleSystem>();
+                drawingParticles.Stop();
+
+                //trailRenderer = bone.Transform.gameObject.AddComponent<TrailRenderer>();
+                //trailRenderer.material = paintMaterial;
+                //paintMaterial.color = Color.white;
+                //trailRenderer.time = 4;
+                //trailRenderer.minVertexDistance = .0001f;
+                //trailRenderer.startWidth = .01f;
+                //trailRenderer.enabled = false;
             }
         }
     }
@@ -436,6 +442,8 @@ public class PoseEvents : MonoBehaviour
     #region OpenHand
     public void StartOpenHand()
     {
+        if (!hand.IsTracked) return;
+        
         EndGrab();
 
         if (CurrentPose != Poses.OpenHand) EndLastPose(CurrentPose);
@@ -512,9 +520,11 @@ public class PoseEvents : MonoBehaviour
         AudioManager.Instance.PlaySoundDynamic("magic_drawing", drawingFingerTip.gameObject);
         DrawingWithThisHand = true;
 
-        if (trailRenderer == null) return;
+        drawingParticles.Play();
 
-        trailRenderer.enabled = true;
+        //if (trailRenderer == null) return;
+
+        //trailRenderer.enabled = true;
     }
     void SpellSelect()
     {
@@ -526,10 +536,12 @@ public class PoseEvents : MonoBehaviour
 
         recordingGesture = false;
 
-        if (trailRenderer == null) return;
+        drawingParticles.Stop();
 
-        trailRenderer.Clear();
-        trailRenderer.enabled = false;
+        //if (trailRenderer == null) return;
+
+        //trailRenderer.Clear();
+        //trailRenderer.enabled = false;
     }
     #endregion
 

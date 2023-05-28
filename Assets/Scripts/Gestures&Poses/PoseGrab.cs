@@ -40,9 +40,10 @@ public class PoseGrab : OVRGrabber
     {
         if(!hand.IsTracked)
         {
-            isGrabbing = false;
-            IsReleasing();
-            GrabEnd();
+            //isGrabbing = false;
+            //IsReleasing();
+            //GrabEnd();
+            return;
         }
 
         // we call the base.Update to make sure that OVRGrabber update some values
