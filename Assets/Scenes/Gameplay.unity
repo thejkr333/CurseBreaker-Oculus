@@ -8343,30 +8343,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OVRCameraRig
       objectReference: {fileID: 0}
-    - target: {fileID: 3387533568434931115, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: paintParticles
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3387533568434931115, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: paintParticlesPrefab
-      value: 
-      objectReference: {fileID: 9205172852166136098, guid: 3a2b7c6ea9c02ea43b6eca5f6b9f361e, type: 3}
-    - target: {fileID: 3387533568434931115, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: aimingParticlesPrefab
-      value: 
-      objectReference: {fileID: 1154428407379484693, guid: d0cf4aa4ae9ec984d90e51cff7d1ccd4, type: 3}
-    - target: {fileID: 3387533569962347719, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: paintParticles
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3387533569962347719, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: paintParticlesPrefab
-      value: 
-      objectReference: {fileID: 9205172852166136098, guid: 3a2b7c6ea9c02ea43b6eca5f6b9f361e, type: 3}
-    - target: {fileID: 3387533569962347719, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
-      propertyPath: aimingParticlesPrefab
-      value: 
-      objectReference: {fileID: 1154428407379484693, guid: d0cf4aa4ae9ec984d90e51cff7d1ccd4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e667f90bc8dd4f4ea8137642d4f64ed, type: 3}
 --- !u!114 &588593585951024526 stripped

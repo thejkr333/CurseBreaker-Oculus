@@ -1050,6 +1050,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 701466678877185030}
     - target: {fileID: 491963381120680911, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: paintParticlesPrefab
+      value: 
+      objectReference: {fileID: 9205172852166136098, guid: 3a2b7c6ea9c02ea43b6eca5f6b9f361e, type: 3}
+    - target: {fileID: 491963381120680911, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: aimingParticlesPrefab
+      value: 
+      objectReference: {fileID: 1154428407379484693, guid: d0cf4aa4ae9ec984d90e51cff7d1ccd4, type: 3}
+    - target: {fileID: 491963381120680911, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: objMaxDistanceMovement
       value: 0.03
       objectReference: {fileID: 0}
@@ -1077,6 +1085,14 @@ PrefabInstance:
       propertyPath: handSkeleton
       value: 
       objectReference: {fileID: 701466677532394760}
+    - target: {fileID: 491963382277425827, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: paintParticlesPrefab
+      value: 
+      objectReference: {fileID: 9205172852166136098, guid: 3a2b7c6ea9c02ea43b6eca5f6b9f361e, type: 3}
+    - target: {fileID: 491963382277425827, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
+      propertyPath: aimingParticlesPrefab
+      value: 
+      objectReference: {fileID: 1154428407379484693, guid: d0cf4aa4ae9ec984d90e51cff7d1ccd4, type: 3}
     - target: {fileID: 491963382277425827, guid: 9964f3e264c8cb14896c59eb59fea1cc, type: 3}
       propertyPath: objMaxDistanceMovement
       value: 0.03
