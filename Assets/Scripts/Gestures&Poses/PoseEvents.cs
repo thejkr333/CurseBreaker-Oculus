@@ -24,6 +24,8 @@ public class PoseEvents : MonoBehaviour
     private bool hasStarted = false;
 
     [Header("AIMING")]
+    [SerializeField] GameObject aimingParticlesPrefab;
+    ParticleSystem aimingParticles;
     Vector3 indexProximal = Vector3.zero;
     Vector3 indexTip = Vector3.zero;
     Vector3 thumbMetacarpal = Vector3.zero;
@@ -136,6 +138,13 @@ public class PoseEvents : MonoBehaviour
                 //trailRenderer.startWidth = .01f;
                 //trailRenderer.enabled = false;
             }
+            else if(bone.Id == OVRSkeleton.BoneId.Hand_IndexTip)
+            {
+                GameObject clon = Instantiate(aimingParticlesPrefab, bone.Transform);
+                clon.transform.eulerAngles = new Vector3(0, 90, 0);
+                aimingParticles = clon.GetComponent<ParticleSystem>();
+                aimingParticles.Stop();
+            }
         }
     }
 
@@ -196,14 +205,16 @@ public class PoseEvents : MonoBehaviour
         //Testing the grab end on another pose
         DrawingWithThisHand = false;
 
+        aimingParticles.Play();
+
         //Colour Reset every time you start aiming, just incase it doesnt. at best the line should be blue. might also not change to white as the gradient itself cannot be lerped...
         //Blue[0].color = Color.blue;
         //Blue[1].color = Color.blue;
         //lineRenderer.colorGradient.SetKeys(Blue, Alpha);
         //lineRenderer.material.color = blue;
 
-        lineController.enabled = true;
-        lineRenderer.enabled = true;
+        //lineController.enabled = true;
+        //lineRenderer.enabled = true;
     }
     void Aim()
     {
@@ -229,8 +240,8 @@ public class PoseEvents : MonoBehaviour
             }
         }
 
-        lineRenderer.SetPosition(0, indexTip);
-        lineRenderer.SetPosition(1, (indexTip - indexProximal) * 100000000);
+        //lineRenderer.SetPosition(0, indexTip);
+        //lineRenderer.SetPosition(1, (indexTip - indexProximal) * 100000000);
 
         Ray ray = new Ray(indexTip, indexTip - indexProximal);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, interactable))
@@ -254,8 +265,10 @@ public class PoseEvents : MonoBehaviour
     }
     void EndAim()
     {
-        lineController.enabled = false;
-        lineRenderer.enabled = false;
+        aimingParticles.Stop();
+        aimingParticles.Clear();
+        //lineController.enabled = false;
+        //lineRenderer.enabled = false;
         Invoke(nameof(DeselectAim), 2);
     }
     void DeselectAim()
@@ -537,6 +550,7 @@ public class PoseEvents : MonoBehaviour
         recordingGesture = false;
 
         drawingParticles.Stop();
+        drawingParticles.Clear();
 
         //if (trailRenderer == null) return;
 
