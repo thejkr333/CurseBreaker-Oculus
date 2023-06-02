@@ -141,7 +141,7 @@ public class PoseEvents : MonoBehaviour
             else if(bone.Id == OVRSkeleton.BoneId.Hand_IndexTip)
             {
                 GameObject clon = Instantiate(aimingParticlesPrefab, bone.Transform);
-                clon.transform.eulerAngles = new Vector3(0, 90, 0);
+                clon.transform.eulerAngles = new Vector3(0, 0, 0);
                 aimingParticles = clon.GetComponent<ParticleSystem>();
                 aimingParticles.Stop();
             }
