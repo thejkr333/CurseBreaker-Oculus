@@ -243,7 +243,10 @@ MonoBehaviour:
   - {fileID: 515102873}
   - {fileID: 532444616}
   - {fileID: 63228184}
-  objectToSpawn: {fileID: 1325358544700167094, guid: 43c53d51278c0664eb1ebae231f155f0, type: 3}
+  objectToSpawn:
+  - {fileID: 1325358544700167094, guid: 43c53d51278c0664eb1ebae231f155f0, type: 3}
+  - {fileID: 8339676884940826635, guid: 3fd1c67487eb0a34caaaced94af955b3, type: 3}
+  - {fileID: 4277794676119343523, guid: f89e187ce35dded4d9ab1f2b3509a992, type: 3}
 --- !u!1 &5576994953412151554
 GameObject:
   m_ObjectHideFlags: 0

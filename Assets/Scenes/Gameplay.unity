@@ -1900,7 +1900,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &467019864
@@ -7594,6 +7594,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 86879837, guid: 76ccc97bd5a3afb4686e766c7cdc2c05, type: 3}
+      propertyPath: objectToSpawn
+      value: 
+      objectReference: {fileID: 4277794676119343523, guid: f89e187ce35dded4d9ab1f2b3509a992, type: 3}
     - target: {fileID: 5576994954595251172, guid: 76ccc97bd5a3afb4686e766c7cdc2c05, type: 3}
       propertyPath: m_RootOrder
       value: 6
