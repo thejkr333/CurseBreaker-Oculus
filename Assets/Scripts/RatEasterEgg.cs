@@ -20,6 +20,14 @@ public class RatEasterEgg : MonoBehaviour
             AudioManager.Instance.PlayEasterEgg("Fabrice");
         }
         if (PlayOnce == true) RatTimer += Time.deltaTime;
-        if (RatTimer > 18) AudioManager.Instance.StopEasterEgg();
+        if (RatTimer > 18)
+        {
+            AudioManager.Instance.StopEasterEgg();
+            PlayOnce = false; 
+            RatTimer = 0;
+        }
+
     }
 }
+
+   
