@@ -3,7 +3,7 @@ using UnityEngine;
 public class VialSpawner : MonoBehaviour
 {
     [SerializeField] Transform[] spawnPoints;
-    [SerializeField] GameObject objectToSpawn;
+    [SerializeField] GameObject[] objectToSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class VialSpawner : MonoBehaviour
         {
             if(spawnPoints[x].childCount == 0)
             {
-                GameObject clon = Instantiate(objectToSpawn, spawnPoints[x].position, Quaternion.identity);
+                GameObject clon = Instantiate(objectToSpawn[x], spawnPoints[x].position, Quaternion.identity);
                 clon.transform.SetParent(spawnPoints[x].transform, true);
                 clon.GetComponent<Rigidbody>().isKinematic = true;
                 clon.GetComponent<Vial>().onDestroy += SpawnVial;
