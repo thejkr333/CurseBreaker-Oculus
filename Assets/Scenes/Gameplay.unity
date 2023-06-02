@@ -3292,7 +3292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1405428185015216554, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1747
+      value: 0.1887
       objectReference: {fileID: 0}
     - target: {fileID: 1405428185015216554, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3300,7 +3300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1405428185015216554, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0462
+      value: -0.0467
       objectReference: {fileID: 0}
     - target: {fileID: 1405428185015216554, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3330,6 +3330,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1955923168858308146, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7b3ea0cb763b26b4a80d159bb48afceb, type: 2}
     - target: {fileID: 2441238751852515619, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: Book
       value: 
@@ -3337,6 +3341,10 @@ PrefabInstance:
     - target: {fileID: 2441238751852515619, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: PageToSet
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375010548523216117, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7195072799069899046, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5840,7 +5848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1405428185015216554, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1747
+      value: 0.1887
       objectReference: {fileID: 0}
     - target: {fileID: 1405428185015216554, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5848,7 +5856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1405428185015216554, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0123
+      value: -0.0128
       objectReference: {fileID: 0}
     - target: {fileID: 1405428185015216554, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5878,6 +5886,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1955923168858308146, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a9316cca0686f304cb616be0c3768294, type: 2}
     - target: {fileID: 2441238751852515619, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: Book
       value: 
@@ -5885,6 +5897,10 @@ PrefabInstance:
     - target: {fileID: 2441238751852515619, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: PageToSet
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375010548523216117, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7195072799069899046, guid: 127491c074601d94faee5bf3e6ce0221, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7495,6 +7511,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1096062562763707613, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1532854867584615395, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.1229
@@ -7594,6 +7614,18 @@ PrefabInstance:
     - target: {fileID: 4603232327165924778, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
       propertyPath: m_Name
       value: BookStand Tutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957473879520825730, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1887
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957473879520825730, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2896
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957473879520825730, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0829
       objectReference: {fileID: 0}
     - target: {fileID: 6449425638504417250, guid: e256babc5c248384d9f14a9b8344da58, type: 3}
       propertyPath: noiseFrequency
