@@ -7806,6 +7806,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floating Shelves
       objectReference: {fileID: 0}
+    - target: {fileID: 7722667945878516203, guid: 76ccc97bd5a3afb4686e766c7cdc2c05, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76ccc97bd5a3afb4686e766c7cdc2c05, type: 3}
 --- !u!1 &2035594479
