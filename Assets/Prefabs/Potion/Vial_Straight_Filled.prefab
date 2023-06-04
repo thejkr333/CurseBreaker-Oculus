@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2479785730751378493}
   m_LocalRotation: {x: -0, y: 0.2588191, z: -0, w: 0.9659258}
-  m_LocalPosition: {x: -0.11560001, y: 0.1474, z: 0.064000025}
-  m_LocalScale: {x: 0.434431, y: 0.434432, z: 0.434431}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.64, y: 0.6400015, z: 0.64}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8716624017150145201}
@@ -5013,7 +5013,9 @@ GameObject:
   - component: {fileID: 2921960979596879966}
   - component: {fileID: 927262453752358455}
   - component: {fileID: 8788121846731279133}
-  m_Layer: 0
+  - component: {fileID: 2309142322162612806}
+  - component: {fileID: -7513006834062549668}
+  m_Layer: 3
   m_Name: Vial_Straight_Filled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6358,6 +6360,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smokeParticles: {fileID: 1901725157340488409}
+--- !u!54 &2309142322162612806
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8339676884940826635}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &-7513006834062549668
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8339676884940826635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.013289853
+  m_Center: {x: 0, y: -0.0015146695, z: 0}
 --- !u!1001 &5041140483670000059
 PrefabInstance:
   m_ObjectHideFlags: 0

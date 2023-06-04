@@ -1646,7 +1646,7 @@ GameObject:
   - component: {fileID: 1484421801541332995}
   - component: {fileID: 4188442677678163546}
   - component: {fileID: 6059911722906707058}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

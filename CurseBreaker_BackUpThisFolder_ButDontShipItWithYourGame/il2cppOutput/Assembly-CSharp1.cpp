@@ -541,6 +541,8 @@ struct OVRSkeleton_tB20461CF545E43EA4D24FC36EDE3D21B3ECA5374;
 struct Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C;
 // Outline
 struct Outline_tA78D70438690321A2C0560EA51E59BF4A2F7A882;
+// UnityEngine.ParticleSystem
+struct ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1;
 // UnityEngine.Events.PersistentCallGroup
 struct PersistentCallGroup_tB826EDF15DC80F71BCBCD8E410FD959A04C33F25;
 // PoseEvents
@@ -4996,54 +4998,62 @@ struct PoseEvents_tA538CC9D6A89D43DDD364F0BBF617B458626C762  : public MonoBehavi
 	List_1_t47D92D044BD6BE23DD66F86497A9FB0EB0BB3A71* ___fingerbones_12;
 	// System.Boolean PoseEvents::hasStarted
 	bool ___hasStarted_13;
+	// UnityEngine.GameObject PoseEvents::aimingParticlesPrefab
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___aimingParticlesPrefab_14;
+	// UnityEngine.ParticleSystem PoseEvents::aimingParticles
+	ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___aimingParticles_15;
 	// UnityEngine.Vector3 PoseEvents::indexProximal
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___indexProximal_14;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___indexProximal_16;
 	// UnityEngine.Vector3 PoseEvents::indexTip
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___indexTip_15;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___indexTip_17;
 	// UnityEngine.Vector3 PoseEvents::thumbMetacarpal
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___thumbMetacarpal_16;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___thumbMetacarpal_18;
 	// UnityEngine.Color PoseEvents::blue
-	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___blue_17;
+	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___blue_19;
 	// UnityEngine.Color PoseEvents::white
-	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___white_18;
+	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___white_20;
 	// UnityEngine.LineRenderer PoseEvents::lineRenderer
-	LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* ___lineRenderer_19;
+	LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* ___lineRenderer_21;
 	// LineController PoseEvents::lineController
-	LineController_t7926587ACCBB72CCFFFE6F53ADFC0E33FC601EC7* ___lineController_20;
+	LineController_t7926587ACCBB72CCFFFE6F53ADFC0E33FC601EC7* ___lineController_22;
 	// UnityEngine.GameObject PoseEvents::hiddenGO
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___hiddenGO_21;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___hiddenGO_23;
 	// UnityEngine.Transform PoseEvents::head
-	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___head_22;
+	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___head_24;
 	// System.Boolean PoseEvents::attracting
-	bool ___attracting_23;
+	bool ___attracting_25;
 	// UnityEngine.LayerMask PoseEvents::interactable
-	LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB ___interactable_24;
+	LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB ___interactable_26;
 	// UnityEngine.LayerMask PoseEvents::grabbed
-	LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB ___grabbed_25;
+	LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB ___grabbed_27;
 	// Outline PoseEvents::lastOutline
-	Outline_tA78D70438690321A2C0560EA51E59BF4A2F7A882* ___lastOutline_26;
+	Outline_tA78D70438690321A2C0560EA51E59BF4A2F7A882* ___lastOutline_28;
 	// UnityEngine.Transform PoseEvents::grabPoint
-	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___grabPoint_27;
+	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___grabPoint_29;
 	// UnityEngine.Rigidbody PoseEvents::attractedObjRb
-	Rigidbody_t268697F5A994213ED97393309870968BC1C7393C* ___attractedObjRb_28;
+	Rigidbody_t268697F5A994213ED97393309870968BC1C7393C* ___attractedObjRb_30;
 	// UnityEngine.LayerMask PoseEvents::objectLayer
-	LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB ___objectLayer_29;
+	LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB ___objectLayer_31;
 	// System.Single PoseEvents::objMaxDistanceMovement
-	float ___objMaxDistanceMovement_30;
+	float ___objMaxDistanceMovement_32;
 	// System.Boolean PoseEvents::kinematic
-	bool ___kinematic_31;
+	bool ___kinematic_33;
 	// UnityEngine.Material PoseEvents::paintMaterial
-	Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* ___paintMaterial_32;
+	Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* ___paintMaterial_34;
+	// UnityEngine.GameObject PoseEvents::paintParticlesPrefab
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___paintParticlesPrefab_35;
+	// UnityEngine.ParticleSystem PoseEvents::drawingParticles
+	ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___drawingParticles_36;
 	// System.Boolean PoseEvents::recordingGesture
-	bool ___recordingGesture_33;
+	bool ___recordingGesture_37;
 	// UnityEngine.TrailRenderer PoseEvents::trailRenderer
-	TrailRenderer_tF7E185EF383CF4300DFC3E1DE59FA6100B93CA39* ___trailRenderer_34;
+	TrailRenderer_tF7E185EF383CF4300DFC3E1DE59FA6100B93CA39* ___trailRenderer_38;
 	// UnityEngine.GameObject PoseEvents::drawingFingerTip
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___drawingFingerTip_35;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___drawingFingerTip_39;
 	// System.Boolean PoseEvents::hasClapped
-	bool ___hasClapped_36;
+	bool ___hasClapped_40;
 	// System.Boolean PoseEvents::hasRocknRoll
-	bool ___hasRocknRoll_38;
+	bool ___hasRocknRoll_42;
 };
 
 // SimpleCapsuleWithStickMovement
@@ -7388,7 +7398,7 @@ struct OVRScreenFade_tCFBC0A69E92FF77827F6CF5095FBE7F4A338B774_StaticFields
 struct PoseEvents_tA538CC9D6A89D43DDD364F0BBF617B458626C762_StaticFields
 {
 	// System.Action PoseEvents::Clap
-	Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* ___Clap_37;
+	Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* ___Clap_41;
 };
 
 // PoseEvents
@@ -26507,7 +26517,7 @@ IL_00b9:
 		// LeftTriggerValue = leftHandPoseEvents.recordingGesture ? 1 : 0;
 		PoseEvents_tA538CC9D6A89D43DDD364F0BBF617B458626C762* L_16 = __this->___leftHandPoseEvents_4;
 		NullCheck(L_16);
-		bool L_17 = L_16->___recordingGesture_33;
+		bool L_17 = L_16->___recordingGesture_37;
 		G_B18_0 = __this;
 		if (L_17)
 		{
@@ -26716,7 +26726,7 @@ IL_01a5:
 		// RightTriggerValue = rightHandPoseEvents.recordingGesture ? 1 : 0;
 		PoseEvents_tA538CC9D6A89D43DDD364F0BBF617B458626C762* L_34 = __this->___rightHandPoseEvents_5;
 		NullCheck(L_34);
-		bool L_35 = L_34->___recordingGesture_33;
+		bool L_35 = L_34->___recordingGesture_37;
 		G_B40_0 = __this;
 		if (L_35)
 		{
