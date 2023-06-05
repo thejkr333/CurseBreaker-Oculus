@@ -57,6 +57,8 @@ public class PoseEvents : MonoBehaviour
     public bool recordingGesture;
     TrailRenderer trailRenderer;
     GameObject drawingFingerTip;
+    GameObject pointingFingerTip;
+    bool pointingInitialized = false;
 
 
     [Header("OPENHAND")]
@@ -140,14 +142,20 @@ public class PoseEvents : MonoBehaviour
             }
             else if(bone.Id == OVRSkeleton.BoneId.Hand_IndexTip)
             {
-                GameObject clon = Instantiate(aimingParticlesPrefab, bone.Transform);
-                clon.transform.eulerAngles = new Vector3(0, 0, 0);
-                aimingParticles = clon.GetComponent<ParticleSystem>();
-                aimingParticles.Stop();
+                
+                pointingFingerTip = bone.Transform.gameObject;
+                SetUpPointingParticles();
             }
         }
     }
 
+    void SetUpPointingParticles()
+    {
+        GameObject clon = Instantiate(aimingParticlesPrefab, pointingFingerTip.transform.position, Quaternion.identity, pointingFingerTip.transform);
+        aimingParticles = clon.GetComponent<ParticleSystem>();
+        aimingParticles.Stop();
+        pointingInitialized = true;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -200,6 +208,8 @@ public class PoseEvents : MonoBehaviour
         if (CurrentPose != Poses.Aiming) EndLastPose(CurrentPose);
         else return;
 
+        if (!pointingInitialized) SetUpPointingParticles();
+
         CurrentPose = Poses.Aiming;
 
         //Testing the grab end on another pose
@@ -213,8 +223,8 @@ public class PoseEvents : MonoBehaviour
         //lineRenderer.colorGradient.SetKeys(Blue, Alpha);
         //lineRenderer.material.color = blue;
 
-        //lineController.enabled = true;
-        //lineRenderer.enabled = true;
+        lineController.enabled = true;
+        lineRenderer.enabled = true;
     }
     void Aim()
     {
@@ -240,10 +250,11 @@ public class PoseEvents : MonoBehaviour
             }
         }
 
-        //lineRenderer.SetPosition(0, indexTip);
-        //lineRenderer.SetPosition(1, (indexTip - indexProximal) * 100000000);
+        Vector3 dir = mainHand ? pointingFingerTip.transform.right : -pointingFingerTip.transform.right;
+        lineRenderer.SetPosition(0, indexTip);
+        lineRenderer.SetPosition(1, dir * 100000000);
 
-        Ray ray = new Ray(indexTip, indexTip - indexProximal);
+        Ray ray = new Ray(indexTip, dir);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, interactable))
         {
             Outline outline = null;
@@ -267,8 +278,8 @@ public class PoseEvents : MonoBehaviour
     {
         aimingParticles.Stop();
         aimingParticles.Clear();
-        //lineController.enabled = false;
-        //lineRenderer.enabled = false;
+        lineController.enabled = false;
+        lineRenderer.enabled = false;
         Invoke(nameof(DeselectAim), 2);
     }
     void DeselectAim()
